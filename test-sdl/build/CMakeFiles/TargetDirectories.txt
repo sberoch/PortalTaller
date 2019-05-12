@@ -1,0 +1,3 @@
+/home/sberoch/PortalTaller/test-sdl/build/CMakeFiles/rebuild_cache.dir
+/home/sberoch/PortalTaller/test-sdl/build/CMakeFiles/portal.dir
+/home/sberoch/PortalTaller/test-sdl/build/CMakeFiles/edit_cache.dir
