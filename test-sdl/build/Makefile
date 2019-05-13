@@ -56,16 +56,41 @@ CMAKE_BINARY_DIR = /home/sberoch/PortalTaller/test-sdl/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
 
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
 
-.PHONY : rebuild_cache/fast
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -77,6 +102,27 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,17 +157,178 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named portal
+# Target rules for targets named sdl-hello
 
 # Build rule for target.
-portal: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 portal
-.PHONY : portal
+sdl-hello: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sdl-hello
+.PHONY : sdl-hello
 
 # fast build rule for target.
-portal/fast:
-	$(MAKE) -f CMakeFiles/portal.dir/build.make CMakeFiles/portal.dir/build
-.PHONY : portal/fast
+sdl-hello/fast:
+	$(MAKE) -f CMakeFiles/sdl-hello.dir/build.make CMakeFiles/sdl-hello.dir/build
+.PHONY : sdl-hello/fast
+
+#=============================================================================
+# Target rules for targets named sdldemo
+
+# Build rule for target.
+sdldemo: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sdldemo
+.PHONY : sdldemo
+
+# fast build rule for target.
+sdldemo/fast:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/build
+.PHONY : sdldemo/fast
+
+#=============================================================================
+# Target rules for targets named sdl-events
+
+# Build rule for target.
+sdl-events: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sdl-events
+.PHONY : sdl-events
+
+# fast build rule for target.
+sdl-events/fast:
+	$(MAKE) -f CMakeFiles/sdl-events.dir/build.make CMakeFiles/sdl-events.dir/build
+.PHONY : sdl-events/fast
+
+src/Area.o: src/Area.cpp.o
+
+.PHONY : src/Area.o
+
+# target to build an object file
+src/Area.cpp.o:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/Area.cpp.o
+.PHONY : src/Area.cpp.o
+
+src/Area.i: src/Area.cpp.i
+
+.PHONY : src/Area.i
+
+# target to preprocess a source file
+src/Area.cpp.i:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/Area.cpp.i
+.PHONY : src/Area.cpp.i
+
+src/Area.s: src/Area.cpp.s
+
+.PHONY : src/Area.s
+
+# target to generate assembly for a file
+src/Area.cpp.s:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/Area.cpp.s
+.PHONY : src/Area.cpp.s
+
+src/SdlException.o: src/SdlException.cpp.o
+
+.PHONY : src/SdlException.o
+
+# target to build an object file
+src/SdlException.cpp.o:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/SdlException.cpp.o
+.PHONY : src/SdlException.cpp.o
+
+src/SdlException.i: src/SdlException.cpp.i
+
+.PHONY : src/SdlException.i
+
+# target to preprocess a source file
+src/SdlException.cpp.i:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/SdlException.cpp.i
+.PHONY : src/SdlException.cpp.i
+
+src/SdlException.s: src/SdlException.cpp.s
+
+.PHONY : src/SdlException.s
+
+# target to generate assembly for a file
+src/SdlException.cpp.s:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/SdlException.cpp.s
+.PHONY : src/SdlException.cpp.s
+
+src/SdlTexture.o: src/SdlTexture.cpp.o
+
+.PHONY : src/SdlTexture.o
+
+# target to build an object file
+src/SdlTexture.cpp.o:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/SdlTexture.cpp.o
+.PHONY : src/SdlTexture.cpp.o
+
+src/SdlTexture.i: src/SdlTexture.cpp.i
+
+.PHONY : src/SdlTexture.i
+
+# target to preprocess a source file
+src/SdlTexture.cpp.i:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/SdlTexture.cpp.i
+.PHONY : src/SdlTexture.cpp.i
+
+src/SdlTexture.s: src/SdlTexture.cpp.s
+
+.PHONY : src/SdlTexture.s
+
+# target to generate assembly for a file
+src/SdlTexture.cpp.s:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/SdlTexture.cpp.s
+.PHONY : src/SdlTexture.cpp.s
+
+src/SdlWindow.o: src/SdlWindow.cpp.o
+
+.PHONY : src/SdlWindow.o
+
+# target to build an object file
+src/SdlWindow.cpp.o:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/SdlWindow.cpp.o
+.PHONY : src/SdlWindow.cpp.o
+
+src/SdlWindow.i: src/SdlWindow.cpp.i
+
+.PHONY : src/SdlWindow.i
+
+# target to preprocess a source file
+src/SdlWindow.cpp.i:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/SdlWindow.cpp.i
+.PHONY : src/SdlWindow.cpp.i
+
+src/SdlWindow.s: src/SdlWindow.cpp.s
+
+.PHONY : src/SdlWindow.s
+
+# target to generate assembly for a file
+src/SdlWindow.cpp.s:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/SdlWindow.cpp.s
+.PHONY : src/SdlWindow.cpp.s
+
+src/mainSdlEvents.o: src/mainSdlEvents.cpp.o
+
+.PHONY : src/mainSdlEvents.o
+
+# target to build an object file
+src/mainSdlEvents.cpp.o:
+	$(MAKE) -f CMakeFiles/sdl-events.dir/build.make CMakeFiles/sdl-events.dir/src/mainSdlEvents.cpp.o
+.PHONY : src/mainSdlEvents.cpp.o
+
+src/mainSdlEvents.i: src/mainSdlEvents.cpp.i
+
+.PHONY : src/mainSdlEvents.i
+
+# target to preprocess a source file
+src/mainSdlEvents.cpp.i:
+	$(MAKE) -f CMakeFiles/sdl-events.dir/build.make CMakeFiles/sdl-events.dir/src/mainSdlEvents.cpp.i
+.PHONY : src/mainSdlEvents.cpp.i
+
+src/mainSdlEvents.s: src/mainSdlEvents.cpp.s
+
+.PHONY : src/mainSdlEvents.s
+
+# target to generate assembly for a file
+src/mainSdlEvents.cpp.s:
+	$(MAKE) -f CMakeFiles/sdl-events.dir/build.make CMakeFiles/sdl-events.dir/src/mainSdlEvents.cpp.s
+.PHONY : src/mainSdlEvents.cpp.s
 
 src/mainSdlHello.o: src/mainSdlHello.cpp.o
 
@@ -129,7 +336,7 @@ src/mainSdlHello.o: src/mainSdlHello.cpp.o
 
 # target to build an object file
 src/mainSdlHello.cpp.o:
-	$(MAKE) -f CMakeFiles/portal.dir/build.make CMakeFiles/portal.dir/src/mainSdlHello.cpp.o
+	$(MAKE) -f CMakeFiles/sdl-hello.dir/build.make CMakeFiles/sdl-hello.dir/src/mainSdlHello.cpp.o
 .PHONY : src/mainSdlHello.cpp.o
 
 src/mainSdlHello.i: src/mainSdlHello.cpp.i
@@ -138,7 +345,7 @@ src/mainSdlHello.i: src/mainSdlHello.cpp.i
 
 # target to preprocess a source file
 src/mainSdlHello.cpp.i:
-	$(MAKE) -f CMakeFiles/portal.dir/build.make CMakeFiles/portal.dir/src/mainSdlHello.cpp.i
+	$(MAKE) -f CMakeFiles/sdl-hello.dir/build.make CMakeFiles/sdl-hello.dir/src/mainSdlHello.cpp.i
 .PHONY : src/mainSdlHello.cpp.i
 
 src/mainSdlHello.s: src/mainSdlHello.cpp.s
@@ -147,7 +354,7 @@ src/mainSdlHello.s: src/mainSdlHello.cpp.s
 
 # target to generate assembly for a file
 src/mainSdlHello.cpp.s:
-	$(MAKE) -f CMakeFiles/portal.dir/build.make CMakeFiles/portal.dir/src/mainSdlHello.cpp.s
+	$(MAKE) -f CMakeFiles/sdl-hello.dir/build.make CMakeFiles/sdl-hello.dir/src/mainSdlHello.cpp.s
 .PHONY : src/mainSdlHello.cpp.s
 
 # Help Target
@@ -156,9 +363,30 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
-	@echo "... portal"
+	@echo "... install/strip"
+	@echo "... install/local"
+	@echo "... install"
+	@echo "... sdl-hello"
+	@echo "... sdldemo"
 	@echo "... edit_cache"
+	@echo "... sdl-events"
+	@echo "... rebuild_cache"
+	@echo "... list_install_components"
+	@echo "... src/Area.o"
+	@echo "... src/Area.i"
+	@echo "... src/Area.s"
+	@echo "... src/SdlException.o"
+	@echo "... src/SdlException.i"
+	@echo "... src/SdlException.s"
+	@echo "... src/SdlTexture.o"
+	@echo "... src/SdlTexture.i"
+	@echo "... src/SdlTexture.s"
+	@echo "... src/SdlWindow.o"
+	@echo "... src/SdlWindow.i"
+	@echo "... src/SdlWindow.s"
+	@echo "... src/mainSdlEvents.o"
+	@echo "... src/mainSdlEvents.i"
+	@echo "... src/mainSdlEvents.s"
 	@echo "... src/mainSdlHello.o"
 	@echo "... src/mainSdlHello.i"
 	@echo "... src/mainSdlHello.s"

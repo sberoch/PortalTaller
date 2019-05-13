@@ -1,3 +1,9 @@
-/home/sberoch/PortalTaller/test-sdl/build/CMakeFiles/rebuild_cache.dir
-/home/sberoch/PortalTaller/test-sdl/build/CMakeFiles/portal.dir
+/home/sberoch/PortalTaller/test-sdl/build/CMakeFiles/install/strip.dir
+/home/sberoch/PortalTaller/test-sdl/build/CMakeFiles/install/local.dir
+/home/sberoch/PortalTaller/test-sdl/build/CMakeFiles/install.dir
+/home/sberoch/PortalTaller/test-sdl/build/CMakeFiles/sdl-hello.dir
+/home/sberoch/PortalTaller/test-sdl/build/CMakeFiles/sdldemo.dir
 /home/sberoch/PortalTaller/test-sdl/build/CMakeFiles/edit_cache.dir
+/home/sberoch/PortalTaller/test-sdl/build/CMakeFiles/sdl-events.dir
+/home/sberoch/PortalTaller/test-sdl/build/CMakeFiles/rebuild_cache.dir
+/home/sberoch/PortalTaller/test-sdl/build/CMakeFiles/list_install_components.dir

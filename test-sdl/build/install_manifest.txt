@@ -1,0 +1,1 @@
+/home/sberoch/PortalTaller/test-sdl/build/emisor_receptor.png

@@ -27,4 +27,4 @@ add_executable (sdl-events
 target_link_libraries(sdl-hello sdldemo SDL2 SDL2_image)
 target_link_libraries(sdl-events sdldemo SDL2 SDL2_image)
 
-install(FILES assets/cat.gif DESTINATION ${CMAKE_BINARY_DIR})
+install(FILES assets/emisor_receptor.png DESTINATION ${CMAKE_BINARY_DIR})

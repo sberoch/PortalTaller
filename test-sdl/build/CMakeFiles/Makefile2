@@ -60,39 +60,113 @@ CMAKE_SOURCE_DIR = /home/sberoch/PortalTaller/test-sdl
 CMAKE_BINARY_DIR = /home/sberoch/PortalTaller/test-sdl/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/portal.dir
+# Target rules for target CMakeFiles/sdl-hello.dir
 
 # All Build rule for target.
-CMakeFiles/portal.dir/all:
-	$(MAKE) -f CMakeFiles/portal.dir/build.make CMakeFiles/portal.dir/depend
-	$(MAKE) -f CMakeFiles/portal.dir/build.make CMakeFiles/portal.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sberoch/PortalTaller/test-sdl/build/CMakeFiles --progress-num=1,2 "Built target portal"
-.PHONY : CMakeFiles/portal.dir/all
+CMakeFiles/sdl-hello.dir/all: CMakeFiles/sdldemo.dir/all
+	$(MAKE) -f CMakeFiles/sdl-hello.dir/build.make CMakeFiles/sdl-hello.dir/depend
+	$(MAKE) -f CMakeFiles/sdl-hello.dir/build.make CMakeFiles/sdl-hello.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sberoch/PortalTaller/test-sdl/build/CMakeFiles --progress-num=3,4 "Built target sdl-hello"
+.PHONY : CMakeFiles/sdl-hello.dir/all
 
 # Include target in all.
-all: CMakeFiles/portal.dir/all
+all: CMakeFiles/sdl-hello.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/portal.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sberoch/PortalTaller/test-sdl/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/portal.dir/all
+CMakeFiles/sdl-hello.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sberoch/PortalTaller/test-sdl/build/CMakeFiles 7
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/sdl-hello.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/sberoch/PortalTaller/test-sdl/build/CMakeFiles 0
-.PHONY : CMakeFiles/portal.dir/rule
+.PHONY : CMakeFiles/sdl-hello.dir/rule
 
 # Convenience name for target.
-portal: CMakeFiles/portal.dir/rule
+sdl-hello: CMakeFiles/sdl-hello.dir/rule
 
-.PHONY : portal
-
-# clean rule for target.
-CMakeFiles/portal.dir/clean:
-	$(MAKE) -f CMakeFiles/portal.dir/build.make CMakeFiles/portal.dir/clean
-.PHONY : CMakeFiles/portal.dir/clean
+.PHONY : sdl-hello
 
 # clean rule for target.
-clean: CMakeFiles/portal.dir/clean
+CMakeFiles/sdl-hello.dir/clean:
+	$(MAKE) -f CMakeFiles/sdl-hello.dir/build.make CMakeFiles/sdl-hello.dir/clean
+.PHONY : CMakeFiles/sdl-hello.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/sdl-hello.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/sdldemo.dir
+
+# All Build rule for target.
+CMakeFiles/sdldemo.dir/all:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/depend
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sberoch/PortalTaller/test-sdl/build/CMakeFiles --progress-num=5,6,7,8,9 "Built target sdldemo"
+.PHONY : CMakeFiles/sdldemo.dir/all
+
+# Include target in all.
+all: CMakeFiles/sdldemo.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/sdldemo.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sberoch/PortalTaller/test-sdl/build/CMakeFiles 5
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/sdldemo.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sberoch/PortalTaller/test-sdl/build/CMakeFiles 0
+.PHONY : CMakeFiles/sdldemo.dir/rule
+
+# Convenience name for target.
+sdldemo: CMakeFiles/sdldemo.dir/rule
+
+.PHONY : sdldemo
+
+# clean rule for target.
+CMakeFiles/sdldemo.dir/clean:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/clean
+.PHONY : CMakeFiles/sdldemo.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/sdldemo.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/sdl-events.dir
+
+# All Build rule for target.
+CMakeFiles/sdl-events.dir/all: CMakeFiles/sdldemo.dir/all
+	$(MAKE) -f CMakeFiles/sdl-events.dir/build.make CMakeFiles/sdl-events.dir/depend
+	$(MAKE) -f CMakeFiles/sdl-events.dir/build.make CMakeFiles/sdl-events.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sberoch/PortalTaller/test-sdl/build/CMakeFiles --progress-num=1,2 "Built target sdl-events"
+.PHONY : CMakeFiles/sdl-events.dir/all
+
+# Include target in all.
+all: CMakeFiles/sdl-events.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/sdl-events.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sberoch/PortalTaller/test-sdl/build/CMakeFiles 7
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/sdl-events.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sberoch/PortalTaller/test-sdl/build/CMakeFiles 0
+.PHONY : CMakeFiles/sdl-events.dir/rule
+
+# Convenience name for target.
+sdl-events: CMakeFiles/sdl-events.dir/rule
+
+.PHONY : sdl-events
+
+# clean rule for target.
+CMakeFiles/sdl-events.dir/clean:
+	$(MAKE) -f CMakeFiles/sdl-events.dir/build.make CMakeFiles/sdl-events.dir/clean
+.PHONY : CMakeFiles/sdl-events.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/sdl-events.dir/clean
 
 .PHONY : clean
 

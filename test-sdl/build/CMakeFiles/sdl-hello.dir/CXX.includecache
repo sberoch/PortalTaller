@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/sberoch/PortalTaller/test-sdl/src/Area.h
+
+/home/sberoch/PortalTaller/test-sdl/src/SdlTexture.h
+string
+-
+
+/home/sberoch/PortalTaller/test-sdl/src/SdlWindow.h
+Area.h
+/home/sberoch/PortalTaller/test-sdl/src/Area.h
+
+/home/sberoch/PortalTaller/test-sdl/src/mainSdlHello.cpp
+SDL2/SDL.h
+-
+iostream
+-
+exception
+-
+SdlWindow.h
+/home/sberoch/PortalTaller/test-sdl/src/SdlWindow.h
+SdlTexture.h
+/home/sberoch/PortalTaller/test-sdl/src/SdlTexture.h
+
