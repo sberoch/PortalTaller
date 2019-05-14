@@ -31,6 +31,9 @@ int SdlTexture::render(const Area& src, const Area& dest) const {
             dest.getX(), dest.getY(),
             dest.getWidth(), dest.getHeight()
     };
-
     return SDL_RenderCopy(this->renderer, this->texture, &sdlSrc, &sdlDest);
+}
+
+int SdlTexture::setOpacity(const float opacity) {
+    SDL_SetTextureAlphaMod(this->texture, opacity);
 }

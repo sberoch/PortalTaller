@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sberoch/PortalTaller/test-sdl
+CMAKE_SOURCE_DIR = /home/santy/PortalTaller/test-sdl
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sberoch/PortalTaller/test-sdl/build
+CMAKE_BINARY_DIR = /home/santy/PortalTaller/test-sdl/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -92,6 +92,16 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -114,21 +124,11 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sberoch/PortalTaller/test-sdl/build/CMakeFiles /home/sberoch/PortalTaller/test-sdl/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/santy/PortalTaller/test-sdl/build/CMakeFiles /home/santy/PortalTaller/test-sdl/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sberoch/PortalTaller/test-sdl/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/santy/PortalTaller/test-sdl/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -181,6 +181,19 @@ sdldemo: cmake_check_build_system
 sdldemo/fast:
 	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/build
 .PHONY : sdldemo/fast
+
+#=============================================================================
+# Target rules for targets named portal
+
+# Build rule for target.
+portal: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 portal
+.PHONY : portal
+
+# fast build rule for target.
+portal/fast:
+	$(MAKE) -f CMakeFiles/portal.dir/build.make CMakeFiles/portal.dir/build
+.PHONY : portal/fast
 
 #=============================================================================
 # Target rules for targets named sdl-events
@@ -357,6 +370,33 @@ src/mainSdlHello.cpp.s:
 	$(MAKE) -f CMakeFiles/sdl-hello.dir/build.make CMakeFiles/sdl-hello.dir/src/mainSdlHello.cpp.s
 .PHONY : src/mainSdlHello.cpp.s
 
+src/mainTestTerreno.o: src/mainTestTerreno.cpp.o
+
+.PHONY : src/mainTestTerreno.o
+
+# target to build an object file
+src/mainTestTerreno.cpp.o:
+	$(MAKE) -f CMakeFiles/portal.dir/build.make CMakeFiles/portal.dir/src/mainTestTerreno.cpp.o
+.PHONY : src/mainTestTerreno.cpp.o
+
+src/mainTestTerreno.i: src/mainTestTerreno.cpp.i
+
+.PHONY : src/mainTestTerreno.i
+
+# target to preprocess a source file
+src/mainTestTerreno.cpp.i:
+	$(MAKE) -f CMakeFiles/portal.dir/build.make CMakeFiles/portal.dir/src/mainTestTerreno.cpp.i
+.PHONY : src/mainTestTerreno.cpp.i
+
+src/mainTestTerreno.s: src/mainTestTerreno.cpp.s
+
+.PHONY : src/mainTestTerreno.s
+
+# target to generate assembly for a file
+src/mainTestTerreno.cpp.s:
+	$(MAKE) -f CMakeFiles/portal.dir/build.make CMakeFiles/portal.dir/src/mainTestTerreno.cpp.s
+.PHONY : src/mainTestTerreno.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -366,12 +406,13 @@ help:
 	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... install"
+	@echo "... list_install_components"
 	@echo "... sdl-hello"
 	@echo "... sdldemo"
 	@echo "... edit_cache"
-	@echo "... sdl-events"
+	@echo "... portal"
 	@echo "... rebuild_cache"
-	@echo "... list_install_components"
+	@echo "... sdl-events"
 	@echo "... src/Area.o"
 	@echo "... src/Area.i"
 	@echo "... src/Area.s"
@@ -390,6 +431,9 @@ help:
 	@echo "... src/mainSdlHello.o"
 	@echo "... src/mainSdlHello.i"
 	@echo "... src/mainSdlHello.s"
+	@echo "... src/mainTestTerreno.o"
+	@echo "... src/mainTestTerreno.i"
+	@echo "... src/mainTestTerreno.s"
 .PHONY : help
 
 

@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/santy/PortalTaller/test-sdl/src/mainSdlEvents.cpp" "/home/santy/PortalTaller/test-sdl/build/CMakeFiles/sdl-events.dir/src/mainSdlEvents.cpp.o"
+  "/home/santy/PortalTaller/test-sdl/src/mainTestTerreno.cpp" "/home/santy/PortalTaller/test-sdl/build/CMakeFiles/portal.dir/src/mainTestTerreno.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

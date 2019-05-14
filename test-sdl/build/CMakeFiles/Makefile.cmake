@@ -44,5 +44,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/sdl-hello.dir/DependInfo.cmake"
   "CMakeFiles/sdldemo.dir/DependInfo.cmake"
+  "CMakeFiles/portal.dir/DependInfo.cmake"
   "CMakeFiles/sdl-events.dir/DependInfo.cmake"
   )

@@ -21,6 +21,11 @@ public:
      * Renderiza la textura cargada
      **/
     int render(const Area& src, const Area& dest) const;
+
+    /**
+     * Asigna una opacidad a la textura
+     **/
+    int setOpacity(const float opacity);
 private:
     SDL_Texture* loadTexture(const std::string &filename);
     SDL_Renderer* renderer;

@@ -1,1 +1,2 @@
-/home/sberoch/PortalTaller/test-sdl/build/emisor_receptor.png
+/home/santy/PortalTaller/test-sdl/build/emisor_receptor.png
+/home/santy/PortalTaller/test-sdl/build/bloque_metal_diag.png

@@ -6,5 +6,5 @@ CXX_FLAGS =  -std=c++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/sberoch/PortalTaller/test-sdl/build 
+CXX_INCLUDES = -I/home/santy/PortalTaller/test-sdl/build 
 

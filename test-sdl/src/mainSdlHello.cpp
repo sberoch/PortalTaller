@@ -10,14 +10,14 @@ int main(int argc, char** argv){
         SdlWindow window(800, 800);
         window.fill();
         // Usar factory
-        SdlTexture im("emisor_receptor.png", window);
+        SdlTexture im("bloque_metal_diag.png", window);
         //Emisor
-        Area srcArea(0, 0, 196, 191);
+        Area srcArea(2, 213, 191, 191);
         int x = 100;
         int y = 100;
 
         //Receptor
-        Area srcArea2(196, 0, 196, 191);
+        Area srcArea2(2, 0, 191, 191);
         int x2 = 400;
         int y2 = 100;
 

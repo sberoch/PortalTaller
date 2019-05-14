@@ -16,7 +16,7 @@ string
 Area.h
 /home/santy/PortalTaller/test-sdl/src/Area.h
 
-/home/santy/PortalTaller/test-sdl/src/mainSdlHello.cpp
+/home/santy/PortalTaller/test-sdl/src/mainTestTerreno.cpp
 SDL2/SDL.h
 -
 iostream

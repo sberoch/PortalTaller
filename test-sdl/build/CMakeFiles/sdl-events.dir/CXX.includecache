@@ -6,17 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/home/sberoch/PortalTaller/test-sdl/src/Area.h
+/home/santy/PortalTaller/test-sdl/src/Area.h
 
-/home/sberoch/PortalTaller/test-sdl/src/SdlTexture.h
+/home/santy/PortalTaller/test-sdl/src/SdlTexture.h
 string
 -
 
-/home/sberoch/PortalTaller/test-sdl/src/SdlWindow.h
+/home/santy/PortalTaller/test-sdl/src/SdlWindow.h
 Area.h
-/home/sberoch/PortalTaller/test-sdl/src/Area.h
+/home/santy/PortalTaller/test-sdl/src/Area.h
 
-/home/sberoch/PortalTaller/test-sdl/src/mainSdlEvents.cpp
+/home/santy/PortalTaller/test-sdl/src/mainSdlEvents.cpp
 SDL2/SDL.h
 -
 iostream
@@ -24,7 +24,7 @@ iostream
 exception
 -
 SdlWindow.h
-/home/sberoch/PortalTaller/test-sdl/src/SdlWindow.h
+/home/santy/PortalTaller/test-sdl/src/SdlWindow.h
 SdlTexture.h
-/home/sberoch/PortalTaller/test-sdl/src/SdlTexture.h
+/home/santy/PortalTaller/test-sdl/src/SdlTexture.h
 

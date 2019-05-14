@@ -19,12 +19,16 @@ add_executable (sdl-hello
   src/mainSdlHello.cpp  
 )
 
+add_executable (portal src/mainTestTerreno.cpp)
+
 add_executable (sdl-events
   src/mainSdlEvents.cpp
 )
 
 
 target_link_libraries(sdl-hello sdldemo SDL2 SDL2_image)
+target_link_libraries(portal sdldemo SDL2 SDL2_image)
 target_link_libraries(sdl-events sdldemo SDL2 SDL2_image)
 
 install(FILES assets/emisor_receptor.png DESTINATION ${CMAKE_BINARY_DIR})
+install(FILES assets/bloque_metal_diag.png DESTINATION ${CMAKE_BINARY_DIR})
