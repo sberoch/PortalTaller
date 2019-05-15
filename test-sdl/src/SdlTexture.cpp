@@ -4,6 +4,8 @@
 #include "SdlWindow.h"
 #include "SdlException.h"
 
+SdlTexture::SdlTexture() {}
+
 SdlTexture::SdlTexture(const std::string &filename, const SdlWindow& window)
     : renderer(window.getRenderer()) {
     this->texture = loadTexture(filename);
@@ -32,6 +34,18 @@ int SdlTexture::render(const Area& src, const Area& dest) const {
             dest.getWidth(), dest.getHeight()
     };
     return SDL_RenderCopy(this->renderer, this->texture, &sdlSrc, &sdlDest);
+}
+
+int SdlTexture::renderPersonaje(const Area& src, const Area& dest, SDL_RendererFlip flip) const {
+    SDL_Rect sdlSrc = {
+            src.getX(), src.getY(),
+            src.getWidth(), src.getHeight()
+    };
+    SDL_Rect sdlDest = {
+            dest.getX(), dest.getY(),
+            dest.getWidth(), dest.getHeight()
+    };
+    return SDL_RenderCopyEx(this->renderer, this->texture, &sdlSrc, &sdlDest, 0.0, NULL, flip);
 }
 
 int SdlTexture::setOpacity(const float opacity) {

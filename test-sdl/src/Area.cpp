@@ -1,5 +1,12 @@
 #include "Area.h"
 
+Area::Area() {}
+
+void Area::set(int x, int y, int width, int height) {
+	this->x = x; this->y = y;
+	this->width = width; this->height = height;
+}
+
 Area::Area(int x, int y, int width, int height) :
 	x(x), y(y), width(width), height(height){
 }

@@ -316,6 +316,87 @@ src/SdlWindow.cpp.s:
 	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/SdlWindow.cpp.s
 .PHONY : src/SdlWindow.cpp.s
 
+src/VistaBloqueMetal.o: src/VistaBloqueMetal.cpp.o
+
+.PHONY : src/VistaBloqueMetal.o
+
+# target to build an object file
+src/VistaBloqueMetal.cpp.o:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o
+.PHONY : src/VistaBloqueMetal.cpp.o
+
+src/VistaBloqueMetal.i: src/VistaBloqueMetal.cpp.i
+
+.PHONY : src/VistaBloqueMetal.i
+
+# target to preprocess a source file
+src/VistaBloqueMetal.cpp.i:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.i
+.PHONY : src/VistaBloqueMetal.cpp.i
+
+src/VistaBloqueMetal.s: src/VistaBloqueMetal.cpp.s
+
+.PHONY : src/VistaBloqueMetal.s
+
+# target to generate assembly for a file
+src/VistaBloqueMetal.cpp.s:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.s
+.PHONY : src/VistaBloqueMetal.cpp.s
+
+src/VistaBloquePiedra.o: src/VistaBloquePiedra.cpp.o
+
+.PHONY : src/VistaBloquePiedra.o
+
+# target to build an object file
+src/VistaBloquePiedra.cpp.o:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o
+.PHONY : src/VistaBloquePiedra.cpp.o
+
+src/VistaBloquePiedra.i: src/VistaBloquePiedra.cpp.i
+
+.PHONY : src/VistaBloquePiedra.i
+
+# target to preprocess a source file
+src/VistaBloquePiedra.cpp.i:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.i
+.PHONY : src/VistaBloquePiedra.cpp.i
+
+src/VistaBloquePiedra.s: src/VistaBloquePiedra.cpp.s
+
+.PHONY : src/VistaBloquePiedra.s
+
+# target to generate assembly for a file
+src/VistaBloquePiedra.cpp.s:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.s
+.PHONY : src/VistaBloquePiedra.cpp.s
+
+src/VistaObjeto.o: src/VistaObjeto.cpp.o
+
+.PHONY : src/VistaObjeto.o
+
+# target to build an object file
+src/VistaObjeto.cpp.o:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o
+.PHONY : src/VistaObjeto.cpp.o
+
+src/VistaObjeto.i: src/VistaObjeto.cpp.i
+
+.PHONY : src/VistaObjeto.i
+
+# target to preprocess a source file
+src/VistaObjeto.cpp.i:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.i
+.PHONY : src/VistaObjeto.cpp.i
+
+src/VistaObjeto.s: src/VistaObjeto.cpp.s
+
+.PHONY : src/VistaObjeto.s
+
+# target to generate assembly for a file
+src/VistaObjeto.cpp.s:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.s
+.PHONY : src/VistaObjeto.cpp.s
+
 src/mainSdlEvents.o: src/mainSdlEvents.cpp.o
 
 .PHONY : src/mainSdlEvents.o
@@ -425,6 +506,15 @@ help:
 	@echo "... src/SdlWindow.o"
 	@echo "... src/SdlWindow.i"
 	@echo "... src/SdlWindow.s"
+	@echo "... src/VistaBloqueMetal.o"
+	@echo "... src/VistaBloqueMetal.i"
+	@echo "... src/VistaBloqueMetal.s"
+	@echo "... src/VistaBloquePiedra.o"
+	@echo "... src/VistaBloquePiedra.i"
+	@echo "... src/VistaBloquePiedra.s"
+	@echo "... src/VistaObjeto.o"
+	@echo "... src/VistaObjeto.i"
+	@echo "... src/VistaObjeto.s"
 	@echo "... src/mainSdlEvents.o"
 	@echo "... src/mainSdlEvents.i"
 	@echo "... src/mainSdlEvents.s"

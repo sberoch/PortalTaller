@@ -11,6 +11,8 @@
 /home/santy/PortalTaller/test-sdl/src/SdlTexture.h
 string
 -
+SDL2/SDL.h
+-
 
 /home/santy/PortalTaller/test-sdl/src/SdlWindow.h
 Area.h

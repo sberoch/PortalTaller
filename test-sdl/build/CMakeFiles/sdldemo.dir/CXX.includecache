@@ -41,6 +41,8 @@ SdlException.h
 /home/santy/PortalTaller/test-sdl/src/SdlTexture.h
 string
 -
+SDL2/SDL.h
+-
 
 /home/santy/PortalTaller/test-sdl/src/SdlWindow.cpp
 SDL2/SDL.h
@@ -59,4 +61,30 @@ iostream
 /home/santy/PortalTaller/test-sdl/src/SdlWindow.h
 Area.h
 /home/santy/PortalTaller/test-sdl/src/Area.h
+
+/home/santy/PortalTaller/test-sdl/src/VistaBloqueMetal.cpp
+VistaBloqueMetal.h
+/home/santy/PortalTaller/test-sdl/src/VistaBloqueMetal.h
+
+/home/santy/PortalTaller/test-sdl/src/VistaBloqueMetal.h
+VistaObjeto.h
+/home/santy/PortalTaller/test-sdl/src/VistaObjeto.h
+
+/home/santy/PortalTaller/test-sdl/src/VistaBloquePiedra.cpp
+VistaBloquePiedra.h
+/home/santy/PortalTaller/test-sdl/src/VistaBloquePiedra.h
+
+/home/santy/PortalTaller/test-sdl/src/VistaBloquePiedra.h
+VistaObjeto.h
+/home/santy/PortalTaller/test-sdl/src/VistaObjeto.h
+
+/home/santy/PortalTaller/test-sdl/src/VistaObjeto.cpp
+VistaObjeto.h
+/home/santy/PortalTaller/test-sdl/src/VistaObjeto.h
+
+/home/santy/PortalTaller/test-sdl/src/VistaObjeto.h
+Area.h
+/home/santy/PortalTaller/test-sdl/src/Area.h
+SdlTexture.h
+/home/santy/PortalTaller/test-sdl/src/SdlTexture.h
 

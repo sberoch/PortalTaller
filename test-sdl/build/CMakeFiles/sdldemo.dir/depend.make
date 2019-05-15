@@ -18,3 +18,20 @@ CMakeFiles/sdldemo.dir/src/SdlWindow.cpp.o: ../src/SdlException.h
 CMakeFiles/sdldemo.dir/src/SdlWindow.cpp.o: ../src/SdlWindow.cpp
 CMakeFiles/sdldemo.dir/src/SdlWindow.cpp.o: ../src/SdlWindow.h
 
+CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o: ../src/Area.h
+CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o: ../src/SdlTexture.h
+CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o: ../src/VistaBloqueMetal.cpp
+CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o: ../src/VistaBloqueMetal.h
+CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o: ../src/VistaObjeto.h
+
+CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o: ../src/Area.h
+CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o: ../src/SdlTexture.h
+CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o: ../src/VistaBloquePiedra.cpp
+CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o: ../src/VistaBloquePiedra.h
+CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o: ../src/VistaObjeto.h
+
+CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o: ../src/Area.h
+CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o: ../src/SdlTexture.h
+CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o: ../src/VistaObjeto.cpp
+CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o: ../src/VistaObjeto.h
+

@@ -1,8 +1,10 @@
-#ifndef __AREA_H__
+#ifndef __AREA_H_
 #define __AREA_H_
 
 class Area {
 public:
+	Area();
+	void set(int x, int y, int width, int height);
 	Area(int x, int y, int width, int height);
 	int getX() const;
 	int getY() const;

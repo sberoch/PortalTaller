@@ -1,4 +1,7 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o"
+  "CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o"
+  "CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o"
   "CMakeFiles/sdldemo.dir/src/Area.cpp.o"
   "CMakeFiles/sdldemo.dir/src/SdlTexture.cpp.o"
   "CMakeFiles/sdldemo.dir/src/SdlException.cpp.o"

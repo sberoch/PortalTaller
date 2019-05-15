@@ -11,15 +11,35 @@
 /home/santy/PortalTaller/test-sdl/src/SdlTexture.h
 string
 -
+SDL2/SDL.h
+-
 
 /home/santy/PortalTaller/test-sdl/src/SdlWindow.h
 Area.h
 /home/santy/PortalTaller/test-sdl/src/Area.h
 
+/home/santy/PortalTaller/test-sdl/src/VistaBloqueMetal.h
+VistaObjeto.h
+/home/santy/PortalTaller/test-sdl/src/VistaObjeto.h
+
+/home/santy/PortalTaller/test-sdl/src/VistaBloquePiedra.h
+VistaObjeto.h
+/home/santy/PortalTaller/test-sdl/src/VistaObjeto.h
+
+/home/santy/PortalTaller/test-sdl/src/VistaObjeto.h
+Area.h
+/home/santy/PortalTaller/test-sdl/src/Area.h
+SdlTexture.h
+/home/santy/PortalTaller/test-sdl/src/SdlTexture.h
+
 /home/santy/PortalTaller/test-sdl/src/mainTestTerreno.cpp
 SDL2/SDL.h
 -
 iostream
+-
+vector
+-
+math.h
 -
 exception
 -
@@ -27,4 +47,8 @@ SdlWindow.h
 /home/santy/PortalTaller/test-sdl/src/SdlWindow.h
 SdlTexture.h
 /home/santy/PortalTaller/test-sdl/src/SdlTexture.h
+VistaBloqueMetal.h
+/home/santy/PortalTaller/test-sdl/src/VistaBloqueMetal.h
+VistaBloquePiedra.h
+/home/santy/PortalTaller/test-sdl/src/VistaBloquePiedra.h
 

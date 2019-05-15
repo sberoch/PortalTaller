@@ -57,9 +57,81 @@ include CMakeFiles/sdldemo.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/sdldemo.dir/flags.make
 
+CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o: CMakeFiles/sdldemo.dir/flags.make
+CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o: ../src/VistaObjeto.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santy/PortalTaller/test-sdl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o -c /home/santy/PortalTaller/test-sdl/src/VistaObjeto.cpp
+
+CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/santy/PortalTaller/test-sdl/src/VistaObjeto.cpp > CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.i
+
+CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/santy/PortalTaller/test-sdl/src/VistaObjeto.cpp -o CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.s
+
+CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o.requires:
+
+.PHONY : CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o.requires
+
+CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o.provides: CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o.requires
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o.provides.build
+.PHONY : CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o.provides
+
+CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o.provides.build: CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o
+
+
+CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o: CMakeFiles/sdldemo.dir/flags.make
+CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o: ../src/VistaBloqueMetal.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santy/PortalTaller/test-sdl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o -c /home/santy/PortalTaller/test-sdl/src/VistaBloqueMetal.cpp
+
+CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/santy/PortalTaller/test-sdl/src/VistaBloqueMetal.cpp > CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.i
+
+CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/santy/PortalTaller/test-sdl/src/VistaBloqueMetal.cpp -o CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.s
+
+CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o.requires:
+
+.PHONY : CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o.requires
+
+CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o.provides: CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o.requires
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o.provides.build
+.PHONY : CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o.provides
+
+CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o.provides.build: CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o
+
+
+CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o: CMakeFiles/sdldemo.dir/flags.make
+CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o: ../src/VistaBloquePiedra.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santy/PortalTaller/test-sdl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o -c /home/santy/PortalTaller/test-sdl/src/VistaBloquePiedra.cpp
+
+CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/santy/PortalTaller/test-sdl/src/VistaBloquePiedra.cpp > CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.i
+
+CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/santy/PortalTaller/test-sdl/src/VistaBloquePiedra.cpp -o CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.s
+
+CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o.requires:
+
+.PHONY : CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o.requires
+
+CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o.provides: CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o.requires
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o.provides.build
+.PHONY : CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o.provides
+
+CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o.provides.build: CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o
+
+
 CMakeFiles/sdldemo.dir/src/Area.cpp.o: CMakeFiles/sdldemo.dir/flags.make
 CMakeFiles/sdldemo.dir/src/Area.cpp.o: ../src/Area.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santy/PortalTaller/test-sdl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sdldemo.dir/src/Area.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santy/PortalTaller/test-sdl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/sdldemo.dir/src/Area.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sdldemo.dir/src/Area.cpp.o -c /home/santy/PortalTaller/test-sdl/src/Area.cpp
 
 CMakeFiles/sdldemo.dir/src/Area.cpp.i: cmake_force
@@ -83,7 +155,7 @@ CMakeFiles/sdldemo.dir/src/Area.cpp.o.provides.build: CMakeFiles/sdldemo.dir/src
 
 CMakeFiles/sdldemo.dir/src/SdlTexture.cpp.o: CMakeFiles/sdldemo.dir/flags.make
 CMakeFiles/sdldemo.dir/src/SdlTexture.cpp.o: ../src/SdlTexture.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santy/PortalTaller/test-sdl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/sdldemo.dir/src/SdlTexture.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santy/PortalTaller/test-sdl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/sdldemo.dir/src/SdlTexture.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sdldemo.dir/src/SdlTexture.cpp.o -c /home/santy/PortalTaller/test-sdl/src/SdlTexture.cpp
 
 CMakeFiles/sdldemo.dir/src/SdlTexture.cpp.i: cmake_force
@@ -107,7 +179,7 @@ CMakeFiles/sdldemo.dir/src/SdlTexture.cpp.o.provides.build: CMakeFiles/sdldemo.d
 
 CMakeFiles/sdldemo.dir/src/SdlException.cpp.o: CMakeFiles/sdldemo.dir/flags.make
 CMakeFiles/sdldemo.dir/src/SdlException.cpp.o: ../src/SdlException.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santy/PortalTaller/test-sdl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/sdldemo.dir/src/SdlException.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santy/PortalTaller/test-sdl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/sdldemo.dir/src/SdlException.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sdldemo.dir/src/SdlException.cpp.o -c /home/santy/PortalTaller/test-sdl/src/SdlException.cpp
 
 CMakeFiles/sdldemo.dir/src/SdlException.cpp.i: cmake_force
@@ -131,7 +203,7 @@ CMakeFiles/sdldemo.dir/src/SdlException.cpp.o.provides.build: CMakeFiles/sdldemo
 
 CMakeFiles/sdldemo.dir/src/SdlWindow.cpp.o: CMakeFiles/sdldemo.dir/flags.make
 CMakeFiles/sdldemo.dir/src/SdlWindow.cpp.o: ../src/SdlWindow.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santy/PortalTaller/test-sdl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/sdldemo.dir/src/SdlWindow.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/santy/PortalTaller/test-sdl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/sdldemo.dir/src/SdlWindow.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sdldemo.dir/src/SdlWindow.cpp.o -c /home/santy/PortalTaller/test-sdl/src/SdlWindow.cpp
 
 CMakeFiles/sdldemo.dir/src/SdlWindow.cpp.i: cmake_force
@@ -155,6 +227,9 @@ CMakeFiles/sdldemo.dir/src/SdlWindow.cpp.o.provides.build: CMakeFiles/sdldemo.di
 
 # Object files for target sdldemo
 sdldemo_OBJECTS = \
+"CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o" \
+"CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o" \
+"CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o" \
 "CMakeFiles/sdldemo.dir/src/Area.cpp.o" \
 "CMakeFiles/sdldemo.dir/src/SdlTexture.cpp.o" \
 "CMakeFiles/sdldemo.dir/src/SdlException.cpp.o" \
@@ -163,13 +238,16 @@ sdldemo_OBJECTS = \
 # External object files for target sdldemo
 sdldemo_EXTERNAL_OBJECTS =
 
+libsdldemo.a: CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o
+libsdldemo.a: CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o
+libsdldemo.a: CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o
 libsdldemo.a: CMakeFiles/sdldemo.dir/src/Area.cpp.o
 libsdldemo.a: CMakeFiles/sdldemo.dir/src/SdlTexture.cpp.o
 libsdldemo.a: CMakeFiles/sdldemo.dir/src/SdlException.cpp.o
 libsdldemo.a: CMakeFiles/sdldemo.dir/src/SdlWindow.cpp.o
 libsdldemo.a: CMakeFiles/sdldemo.dir/build.make
 libsdldemo.a: CMakeFiles/sdldemo.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/santy/PortalTaller/test-sdl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libsdldemo.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/santy/PortalTaller/test-sdl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libsdldemo.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/sdldemo.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sdldemo.dir/link.txt --verbose=$(VERBOSE)
 
@@ -178,6 +256,9 @@ CMakeFiles/sdldemo.dir/build: libsdldemo.a
 
 .PHONY : CMakeFiles/sdldemo.dir/build
 
+CMakeFiles/sdldemo.dir/requires: CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o.requires
+CMakeFiles/sdldemo.dir/requires: CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o.requires
+CMakeFiles/sdldemo.dir/requires: CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o.requires
 CMakeFiles/sdldemo.dir/requires: CMakeFiles/sdldemo.dir/src/Area.cpp.o.requires
 CMakeFiles/sdldemo.dir/requires: CMakeFiles/sdldemo.dir/src/SdlTexture.cpp.o.requires
 CMakeFiles/sdldemo.dir/requires: CMakeFiles/sdldemo.dir/src/SdlException.cpp.o.requires
