@@ -13,6 +13,7 @@
 #include "VistaReceptor.h"
 #include "VistaBoton.h"
 #include "VistaPuerta.h"
+#include "VistaPiedraMovil.h"
 
 #define ESTADO_IDLE 0
 #define ESTADO_CORRIENDO 1
@@ -34,6 +35,7 @@ int main(int argc, char** argv){
         SdlTexture personaje("chell.png", window);
         SdlTexture miscTex("miscelanea.png", window);
         SdlTexture puertaTex("puertas.png", window);
+        SdlTexture efectosTex("efectos.png", window);
 
         VistaBloqueMetal bloqueMetal(bloqueTex);
         VistaBloquePiedra bloquePiedra(bloqueTex);
@@ -42,6 +44,7 @@ int main(int argc, char** argv){
         VistaReceptor receptor(emisRecpTex);
         VistaBoton boton(miscTex);
         VistaPuerta puerta(puertaTex);
+        VistaPiedraMovil piedra(efectosTex);
         int x, y, x2, y2;
 
         //Chell init
@@ -114,6 +117,9 @@ int main(int argc, char** argv){
                 puertaFrame = 0;
             }
             //-----
+
+            //Piedra movil
+            piedra.dibujarEn(1300 - posX, 425);
             
 
             //Eventos

@@ -13,6 +13,7 @@ add_library(sdldemo
   src/Cliente/VistaPuerta.cpp
   src/Cliente/VistaBloqueMetal.cpp
   src/Cliente/VistaBloquePiedra.cpp
+  src/Cliente/VistaPiedraMovil.cpp
   src/Cliente/Area.cpp
   src/Cliente/SdlTexture.cpp
   src/Cliente/SdlException.cpp
@@ -32,3 +33,4 @@ install(FILES assets/bloque_metal_diag.png DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/chell.png DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/miscelanea.png DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/puertas.png DESTINATION ${CMAKE_BINARY_DIR})
+install(FILES assets/efectos.png DESTINATION ${CMAKE_BINARY_DIR})

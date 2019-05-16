@@ -5,3 +5,9 @@ Trabajo practico final para Taller de Programacion I
 SDL:  
 https://www.willusher.io/pages/sdl2/  
 http://lazyfoo.net/tutorials/SDL/  
+
+## Compilacion
+* mkdir build  
+* cd build  
+* cmake ..  
+* make && make install  
