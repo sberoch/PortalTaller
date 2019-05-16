@@ -1,5 +1,10 @@
 file(REMOVE_RECURSE
   "CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o"
+  "CMakeFiles/sdldemo.dir/src/VistaAcido.cpp.o"
+  "CMakeFiles/sdldemo.dir/src/VistaEmisor.cpp.o"
+  "CMakeFiles/sdldemo.dir/src/VistaReceptor.cpp.o"
+  "CMakeFiles/sdldemo.dir/src/VistaBoton.cpp.o"
+  "CMakeFiles/sdldemo.dir/src/VistaPuerta.cpp.o"
   "CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o"
   "CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o"
   "CMakeFiles/sdldemo.dir/src/Area.cpp.o"

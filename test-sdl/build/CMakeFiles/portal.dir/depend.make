@@ -4,8 +4,13 @@
 CMakeFiles/portal.dir/src/mainTestTerreno.cpp.o: ../src/Area.h
 CMakeFiles/portal.dir/src/mainTestTerreno.cpp.o: ../src/SdlTexture.h
 CMakeFiles/portal.dir/src/mainTestTerreno.cpp.o: ../src/SdlWindow.h
+CMakeFiles/portal.dir/src/mainTestTerreno.cpp.o: ../src/VistaAcido.h
 CMakeFiles/portal.dir/src/mainTestTerreno.cpp.o: ../src/VistaBloqueMetal.h
 CMakeFiles/portal.dir/src/mainTestTerreno.cpp.o: ../src/VistaBloquePiedra.h
+CMakeFiles/portal.dir/src/mainTestTerreno.cpp.o: ../src/VistaBoton.h
+CMakeFiles/portal.dir/src/mainTestTerreno.cpp.o: ../src/VistaEmisor.h
 CMakeFiles/portal.dir/src/mainTestTerreno.cpp.o: ../src/VistaObjeto.h
+CMakeFiles/portal.dir/src/mainTestTerreno.cpp.o: ../src/VistaPuerta.h
+CMakeFiles/portal.dir/src/mainTestTerreno.cpp.o: ../src/VistaReceptor.h
 CMakeFiles/portal.dir/src/mainTestTerreno.cpp.o: ../src/mainTestTerreno.cpp
 

@@ -18,6 +18,12 @@ CMakeFiles/sdldemo.dir/src/SdlWindow.cpp.o: ../src/SdlException.h
 CMakeFiles/sdldemo.dir/src/SdlWindow.cpp.o: ../src/SdlWindow.cpp
 CMakeFiles/sdldemo.dir/src/SdlWindow.cpp.o: ../src/SdlWindow.h
 
+CMakeFiles/sdldemo.dir/src/VistaAcido.cpp.o: ../src/Area.h
+CMakeFiles/sdldemo.dir/src/VistaAcido.cpp.o: ../src/SdlTexture.h
+CMakeFiles/sdldemo.dir/src/VistaAcido.cpp.o: ../src/VistaAcido.cpp
+CMakeFiles/sdldemo.dir/src/VistaAcido.cpp.o: ../src/VistaAcido.h
+CMakeFiles/sdldemo.dir/src/VistaAcido.cpp.o: ../src/VistaObjeto.h
+
 CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o: ../src/Area.h
 CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o: ../src/SdlTexture.h
 CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o: ../src/VistaBloqueMetal.cpp
@@ -30,8 +36,32 @@ CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o: ../src/VistaBloquePiedra.cpp
 CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o: ../src/VistaBloquePiedra.h
 CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o: ../src/VistaObjeto.h
 
+CMakeFiles/sdldemo.dir/src/VistaBoton.cpp.o: ../src/Area.h
+CMakeFiles/sdldemo.dir/src/VistaBoton.cpp.o: ../src/SdlTexture.h
+CMakeFiles/sdldemo.dir/src/VistaBoton.cpp.o: ../src/VistaBoton.cpp
+CMakeFiles/sdldemo.dir/src/VistaBoton.cpp.o: ../src/VistaBoton.h
+CMakeFiles/sdldemo.dir/src/VistaBoton.cpp.o: ../src/VistaObjeto.h
+
+CMakeFiles/sdldemo.dir/src/VistaEmisor.cpp.o: ../src/Area.h
+CMakeFiles/sdldemo.dir/src/VistaEmisor.cpp.o: ../src/SdlTexture.h
+CMakeFiles/sdldemo.dir/src/VistaEmisor.cpp.o: ../src/VistaEmisor.cpp
+CMakeFiles/sdldemo.dir/src/VistaEmisor.cpp.o: ../src/VistaEmisor.h
+CMakeFiles/sdldemo.dir/src/VistaEmisor.cpp.o: ../src/VistaObjeto.h
+
 CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o: ../src/Area.h
 CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o: ../src/SdlTexture.h
 CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o: ../src/VistaObjeto.cpp
 CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o: ../src/VistaObjeto.h
+
+CMakeFiles/sdldemo.dir/src/VistaPuerta.cpp.o: ../src/Area.h
+CMakeFiles/sdldemo.dir/src/VistaPuerta.cpp.o: ../src/SdlTexture.h
+CMakeFiles/sdldemo.dir/src/VistaPuerta.cpp.o: ../src/VistaObjeto.h
+CMakeFiles/sdldemo.dir/src/VistaPuerta.cpp.o: ../src/VistaPuerta.cpp
+CMakeFiles/sdldemo.dir/src/VistaPuerta.cpp.o: ../src/VistaPuerta.h
+
+CMakeFiles/sdldemo.dir/src/VistaReceptor.cpp.o: ../src/Area.h
+CMakeFiles/sdldemo.dir/src/VistaReceptor.cpp.o: ../src/SdlTexture.h
+CMakeFiles/sdldemo.dir/src/VistaReceptor.cpp.o: ../src/VistaObjeto.h
+CMakeFiles/sdldemo.dir/src/VistaReceptor.cpp.o: ../src/VistaReceptor.cpp
+CMakeFiles/sdldemo.dir/src/VistaReceptor.cpp.o: ../src/VistaReceptor.h
 

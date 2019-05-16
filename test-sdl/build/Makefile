@@ -80,27 +80,16 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
 
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -113,16 +102,27 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
 
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
 
-.PHONY : rebuild_cache/fast
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -157,32 +157,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named sdl-hello
-
-# Build rule for target.
-sdl-hello: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sdl-hello
-.PHONY : sdl-hello
-
-# fast build rule for target.
-sdl-hello/fast:
-	$(MAKE) -f CMakeFiles/sdl-hello.dir/build.make CMakeFiles/sdl-hello.dir/build
-.PHONY : sdl-hello/fast
-
-#=============================================================================
-# Target rules for targets named sdldemo
-
-# Build rule for target.
-sdldemo: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sdldemo
-.PHONY : sdldemo
-
-# fast build rule for target.
-sdldemo/fast:
-	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/build
-.PHONY : sdldemo/fast
-
-#=============================================================================
 # Target rules for targets named portal
 
 # Build rule for target.
@@ -196,17 +170,17 @@ portal/fast:
 .PHONY : portal/fast
 
 #=============================================================================
-# Target rules for targets named sdl-events
+# Target rules for targets named sdldemo
 
 # Build rule for target.
-sdl-events: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sdl-events
-.PHONY : sdl-events
+sdldemo: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sdldemo
+.PHONY : sdldemo
 
 # fast build rule for target.
-sdl-events/fast:
-	$(MAKE) -f CMakeFiles/sdl-events.dir/build.make CMakeFiles/sdl-events.dir/build
-.PHONY : sdl-events/fast
+sdldemo/fast:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/build
+.PHONY : sdldemo/fast
 
 src/Area.o: src/Area.cpp.o
 
@@ -316,6 +290,33 @@ src/SdlWindow.cpp.s:
 	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/SdlWindow.cpp.s
 .PHONY : src/SdlWindow.cpp.s
 
+src/VistaAcido.o: src/VistaAcido.cpp.o
+
+.PHONY : src/VistaAcido.o
+
+# target to build an object file
+src/VistaAcido.cpp.o:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaAcido.cpp.o
+.PHONY : src/VistaAcido.cpp.o
+
+src/VistaAcido.i: src/VistaAcido.cpp.i
+
+.PHONY : src/VistaAcido.i
+
+# target to preprocess a source file
+src/VistaAcido.cpp.i:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaAcido.cpp.i
+.PHONY : src/VistaAcido.cpp.i
+
+src/VistaAcido.s: src/VistaAcido.cpp.s
+
+.PHONY : src/VistaAcido.s
+
+# target to generate assembly for a file
+src/VistaAcido.cpp.s:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaAcido.cpp.s
+.PHONY : src/VistaAcido.cpp.s
+
 src/VistaBloqueMetal.o: src/VistaBloqueMetal.cpp.o
 
 .PHONY : src/VistaBloqueMetal.o
@@ -370,6 +371,60 @@ src/VistaBloquePiedra.cpp.s:
 	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.s
 .PHONY : src/VistaBloquePiedra.cpp.s
 
+src/VistaBoton.o: src/VistaBoton.cpp.o
+
+.PHONY : src/VistaBoton.o
+
+# target to build an object file
+src/VistaBoton.cpp.o:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaBoton.cpp.o
+.PHONY : src/VistaBoton.cpp.o
+
+src/VistaBoton.i: src/VistaBoton.cpp.i
+
+.PHONY : src/VistaBoton.i
+
+# target to preprocess a source file
+src/VistaBoton.cpp.i:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaBoton.cpp.i
+.PHONY : src/VistaBoton.cpp.i
+
+src/VistaBoton.s: src/VistaBoton.cpp.s
+
+.PHONY : src/VistaBoton.s
+
+# target to generate assembly for a file
+src/VistaBoton.cpp.s:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaBoton.cpp.s
+.PHONY : src/VistaBoton.cpp.s
+
+src/VistaEmisor.o: src/VistaEmisor.cpp.o
+
+.PHONY : src/VistaEmisor.o
+
+# target to build an object file
+src/VistaEmisor.cpp.o:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaEmisor.cpp.o
+.PHONY : src/VistaEmisor.cpp.o
+
+src/VistaEmisor.i: src/VistaEmisor.cpp.i
+
+.PHONY : src/VistaEmisor.i
+
+# target to preprocess a source file
+src/VistaEmisor.cpp.i:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaEmisor.cpp.i
+.PHONY : src/VistaEmisor.cpp.i
+
+src/VistaEmisor.s: src/VistaEmisor.cpp.s
+
+.PHONY : src/VistaEmisor.s
+
+# target to generate assembly for a file
+src/VistaEmisor.cpp.s:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaEmisor.cpp.s
+.PHONY : src/VistaEmisor.cpp.s
+
 src/VistaObjeto.o: src/VistaObjeto.cpp.o
 
 .PHONY : src/VistaObjeto.o
@@ -397,59 +452,59 @@ src/VistaObjeto.cpp.s:
 	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.s
 .PHONY : src/VistaObjeto.cpp.s
 
-src/mainSdlEvents.o: src/mainSdlEvents.cpp.o
+src/VistaPuerta.o: src/VistaPuerta.cpp.o
 
-.PHONY : src/mainSdlEvents.o
-
-# target to build an object file
-src/mainSdlEvents.cpp.o:
-	$(MAKE) -f CMakeFiles/sdl-events.dir/build.make CMakeFiles/sdl-events.dir/src/mainSdlEvents.cpp.o
-.PHONY : src/mainSdlEvents.cpp.o
-
-src/mainSdlEvents.i: src/mainSdlEvents.cpp.i
-
-.PHONY : src/mainSdlEvents.i
-
-# target to preprocess a source file
-src/mainSdlEvents.cpp.i:
-	$(MAKE) -f CMakeFiles/sdl-events.dir/build.make CMakeFiles/sdl-events.dir/src/mainSdlEvents.cpp.i
-.PHONY : src/mainSdlEvents.cpp.i
-
-src/mainSdlEvents.s: src/mainSdlEvents.cpp.s
-
-.PHONY : src/mainSdlEvents.s
-
-# target to generate assembly for a file
-src/mainSdlEvents.cpp.s:
-	$(MAKE) -f CMakeFiles/sdl-events.dir/build.make CMakeFiles/sdl-events.dir/src/mainSdlEvents.cpp.s
-.PHONY : src/mainSdlEvents.cpp.s
-
-src/mainSdlHello.o: src/mainSdlHello.cpp.o
-
-.PHONY : src/mainSdlHello.o
+.PHONY : src/VistaPuerta.o
 
 # target to build an object file
-src/mainSdlHello.cpp.o:
-	$(MAKE) -f CMakeFiles/sdl-hello.dir/build.make CMakeFiles/sdl-hello.dir/src/mainSdlHello.cpp.o
-.PHONY : src/mainSdlHello.cpp.o
+src/VistaPuerta.cpp.o:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaPuerta.cpp.o
+.PHONY : src/VistaPuerta.cpp.o
 
-src/mainSdlHello.i: src/mainSdlHello.cpp.i
+src/VistaPuerta.i: src/VistaPuerta.cpp.i
 
-.PHONY : src/mainSdlHello.i
+.PHONY : src/VistaPuerta.i
 
 # target to preprocess a source file
-src/mainSdlHello.cpp.i:
-	$(MAKE) -f CMakeFiles/sdl-hello.dir/build.make CMakeFiles/sdl-hello.dir/src/mainSdlHello.cpp.i
-.PHONY : src/mainSdlHello.cpp.i
+src/VistaPuerta.cpp.i:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaPuerta.cpp.i
+.PHONY : src/VistaPuerta.cpp.i
 
-src/mainSdlHello.s: src/mainSdlHello.cpp.s
+src/VistaPuerta.s: src/VistaPuerta.cpp.s
 
-.PHONY : src/mainSdlHello.s
+.PHONY : src/VistaPuerta.s
 
 # target to generate assembly for a file
-src/mainSdlHello.cpp.s:
-	$(MAKE) -f CMakeFiles/sdl-hello.dir/build.make CMakeFiles/sdl-hello.dir/src/mainSdlHello.cpp.s
-.PHONY : src/mainSdlHello.cpp.s
+src/VistaPuerta.cpp.s:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaPuerta.cpp.s
+.PHONY : src/VistaPuerta.cpp.s
+
+src/VistaReceptor.o: src/VistaReceptor.cpp.o
+
+.PHONY : src/VistaReceptor.o
+
+# target to build an object file
+src/VistaReceptor.cpp.o:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaReceptor.cpp.o
+.PHONY : src/VistaReceptor.cpp.o
+
+src/VistaReceptor.i: src/VistaReceptor.cpp.i
+
+.PHONY : src/VistaReceptor.i
+
+# target to preprocess a source file
+src/VistaReceptor.cpp.i:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaReceptor.cpp.i
+.PHONY : src/VistaReceptor.cpp.i
+
+src/VistaReceptor.s: src/VistaReceptor.cpp.s
+
+.PHONY : src/VistaReceptor.s
+
+# target to generate assembly for a file
+src/VistaReceptor.cpp.s:
+	$(MAKE) -f CMakeFiles/sdldemo.dir/build.make CMakeFiles/sdldemo.dir/src/VistaReceptor.cpp.s
+.PHONY : src/VistaReceptor.cpp.s
 
 src/mainTestTerreno.o: src/mainTestTerreno.cpp.o
 
@@ -486,14 +541,12 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... install/local"
-	@echo "... install"
-	@echo "... list_install_components"
-	@echo "... sdl-hello"
-	@echo "... sdldemo"
-	@echo "... edit_cache"
 	@echo "... portal"
 	@echo "... rebuild_cache"
-	@echo "... sdl-events"
+	@echo "... sdldemo"
+	@echo "... edit_cache"
+	@echo "... list_install_components"
+	@echo "... install"
 	@echo "... src/Area.o"
 	@echo "... src/Area.i"
 	@echo "... src/Area.s"
@@ -506,21 +559,30 @@ help:
 	@echo "... src/SdlWindow.o"
 	@echo "... src/SdlWindow.i"
 	@echo "... src/SdlWindow.s"
+	@echo "... src/VistaAcido.o"
+	@echo "... src/VistaAcido.i"
+	@echo "... src/VistaAcido.s"
 	@echo "... src/VistaBloqueMetal.o"
 	@echo "... src/VistaBloqueMetal.i"
 	@echo "... src/VistaBloqueMetal.s"
 	@echo "... src/VistaBloquePiedra.o"
 	@echo "... src/VistaBloquePiedra.i"
 	@echo "... src/VistaBloquePiedra.s"
+	@echo "... src/VistaBoton.o"
+	@echo "... src/VistaBoton.i"
+	@echo "... src/VistaBoton.s"
+	@echo "... src/VistaEmisor.o"
+	@echo "... src/VistaEmisor.i"
+	@echo "... src/VistaEmisor.s"
 	@echo "... src/VistaObjeto.o"
 	@echo "... src/VistaObjeto.i"
 	@echo "... src/VistaObjeto.s"
-	@echo "... src/mainSdlEvents.o"
-	@echo "... src/mainSdlEvents.i"
-	@echo "... src/mainSdlEvents.s"
-	@echo "... src/mainSdlHello.o"
-	@echo "... src/mainSdlHello.i"
-	@echo "... src/mainSdlHello.s"
+	@echo "... src/VistaPuerta.o"
+	@echo "... src/VistaPuerta.i"
+	@echo "... src/VistaPuerta.s"
+	@echo "... src/VistaReceptor.o"
+	@echo "... src/VistaReceptor.i"
+	@echo "... src/VistaReceptor.s"
 	@echo "... src/mainTestTerreno.o"
 	@echo "... src/mainTestTerreno.i"
 	@echo "... src/mainTestTerreno.s"

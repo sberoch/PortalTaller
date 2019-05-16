@@ -8,9 +8,14 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/santy/PortalTaller/test-sdl/src/SdlException.cpp" "/home/santy/PortalTaller/test-sdl/build/CMakeFiles/sdldemo.dir/src/SdlException.cpp.o"
   "/home/santy/PortalTaller/test-sdl/src/SdlTexture.cpp" "/home/santy/PortalTaller/test-sdl/build/CMakeFiles/sdldemo.dir/src/SdlTexture.cpp.o"
   "/home/santy/PortalTaller/test-sdl/src/SdlWindow.cpp" "/home/santy/PortalTaller/test-sdl/build/CMakeFiles/sdldemo.dir/src/SdlWindow.cpp.o"
+  "/home/santy/PortalTaller/test-sdl/src/VistaAcido.cpp" "/home/santy/PortalTaller/test-sdl/build/CMakeFiles/sdldemo.dir/src/VistaAcido.cpp.o"
   "/home/santy/PortalTaller/test-sdl/src/VistaBloqueMetal.cpp" "/home/santy/PortalTaller/test-sdl/build/CMakeFiles/sdldemo.dir/src/VistaBloqueMetal.cpp.o"
   "/home/santy/PortalTaller/test-sdl/src/VistaBloquePiedra.cpp" "/home/santy/PortalTaller/test-sdl/build/CMakeFiles/sdldemo.dir/src/VistaBloquePiedra.cpp.o"
+  "/home/santy/PortalTaller/test-sdl/src/VistaBoton.cpp" "/home/santy/PortalTaller/test-sdl/build/CMakeFiles/sdldemo.dir/src/VistaBoton.cpp.o"
+  "/home/santy/PortalTaller/test-sdl/src/VistaEmisor.cpp" "/home/santy/PortalTaller/test-sdl/build/CMakeFiles/sdldemo.dir/src/VistaEmisor.cpp.o"
   "/home/santy/PortalTaller/test-sdl/src/VistaObjeto.cpp" "/home/santy/PortalTaller/test-sdl/build/CMakeFiles/sdldemo.dir/src/VistaObjeto.cpp.o"
+  "/home/santy/PortalTaller/test-sdl/src/VistaPuerta.cpp" "/home/santy/PortalTaller/test-sdl/build/CMakeFiles/sdldemo.dir/src/VistaPuerta.cpp.o"
+  "/home/santy/PortalTaller/test-sdl/src/VistaReceptor.cpp" "/home/santy/PortalTaller/test-sdl/build/CMakeFiles/sdldemo.dir/src/VistaReceptor.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

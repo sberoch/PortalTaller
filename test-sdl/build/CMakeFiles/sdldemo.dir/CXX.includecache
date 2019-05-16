@@ -62,6 +62,16 @@ iostream
 Area.h
 /home/santy/PortalTaller/test-sdl/src/Area.h
 
+/home/santy/PortalTaller/test-sdl/src/VistaAcido.cpp
+VistaAcido.h
+/home/santy/PortalTaller/test-sdl/src/VistaAcido.h
+
+/home/santy/PortalTaller/test-sdl/src/VistaAcido.h
+VistaObjeto.h
+/home/santy/PortalTaller/test-sdl/src/VistaObjeto.h
+vector
+-
+
 /home/santy/PortalTaller/test-sdl/src/VistaBloqueMetal.cpp
 VistaBloqueMetal.h
 /home/santy/PortalTaller/test-sdl/src/VistaBloqueMetal.h
@@ -78,6 +88,24 @@ VistaBloquePiedra.h
 VistaObjeto.h
 /home/santy/PortalTaller/test-sdl/src/VistaObjeto.h
 
+/home/santy/PortalTaller/test-sdl/src/VistaBoton.cpp
+VistaBoton.h
+/home/santy/PortalTaller/test-sdl/src/VistaBoton.h
+
+/home/santy/PortalTaller/test-sdl/src/VistaBoton.h
+VistaObjeto.h
+/home/santy/PortalTaller/test-sdl/src/VistaObjeto.h
+vector
+-
+
+/home/santy/PortalTaller/test-sdl/src/VistaEmisor.cpp
+VistaEmisor.h
+/home/santy/PortalTaller/test-sdl/src/VistaEmisor.h
+
+/home/santy/PortalTaller/test-sdl/src/VistaEmisor.h
+VistaObjeto.h
+/home/santy/PortalTaller/test-sdl/src/VistaObjeto.h
+
 /home/santy/PortalTaller/test-sdl/src/VistaObjeto.cpp
 VistaObjeto.h
 /home/santy/PortalTaller/test-sdl/src/VistaObjeto.h
@@ -87,4 +115,22 @@ Area.h
 /home/santy/PortalTaller/test-sdl/src/Area.h
 SdlTexture.h
 /home/santy/PortalTaller/test-sdl/src/SdlTexture.h
+
+/home/santy/PortalTaller/test-sdl/src/VistaPuerta.cpp
+VistaPuerta.h
+/home/santy/PortalTaller/test-sdl/src/VistaPuerta.h
+
+/home/santy/PortalTaller/test-sdl/src/VistaPuerta.h
+VistaObjeto.h
+/home/santy/PortalTaller/test-sdl/src/VistaObjeto.h
+vector
+-
+
+/home/santy/PortalTaller/test-sdl/src/VistaReceptor.cpp
+VistaReceptor.h
+/home/santy/PortalTaller/test-sdl/src/VistaReceptor.h
+
+/home/santy/PortalTaller/test-sdl/src/VistaReceptor.h
+VistaObjeto.h
+/home/santy/PortalTaller/test-sdl/src/VistaObjeto.h
 

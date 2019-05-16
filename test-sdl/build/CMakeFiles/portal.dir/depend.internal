@@ -5,7 +5,12 @@ CMakeFiles/portal.dir/src/mainTestTerreno.cpp.o
  /home/santy/PortalTaller/test-sdl/src/Area.h
  /home/santy/PortalTaller/test-sdl/src/SdlTexture.h
  /home/santy/PortalTaller/test-sdl/src/SdlWindow.h
+ /home/santy/PortalTaller/test-sdl/src/VistaAcido.h
  /home/santy/PortalTaller/test-sdl/src/VistaBloqueMetal.h
  /home/santy/PortalTaller/test-sdl/src/VistaBloquePiedra.h
+ /home/santy/PortalTaller/test-sdl/src/VistaBoton.h
+ /home/santy/PortalTaller/test-sdl/src/VistaEmisor.h
  /home/santy/PortalTaller/test-sdl/src/VistaObjeto.h
+ /home/santy/PortalTaller/test-sdl/src/VistaPuerta.h
+ /home/santy/PortalTaller/test-sdl/src/VistaReceptor.h
  /home/santy/PortalTaller/test-sdl/src/mainTestTerreno.cpp

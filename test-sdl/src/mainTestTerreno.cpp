@@ -8,6 +8,11 @@
 #include "SdlTexture.h"
 #include "VistaBloqueMetal.h"
 #include "VistaBloquePiedra.h"
+#include "VistaAcido.h"
+#include "VistaEmisor.h"
+#include "VistaReceptor.h"
+#include "VistaBoton.h"
+#include "VistaPuerta.h"
 
 #define ESTADO_IDLE 0
 #define ESTADO_CORRIENDO 1
@@ -24,20 +29,28 @@ int main(int argc, char** argv){
         SdlWindow window(1000, 800);
         window.fill();
         // Usar factory
+        SdlTexture emisRecpTex("emisor_receptor.png", window);
         SdlTexture bloqueTex("bloque_metal_diag.png", window);
         SdlTexture personaje("chell.png", window);
+        SdlTexture miscTex("miscelanea.png", window);
+        SdlTexture puertaTex("puertas.png", window);
 
         VistaBloqueMetal bloqueMetal(bloqueTex);
         VistaBloquePiedra bloquePiedra(bloqueTex);
+        VistaAcido acido(miscTex);
+        VistaEmisor emisor(emisRecpTex);
+        VistaReceptor receptor(emisRecpTex);
+        VistaBoton boton(miscTex);
+        VistaPuerta puerta(puertaTex);
         int x, y, x2, y2;
 
         //Chell init
         int frame = 0;
+        int puertaFrame = 0;
         int posX = 0;
         int posY = 0;
         initClips(ESTADO_CORRIENDO);
         SDL_RendererFlip flip = SDL_FLIP_NONE;
-
 
         quit = false;
         SDL_Event e;
@@ -68,6 +81,18 @@ int main(int argc, char** argv){
             }
             //-------------
 
+            //Acido
+            acido.dibujarAnimacionEn(600 - posX, 475, floor(frame/16));
+            //---
+
+            //Emisor/Receptor
+            receptor.dibujarEn(195 - posX, 160);
+            emisor.dibujarEn(195 - posX, 245);
+            bloqueMetal.dibujarEn(195 - posX, 330);
+            bloqueMetal.dibujarEn(195 - posX, 415);
+            //-----
+
+
             //Chell
             Area area = clips.at(floor(frame/8));
             Area destAreaPersonaje(400, 296, 195, 204);
@@ -78,6 +103,17 @@ int main(int argc, char** argv){
             }
             //------------
             
+            //Boton
+            boton.dibujarAnimacionEn(960 - posX, 475, floor(frame/32));
+            //----
+
+            //Puerta
+            puerta.dibujarAnimacionEn(1130 - posX, 160, floor(puertaFrame/8));
+            ++puertaFrame;
+            if ((puertaFrame/8) >= 37) {
+                puertaFrame = 0;
+            }
+            //-----
             
 
             //Eventos
