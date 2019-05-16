@@ -1,1 +1,0 @@
-/usr/bin/c++   -std=c++11  -rdynamic CMakeFiles/portal.dir/src/mainTestTerreno.cpp.o  -o portal libsdldemo.a -lSDL2 -lSDL2_image 

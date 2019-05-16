@@ -1,8 +1,0 @@
-/home/santy/PortalTaller/test-sdl/build/CMakeFiles/install/strip.dir
-/home/santy/PortalTaller/test-sdl/build/CMakeFiles/install/local.dir
-/home/santy/PortalTaller/test-sdl/build/CMakeFiles/portal.dir
-/home/santy/PortalTaller/test-sdl/build/CMakeFiles/rebuild_cache.dir
-/home/santy/PortalTaller/test-sdl/build/CMakeFiles/sdldemo.dir
-/home/santy/PortalTaller/test-sdl/build/CMakeFiles/edit_cache.dir
-/home/santy/PortalTaller/test-sdl/build/CMakeFiles/list_install_components.dir
-/home/santy/PortalTaller/test-sdl/build/CMakeFiles/install.dir

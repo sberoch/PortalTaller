@@ -1,5 +1,0 @@
-/home/santy/PortalTaller/test-sdl/build/emisor_receptor.png
-/home/santy/PortalTaller/test-sdl/build/bloque_metal_diag.png
-/home/santy/PortalTaller/test-sdl/build/chell.png
-/home/santy/PortalTaller/test-sdl/build/miscelanea.png
-/home/santy/PortalTaller/test-sdl/build/puertas.png
