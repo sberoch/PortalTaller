@@ -14,6 +14,7 @@
 #include "VistaBoton.h"
 #include "VistaPuerta.h"
 #include "VistaPiedraMovil.h"
+#include "VistaBarreraEnergia.h"
 
 #define ESTADO_IDLE 0
 #define ESTADO_CORRIENDO 1
@@ -45,6 +46,7 @@ int main(int argc, char** argv){
         VistaBoton boton(miscTex);
         VistaPuerta puerta(puertaTex);
         VistaPiedraMovil piedra(efectosTex);
+        VistaBarreraEnergia barreraEnergia(miscTex);
         int x, y, x2, y2;
 
         //Chell init
@@ -120,6 +122,10 @@ int main(int argc, char** argv){
 
             //Piedra movil
             piedra.dibujarEn(1300 - posX, 425);
+            //---
+
+            //Barrera Energia
+            barreraEnergia.dibujarEn(1470 - posX, 450);
             
 
             //Eventos
