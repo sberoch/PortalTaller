@@ -1,12 +1,13 @@
 #ifndef VISTA_PIEDRA_MOVIL
 #define VISTA_PIEDRA_MOVIL 
 
-#include "VistaObjeto.h"
+#include "VistaObjetoMovil.h"
 
-class VistaPiedraMovil : public VistaObjeto {
+class VistaPiedraMovil : public VistaObjetoMovil {
 public:
 	VistaPiedraMovil(SdlTexture& tex);
-	virtual void dibujarEn(int x, int y);
+	void dibujarEn(int x, int y);
+	void mover(int x, int y);
 };
 
 #endif

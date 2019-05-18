@@ -13,10 +13,12 @@ VistaBoton::VistaBoton(SdlTexture& tex) {
 
 }
 
-void VistaBoton::dibujarEn(int x, int y) {}
-
-void VistaBoton::dibujarAnimacionEn(int x, int y, int frame) {
-	Area srcArea = clips.at(frame);
+void VistaBoton::dibujarEn(int x, int y) {
+	Area srcArea = clips.at(floor(frame/64));
 	Area destArea(x, y, tamanioHorizontal, tamanioVertical);
 	textura.render(srcArea, destArea);
+	++frame;
+	if (frame/64 >= CANT_CLIPS) {
+		frame = 0;
+	}
 }

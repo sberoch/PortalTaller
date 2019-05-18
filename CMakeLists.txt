@@ -6,6 +6,7 @@ set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 add_library(sdldemo
   src/Cliente/VistaObjeto.cpp
+  src/Cliente/VistaObjetoMovil.cpp
   src/Cliente/VistaAcido.cpp
   src/Cliente/VistaEmisor.cpp
   src/Cliente/VistaReceptor.cpp
@@ -15,10 +16,12 @@ add_library(sdldemo
   src/Cliente/VistaBloquePiedra.cpp
   src/Cliente/VistaPiedraMovil.cpp
   src/Cliente/VistaBarreraEnergia.cpp
+  src/Cliente/VistaBolaEnergia.cpp
   src/Cliente/Area.cpp
   src/Cliente/SdlTexture.cpp
   src/Cliente/SdlException.cpp
   src/Cliente/SdlWindow.cpp
+  src/Cliente/Escena.cpp
 )
 
 # Agrego la carpeta con los headers autogenerados a los includes

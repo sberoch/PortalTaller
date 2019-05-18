@@ -3,15 +3,16 @@
 
 #include "Area.h"
 #include "SdlTexture.h"
+#include <vector>
 
 class VistaObjeto {
 protected:
 	SdlTexture textura;
-	Area srcArea;
+	std::vector<Area> clips;
+	int frame;
 	int tamanioHorizontal;
 	int tamanioVertical;
 public:
-	VistaObjeto();
 	virtual void dibujarEn(int x, int y) = 0;
 };
 

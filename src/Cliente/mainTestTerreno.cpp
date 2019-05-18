@@ -15,6 +15,7 @@
 #include "VistaPuerta.h"
 #include "VistaPiedraMovil.h"
 #include "VistaBarreraEnergia.h"
+#include "VistaBolaEnergia.h"
 
 #define ESTADO_IDLE 0
 #define ESTADO_CORRIENDO 1
@@ -47,11 +48,11 @@ int main(int argc, char** argv){
         VistaPuerta puerta(puertaTex);
         VistaPiedraMovil piedra(efectosTex);
         VistaBarreraEnergia barreraEnergia(miscTex);
+        VistaBolaEnergia bolaEnergia(efectosTex);
         int x, y, x2, y2;
 
         //Chell init
         int frame = 0;
-        int puertaFrame = 0;
         int posX = 0;
         int posY = 0;
         initClips(ESTADO_CORRIENDO);
@@ -86,17 +87,16 @@ int main(int argc, char** argv){
             }
             //-------------
 
-            //Acido
-            acido.dibujarAnimacionEn(600 - posX, 475, floor(frame/16));
-            //---
-
-            //Emisor/Receptor
+            acido.dibujarEn(600 - posX, 475);
             receptor.dibujarEn(195 - posX, 160);
             emisor.dibujarEn(195 - posX, 245);
-            bloqueMetal.dibujarEn(195 - posX, 330);
-            bloqueMetal.dibujarEn(195 - posX, 415);
-            //-----
-
+            boton.dibujarEn(960 - posX, 475);
+            puerta.dibujarEn(1130 - posX, 330);
+            piedra.dibujarEn(1300 - posX, 425);
+            piedra.mover(-1,-1);
+            barreraEnergia.dibujarEn(1470 - posX, 450);
+            bolaEnergia.dibujarEn(195 - posX, 160);
+            bolaEnergia.mover(4,0);
 
             //Chell
             Area area = clips.at(floor(frame/8));
@@ -108,26 +108,6 @@ int main(int argc, char** argv){
             }
             //------------
             
-            //Boton
-            boton.dibujarAnimacionEn(960 - posX, 475, floor(frame/32));
-            //----
-
-            //Puerta
-            puerta.dibujarAnimacionEn(1130 - posX, 160, floor(puertaFrame/8));
-            ++puertaFrame;
-            if ((puertaFrame/8) >= 37) {
-                puertaFrame = 0;
-            }
-            //-----
-
-            //Piedra movil
-            piedra.dibujarEn(1300 - posX, 425);
-            //---
-
-            //Barrera Energia
-            barreraEnergia.dibujarEn(1470 - posX, 450);
-            
-
             //Eventos
             SDL_PollEvent(&e);
             switch (e.type) {
