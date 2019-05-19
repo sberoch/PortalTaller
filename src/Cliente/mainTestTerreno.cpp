@@ -16,13 +16,10 @@
 #include "VistaPiedraMovil.h"
 #include "VistaBarreraEnergia.h"
 #include "VistaBolaEnergia.h"
+#include "VistaPersonaje.h"
 
 #define ESTADO_IDLE 0
 #define ESTADO_CORRIENDO 1
-
-std::vector<Area> clips;
-
-void initClips(int estado);
 
 int main(int argc, char** argv){
 
@@ -34,7 +31,7 @@ int main(int argc, char** argv){
         // Usar factory
         SdlTexture emisRecpTex("emisor_receptor.png", window);
         SdlTexture bloqueTex("bloque_metal_diag.png", window);
-        SdlTexture personaje("chell.png", window);
+        SdlTexture personajeTex("chell.png", window);
         SdlTexture miscTex("miscelanea.png", window);
         SdlTexture puertaTex("puertas.png", window);
         SdlTexture efectosTex("efectos.png", window);
@@ -49,14 +46,11 @@ int main(int argc, char** argv){
         VistaPiedraMovil piedra(efectosTex);
         VistaBarreraEnergia barreraEnergia(miscTex);
         VistaBolaEnergia bolaEnergia(efectosTex);
+        VistaPersonaje personaje(personajeTex);
         int x, y, x2, y2;
 
-        //Chell init
-        int frame = 0;
         int posX = 0;
         int posY = 0;
-        initClips(ESTADO_CORRIENDO);
-        SDL_RendererFlip flip = SDL_FLIP_NONE;
 
         quit = false;
         SDL_Event e;
@@ -97,16 +91,8 @@ int main(int argc, char** argv){
             barreraEnergia.dibujarEn(1470 - posX, 450);
             bolaEnergia.dibujarEn(195 - posX, 160);
             bolaEnergia.mover(4,0);
-
-            //Chell
-            Area area = clips.at(floor(frame/8));
-            Area destAreaPersonaje(400, 296, 195, 204);
-            personaje.renderPersonaje(area, destAreaPersonaje, flip);
-            ++frame;
-            if ((frame/8) >= 7) {
-                frame = 0;
-            }
-            //------------
+            personaje.dibujarEn(500, 290);
+            personaje.asignarEstado(ESTADO_IDLE);
             
             //Eventos
             SDL_PollEvent(&e);
@@ -118,11 +104,13 @@ int main(int argc, char** argv){
                     switch (keyEvent.keysym.sym) {
                         case SDLK_LEFT:
                             posX -= 5;
-                            flip = SDL_FLIP_HORIZONTAL;
+                            personaje.asignarEstado(ESTADO_CORRIENDO);
+                            personaje.flipIzquierda();
                             break;
                         case SDLK_RIGHT:
                             posX += 5;
-                            flip = SDL_FLIP_NONE;
+                            personaje.asignarEstado(ESTADO_CORRIENDO);
+                            personaje.flipDerecha();
                             break;
                         case SDLK_UP:
                             posY -= 5;
@@ -142,30 +130,4 @@ int main(int argc, char** argv){
         return 1;
     }
     return 0;
-}
-
-void initClips(int estado) {
-    int spritePosEnTextura;
-    int cantFrames;
-    int anchoTextura;
-    switch (estado) {
-        case ESTADO_IDLE:
-            cantFrames = 7;
-            anchoTextura = 105;
-            spritePosEnTextura = 2075;
-            break;
-        case ESTADO_CORRIENDO:
-            cantFrames = 8;
-            anchoTextura = 195;
-            spritePosEnTextura = 4123;
-            break;
-    }
-
-
-    for (int i = 0; i < cantFrames; ++i)
-    {
-        //Esto es solo para corriendo
-        Area area(1 + i*anchoTextura, spritePosEnTextura, anchoTextura -1, 200);
-        clips.push_back(area);
-    }
 }

@@ -1,12 +1,21 @@
 #ifndef VISTA_PERSONAJE
 #define VISTA_PERSONAJE 
 
-class VistaPersonaje {
-	int posX, posY;
+#include "VistaObjetoMovil.h"
+#include "AnimacionPersonaje.h"
+
+class VistaPersonaje : public VistaObjetoMovil {
+private:
+	AnimacionPersonaje animaciones;
+	int estado;
+	SDL_RendererFlip flip;
 public:
-	void dibujarEn(x,y);
-	void mover(x,y);
-	
+	VistaPersonaje(SdlTexture& tex);
+	void dibujarEn(int x, int y);
+	void mover(int x, int y);
+	void asignarEstado(int estado);
+	void flipDerecha();
+	void flipIzquierda();
 };
 
 #endif

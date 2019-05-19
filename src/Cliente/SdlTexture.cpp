@@ -36,7 +36,7 @@ int SdlTexture::render(const Area& src, const Area& dest) const {
     return SDL_RenderCopy(this->renderer, this->texture, &sdlSrc, &sdlDest);
 }
 
-int SdlTexture::renderPersonaje(const Area& src, const Area& dest, SDL_RendererFlip flip) const {
+int SdlTexture::render(const Area& src, const Area& dest, SDL_RendererFlip flip) const {
     SDL_Rect sdlSrc = {
             src.getX(), src.getY(),
             src.getWidth(), src.getHeight()

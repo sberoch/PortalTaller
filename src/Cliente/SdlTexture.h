@@ -24,8 +24,7 @@ public:
      * Renderiza la textura cargada
      **/
     int render(const Area& src, const Area& dest) const;
-
-    int renderPersonaje(const Area& src, const Area& dest, SDL_RendererFlip flip) const;
+    int render(const Area& src, const Area& dest, SDL_RendererFlip flip) const; //Ampliar este para soportar rotaciones
 
     /**
      * Asigna una opacidad a la textura

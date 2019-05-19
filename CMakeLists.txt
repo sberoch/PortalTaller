@@ -17,6 +17,8 @@ add_library(sdldemo
   src/Cliente/VistaPiedraMovil.cpp
   src/Cliente/VistaBarreraEnergia.cpp
   src/Cliente/VistaBolaEnergia.cpp
+  src/Cliente/VistaPersonaje.cpp
+  src/Cliente/AnimacionPersonaje.cpp
   src/Cliente/Area.cpp
   src/Cliente/SdlTexture.cpp
   src/Cliente/SdlException.cpp
