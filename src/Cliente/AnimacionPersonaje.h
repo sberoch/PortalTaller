@@ -13,7 +13,7 @@ private:
 	int actualSize;
 public:
 	AnimacionPersonaje();
-	Area& obtenerConEstado(int estado, int frame);
+	Area obtenerConEstado(int estado, int frame);
 	int size() const;
 };
 

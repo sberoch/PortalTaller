@@ -91,8 +91,7 @@ int main(int argc, char** argv){
             barreraEnergia.dibujarEn(1470 - posX, 450);
             bolaEnergia.dibujarEn(195 - posX, 160);
             bolaEnergia.mover(4,0);
-            personaje.dibujarEn(500, 290);
-            personaje.asignarEstado(ESTADO_IDLE);
+            personaje.dibujarEn(620, 395);
             
             //Eventos
             SDL_PollEvent(&e);
@@ -119,7 +118,9 @@ int main(int argc, char** argv){
                             posY += 5;
                             break;
                     }
+                    break;
                 }
+                case SDL_KEYUP: personaje.asignarEstado(ESTADO_IDLE); break;
             }
             //---------------
             SDL_Delay(7);

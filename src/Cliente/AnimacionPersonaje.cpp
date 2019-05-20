@@ -25,7 +25,7 @@ AnimacionPersonaje::AnimacionPersonaje() {
 	mapaAnimaciones.insert(std::make_pair("corriendo", clipsCorriendo));
 }
 
-Area& AnimacionPersonaje::obtenerConEstado(int estado, int frame) {
+Area AnimacionPersonaje::obtenerConEstado(int estado, int frame) {
 	switch (estado) {
 		case ESTADO_IDLE: {
 			std::vector<Area> ret = mapaAnimaciones.at("idle");
