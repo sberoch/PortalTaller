@@ -1,8 +1,5 @@
 #include "AnimacionPersonaje.h"
-
-#define ESTADO_IDLE 0
-#define ESTADO_CORRIENDO 1
-#define ESTADO_DISPARANDO 2
+#include "../Common/Constantes.h"
 
 AnimacionPersonaje::AnimacionPersonaje() {
 	//Idle
@@ -32,6 +29,16 @@ AnimacionPersonaje::AnimacionPersonaje() {
 		clipsDisparando.push_back(area);
 	}
 	mapaAnimaciones.insert(std::make_pair("disparando", clipsDisparando));
+
+	//Muerto
+	std::vector<Area> clipsMuerto;
+	for (int i = 0; i < 8; ++i) {
+		for (int j = 0; j < 9; ++j) {
+			Area area(1656 + 176*j, 3407 + 265*i, 170, 215);
+			clipsMuerto.push_back(area);
+		}
+	}
+	mapaAnimaciones.insert(std::make_pair("muerto", clipsMuerto));
 }
 
 Area AnimacionPersonaje::obtenerConEstado(int estado, int frame) {
@@ -47,6 +54,10 @@ Area AnimacionPersonaje::obtenerConEstado(int estado, int frame) {
 		}
 		case ESTADO_DISPARANDO: {
 			ret = mapaAnimaciones.at("disparando");
+			break;
+		}
+		case ESTADO_MUERTO: {
+			ret = mapaAnimaciones.at("muerto");
 			break;
 		}
 	}

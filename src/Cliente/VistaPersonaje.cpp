@@ -1,4 +1,5 @@
 #include "VistaPersonaje.h"
+#include "../Common/Constantes.h"
 #include <iostream>
 
 VistaPersonaje::VistaPersonaje(SdlTexture& tex) {
@@ -20,7 +21,7 @@ void VistaPersonaje::dibujarEn(int x, int y) {
 	++frame;
 	if ((frame/8) >= animaciones.size()) { 
 		frame = 0;
-		if (estado == 2) {
+		if (estado == ESTADO_DISPARANDO) {
 			estado = 0;
 		}
 	}

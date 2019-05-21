@@ -19,9 +19,7 @@
 #include "VistaPersonaje.h"
 #include "VistaBloqueMetalDiagonal.h"
 
-#define ESTADO_IDLE 0
-#define ESTADO_CORRIENDO 1
-#define ESTADO_DISPARANDO 2
+#include "../Common/Constantes.h"
 
 int main(int argc, char** argv){
 
@@ -84,7 +82,7 @@ int main(int argc, char** argv){
             }
             //-------------
 
-            acido.dibujarEn(600 - posX, 475 - posY);
+            acido.dibujarEn(620 - posX, 487 - posY);
             receptor.dibujarEn(195 - posX, 160 - posY);
             emisor.dibujarEn(195 - posX, 245 - posY);
             boton.dibujarEn(960 - posX, 475 - posY);
@@ -123,6 +121,9 @@ int main(int argc, char** argv){
                             break;
                         case SDLK_DOWN:
                             posY += 5;
+                            break;
+                        case SDLK_q:
+                            personaje.asignarEstado(ESTADO_MUERTO);
                             break;
                     }
                     break;

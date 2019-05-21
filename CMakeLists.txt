@@ -25,6 +25,9 @@ add_library(sdldemo
   src/Cliente/SdlException.cpp
   src/Cliente/SdlWindow.cpp
   src/Cliente/Escena.cpp
+  src/Common/Lock.cpp
+  src/Common/Thread.cpp
+  src/Common/Socket.cpp
 )
 
 # Agrego la carpeta con los headers autogenerados a los includes
