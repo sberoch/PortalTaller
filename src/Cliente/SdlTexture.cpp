@@ -36,7 +36,7 @@ int SdlTexture::render(const Area& src, const Area& dest) const {
     return SDL_RenderCopy(this->renderer, this->texture, &sdlSrc, &sdlDest);
 }
 
-int SdlTexture::render(const Area& src, const Area& dest, SDL_RendererFlip flip) const {
+int SdlTexture::render(const Area& src, const Area& dest, double grados, SDL_RendererFlip flip) const {
     SDL_Rect sdlSrc = {
             src.getX(), src.getY(),
             src.getWidth(), src.getHeight()
@@ -45,7 +45,7 @@ int SdlTexture::render(const Area& src, const Area& dest, SDL_RendererFlip flip)
             dest.getX(), dest.getY(),
             dest.getWidth(), dest.getHeight()
     };
-    return SDL_RenderCopyEx(this->renderer, this->texture, &sdlSrc, &sdlDest, 0.0, NULL, flip);
+    return SDL_RenderCopyEx(this->renderer, this->texture, &sdlSrc, &sdlDest, grados, NULL, flip);
 }
 
 int SdlTexture::setOpacity(const float opacity) {

@@ -2,6 +2,7 @@
 
 #define ESTADO_IDLE 0
 #define ESTADO_CORRIENDO 1
+#define ESTADO_DISPARANDO 2
 
 AnimacionPersonaje::AnimacionPersonaje() {
 	//Idle
@@ -23,21 +24,34 @@ AnimacionPersonaje::AnimacionPersonaje() {
 		clipsCorriendo.push_back(area);
 	}
 	mapaAnimaciones.insert(std::make_pair("corriendo", clipsCorriendo));
+
+	//Disparando
+	std::vector<Area> clipsDisparando;
+	for (int i = 0; i < 5; ++i) {
+		Area area(i*173, 2305, 173, 215);
+		clipsDisparando.push_back(area);
+	}
+	mapaAnimaciones.insert(std::make_pair("disparando", clipsDisparando));
 }
 
 Area AnimacionPersonaje::obtenerConEstado(int estado, int frame) {
+	std::vector<Area> ret;
 	switch (estado) {
 		case ESTADO_IDLE: {
-			std::vector<Area> ret = mapaAnimaciones.at("idle");
-			actualSize = ret.size();
-			return ret.at(frame); 
+			ret = mapaAnimaciones.at("idle");
+			break;	
 		}
 		case ESTADO_CORRIENDO: {
-			std::vector<Area> ret = mapaAnimaciones.at("corriendo");
-			actualSize = ret.size();
-			return ret.at(frame);
+			ret = mapaAnimaciones.at("corriendo");
+			break;
+		}
+		case ESTADO_DISPARANDO: {
+			ret = mapaAnimaciones.at("disparando");
+			break;
 		}
 	}
+	actualSize = ret.size();
+	return ret.at(frame);
 }
 
 int AnimacionPersonaje::size() const {

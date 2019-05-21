@@ -13,6 +13,7 @@ add_library(sdldemo
   src/Cliente/VistaBoton.cpp
   src/Cliente/VistaPuerta.cpp
   src/Cliente/VistaBloqueMetal.cpp
+  src/Cliente/VistaBloqueMetalDiagonal.cpp
   src/Cliente/VistaBloquePiedra.cpp
   src/Cliente/VistaPiedraMovil.cpp
   src/Cliente/VistaBarreraEnergia.cpp

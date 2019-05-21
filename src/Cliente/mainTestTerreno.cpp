@@ -17,9 +17,11 @@
 #include "VistaBarreraEnergia.h"
 #include "VistaBolaEnergia.h"
 #include "VistaPersonaje.h"
+#include "VistaBloqueMetalDiagonal.h"
 
 #define ESTADO_IDLE 0
 #define ESTADO_CORRIENDO 1
+#define ESTADO_DISPARANDO 2
 
 int main(int argc, char** argv){
 
@@ -47,6 +49,7 @@ int main(int argc, char** argv){
         VistaBarreraEnergia barreraEnergia(miscTex);
         VistaBolaEnergia bolaEnergia(efectosTex);
         VistaPersonaje personaje(personajeTex);
+        VistaBloqueMetalDiagonal diagonal(bloqueTex);
         int x, y, x2, y2;
 
         int posX = 0;
@@ -64,7 +67,7 @@ int main(int argc, char** argv){
                 x2 = -400 + i*100 - floor(posX/2);
                 for (int j = 0; j < 7; j++) {
                     //un getter del tamaño vertical
-                    y2 = -10 + j*100;
+                    y2 = -10 + j*100 -posY;
                     bloquePiedra.dibujarEn(x2, y2);
                 }           
             }
@@ -75,28 +78,32 @@ int main(int argc, char** argv){
             for (int i = 0; i < 27; i++) {
                 x = -400 + i*85 - posX;
                 for (int j = 0; j < 5; j++) {
-                    y = 500 + j*85;
+                    y = 500 + j*85 -posY;
                     bloqueMetal.dibujarEn(x,y);
                 }           
             }
             //-------------
 
-            acido.dibujarEn(600 - posX, 475);
-            receptor.dibujarEn(195 - posX, 160);
-            emisor.dibujarEn(195 - posX, 245);
-            boton.dibujarEn(960 - posX, 475);
-            puerta.dibujarEn(1130 - posX, 330);
-            piedra.dibujarEn(1300 - posX, 425);
+            acido.dibujarEn(600 - posX, 475 - posY);
+            receptor.dibujarEn(195 - posX, 160 - posY);
+            emisor.dibujarEn(195 - posX, 245 - posY);
+            boton.dibujarEn(960 - posX, 475 - posY);
+            puerta.dibujarEn(1130 - posX, 330 - posY);
+            piedra.dibujarEn(1300 - posX, 425 - posY);
             piedra.mover(-1,-1);
-            barreraEnergia.dibujarEn(1470 - posX, 450);
-            bolaEnergia.dibujarEn(195 - posX, 160);
+            barreraEnergia.dibujarEn(1470 - posX, 450 - posY);
+            bolaEnergia.dibujarEn(195 - posX, 160 - posY);
             bolaEnergia.mover(4,0);
             personaje.dibujarEn(620, 395);
+
+            bloqueMetal.dibujarEn(450 - posX, 415 - posY);
+            diagonal.dibujarEn(450 - posX, 330 - posY);
+            diagonal.dibujarEn(535 - posX, 415 - posY);
             
             //Eventos
             SDL_PollEvent(&e);
             switch (e.type) {
-                case SDL_MOUSEMOTION: break;
+                case SDL_MOUSEBUTTONDOWN: personaje.asignarEstado(ESTADO_DISPARANDO); break;
                 case SDL_QUIT: quit = true; break;
                 case SDL_KEYDOWN: {
                     SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) e;
