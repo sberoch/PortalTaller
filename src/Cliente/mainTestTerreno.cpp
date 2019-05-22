@@ -18,6 +18,8 @@
 #include "VistaBolaEnergia.h"
 #include "VistaPersonaje.h"
 #include "VistaBloqueMetalDiagonal.h"
+#include "VistaPinTool.h"
+#include "VistaTorta.h"
 
 #include "../Common/Constantes.h"
 
@@ -35,6 +37,8 @@ int main(int argc, char** argv){
         SdlTexture miscTex("miscelanea.png", window);
         SdlTexture puertaTex("puertas.png", window);
         SdlTexture efectosTex("efectos.png", window);
+        SdlTexture pinToolTex("pin.png", window);
+        SdlTexture tortaTex("cake.png", window);
 
         VistaBloqueMetal bloqueMetal(bloqueTex);
         VistaBloquePiedra bloquePiedra(bloqueTex);
@@ -48,12 +52,16 @@ int main(int argc, char** argv){
         VistaBolaEnergia bolaEnergia(efectosTex);
         VistaPersonaje personaje(personajeTex);
         VistaBloqueMetalDiagonal diagonal(bloqueTex);
+        VistaPinTool pinTool(pinToolTex);
+        VistaTorta torta(tortaTex);
         int x, y, x2, y2;
 
         int posX = 0;
         int posY = 0;
 
         quit = false;
+        bool ctrl = false;
+        bool fullscreen = true;
         SDL_Event e;
         while (!quit) {
             window.fill();
@@ -93,6 +101,7 @@ int main(int argc, char** argv){
             bolaEnergia.dibujarEn(195 - posX, 160 - posY);
             bolaEnergia.mover(4,0);
             personaje.dibujarEn(620, 395);
+            torta.dibujarEn(1725 - posX, 435 - posY);
 
             bloqueMetal.dibujarEn(450 - posX, 415 - posY);
             diagonal.dibujarEn(450 - posX, 330 - posY);
@@ -101,7 +110,16 @@ int main(int argc, char** argv){
             //Eventos
             SDL_PollEvent(&e);
             switch (e.type) {
-                case SDL_MOUSEBUTTONDOWN: personaje.asignarEstado(ESTADO_DISPARANDO); break;
+                case SDL_MOUSEBUTTONDOWN: {
+                    if (ctrl) {
+                        int x, y;
+                        SDL_GetMouseState(&x, &y);
+                        pinTool.dibujarEn(x, y);
+                    } else {
+                        personaje.asignarEstado(ESTADO_DISPARANDO); 
+                    }
+                    break;
+                }
                 case SDL_QUIT: quit = true; break;
                 case SDL_KEYDOWN: {
                     SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) e;
@@ -125,10 +143,29 @@ int main(int argc, char** argv){
                         case SDLK_q:
                             personaje.asignarEstado(ESTADO_MUERTO);
                             break;
+                        case SDLK_LCTRL:
+                            ctrl = true;
+                            break;
+                        case SDLK_F11:
+                            if (fullscreen) {
+                                window.setFullscreen(false);
+                                fullscreen = false;
+                            } else {
+                                window.setFullscreen(true); 
+                                fullscreen = true;
+                            } 
                     }
                     break;
                 }
-                case SDL_KEYUP: personaje.asignarEstado(ESTADO_IDLE); break;
+                case SDL_KEYUP: {
+                    SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) e;
+                    if (keyEvent.keysym.sym == SDLK_LCTRL) {
+                        ctrl = false;
+                    } else {
+                        personaje.asignarEstado(ESTADO_IDLE); 
+                    }  
+                    break;
+                }
             }
             //---------------
             SDL_Delay(7);

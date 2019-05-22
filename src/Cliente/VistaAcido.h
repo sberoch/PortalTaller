@@ -2,7 +2,6 @@
 #define VISTA_ACIDO 
 
 #include "VistaObjeto.h"
-#include <vector>
 
 class VistaAcido : public VistaObjeto {
 public:

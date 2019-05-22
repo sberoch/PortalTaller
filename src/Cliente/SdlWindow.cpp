@@ -54,3 +54,8 @@ void SdlWindow::render() {
 SDL_Renderer* SdlWindow::getRenderer() const {
     return this->renderer;
 }
+
+void SdlWindow::setFullscreen(bool fullscreen) {
+    if (fullscreen) SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+    else SDL_SetWindowFullscreen(window, 0);
+}

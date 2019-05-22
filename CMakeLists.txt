@@ -18,6 +18,8 @@ add_library(sdldemo
   src/Cliente/VistaPiedraMovil.cpp
   src/Cliente/VistaBarreraEnergia.cpp
   src/Cliente/VistaBolaEnergia.cpp
+  src/Cliente/VistaPinTool.cpp
+  src/Cliente/VistaTorta.cpp
   src/Cliente/VistaPersonaje.cpp
   src/Cliente/AnimacionPersonaje.cpp
   src/Cliente/Area.cpp
@@ -44,3 +46,5 @@ install(FILES assets/chell.png DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/miscelanea.png DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/puertas.png DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/efectos.png DESTINATION ${CMAKE_BINARY_DIR})
+install(FILES assets/pin.png DESTINATION ${CMAKE_BINARY_DIR})
+install(FILES assets/cake.png DESTINATION ${CMAKE_BINARY_DIR})
