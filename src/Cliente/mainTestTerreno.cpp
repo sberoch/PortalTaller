@@ -20,13 +20,16 @@
 #include "VistaBloqueMetalDiagonal.h"
 #include "VistaPinTool.h"
 #include "VistaTorta.h"
+#include "VistaPortalAzul.h"
+#include "VistaPortalNaranja.h"
+
+#include "EventHandler.h"
+#include <thread>
+#include <chrono>
 
 #include "../Common/Constantes.h"
 
 int main(int argc, char** argv){
-
-    bool quit;
-
     try {
         SdlWindow window(1000, 800);
         window.fill();
@@ -39,6 +42,9 @@ int main(int argc, char** argv){
         SdlTexture efectosTex("efectos.png", window);
         SdlTexture pinToolTex("pin.png", window);
         SdlTexture tortaTex("cake.png", window);
+        SdlTexture portalesTex("portales.png", window);
+
+        SDL_Delay(100);
 
         VistaBloqueMetal bloqueMetal(bloqueTex);
         VistaBloquePiedra bloquePiedra(bloqueTex);
@@ -54,16 +60,19 @@ int main(int argc, char** argv){
         VistaBloqueMetalDiagonal diagonal(bloqueTex);
         VistaPinTool pinTool(pinToolTex);
         VistaTorta torta(tortaTex);
+        VistaPortalAzul portalAzul(portalesTex);
+        VistaPortalNaranja portalNaranja(portalesTex);
         int x, y, x2, y2;
 
         int posX = 0;
         int posY = 0;
 
-        quit = false;
         bool ctrl = false;
         bool fullscreen = true;
-        SDL_Event e;
-        while (!quit) {
+
+        EventHandler eventHandler;
+
+        while (!eventHandler.quit()) {
             window.fill();
 
             //Crear fondo
@@ -106,9 +115,13 @@ int main(int argc, char** argv){
             bloqueMetal.dibujarEn(450 - posX, 415 - posY);
             diagonal.dibujarEn(450 - posX, 330 - posY);
             diagonal.dibujarEn(535 - posX, 415 - posY);
+            portalAzul.dibujarEn(450 - posX, 415 - posY);
+            portalNaranja.dibujarEn(450 - posX, 330 - posY);
             
             //Eventos
-            SDL_PollEvent(&e);
+            eventHandler.poll();
+            
+            /*SDL_PollEvent(&e);
             switch (e.type) {
                 case SDL_MOUSEBUTTONDOWN: {
                     if (ctrl) {
@@ -166,9 +179,9 @@ int main(int argc, char** argv){
                     }  
                     break;
                 }
-            }
+            } */
             //---------------
-            SDL_Delay(7);
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
             window.render();
         }
     } catch (std::exception& e) {

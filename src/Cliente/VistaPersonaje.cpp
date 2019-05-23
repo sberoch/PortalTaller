@@ -10,6 +10,7 @@ VistaPersonaje::VistaPersonaje(SdlTexture& tex) {
 	tamanioVertical = 105;
 	estado = 0;
 	flip = SDL_FLIP_NONE;
+	clips.push_back(Area(0,0,0,0));
 }
 
 void VistaPersonaje::dibujarEn(int x, int y) {

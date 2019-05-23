@@ -8,10 +8,9 @@ int main(int argc, char** argv) {
 //	Tirar hilo enviar
 //	Crear mapa desde yaml
  
-//	while(!escena.termino()) {
-//		escena.recibirCambios(); <-------- Desencola en ColaRecibir los cambios recibidos por el thread recibir
-//		escena.actualizar();	 <-------- Redibuja
-//		escena.handleEvents();   <-------- ?
-//		escena.enviarCambios();  <-------- Encola en ColaEnviar los cambios realizados, el thread enviar los manda
-//	}
+	while(!escena.termino()) {
+		escena.recibirCambios();
+		escena.actualizar();	
+		escena.manejarEventos();   
+	}
 }
