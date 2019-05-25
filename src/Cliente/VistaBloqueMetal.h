@@ -6,7 +6,7 @@
 class VistaBloqueMetal : public VistaObjeto {
 public:
 	VistaBloqueMetal(SdlTexture& tex);
-	virtual void dibujarEn(int x, int y);
+	void dibujarEn(int x, int y) override;
 };
 
 #endif

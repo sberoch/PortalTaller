@@ -1,6 +1,7 @@
 #include "VistaBloquePiedra.h"
+#include <iostream>
 
-VistaBloquePiedra::VistaBloquePiedra(SdlTexture& tex) {
+VistaBloquePiedra::VistaBloquePiedra(const SdlTexture& tex) {
 	this->textura = tex;
 	Area srcArea(2, 0, 191, 191);
 	clips.push_back(srcArea);

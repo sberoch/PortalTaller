@@ -2,10 +2,9 @@ cmake_minimum_required(VERSION 2.8)
 
 project(qt-sdl)
 
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread")
 
 add_library(sdldemo
-  src/Cliente/EventHandler.cpp
   src/Cliente/VistaObjeto.cpp
   src/Cliente/VistaObjetoMovil.cpp
   src/Cliente/VistaAcido.cpp
@@ -30,6 +29,10 @@ add_library(sdldemo
   src/Cliente/SdlException.cpp
   src/Cliente/SdlWindow.cpp
   src/Cliente/Escena.cpp
+  src/Cliente/Terreno.cpp
+  src/Cliente/CreadorTexturas.cpp
+  src/Cliente/EnviadorEventos.cpp
+  src/Cliente/RecibidorEventos.cpp
   src/Common/Lock.cpp
   src/Common/Thread.cpp
   src/Common/Socket.cpp

@@ -23,7 +23,6 @@
 #include "VistaPortalAzul.h"
 #include "VistaPortalNaranja.h"
 
-#include "EventHandler.h"
 #include <thread>
 #include <chrono>
 
@@ -44,8 +43,6 @@ int main(int argc, char** argv){
         SdlTexture tortaTex("cake.png", window);
         SdlTexture portalesTex("portales.png", window);
 
-        SDL_Delay(100);
-
         VistaBloqueMetal bloqueMetal(bloqueTex);
         VistaBloquePiedra bloquePiedra(bloqueTex);
         VistaAcido acido(miscTex);
@@ -56,7 +53,7 @@ int main(int argc, char** argv){
         VistaPiedraMovil piedra(efectosTex);
         VistaBarreraEnergia barreraEnergia(miscTex);
         VistaBolaEnergia bolaEnergia(efectosTex);
-        VistaPersonaje personaje(personajeTex);
+        //VistaPersonaje personaje(personajeTex);
         VistaBloqueMetalDiagonal diagonal(bloqueTex);
         VistaPinTool pinTool(pinToolTex);
         VistaTorta torta(tortaTex);
@@ -69,10 +66,9 @@ int main(int argc, char** argv){
 
         bool ctrl = false;
         bool fullscreen = true;
+        bool quit = false;
 
-        EventHandler eventHandler;
-
-        while (!eventHandler.quit()) {
+        while (!quit) {
             window.fill();
 
             //Crear fondo
@@ -109,7 +105,7 @@ int main(int argc, char** argv){
             barreraEnergia.dibujarEn(1470 - posX, 450 - posY);
             bolaEnergia.dibujarEn(195 - posX, 160 - posY);
             bolaEnergia.mover(4,0);
-            personaje.dibujarEn(620, 395);
+            //personaje.dibujarEn(620, 395);
             torta.dibujarEn(1725 - posX, 435 - posY);
 
             bloqueMetal.dibujarEn(450 - posX, 415 - posY);
@@ -118,10 +114,8 @@ int main(int argc, char** argv){
             portalAzul.dibujarEn(450 - posX, 415 - posY);
             portalNaranja.dibujarEn(450 - posX, 330 - posY);
             
-            //Eventos
-            eventHandler.poll();
-            
-            /*SDL_PollEvent(&e);
+            SDL_Event e;
+            SDL_PollEvent(&e);
             switch (e.type) {
                 case SDL_MOUSEBUTTONDOWN: {
                     if (ctrl) {
@@ -129,7 +123,7 @@ int main(int argc, char** argv){
                         SDL_GetMouseState(&x, &y);
                         pinTool.dibujarEn(x, y);
                     } else {
-                        personaje.asignarEstado(ESTADO_DISPARANDO); 
+                        //personaje.asignarEstado(ESTADO_DISPARANDO); 
                     }
                     break;
                 }
@@ -139,13 +133,13 @@ int main(int argc, char** argv){
                     switch (keyEvent.keysym.sym) {
                         case SDLK_LEFT:
                             posX -= 5;
-                            personaje.asignarEstado(ESTADO_CORRIENDO);
-                            personaje.flipIzquierda();
+                            //personaje.asignarEstado(ESTADO_CORRIENDO);
+                            //personaje.flipIzquierda();
                             break;
                         case SDLK_RIGHT:
                             posX += 5;
-                            personaje.asignarEstado(ESTADO_CORRIENDO);
-                            personaje.flipDerecha();
+                            //personaje.asignarEstado(ESTADO_CORRIENDO);
+                            //personaje.flipDerecha();
                             break;
                         case SDLK_UP:
                             posY -= 5;
@@ -154,7 +148,7 @@ int main(int argc, char** argv){
                             posY += 5;
                             break;
                         case SDLK_q:
-                            personaje.asignarEstado(ESTADO_MUERTO);
+                            //personaje.asignarEstado(ESTADO_MUERTO);
                             break;
                         case SDLK_LCTRL:
                             ctrl = true;
@@ -175,11 +169,11 @@ int main(int argc, char** argv){
                     if (keyEvent.keysym.sym == SDLK_LCTRL) {
                         ctrl = false;
                     } else {
-                        personaje.asignarEstado(ESTADO_IDLE); 
+                        //personaje.asignarEstado(ESTADO_IDLE); 
                     }  
                     break;
                 }
-            } */
+            }
             //---------------
             std::this_thread::sleep_for(std::chrono::milliseconds(10));
             window.render();

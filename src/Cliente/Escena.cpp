@@ -2,10 +2,21 @@
 #include "../Common/Evento.cpp"
 #include <iostream>
 
-Escena::Escena(int width, int heigth) : window(width, heigth) {
+#include <thread>
+#include <chrono>
+
+#include "SdlTexture.h"
+#include "VistaBloquePiedra.h"
+
+Escena::Escena(int width, int heigth) : 
+	window(width, heigth),
+	terreno(window) {
 	fullscreen = true;
 	terminado = false;
 	ctrl = false;
+	deltaCamaraX = 0;
+	deltaCamaraY = 0;
+	window.fill();
 }
 
 bool Escena::termino() {
@@ -16,10 +27,15 @@ void Escena::recibirCambios() {
 	//Suponiendo que la cola devuelve null si no tiene eventos
 	//Evento* evento = colaRecibir.pop();
 	//if (evento) actualizarCon(evento);
+	std::this_thread::sleep_for(std::chrono::milliseconds(200));
+	deltaCamaraX = 5; deltaCamaraY = -7;
 }
 
 void Escena::actualizar() {
-	//Loop de dibujado
+	window.fill();
+	//Dibujar objetos moviles
+	terreno.actualizar(deltaCamaraX, deltaCamaraY);
+	window.render();
 }
 
 void Escena::manejarEventos() {

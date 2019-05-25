@@ -5,8 +5,8 @@
 
 class VistaBloquePiedra : public VistaObjeto {
 public:
-	VistaBloquePiedra(SdlTexture& tex);
-	virtual void dibujarEn(int x, int y);
+	VistaBloquePiedra(const SdlTexture& tex);
+	void dibujarEn(int x, int y) override;
 };
 
 #endif
