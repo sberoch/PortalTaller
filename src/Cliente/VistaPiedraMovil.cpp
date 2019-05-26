@@ -17,7 +17,7 @@ VistaPiedraMovil::VistaPiedraMovil(SdlTexture& tex) {
 
 void VistaPiedraMovil::dibujarEn(int x, int y) {
 	Area srcArea = clips.front();
-	Area destArea(x + posX, y + posY, tamanioHorizontal, tamanioVertical);
+	Area destArea(xInicial + x + posX, yInicial + y + posY, tamanioHorizontal, tamanioVertical);
 	textura.render(srcArea, destArea);
 }
 

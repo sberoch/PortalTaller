@@ -16,11 +16,11 @@ VistaBolaEnergia::VistaBolaEnergia(SdlTexture& tex) {
 }
 
 void VistaBolaEnergia::dibujarEn(int x, int y) {
-	Area srcArea = clips.at(floor(frame/8));
-	Area destArea(posX + x, posY + y, tamanioHorizontal, tamanioVertical);
+	Area srcArea = clips.at(floor(frame/4));
+	Area destArea(xInicial + posX + x, yInicial + posY + y, tamanioHorizontal, tamanioVertical);
 	textura.render(srcArea, destArea);
 	++frame;
-	if ((frame/8) >= CANT_CLIPS) {
+	if ((frame/4) >= CANT_CLIPS) {
 		frame = 0;
 	}
 }

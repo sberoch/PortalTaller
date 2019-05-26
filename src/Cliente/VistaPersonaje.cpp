@@ -14,13 +14,13 @@ VistaPersonaje::VistaPersonaje(SdlTexture& tex) {
 }
 
 void VistaPersonaje::dibujarEn(int x, int y) {
-	Area srcArea = animaciones.obtenerConEstado(estado, floor(frame/8));
+	Area srcArea = animaciones.obtenerConEstado(estado, floor(frame/4));
 	tamanioHorizontal = int(srcArea.getWidth()/2);
-	Area destArea(posX + x, posY + y, tamanioHorizontal, tamanioVertical);
+	Area destArea(xInicial + posX + x, yInicial + posY + y, tamanioHorizontal, tamanioVertical);
 	textura.render(srcArea, destArea, 0.0, flip);
 
 	++frame;
-	if ((frame/8) >= animaciones.size()) { 
+	if ((frame/4) >= animaciones.size()) { 
 		frame = 0;
 		if (estado == ESTADO_DISPARANDO) {
 			estado = 0;

@@ -10,6 +10,6 @@ VistaBarreraEnergia::VistaBarreraEnergia(SdlTexture& tex) {
 
 void VistaBarreraEnergia::dibujarEn(int x, int y) {
 	Area srcArea = clips.front();
-	Area destArea(x, y, tamanioHorizontal, tamanioVertical);
+	Area destArea(xInicial + x, yInicial + y, tamanioHorizontal, tamanioVertical);
 	textura.render(srcArea, destArea);
 }

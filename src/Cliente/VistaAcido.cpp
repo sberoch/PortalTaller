@@ -13,11 +13,11 @@ VistaAcido::VistaAcido(SdlTexture& tex) {
 }
 
 void VistaAcido::dibujarEn(int x, int y) {
-	Area srcArea = clips.at(floor(frame/16));
-	Area destArea(x, y, tamanioHorizontal, tamanioVertical);
+	Area srcArea = clips.at(floor(frame/4));
+	Area destArea(xInicial + x, yInicial + y, tamanioHorizontal, tamanioVertical);
 	textura.render(srcArea, destArea);
 	++frame;
-	if (frame/16 >= CANT_CLIPS) {
+	if (frame/4 >= CANT_CLIPS) {
 		frame = 0;
 	}
 }

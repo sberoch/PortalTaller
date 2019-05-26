@@ -2,17 +2,20 @@
 #define ESCENA
 
 #include <SDL2/SDL.h>
+#include <vector>
 #include "SdlWindow.h"
-#include "Terreno.h"
+#include "CreadorTexturas.h"
 
 class Escena {
 private:
 	SdlWindow window;
 	bool fullscreen;
 
-	Terreno terreno;
-	int deltaCamaraX, deltaCamaraY;
+	CreadorTexturas creadorTexturas;
+	std::vector<VistaObjeto*> objetosDelJuego;
 	//Lista/Mapa de objetos moviles, identificados por id
+
+	int deltaCamaraX, deltaCamaraY;
 
 	//ColaEnviar colaEnviar;  (bloqueante)
 	//ColaRecibir colaRecibir;  (no bloqueante)
@@ -27,7 +30,9 @@ public:
 	void actualizar();
 	void manejarEventos();
 	~Escena();
-	
+
+private:
+	void crearTerreno();	
 };
 
 #endif

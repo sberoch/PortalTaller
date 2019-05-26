@@ -29,7 +29,6 @@ add_library(sdldemo
   src/Cliente/SdlException.cpp
   src/Cliente/SdlWindow.cpp
   src/Cliente/Escena.cpp
-  src/Cliente/Terreno.cpp
   src/Cliente/CreadorTexturas.cpp
   src/Cliente/EnviadorEventos.cpp
   src/Cliente/RecibidorEventos.cpp
@@ -43,9 +42,7 @@ add_library(sdldemo
 message("Agregando '${PROJECT_BINARY_DIR}' como directorio de includes") 
 include_directories(${PROJECT_BINARY_DIR})
 
-add_executable (portal src/Cliente/mainTestTerreno.cpp)
 add_executable (cliente src/Cliente/mainCliente.cpp)
-target_link_libraries(portal sdldemo SDL2 SDL2_image)
 target_link_libraries(cliente sdldemo SDL2 SDL2_image)
 
 
