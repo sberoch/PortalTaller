@@ -4,6 +4,7 @@
 
 VistaAcido::VistaAcido(SdlTexture& tex) {
 	this->textura = tex;
+	frame = 0;
 	for (int i = 0; i < CANT_CLIPS; ++i) {
 		Area area(i*301, 1545, 301, 60);
 		clips.push_back(area);

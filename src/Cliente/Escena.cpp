@@ -5,8 +5,7 @@
 #include <thread>
 #include <chrono>
 
-//No incluir esto despues, se levanta desde yaml
-#include "../Common/Constantes.h"
+#include "yaml-cpp/yaml.h"
 
 Escena::Escena(int width, int heigth) : 
 	window(width, heigth),
@@ -98,10 +97,22 @@ Escena::~Escena() {
 	objetosDelJuego.clear();
 }
 
-//En lugar de esto levantar desde yaml
-//Objetos moviles poner en otra estructura de datos
 void Escena::crearTerreno() {
-	int x,y, x2,y2;
+	//TODO: cargar elementos con estados en lista diferente
+	//TODO: cargar elementos moviles en lista diferente
+	int id, x, y;
+	YAML::Node escenaYaml = YAML::LoadFile("escenario.yaml");
+	YAML::Node objetos = escenaYaml["objetos"];
+
+	std::cout << objetos.size() << std::endl;
+	for (size_t i = 0; i < objetos.size(); ++i) {
+		id = objetos[i]["tipo"].as<int>();
+		x =  objetos[i]["posX"].as<int>();
+		y =  objetos[i]["posY"].as<int>();
+		VistaObjeto* vo = creadorTexturas.crear(id, x, y);
+		objetosDelJuego.push_back(vo);
+	} 
+	/*int x,y, x2,y2;
 	for (int i = 0; i < 27; i++) {
         x2 = -400 + i*100;
         for (int j = 0; j < 7; j++) {
@@ -143,5 +154,5 @@ void Escena::crearTerreno() {
     vo = creadorTexturas.crear(ID_PORTAL_NARANJA, 450, 330); 
     objetosDelJuego.push_back(vo);
     vo = creadorTexturas.crear(ID_PERSONAJE, 620, 395); 
-    objetosDelJuego.push_back(vo);
+    objetosDelJuego.push_back(vo);*/
 }
