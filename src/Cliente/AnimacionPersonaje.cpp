@@ -8,7 +8,7 @@ AnimacionPersonaje::AnimacionPersonaje() {
 		Area area(i*105, 2074, 105, 215);
 		clipsIdle.push_back(area);
 	}
-	mapaAnimaciones.insert(std::make_pair("idle", clipsIdle));
+	mapaAnimaciones.insert(std::make_pair(ESTADO_IDLE, clipsIdle));
 
 	//Corriendo
 	std::vector<Area> clipsCorriendo;
@@ -20,7 +20,7 @@ AnimacionPersonaje::AnimacionPersonaje() {
 		Area area(1 + i*195, 4330, 195, 215);
 		clipsCorriendo.push_back(area);
 	}
-	mapaAnimaciones.insert(std::make_pair("corriendo", clipsCorriendo));
+	mapaAnimaciones.insert(std::make_pair(ESTADO_CORRIENDO, clipsCorriendo));
 
 	//Disparando
 	std::vector<Area> clipsDisparando;
@@ -28,7 +28,7 @@ AnimacionPersonaje::AnimacionPersonaje() {
 		Area area(i*173, 2305, 173, 215);
 		clipsDisparando.push_back(area);
 	}
-	mapaAnimaciones.insert(std::make_pair("disparando", clipsDisparando));
+	mapaAnimaciones.insert(std::make_pair(ESTADO_DISPARANDO, clipsDisparando));
 
 	//Muerto
 	std::vector<Area> clipsMuerto;
@@ -38,29 +38,19 @@ AnimacionPersonaje::AnimacionPersonaje() {
 			clipsMuerto.push_back(area);
 		}
 	}
-	mapaAnimaciones.insert(std::make_pair("muerto", clipsMuerto));
+	mapaAnimaciones.insert(std::make_pair(ESTADO_MUERTO, clipsMuerto));
+
+	//Saltando
+	std::vector<Area> clipsSaltando;
+	for (int i = 0; i < 4; ++i) {
+		Area area(i*158, 1836, 155, 215);
+		clipsSaltando.push_back(area);
+	}
+	mapaAnimaciones.insert(std::make_pair(ESTADO_SALTANDO, clipsSaltando));
 }
 
 Area AnimacionPersonaje::obtenerConEstado(int estado, int frame) {
-	std::vector<Area> ret;
-	switch (estado) {
-		case ESTADO_IDLE: {
-			ret = mapaAnimaciones.at("idle");
-			break;	
-		}
-		case ESTADO_CORRIENDO: {
-			ret = mapaAnimaciones.at("corriendo");
-			break;
-		}
-		case ESTADO_DISPARANDO: {
-			ret = mapaAnimaciones.at("disparando");
-			break;
-		}
-		case ESTADO_MUERTO: {
-			ret = mapaAnimaciones.at("muerto");
-			break;
-		}
-	}
+	std::vector<Area> ret = mapaAnimaciones.at(estado);
 	actualSize = ret.size();
 	return ret.at(frame);
 }

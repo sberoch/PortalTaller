@@ -2,20 +2,20 @@
 #include "EnviadorEventos.h"
 #include "RecibidorEventos.h"
 
-#include "../Common/cola_bloqueante.h"
-#include"../Common/Cola.h"
 #include "../Common/Evento.h"
 
 #include <iostream>
 
 int main(int argc, char** argv) {
 
-	Escena escena(1000, 800);
+	Cola<Evento> colaRecibir;
 
-	RecibidorEventos recibidorEventos;
-	EnviadorEventos enviadorEventos;
+	Escena escena(1000, 800, colaRecibir);
+
+	RecibidorEventos recibidorEventos(colaRecibir); //Anda bien, pero no usar hasta no tener los socket, come 100% cpu sino (while true)
+	//EnviadorEventos enviadorEventos(colaEnviar);
 	recibidorEventos.iniciar();
-	enviadorEventos.iniciar();
+	//enviadorEventos.iniciar();
  
 	while(!escena.termino()) {
 		escena.recibirCambios();
@@ -23,7 +23,8 @@ int main(int argc, char** argv) {
 		escena.manejarEventos();
 	}
 
-	recibidorEventos.cerrar();
-	enviadorEventos.cerrar();
+	recibidorEventos.detener();
+	//enviadorEventos.detener();
+
 	return 0;
 }

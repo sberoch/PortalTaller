@@ -1,17 +1,21 @@
-#include "RecibidorEventos.h"
+#include "EnviadorEventos.h"
 
-RecibidorEventos::RecibidorEventos() {
+EnviadorEventos::EnviadorEventos() {
 	//Iniciar socket y eso
 }
 
-void RecibidorEventos::ejecutar() {
-	//while(true) {
-		//Evento evento;
-		//socket >> evento;
-		//cola.push(evento);
+void EnviadorEventos::ejecutar() {
+	//while(!termino) {
+		//Evento evento = cola.pop();
+		//socket << evento;
 	//}	
 }
 
-RecibidorEventos::~RecibidorEventos() {
+void EnviadorEventos::detener() {
+	termino = true;
+	Thread::cerrar();
+}
+
+EnviadorEventos::~EnviadorEventos() {
 	//Socket shutdown
-}	
+}

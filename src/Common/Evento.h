@@ -7,6 +7,7 @@ private:
 	int tipoEvento;
 	int idItem;
 public:
+	Evento() = default;
 	Evento(int x, int y, int tipoEvento, int idItem);
 };
 

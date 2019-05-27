@@ -7,9 +7,10 @@
 
 #include "yaml-cpp/yaml.h"
 
-Escena::Escena(int width, int heigth) : 
+Escena::Escena(int width, int heigth, Cola<Evento>& colaRecibir) : 
 	window(width, heigth),
-	creadorTexturas(window) {
+	creadorTexturas(window),
+	colaRecibir(colaRecibir) {
 	fullscreen = true;
 	terminado = false;
 	ctrl = false;
@@ -25,9 +26,10 @@ bool Escena::termino() {
 }
 
 void Escena::recibirCambios() {
-	//Suponiendo que la cola devuelve null si no tiene eventos
-	//Evento* evento = colaRecibir.pop();
-	//if (evento) actualizarCon(evento);
+	Evento evento;
+	if (colaRecibir.get(evento)) {
+		//Actualizar con evento
+	}
 }
 
 void Escena::actualizar() {
@@ -104,7 +106,6 @@ void Escena::crearTerreno() {
 	YAML::Node escenaYaml = YAML::LoadFile("escenario.yaml");
 	YAML::Node objetos = escenaYaml["objetos"];
 
-	std::cout << objetos.size() << std::endl;
 	for (size_t i = 0; i < objetos.size(); ++i) {
 		id = objetos[i]["tipo"].as<int>();
 		x =  objetos[i]["posX"].as<int>();

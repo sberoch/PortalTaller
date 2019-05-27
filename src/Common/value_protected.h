@@ -3,10 +3,9 @@
 
 #include <mutex>
 
-template <typename T>
 class ValueProtected {
     private:
-    T valor_;
+    bool valor_;
     std::mutex mtx;
 
     ValueProtected(const ValueProtected& otro) = delete;
@@ -18,13 +17,32 @@ class ValueProtected {
     ValueProtected& operator=(ValueProtected&& otro) = delete;
     
     public:
-    explicit ValueProtected(T unValor);
+    explicit ValueProtected(bool unValor);
 
     ~ValueProtected();
     
-    T operator()();
+    bool operator()();
     
-    void set(T unValor);
+    void set(bool unValor);
 };
+
+
+
+ValueProtected::ValueProtected(bool unValor) :
+    valor_(unValor) {
+}
+
+ValueProtected::~ValueProtected() {
+}
+
+bool ValueProtected::operator()() {
+    std::lock_guard<std::mutex> lck(mtx);
+    return valor_;
+}
+
+void ValueProtected::set(bool unValor) {
+    std::lock_guard<std::mutex> lck(mtx);
+    valor_ = unValor;
+}
 
 #endif

@@ -83,6 +83,8 @@ objetos:
     posX: 170
     posY: 350
 
-
+  - tipo: 111
+    posX: 500
+    posY: 300
  
 ...

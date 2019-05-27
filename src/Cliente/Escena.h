@@ -5,6 +5,8 @@
 #include <vector>
 #include "SdlWindow.h"
 #include "CreadorTexturas.h"
+#include "../Common/Cola.h"
+#include "../Common/Evento.h"
 
 class Escena {
 private:
@@ -17,14 +19,13 @@ private:
 
 	int deltaCamaraX, deltaCamaraY;
 
-	//ColaEnviar colaEnviar;  (bloqueante)
-	//ColaRecibir colaRecibir;  (no bloqueante)
+	Cola<Evento>& colaRecibir;  
 
 	SDL_Event event;
 	bool terminado;
 	bool ctrl;
 public:
-	Escena(int width, int heigth);
+	Escena(int width, int heigth, Cola<Evento>& colaRecibir);
 	bool termino();
 	void recibirCambios();
 	void actualizar();

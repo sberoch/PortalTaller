@@ -8,9 +8,9 @@ VistaPersonaje::VistaPersonaje(SdlTexture& tex) {
 	posX = 0;
 	posY = 0;
 	tamanioVertical = 105;
-	estado = 0;
+	estado = 4;
 	flip = SDL_FLIP_NONE;
-	clips.push_back(Area(0,0,0,0));
+	clips.push_back(Area(0,0,0,0)); //????????
 }
 
 void VistaPersonaje::dibujarEn(int x, int y) {
@@ -22,9 +22,6 @@ void VistaPersonaje::dibujarEn(int x, int y) {
 	++frame;
 	if ((frame/4) >= animaciones.size()) { 
 		frame = 0;
-		if (estado == ESTADO_DISPARANDO) {
-			estado = 0;
-		}
 	}
 }
 

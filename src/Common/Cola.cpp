@@ -1,17 +1,20 @@
 #include "Cola.h"
+#include "Evento.h"
 
 template<class T>
-void Cola<T>::push(T elem) {
+void Cola<T>::put(T elem) {
 	elementos.push(elem);
 }
 
 template<class T>
-T Cola<T>::pop() {
+bool Cola<T>::get(T& elem) {
 	if (elementos.empty()) {
-		return nullptr; 
+		return false; 
 	} else {
-		T ret = elementos.front();
+		elem = elementos.front();
 		elementos.pop();
-		return ret;
+		return true;
 	}
 }
+
+template class Cola<Evento>;

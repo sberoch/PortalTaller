@@ -9,8 +9,8 @@ private:
 	std::queue<T> elementos;
 public:
 	Cola() = default;
-	void push(T elem);
-	T pop();
+	void put(T elem);
+	bool get(T& elem);
 };
 
 #endif

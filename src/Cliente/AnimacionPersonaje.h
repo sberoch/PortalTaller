@@ -9,7 +9,7 @@
 
 class AnimacionPersonaje {
 private:
-	std::map<std::string, std::vector<Area>> mapaAnimaciones;
+	std::map<int, std::vector<Area>> mapaAnimaciones;
 	int actualSize;
 public:
 	AnimacionPersonaje();

@@ -1,4 +1,5 @@
 #include "cola_bloqueante.h"
+#include "Evento.h"
 
 template <class T>
 ColaBloqueante<T>::ColaBloqueante() :
@@ -32,4 +33,6 @@ void ColaBloqueante<T>::detener() {
     detenida_.set(true);
     cond_.notify_all();
 }
+
+template class ColaBloqueante<Evento>;
 

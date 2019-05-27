@@ -2,14 +2,18 @@
 #define RECIBIR_EVENTOS 
 
 #include "../Common/Thread.h"
+#include "../Common/Cola.h"
+#include "../Common/Evento.h"
 
 class RecibidorEventos : public Thread {
 private:
-	//Cola cola
+	bool termino;
+	Cola<Evento> cola;
 	//Socket socket
 public:
-	RecibidorEventos();
+	RecibidorEventos(Cola<Evento> cola);
 	virtual void ejecutar();
+	void detener();
 	~RecibidorEventos();	
 };
 
