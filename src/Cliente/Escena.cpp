@@ -60,6 +60,7 @@ void Escena::manejarEventos() {
 				std::cout << "Evento: disparando portal azul \n";
 				Evento evento(x, y, EVENTO_CREAR_PORTAL_AZUL, 0);
 				colaEnviar.put(evento);
+				audio.reproducirEfecto(EFECTO_DISPARO);
 			}
 			else if (event.button.button == SDL_BUTTON_RIGHT) std::cout << "Evento: disparando portal naranja \n";
 
@@ -75,6 +76,7 @@ void Escena::manejarEventos() {
 					deltaCamaraX -= 5;
 					break;
 				case SDLK_w:
+					audio.reproducirEfecto(EFECTO_SALTO);
 					std::cout << "Evento: salto \n";
 					deltaCamaraY += 5;
 					break;

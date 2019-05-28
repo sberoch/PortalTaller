@@ -61,3 +61,6 @@ install(FILES assets/cake.png DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/portales.png DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/escenario.yaml DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/musica_fondo.mp3 DESTINATION ${CMAKE_BINARY_DIR})
+install(FILES assets/disparo_portal.wav DESTINATION ${CMAKE_BINARY_DIR})
+install(FILES assets/salto.wav DESTINATION ${CMAKE_BINARY_DIR})
+
