@@ -45,16 +45,9 @@ public:
     //Apaga el socket, de forma que no se puedan recibir ni enviar mensajes.
     void shutdown();
 
-    //Sobrecarga de operadores para recibir o enviar
-	// los tamaños adecuados de acorde a cada tipo.
-	void operator<<(uint8_t num);
-	void operator<<(uint16_t num);
+    //Sobrecarga de operadores para recibir o enviar enteros.
 	void operator<<(uint32_t num);
-	void operator<<(std::string str);
-	void operator>>(uint8_t& num);
-	void operator>>(uint16_t& num);
 	void operator>>(uint32_t& num);
-	void operator>>(std::string& str);	
 
 	//Destruye el socket
     ~Socket(); 

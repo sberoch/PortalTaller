@@ -16,7 +16,7 @@ class ColaBloqueante {
     std::mutex mtx_;
     std::queue<T> elementos_;
     std::condition_variable cond_;
-    ValueProtected detenida_;
+    ValueProtected<bool> detenida_;
 
     ColaBloqueante(ColaBloqueante&& otra) = delete;
 

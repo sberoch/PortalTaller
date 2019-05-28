@@ -3,19 +3,21 @@
 #include "RecibidorEventos.h"
 
 #include "../Common/Evento.h"
+#include "Audio.h"
 
 #include <iostream>
 
 int main(int argc, char** argv) {
 
+	ColaBloqueante<Evento> colaEnviar;
 	Cola<Evento> colaRecibir;
 
-	Escena escena(1000, 800, colaRecibir);
+	Escena escena(1000, 800, colaEnviar, colaRecibir);
 
 	RecibidorEventos recibidorEventos(colaRecibir); //Anda bien, pero no usar hasta no tener los socket, come 100% cpu sino (while true)
-	//EnviadorEventos enviadorEventos(colaEnviar);
+	EnviadorEventos enviadorEventos(colaEnviar);
 	recibidorEventos.iniciar();
-	//enviadorEventos.iniciar();
+	enviadorEventos.iniciar();
  
 	while(!escena.termino()) {
 		escena.recibirCambios();
@@ -24,7 +26,7 @@ int main(int argc, char** argv) {
 	}
 
 	recibidorEventos.detener();
-	//enviadorEventos.detener();
+	enviadorEventos.detener();
 
 	return 0;
 }

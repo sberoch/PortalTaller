@@ -11,6 +11,9 @@
 #include <stdexcept>
 #include "Socket.h"
 
+#define CUATRO_BYTES 4
+
+
 Socket::Socket() {
 	int familia = AF_INET;      /* IPv4 (or AF_INET6 for IPv6)     */
 	int tipo = SOCK_STREAM;     /* TCP  (or SOCK_DGRAM for UDP)    */
@@ -155,4 +158,12 @@ int Socket::recibir(void* buffer, size_t largo){
 
 void Socket::shutdown(){
 	::shutdown(this->fd, SHUT_RDWR);
+}
+
+void Socket::operator<<(uint32_t num) {
+	this->enviar((char*) &num, CUATRO_BYTES);
+}
+
+void Socket::operator>>(uint32_t& num) {
+	this->recibir((char*) &num, CUATRO_BYTES);
 }

@@ -2,14 +2,16 @@
 #define ENVIADOR_EVENTOS 
 
 #include "../Common/Thread.h"
+#include "../Common/cola_bloqueante.h"
+#include "../Common/Evento.h"
 
 class EnviadorEventos : public Thread {
 private:
-	//Cola cola
+	ColaBloqueante<Evento>& cola;
 	//Socket socket
 	bool termino;
 public:
-	EnviadorEventos();
+	EnviadorEventos(ColaBloqueante<Evento>& cola);
 	virtual void ejecutar();
 	void detener();
 	~EnviadorEventos();	

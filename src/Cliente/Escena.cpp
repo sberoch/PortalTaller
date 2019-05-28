@@ -6,18 +6,21 @@
 #include <chrono>
 
 #include "yaml-cpp/yaml.h"
+#include "../Common/Constantes.h"
 
-Escena::Escena(int width, int heigth, Cola<Evento>& colaRecibir) : 
+Escena::Escena(int width, int heigth, ColaBloqueante<Evento>& colaEnviar, Cola<Evento>& colaRecibir) : 
 	window(width, heigth),
 	creadorTexturas(window),
+	colaEnviar(colaEnviar),
 	colaRecibir(colaRecibir) {
+
+	audio.reproducirMusica();
 	fullscreen = true;
 	terminado = false;
 	ctrl = false;
 	deltaCamaraX = 0;
 	deltaCamaraY = 0;
 	window.fill();
-
 	crearTerreno();
 }
 
@@ -46,12 +49,18 @@ void Escena::manejarEventos() {
 	while (SDL_PollEvent(&event)) {
 		if (event.type == SDL_QUIT) {
 			terminado = true;
-			//Evento* evento = new Evento(0, 0, EVENTO_SALIR, 0);
-			//colaEnvios.push(evento);
+			Evento evento(0, 0, EVENTO_SALIR, 0);
+			colaEnviar.put(evento);
 
 		} else if (event.type == SDL_MOUSEBUTTONDOWN) {
+			int x, y;
+			SDL_GetMouseState(&x, &y);
 			if (ctrl) std::cout << "Evento: pin tool \n";
-			else if (event.button.button == SDL_BUTTON_LEFT) std::cout << "Evento: disparando portal azul \n";
+			else if (event.button.button == SDL_BUTTON_LEFT) {
+				std::cout << "Evento: disparando portal azul \n";
+				Evento evento(x, y, EVENTO_CREAR_PORTAL_AZUL, 0);
+				colaEnviar.put(evento);
+			}
 			else if (event.button.button == SDL_BUTTON_RIGHT) std::cout << "Evento: disparando portal naranja \n";
 
 		} else if (event.type == SDL_KEYDOWN) {
