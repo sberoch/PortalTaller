@@ -32,25 +32,25 @@ CreadorTexturas::CreadorTexturas(const SdlWindow& window) :
 	portalesTex("portales.png", window) {
 }
 
-VistaObjeto* CreadorTexturas::crear(int tipo, int x, int y) {
+VistaObjeto* CreadorTexturas::crear(int tipo, int x, int y, int angulo) {
 	VistaObjeto* vo;
 	switch (tipo) {
 		case ID_BLOQUE_METAL: vo = new VistaBloqueMetal(bloqueTex); break;
 		case ID_BLOQUE_PIEDRA: vo = new VistaBloquePiedra(bloqueTex); break;
 		case ID_ACIDO: vo = new VistaAcido(miscTex); break;
-		case ID_EMISOR: vo = new VistaEmisor(emisRecpTex); break;
-		case ID_RECEPTOR: vo = new VistaReceptor(emisRecpTex); break;
+		case ID_EMISOR: vo = new VistaEmisor(emisRecpTex, angulo); break;
+		case ID_RECEPTOR: vo = new VistaReceptor(emisRecpTex, angulo); break;
 		case ID_BOTON: vo = new VistaBoton(miscTex); break;
 		case ID_PUERTA: vo = new VistaPuerta(puertaTex); break;
 		case ID_PIEDRA_MOVIL: vo = new VistaPiedraMovil(efectosTex); break;
-		case ID_BARRERA_ENERGIA: vo = new VistaBarreraEnergia(miscTex); break;
-		case ID_BOLA_ENERGIA: vo = new VistaBolaEnergia(efectosTex); break;
+		case ID_BARRERA_ENERGIA: vo = new VistaBarreraEnergia(miscTex, angulo); break;
+		case ID_BOLA_ENERGIA: vo = new VistaBolaEnergia(efectosTex, angulo); break;
 		case ID_PERSONAJE: vo = new VistaPersonaje(personajeTex); break;
-		case ID_BLOQUE_DIAGONAL_METAL: vo = new VistaBloqueMetalDiagonal(bloqueTex); break;
+		case ID_BLOQUE_DIAGONAL_METAL: vo = new VistaBloqueMetalDiagonal(bloqueTex, angulo); break;
 		case ID_PIN_TOOL: vo = new VistaPinTool(pinToolTex); break;
 		case ID_TORTA: vo = new VistaTorta(tortaTex); break;
-		case ID_PORTAL_AZUL: vo = new VistaPortalAzul(portalesTex); break;
-		case ID_PORTAL_NARANJA: vo = new VistaPortalNaranja(portalesTex); break;
+		case ID_PORTAL_AZUL: vo = new VistaPortalAzul(portalesTex, angulo); break;
+		case ID_PORTAL_NARANJA: vo = new VistaPortalNaranja(portalesTex, angulo); break;
 		default: std::cout << "Error obteniendo vista del objeto: " << tipo << std::endl; break;
 	}
 	vo->setPosInicial(x, y);

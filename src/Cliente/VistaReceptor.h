@@ -4,8 +4,10 @@
 #include "VistaObjeto.h"
 
 class VistaReceptor : public VistaObjeto {
+private:
+	int angulo;
 public:
-	VistaReceptor(SdlTexture& tex);
+	VistaReceptor(SdlTexture& tex, int angulo);
 	virtual void dibujarEn(int x, int y);
 };
 

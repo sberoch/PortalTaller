@@ -34,5 +34,5 @@ void ColaBloqueante<T>::detener() {
     cond_.notify_all();
 }
 
-template class ColaBloqueante<Evento>;
+template class ColaBloqueante<Evento*>;
 

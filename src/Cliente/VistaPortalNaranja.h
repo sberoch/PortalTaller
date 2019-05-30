@@ -4,8 +4,10 @@
 #include "VistaObjeto.h"
 
 class VistaPortalNaranja : public VistaObjeto {
+private:
+	int angulo;
 public:
-	VistaPortalNaranja(SdlTexture& tex);
+	VistaPortalNaranja(SdlTexture& tex, int angulo);
 	virtual void dibujarEn(int x, int y);
 };
 

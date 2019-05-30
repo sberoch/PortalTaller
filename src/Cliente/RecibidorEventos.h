@@ -8,10 +8,10 @@
 class RecibidorEventos : public Thread {
 private:
 	bool termino;
-	Cola<Evento> cola;
+	Cola<Evento*> cola;
 	//Socket socket
 public:
-	RecibidorEventos(Cola<Evento> cola);
+	RecibidorEventos(Cola<Evento*> cola);
 	virtual void ejecutar();
 	void detener();
 	~RecibidorEventos();	

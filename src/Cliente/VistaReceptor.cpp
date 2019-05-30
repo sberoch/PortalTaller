@@ -1,7 +1,8 @@
 #include "VistaReceptor.h"
 
-VistaReceptor::VistaReceptor(SdlTexture& tex) {
+VistaReceptor::VistaReceptor(SdlTexture& tex, int angulo) {
 	this->textura = tex;
+	this->angulo = angulo;
 	Area srcArea(199, 0, 191, 191);
 	clips.push_back(srcArea);
 	tamanioHorizontal = 85;
@@ -11,5 +12,5 @@ VistaReceptor::VistaReceptor(SdlTexture& tex) {
 void VistaReceptor::dibujarEn(int x, int y) {
 	Area srcArea = clips.front();
 	Area destArea(xInicial + x, yInicial + y, tamanioHorizontal, tamanioVertical);
-	textura.render(srcArea, destArea);
+	textura.render(srcArea, destArea, (double) angulo, SDL_FLIP_NONE);
 }

@@ -1,6 +1,6 @@
 #include "RecibidorEventos.h"
 
-RecibidorEventos::RecibidorEventos(Cola<Evento> cola) :
+RecibidorEventos::RecibidorEventos(Cola<Evento*> cola) :
 	cola(cola) {
 	//Iniciar socket y eso
 }
@@ -9,7 +9,7 @@ void RecibidorEventos::ejecutar() {
 	while(!termino) {
 		//Evento evento;
 		//socket >> evento;
-		//cola.push(evento);
+		//cola.put(evento);
 	}	
 }
 

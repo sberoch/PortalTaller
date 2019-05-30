@@ -1,6 +1,6 @@
 #include "EnviadorEventos.h"
 
-EnviadorEventos::EnviadorEventos(ColaBloqueante<Evento>& cola) :
+EnviadorEventos::EnviadorEventos(ColaBloqueante<Evento*>& cola) :
 	cola(cola) {
 	//Iniciar socket y eso
 }

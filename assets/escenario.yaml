@@ -3,88 +3,116 @@ objetos:
   - tipo: 101
     posX: 85
     posY: 500
+    angulo: 0
   - tipo: 101
     posX: 170
     posY: 500
+    angulo: 0
   - tipo: 101
     posX: 255
     posY: 500
+    angulo: 0
   - tipo: 101
     posX: 340
     posY: 500
+    angulo: 0
   - tipo: 101
     posX: 425
     posY: 500
+    angulo: 0
   - tipo: 101
     posX: 510
     posY: 500
+    angulo: 0
   - tipo: 101
     posX: 595
     posY: 500
+    angulo: 0
   - tipo: 101
     posX: 680
     posY: 500
+    angulo: 0
   - tipo: 101
     posX: 765
     posY: 500
+    angulo: 0
   - tipo: 101
     posX: 850
     posY: 500
+    angulo: 0
   - tipo: 101
     posX: 935
     posY: 500
+    angulo: 0
   - tipo: 101
     posX: 85
     posY: 415
+    angulo: 0
   - tipo: 101
     posX: 170
     posY: 415
+    angulo: 0
   - tipo: 101
     posX: 255
     posY: 415
+    angulo: 0
   - tipo: 101
     posX: 340
     posY: 415
+    angulo: 0
   - tipo: 101
     posX: 425
     posY: 415
+    angulo: 0
   - tipo: 101
     posX: 510
     posY: 415
+    angulo: 0
   - tipo: 101
     posX: 595
     posY: 415
+    angulo: 0
   - tipo: 101
     posX: 680
     posY: 415
+    angulo: 0
   - tipo: 101
     posX: 765
     posY: 415
+    angulo: 0
   - tipo: 101
     posX: 850
     posY: 415
+    angulo: 0
   - tipo: 101
     posX: 935
     posY: 415
+    angulo: 0
 
   - tipo: 105
     posX: 595
     posY: 400
+    angulo: 0
   - tipo: 107
     posX: 85
     posY: 330
+    angulo: 0
   - tipo: 108
     posX: 85
     posY: 245
+    angulo: 0
   - tipo: 110
     posX: 935
     posY: 330
+    angulo: 90
   - tipo: 112
     posX: 170
     posY: 350
+    angulo: 0
 
   - tipo: 111
     posX: 500
     posY: 300
+    angulo: 0
  
 ...

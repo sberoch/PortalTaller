@@ -17,4 +17,4 @@ bool Cola<T>::get(T& elem) {
 	}
 }
 
-template class Cola<Evento>;
+template class Cola<Evento*>;

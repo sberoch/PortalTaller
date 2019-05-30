@@ -5,9 +5,9 @@
 
 class VistaBloqueMetalDiagonal : public VistaObjeto {
 private:
-	double rotacion;
+	int angulo;
 public:
-	VistaBloqueMetalDiagonal(SdlTexture& tex);
+	VistaBloqueMetalDiagonal(SdlTexture& tex, int angulo);
 	virtual void dibujarEn(int x, int y);
 };
 

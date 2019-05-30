@@ -2,17 +2,15 @@
 #define EVENTO 
 
 #include "Socket.h"
+#include "../Cliente/Escena.h"
 
 class Evento {
-private:
+public:
 	int x,y;
 	int tipoEvento;
 	int idItem;
-public:
 	Evento() = default;
-	Evento(int x, int y, int tipoEvento, int idItem);
-	void enviarMediante(Socket& socket);
-	void recibirMediante(Socket& socket);
+	virtual void actualizarEscena(Escena& escena) = 0;
 };
 
 #endif

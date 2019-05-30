@@ -8,7 +8,7 @@
 #include "yaml-cpp/yaml.h"
 #include "../Common/Constantes.h"
 
-Escena::Escena(int width, int heigth, ColaBloqueante<Evento>& colaEnviar, Cola<Evento>& colaRecibir) : 
+Escena::Escena(int width, int heigth, ColaBloqueante<Evento*>& colaEnviar, Cola<Evento*>& colaRecibir) : 
 	window(width, heigth),
 	creadorTexturas(window),
 	colaEnviar(colaEnviar),
@@ -29,10 +29,12 @@ bool Escena::termino() {
 }
 
 void Escena::recibirCambios() {
-	Evento evento;
+	Evento* evento;
 	if (colaRecibir.get(evento)) {
-		//Actualizar con evento
+		evento->actualizarEscena(*this);
+		delete evento;
 	}
+	
 }
 
 void Escena::actualizar() {
@@ -49,17 +51,14 @@ void Escena::manejarEventos() {
 	while (SDL_PollEvent(&event)) {
 		if (event.type == SDL_QUIT) {
 			terminado = true;
-			Evento evento(0, 0, EVENTO_SALIR, 0);
-			colaEnviar.put(evento);
 
 		} else if (event.type == SDL_MOUSEBUTTONDOWN) {
 			int x, y;
 			SDL_GetMouseState(&x, &y);
 			if (ctrl) std::cout << "Evento: pin tool \n";
 			else if (event.button.button == SDL_BUTTON_LEFT) {
-				std::cout << "Evento: disparando portal azul \n";
-				Evento evento(x, y, EVENTO_CREAR_PORTAL_AZUL, 0);
-				colaEnviar.put(evento);
+				Evento* evento = new EventoPortalAzul(x, y);
+				colaRecibir.put(evento); //test, meterlo en la cola enviar
 				audio.reproducirEfecto(EFECTO_DISPARO);
 			}
 			else if (event.button.button == SDL_BUTTON_RIGHT) std::cout << "Evento: disparando portal naranja \n";
@@ -103,6 +102,12 @@ void Escena::manejarEventos() {
 	}
 }
 
+void Escena::actualizarCon(EventoPortalAzul& evento) {
+	VistaObjeto* vo = creadorTexturas.crear(ID_PORTAL_AZUL, 
+				evento.x - deltaCamaraX, evento.y - deltaCamaraY, 90);
+	objetosDelJuego.push_back(vo);
+}
+
 Escena::~Escena() {
 	for (auto it : objetosDelJuego) {
 		delete it;
@@ -113,15 +118,16 @@ Escena::~Escena() {
 void Escena::crearTerreno() {
 	//TODO: cargar elementos con estados en lista diferente
 	//TODO: cargar elementos moviles en lista diferente
-	int id, x, y;
+	int id, x, y, angulo;
 	YAML::Node escenaYaml = YAML::LoadFile("escenario.yaml");
 	YAML::Node objetos = escenaYaml["objetos"];
 
 	for (size_t i = 0; i < objetos.size(); ++i) {
 		id = objetos[i]["tipo"].as<int>();
-		x =  objetos[i]["posX"].as<int>();
-		y =  objetos[i]["posY"].as<int>();
-		VistaObjeto* vo = creadorTexturas.crear(id, x, y);
+		x = objetos[i]["posX"].as<int>();
+		y = objetos[i]["posY"].as<int>();
+		angulo = objetos[i]["angulo"].as<int>();
+		VistaObjeto* vo = creadorTexturas.crear(id, x, y, angulo);
 		objetosDelJuego.push_back(vo);
 	} 
 	/*int x,y, x2,y2;

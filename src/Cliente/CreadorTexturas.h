@@ -19,7 +19,7 @@ private:
 
 public:
 	CreadorTexturas(const SdlWindow& window);
-	VistaObjeto* crear(int tipo, int x, int y);
+	VistaObjeto* crear(int tipo, int x, int y, int angulo);
 	~CreadorTexturas();
 	
 };

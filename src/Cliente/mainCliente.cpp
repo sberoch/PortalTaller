@@ -9,8 +9,8 @@
 
 int main(int argc, char** argv) {
 
-	ColaBloqueante<Evento> colaEnviar;
-	Cola<Evento> colaRecibir;
+	ColaBloqueante<Evento*> colaEnviar;
+	Cola<Evento*> colaRecibir;
 
 	Escena escena(1000, 800, colaEnviar, colaRecibir);
 

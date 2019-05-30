@@ -7,11 +7,11 @@
 
 class EnviadorEventos : public Thread {
 private:
-	ColaBloqueante<Evento>& cola;
+	ColaBloqueante<Evento*>& cola;
 	//Socket socket
 	bool termino;
 public:
-	EnviadorEventos(ColaBloqueante<Evento>& cola);
+	EnviadorEventos(ColaBloqueante<Evento*>& cola);
 	virtual void ejecutar();
 	void detener();
 	~EnviadorEventos();	
