@@ -7,6 +7,7 @@
 
 class VistaObjeto {
 protected:
+	int id;
 	SdlTexture textura;
 	std::vector<Area> clips;
 	int xInicial, yInicial;
@@ -15,7 +16,11 @@ protected:
 	int tamanioVertical;
 public:
 	virtual void dibujarEn(int x, int y) = 0;
+	virtual void asignarEstado(int estado);
+	virtual void mover(int x, int y);
 	void setPosInicial(int x, int y);
+	void setId(int id);
+	int getId();
 };
 
 #endif

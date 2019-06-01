@@ -12,8 +12,8 @@ private:
 public:
 	VistaPersonaje(SdlTexture& tex);
 	void dibujarEn(int x, int y);
-	void mover(int x, int y);
-	void asignarEstado(int estado);
+	virtual void mover(int x, int y) override;
+	virtual void asignarEstado(int estado) override;
 	void flipDerecha();
 	void flipIzquierda();
 };

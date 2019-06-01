@@ -41,8 +41,8 @@ void Escena::actualizar() {
 	window.fill();
 	std::this_thread::sleep_for(std::chrono::milliseconds(20));
 	//Dibujar objetos moviles
-	for (int i = 0; i < objetosDelJuego.size(); ++i) {
-		objetosDelJuego[i]->dibujarEn(deltaCamaraX, deltaCamaraY);
+	for (int i = 1; i <= objetosDelJuego.size(); ++i) {
+		objetosDelJuego.at(i)->dibujarEn(deltaCamaraX, deltaCamaraY);
 	}
 	window.render();
 }
@@ -55,33 +55,47 @@ void Escena::manejarEventos() {
 		} else if (event.type == SDL_MOUSEBUTTONDOWN) {
 			int x, y;
 			SDL_GetMouseState(&x, &y);
-			if (ctrl) std::cout << "Evento: pin tool \n";
+			if (ctrl) {
+				Evento* evento = new EventoPinTool(x, y);
+				colaRecibir.put(evento);
+			}
 			else if (event.button.button == SDL_BUTTON_LEFT) {
-				Evento* evento = new EventoPortalAzul(x, y);
+				Evento* evento = new EventoPortalAzul(x, y, 0);
 				colaRecibir.put(evento); //test, meterlo en la cola enviar
 				audio.reproducirEfecto(EFECTO_DISPARO);
 			}
-			else if (event.button.button == SDL_BUTTON_RIGHT) std::cout << "Evento: disparando portal naranja \n";
+			else if (event.button.button == SDL_BUTTON_RIGHT) {
+				Evento* evento = new EventoPortalNaranja(x, y, 90);
+				colaRecibir.put(evento); //test, meterlo en la cola enviar
+				audio.reproducirEfecto(EFECTO_DISPARO);
+			}
 
 		} else if (event.type == SDL_KEYDOWN) {
 			SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
 			switch (keyEvent.keysym.sym) {
-				case SDLK_a:
-					std::cout << "Evento: moviendo izquierda\n";
-					deltaCamaraX += 5;
+				case SDLK_a: {
+					Evento* evento = new EventoCorrer(-15, 0); //Server asigna velocidad, no hacerlo desde aca
+					colaRecibir.put(evento);
+					deltaCamaraX += 15;
 					break;
-				case SDLK_d:
-					std::cout << "Evento: moviendo derecha\n";
-					deltaCamaraX -= 5;
+				}
+				case SDLK_d: {
+					Evento* evento = new EventoCorrer(15, 0);
+					colaRecibir.put(evento);
+					deltaCamaraX -= 15;
 					break;
-				case SDLK_w:
+				}
+				case SDLK_w: {
+					Evento* evento = new EventoArriba();
+					colaRecibir.put(evento);
 					audio.reproducirEfecto(EFECTO_SALTO);
-					std::cout << "Evento: salto \n";
-					deltaCamaraY += 5;
 					break;
-				case SDLK_q:
-					std::cout << "Evento: reset portales \n";
-					 break;
+				}
+				case SDLK_q: {
+					Evento* evento = new EventoResetPortales();
+					colaRecibir.put(evento);
+					break;
+				}
 				case SDLK_F11:
 					if (fullscreen) {
 						window.setFullscreen(false);
@@ -96,28 +110,66 @@ void Escena::manejarEventos() {
 
 		} else if (event.type == SDL_KEYUP) {
 			SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
-			if (keyEvent.keysym.sym == SDLK_LCTRL) ctrl = false; 
-			else std::cout << "Evento: dejar de moverse  \n";
+			if (keyEvent.keysym.sym == SDLK_LCTRL) {
+				ctrl = false; 
+			} else {
+				Evento* evento = new EventoDejarDeMoverse();
+				colaRecibir.put(evento);
+			}
 		}
 	}
 }
 
 void Escena::actualizarCon(EventoPortalAzul& evento) {
 	VistaObjeto* vo = creadorTexturas.crear(ID_PORTAL_AZUL, 
-				evento.x - deltaCamaraX, evento.y - deltaCamaraY, 90);
-	objetosDelJuego.push_back(vo);
+				evento.x - deltaCamaraX, evento.y - deltaCamaraY, evento.angulo);
+	objetosDelJuego.insert(std::make_pair(vo->getId(), vo));
+}
+
+void Escena::actualizarCon(EventoPortalNaranja& evento) {
+	VistaObjeto* vo = creadorTexturas.crear(ID_PORTAL_NARANJA, 
+				evento.x - deltaCamaraX, evento.y - deltaCamaraY, evento.angulo);
+	objetosDelJuego.insert(std::make_pair(vo->getId(), vo));
+}
+
+void Escena::actualizarCon(EventoResetPortales& evento) {
+	//IDs hardcodeado
+	//Supone que siempre estan los dos portales
+	objetosDelJuego.erase(29);
+	objetosDelJuego.erase(30);
+}
+
+void Escena::actualizarCon(EventoDejarDeMoverse& evento) {
+	objetosDelJuego.at(28)->asignarEstado(ESTADO_IDLE);
+}
+
+void Escena::actualizarCon(EventoCorrer& evento) {
+	VistaObjeto* vo = objetosDelJuego.at(28);
+	vo->asignarEstado(ESTADO_CORRIENDO);
+	vo->mover(evento.x, evento.y);
+	//flip
+}
+
+void Escena::actualizarCon(EventoArriba& evento) {
+	VistaObjeto* vo = objetosDelJuego.at(28);
+	vo->asignarEstado(ESTADO_SALTANDO);
+	vo->mover(0, -10);
+	deltaCamaraY += 10;
+}
+
+void Escena::actualizarCon(EventoPinTool& evento) {
+	VistaObjeto* vo = creadorTexturas.crear(ID_PIN_TOOL, 
+				evento.x - deltaCamaraX, evento.y - deltaCamaraY, 0);
+	objetosDelJuego.insert(std::make_pair(vo->getId(), vo));
 }
 
 Escena::~Escena() {
 	for (auto it : objetosDelJuego) {
-		delete it;
+		delete it.second;
 	}
-	objetosDelJuego.clear();
 }
 
 void Escena::crearTerreno() {
-	//TODO: cargar elementos con estados en lista diferente
-	//TODO: cargar elementos moviles en lista diferente
 	int id, x, y, angulo;
 	YAML::Node escenaYaml = YAML::LoadFile("escenario.yaml");
 	YAML::Node objetos = escenaYaml["objetos"];
@@ -128,49 +180,6 @@ void Escena::crearTerreno() {
 		y = objetos[i]["posY"].as<int>();
 		angulo = objetos[i]["angulo"].as<int>();
 		VistaObjeto* vo = creadorTexturas.crear(id, x, y, angulo);
-		objetosDelJuego.push_back(vo);
-	} 
-	/*int x,y, x2,y2;
-	for (int i = 0; i < 27; i++) {
-        x2 = -400 + i*100;
-        for (int j = 0; j < 7; j++) {
-            y2 = -10 + j*100;
-            VistaObjeto* vo = creadorTexturas.crear(ID_BLOQUE_PIEDRA, x2, y2);
-            objetosDelJuego.push_back(vo);
-        }           
-    }
-	for (int i = 0; i < 27; i++) {
-        x = -400 + i*85;
-        for (int j = 0; j < 5; j++) {
-            y = 500 + j*85;
-            VistaObjeto* vo = creadorTexturas.crear(ID_BLOQUE_METAL, x, y);
-            objetosDelJuego.push_back(vo);
-        }           
-    }
-    VistaObjeto* vo = creadorTexturas.crear(ID_ACIDO, 620, 487); 
-    objetosDelJuego.push_back(vo);
-	vo = creadorTexturas.crear(ID_RECEPTOR, 195, 160); 
-    objetosDelJuego.push_back(vo);
-    vo = creadorTexturas.crear(ID_EMISOR, 195, 245); 
-    objetosDelJuego.push_back(vo);
-    vo = creadorTexturas.crear(ID_BOTON, 960, 475); 
-    objetosDelJuego.push_back(vo);
-    vo = creadorTexturas.crear(ID_PUERTA, 1130, 330); 
-    objetosDelJuego.push_back(vo);
-    vo = creadorTexturas.crear(ID_PIEDRA_MOVIL, 1300, 425);
-    objetosDelJuego.push_back(vo);
-    vo = creadorTexturas.crear(ID_BARRERA_ENERGIA, 1470, 450); 
-    objetosDelJuego.push_back(vo);
-    vo = creadorTexturas.crear(ID_BOLA_ENERGIA, 195, 160); 
-    objetosDelJuego.push_back(vo);
-    vo = creadorTexturas.crear(ID_TORTA, 1725, 435); 
-    objetosDelJuego.push_back(vo);
-    vo = creadorTexturas.crear(ID_BLOQUE_DIAGONAL_METAL, 450, 330); 
-    objetosDelJuego.push_back(vo);
-    vo = creadorTexturas.crear(ID_PORTAL_AZUL, 450, 415); 
-    objetosDelJuego.push_back(vo);
-    vo = creadorTexturas.crear(ID_PORTAL_NARANJA, 450, 330); 
-    objetosDelJuego.push_back(vo);
-    vo = creadorTexturas.crear(ID_PERSONAJE, 620, 395); 
-    objetosDelJuego.push_back(vo);*/
+		objetosDelJuego.insert(std::make_pair(vo->getId(), vo));
+	}
 }

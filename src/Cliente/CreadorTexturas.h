@@ -7,6 +7,7 @@
 
 class CreadorTexturas {
 private:
+	int contadorID;
 	SdlTexture bloqueTex;
 	SdlTexture emisRecpTex;
 	SdlTexture personajeTex;

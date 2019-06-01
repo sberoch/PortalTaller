@@ -8,10 +8,17 @@
 #include "../Common/Cola.h"
 #include "../Common/cola_bloqueante.h"
 #include "../Common/Evento.h"
-#include "../Common/EventoPortalAzul.h"
 #include "Audio.h"
 
+//FD
 class Evento;
+class EventoPortalAzul;
+class EventoPortalNaranja;
+class EventoResetPortales;
+class EventoDejarDeMoverse;
+class EventoCorrer;
+class EventoPinTool;
+class EventoArriba;
 
 class Escena {
 private:
@@ -20,8 +27,7 @@ private:
 	bool fullscreen;
 
 	CreadorTexturas creadorTexturas;
-	std::vector<VistaObjeto*> objetosDelJuego;
-	//Lista/Mapa de objetos moviles, identificados por id
+	std::map<int, VistaObjeto*> objetosDelJuego;
 
 	ColaBloqueante<Evento*>& colaEnviar;
 	Cola<Evento*>& colaRecibir;  
@@ -40,6 +46,12 @@ public:
 	void manejarEventos();
 
 	void actualizarCon(EventoPortalAzul& evento);
+	void actualizarCon(EventoPortalNaranja& evento);
+	void actualizarCon(EventoResetPortales& evento);
+	void actualizarCon(EventoDejarDeMoverse& evento);
+	void actualizarCon(EventoCorrer& evento);
+	void actualizarCon(EventoPinTool& evento);
+	void actualizarCon(EventoArriba& evento);
 	~Escena();
 
 private:

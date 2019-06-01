@@ -30,6 +30,7 @@ CreadorTexturas::CreadorTexturas(const SdlWindow& window) :
 	pinToolTex("pin.png", window), 
 	tortaTex("cake.png", window),
 	portalesTex("portales.png", window) {
+		contadorID = 0;
 }
 
 VistaObjeto* CreadorTexturas::crear(int tipo, int x, int y, int angulo) {
@@ -53,7 +54,9 @@ VistaObjeto* CreadorTexturas::crear(int tipo, int x, int y, int angulo) {
 		case ID_PORTAL_NARANJA: vo = new VistaPortalNaranja(portalesTex, angulo); break;
 		default: std::cout << "Error obteniendo vista del objeto: " << tipo << std::endl; break;
 	}
+	++contadorID;
 	vo->setPosInicial(x, y);
+	vo->setId(contadorID);
 	return vo;
 }
 

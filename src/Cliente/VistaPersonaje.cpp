@@ -8,9 +8,8 @@ VistaPersonaje::VistaPersonaje(SdlTexture& tex) {
 	posX = 0;
 	posY = 0;
 	tamanioVertical = 105;
-	estado = 4;
+	estado = 0;
 	flip = SDL_FLIP_NONE;
-	clips.push_back(Area(0,0,0,0)); //????????
 }
 
 void VistaPersonaje::dibujarEn(int x, int y) {
