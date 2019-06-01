@@ -9,8 +9,10 @@ class Evento {
 public:
 	int x,y;
 	int angulo;
+	int flip;
 	int tipoEvento;
-	int idItem;
+	int estado;
+	int idLanzador;
 	virtual void actualizarEscena(Escena& escena) = 0;
 };
 
@@ -56,4 +58,15 @@ public:
 	virtual void actualizarEscena(Escena& escena);
 };
 
+class EventoFlipPersonaje : public Evento {
+public:
+	EventoFlipPersonaje(int flip);
+	virtual void actualizarEscena(Escena& escena);
+};
+
+class EventoCambioEstado : public Evento {
+public:
+	EventoCambioEstado(int estado);
+	virtual void actualizarEscena(Escena& escena);
+};
 #endif

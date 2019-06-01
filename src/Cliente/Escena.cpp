@@ -8,6 +8,8 @@
 #include "yaml-cpp/yaml.h"
 #include "../Common/Constantes.h"
 
+#define MI_CHELL_HARDCODEADO 28
+
 Escena::Escena(int width, int heigth, ColaBloqueante<Evento*>& colaEnviar, Cola<Evento*>& colaRecibir) : 
 	window(width, heigth),
 	creadorTexturas(window),
@@ -40,7 +42,6 @@ void Escena::recibirCambios() {
 void Escena::actualizar() {
 	window.fill();
 	std::this_thread::sleep_for(std::chrono::milliseconds(20));
-	//Dibujar objetos moviles
 	for (int i = 1; i <= objetosDelJuego.size(); ++i) {
 		objetosDelJuego.at(i)->dibujarEn(deltaCamaraX, deltaCamaraY);
 	}
@@ -96,6 +97,26 @@ void Escena::manejarEventos() {
 					colaRecibir.put(evento);
 					break;
 				}
+				case SDLK_r: {
+					Evento* evento = new EventoFlipPersonaje(DERECHA);
+					colaRecibir.put(evento);
+					break;
+				}
+				case SDLK_e: {
+					Evento* evento = new EventoFlipPersonaje(IZQUIERDA);
+					colaRecibir.put(evento);
+					break;
+				}
+				case SDLK_f: {
+					Evento* evento = new EventoCambioEstado(PRESIONADO);
+					colaRecibir.put(evento);
+					break;
+				}
+				case SDLK_g: {
+					Evento* evento = new EventoCambioEstado(NO_PRESIONADO);
+					colaRecibir.put(evento);
+					break;
+				}
 				case SDLK_F11:
 					if (fullscreen) {
 						window.setFullscreen(false);
@@ -135,8 +156,8 @@ void Escena::actualizarCon(EventoPortalNaranja& evento) {
 void Escena::actualizarCon(EventoResetPortales& evento) {
 	//IDs hardcodeado
 	//Supone que siempre estan los dos portales
-	objetosDelJuego.erase(29);
 	objetosDelJuego.erase(30);
+	objetosDelJuego.erase(31);
 }
 
 void Escena::actualizarCon(EventoDejarDeMoverse& evento) {
@@ -161,6 +182,14 @@ void Escena::actualizarCon(EventoPinTool& evento) {
 	VistaObjeto* vo = creadorTexturas.crear(ID_PIN_TOOL, 
 				evento.x - deltaCamaraX, evento.y - deltaCamaraY, 0);
 	objetosDelJuego.insert(std::make_pair(vo->getId(), vo));
+}
+
+void Escena::actualizarCon(EventoFlipPersonaje& evento) {
+	objetosDelJuego.at(28)->flip(evento.flip);
+}
+
+void Escena::actualizarCon(EventoCambioEstado& evento) {
+	objetosDelJuego.at(29)->asignarEstado(evento.estado);
 }
 
 Escena::~Escena() {

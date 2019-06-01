@@ -114,5 +114,9 @@ objetos:
     posX: 500
     posY: 300
     angulo: 0
+  - tipo: 106
+    posX: 500
+    posY: 380
+    angulo: 0 
  
 ...

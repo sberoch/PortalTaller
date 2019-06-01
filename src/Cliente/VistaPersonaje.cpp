@@ -9,14 +9,14 @@ VistaPersonaje::VistaPersonaje(SdlTexture& tex) {
 	posY = 0;
 	tamanioVertical = 105;
 	estado = 0;
-	flip = SDL_FLIP_NONE;
+	rendererFlip = SDL_FLIP_NONE;
 }
 
 void VistaPersonaje::dibujarEn(int x, int y) {
 	Area srcArea = animaciones.obtenerConEstado(estado, floor(frame/4));
 	tamanioHorizontal = int(srcArea.getWidth()/2);
 	Area destArea(xInicial + posX + x, yInicial + posY + y, tamanioHorizontal, tamanioVertical);
-	textura.render(srcArea, destArea, 0.0, flip);
+	textura.render(srcArea, destArea, 0.0, rendererFlip);
 
 	++frame;
 	if ((frame/4) >= animaciones.size()) { 
@@ -36,10 +36,7 @@ void VistaPersonaje::asignarEstado(int estado) {
 	this->estado = estado;
 }
 
-void VistaPersonaje::flipDerecha() {
-	flip = SDL_FLIP_NONE; 	
-}
-
-void VistaPersonaje::flipIzquierda() {
-	flip = SDL_FLIP_HORIZONTAL;
+void VistaPersonaje::flip(int flip) {
+	if (flip == DERECHA) rendererFlip = SDL_FLIP_NONE;
+	else if (flip == IZQUIERDA) rendererFlip = SDL_FLIP_HORIZONTAL;
 }

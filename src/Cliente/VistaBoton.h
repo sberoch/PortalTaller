@@ -4,8 +4,11 @@
 #include "VistaObjeto.h"
 
 class VistaBoton : public VistaObjeto {
+private:
+	int estado;
 public:
 	VistaBoton(SdlTexture& tex);
+	virtual void asignarEstado(int estado) override;
 	virtual void dibujarEn(int x, int y);
 };
 

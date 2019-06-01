@@ -19,6 +19,8 @@ class EventoDejarDeMoverse;
 class EventoCorrer;
 class EventoPinTool;
 class EventoArriba;
+class EventoFlipPersonaje;
+class EventoCambioEstado;
 
 class Escena {
 private:
@@ -52,6 +54,8 @@ public:
 	void actualizarCon(EventoCorrer& evento);
 	void actualizarCon(EventoPinTool& evento);
 	void actualizarCon(EventoArriba& evento);
+	void actualizarCon(EventoFlipPersonaje& evento);
+	void actualizarCon(EventoCambioEstado& evento);
 	~Escena();
 
 private:

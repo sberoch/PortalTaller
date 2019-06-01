@@ -1,9 +1,11 @@
 #include "VistaBoton.h"
+#include "../Common/Constantes.h"
 
 #define CANT_CLIPS 2
 
 VistaBoton::VistaBoton(SdlTexture& tex) {
 	this->textura = tex;
+	this->estado = 0;
 	for (int i = 0; i < CANT_CLIPS; ++i) {
 		Area area(1, 116 + i*76, 175, 55);
 		clips.push_back(area);
@@ -14,11 +16,12 @@ VistaBoton::VistaBoton(SdlTexture& tex) {
 }
 
 void VistaBoton::dibujarEn(int x, int y) {
-	Area srcArea = clips.at(floor(frame/32));
+	Area srcArea = clips.at(estado);
 	Area destArea(xInicial + x, yInicial + y, tamanioHorizontal, tamanioVertical);
 	textura.render(srcArea, destArea);
-	++frame;
-	if (frame/32 >= CANT_CLIPS) {
-		frame = 0;
-	}
+}
+
+void VistaBoton::asignarEstado(int estado) {
+	if (estado == PRESIONADO) this->estado = 1;
+	else if (estado == NO_PRESIONADO) this->estado = 0;
 }
