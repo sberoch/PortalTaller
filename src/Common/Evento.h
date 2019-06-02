@@ -2,48 +2,47 @@
 #define EVENTO 
 
 #include "../Cliente/Escena.h"
+#include <map>
 
 class Escena;
 
 class Evento {
 public:
-	int x,y;
-	int angulo;
-	int flip;
-	int tipoEvento;
-	int estado;
-	int idLanzador;
+	std::map<std::string, int> atributos;
 	virtual void actualizarEscena(Escena& escena) = 0;
 };
 
 class EventoPortalAzul : public Evento {
 public:
-	EventoPortalAzul(int x, int y, int angulo);
+	EventoPortalAzul(int x, int y);
 	virtual void actualizarEscena(Escena& escena);
 };
 
 class EventoPortalNaranja : public Evento {
 public:
-	EventoPortalNaranja(int x, int y, int angulo);
+	EventoPortalNaranja(int x, int y);
 	virtual void actualizarEscena(Escena& escena);
 };
 
 class EventoResetPortales : public Evento {
 public:
 	EventoResetPortales() = default;
-	virtual void actualizarEscena(Escena& escena);	
 };
 
 class EventoDejarDeMoverse : public Evento {
 public:
 	EventoDejarDeMoverse() = default;
-	virtual void actualizarEscena(Escena& escena);	
+};
+
+class EventoMover : public Evento {
+public:
+	EventoMover(int idLanzador);
+	virtual void actualizarEscena(Escena& escena);
 };
 
 class EventoCorrer : public Evento {
 public:
 	EventoCorrer(int x, int y);
-	virtual void actualizarEscena(Escena& escena);
 };
 
 class EventoPinTool : public Evento {
@@ -52,21 +51,32 @@ public:
 	virtual void actualizarEscena(Escena& escena);
 };
 
-class EventoArriba : public Evento {
+class EventoSalto : public Evento {
 public:
-	EventoArriba() = default;
-	virtual void actualizarEscena(Escena& escena);
+	EventoSalto() = default;
 };
 
-class EventoFlipPersonaje : public Evento {
+class EventoFlip : public Evento {
 public:
-	EventoFlipPersonaje(int flip);
+	EventoFlip(int flip, int idLanzador);
 	virtual void actualizarEscena(Escena& escena);
 };
 
 class EventoCambioEstado : public Evento {
 public:
-	EventoCambioEstado(int estado);
+	EventoCambioEstado(int estado, int idLanzador);
 	virtual void actualizarEscena(Escena& escena);
+};
+
+class EventoEliminarItem : public Evento {
+public:
+	EventoEliminarItem(int idItem);
+	virtual void actualizarEscena(Escena& escena);	
+};
+
+class EventoRotacion : public Evento {
+public:
+	EventoRotacion(int angulo, int idItem);
+	virtual void actualizarEscena(Escena& escena);	
 };
 #endif

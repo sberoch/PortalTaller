@@ -109,14 +109,16 @@ objetos:
     posX: 170
     posY: 350
     angulo: 0
-
   - tipo: 111
     posX: 500
     posY: 300
     angulo: 0
-  - tipo: 106
+  - tipo: 109
     posX: 500
-    posY: 380
+    posY: 200
     angulo: 0 
- 
+  - tipo: 113
+    posX: 700
+    posY: 100
+    angulo: 0
 ...

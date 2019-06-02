@@ -18,6 +18,7 @@ public:
 	virtual void dibujarEn(int x, int y) = 0;
 	virtual void asignarEstado(int estado);
 	virtual void mover(int x, int y);
+	virtual void asignarRotacion(int angulo);
 	virtual void flip(int flip);
 	void setPosInicial(int x, int y);
 	void setId(int id);

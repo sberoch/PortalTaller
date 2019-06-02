@@ -14,13 +14,12 @@
 class Evento;
 class EventoPortalAzul;
 class EventoPortalNaranja;
-class EventoResetPortales;
-class EventoDejarDeMoverse;
-class EventoCorrer;
+class EventoMover;
 class EventoPinTool;
-class EventoArriba;
-class EventoFlipPersonaje;
+class EventoFlip;
 class EventoCambioEstado;
+class EventoEliminarItem;
+class EventoRotacion;
 
 class Escena {
 private:
@@ -38,6 +37,9 @@ private:
 	bool terminado;
 	bool ctrl;
 	int deltaCamaraX, deltaCamaraY;
+
+	//Mock, lo provee el server
+	int idPortalAzul, idPortalNaranja;
 public:
 	Escena(int width, int heigth, 
 		ColaBloqueante<Evento*>& colaEnviar, 
@@ -49,13 +51,12 @@ public:
 
 	void actualizarCon(EventoPortalAzul& evento);
 	void actualizarCon(EventoPortalNaranja& evento);
-	void actualizarCon(EventoResetPortales& evento);
-	void actualizarCon(EventoDejarDeMoverse& evento);
-	void actualizarCon(EventoCorrer& evento);
+	void actualizarCon(EventoMover& evento);
 	void actualizarCon(EventoPinTool& evento);
-	void actualizarCon(EventoArriba& evento);
-	void actualizarCon(EventoFlipPersonaje& evento);
+	void actualizarCon(EventoFlip& evento);
 	void actualizarCon(EventoCambioEstado& evento);
+	void actualizarCon(EventoEliminarItem& evento);
+	void actualizarCon(EventoRotacion& evento);
 	~Escena();
 
 private:

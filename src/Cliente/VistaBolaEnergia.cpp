@@ -30,3 +30,7 @@ void VistaBolaEnergia::mover(int x, int y) {
 	posX += x;
 	posY += y;
 }
+
+void VistaBolaEnergia::asignarRotacion(int rotacion) {
+	angulo = rotacion;
+}

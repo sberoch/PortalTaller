@@ -1,37 +1,54 @@
 #include "Evento.h"
 
-EventoPortalAzul::EventoPortalAzul(int x, int y, int angulo) {
-	this->x = x; this->y = y;
-	this->angulo = angulo;
+EventoPortalAzul::EventoPortalAzul(int x, int y) {
+	atributos["x"] = x;
+	atributos["y"] = y;
 }
 
-EventoPortalNaranja::EventoPortalNaranja(int x, int y, int angulo) {
-	this->x = x; this->y = y;
-	this->angulo = angulo;
+EventoPortalNaranja::EventoPortalNaranja(int x, int y) {
+	atributos["x"] = x;
+	atributos["y"] = y;
 }
 
 EventoCorrer::EventoCorrer(int x, int y) {
-	this->x = x; this->y = y;
+	atributos["x"] = x;
+	atributos["y"] = y;
+}
+
+EventoMover::EventoMover(int idLanzador) {
+	atributos["idLanzador"] = idLanzador;
 }
 
 EventoPinTool::EventoPinTool(int x, int y) {
-	this->x = x; this->y = y;
+	atributos["x"] = x;
+	atributos["y"] = y;
 }
 
-EventoFlipPersonaje::EventoFlipPersonaje(int flip) {
-	this->flip = flip;
+EventoFlip::EventoFlip(int flip, int idLanzador) {
+	atributos["flip"] = flip;
+	atributos["idLanzador"] = idLanzador;
 }
 
-EventoCambioEstado::EventoCambioEstado(int estado) {
-	this->estado = estado;
+EventoCambioEstado::EventoCambioEstado(int estado, int idLanzador) {
+	atributos["estado"] = estado;
+	atributos["idLanzador"] = idLanzador;
+}
+
+EventoEliminarItem::EventoEliminarItem(int idItem) {
+	atributos["idItem"] = idItem;
+}
+
+EventoRotacion::EventoRotacion(int angulo, int idItem) {
+	atributos["angulo"] = angulo;
+	atributos["idItem"] = idItem;
+
 }
 
 void EventoPortalAzul::actualizarEscena(Escena& escena) {escena.actualizarCon(*this);}
 void EventoPortalNaranja::actualizarEscena(Escena& escena) {escena.actualizarCon(*this);}
-void EventoResetPortales::actualizarEscena(Escena& escena) {escena.actualizarCon(*this);}
-void EventoDejarDeMoverse::actualizarEscena(Escena& escena) {escena.actualizarCon(*this);}
-void EventoCorrer::actualizarEscena(Escena& escena) {escena.actualizarCon(*this);}
+void EventoMover::actualizarEscena(Escena& escena) {escena.actualizarCon(*this);}
 void EventoPinTool::actualizarEscena(Escena& escena) {escena.actualizarCon(*this);}
-void EventoArriba::actualizarEscena(Escena& escena) {escena.actualizarCon(*this);}
-void EventoFlipPersonaje::actualizarEscena(Escena& escena) {escena.actualizarCon(*this);}
+void EventoFlip::actualizarEscena(Escena& escena) {escena.actualizarCon(*this);}
 void EventoCambioEstado::actualizarEscena(Escena& escena) {escena.actualizarCon(*this);}
+void EventoEliminarItem::actualizarEscena(Escena& escena) {escena.actualizarCon(*this);}
+void EventoRotacion::actualizarEscena(Escena& escena) {escena.actualizarCon(*this);} 

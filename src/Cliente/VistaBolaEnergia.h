@@ -8,6 +8,7 @@ private:
 	int angulo;
 public:
 	VistaBolaEnergia(SdlTexture& tex, int angulo);
+	virtual void asignarRotacion(int rotacion) override;
 	void dibujarEn(int x, int y);
 	void mover(int x, int y);
 	
