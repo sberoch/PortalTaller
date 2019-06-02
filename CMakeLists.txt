@@ -30,6 +30,7 @@ add_library(sdldemo
   src/Cliente/SdlException.cpp
   src/Cliente/SdlWindow.cpp
   src/Cliente/Escena.cpp
+  src/Cliente/InputHandler.cpp
   src/Cliente/CreadorTexturas.cpp
   src/Cliente/EnviadorEventos.cpp
   src/Cliente/RecibidorEventos.cpp

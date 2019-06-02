@@ -51,6 +51,7 @@ void Escena::actualizar() {
 }
 
 void Escena::manejarEventos() {
+	Evento* evento;
 	while (SDL_PollEvent(&event)) {
 		if (event.type == SDL_QUIT) {
 			terminado = true;
@@ -59,27 +60,29 @@ void Escena::manejarEventos() {
 			int x, y;
 			SDL_GetMouseState(&x, &y);
 			if (ctrl) {
-				Evento* evento = new EventoPinTool(x, y);
+				evento = new EventoPinTool(x, y);
 				colaRecibir.put(evento);
 			}
 			else if (event.button.button == SDL_BUTTON_LEFT) {
-				Evento* evento = new EventoPortalAzul(x, y);
+				evento = new EventoCambioEstado(ESTADO_DISPARANDO, 28);
+				colaRecibir.put(evento);
+				evento = new EventoPortalAzul(x, y);
 				colaRecibir.put(evento); //test, meterlo en la cola enviar
-				audio.reproducirEfecto(EFECTO_DISPARO);
 			}
 			else if (event.button.button == SDL_BUTTON_RIGHT) {
-				Evento* evento = new EventoPortalNaranja(x, y);
+				evento = new EventoCambioEstado(ESTADO_DISPARANDO, 28);
+				colaRecibir.put(evento);
+				evento = new EventoPortalNaranja(x, y);
 				colaRecibir.put(evento); //test, meterlo en la cola enviar
-				audio.reproducirEfecto(EFECTO_DISPARO);
 			}
 
 		} else if (event.type == SDL_KEYDOWN) {
 			SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
 			switch (keyEvent.keysym.sym) {
 				case SDLK_a: {
-					//Evento* evento = new EventoCorrer();
+					//evento = new EventoCorrer();
 					//colaRecibir.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
-					Evento* evento = new EventoMover(28);
+					evento = new EventoMover(28);
 					//Mock
 					evento->atributos["x"] = -15;
 					evento->atributos["y"] = 0;
@@ -92,9 +95,9 @@ void Escena::manejarEventos() {
 					break;
 				}
 				case SDLK_d: {
-					//Evento* evento = new EventoCorrer();
+					// evento = new EventoCorrer();
 					//colaRecibir.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
-					Evento* evento = new EventoMover(28);
+					evento = new EventoMover(28);
 					//Mock
 					evento->atributos["x"] = 15;
 					evento->atributos["y"] = 0;
@@ -107,9 +110,9 @@ void Escena::manejarEventos() {
 					break;
 				}
 				case SDLK_w: {
-					//Evento* evento = new EventoSalto();
+					// evento = new EventoSalto();
 					//colaRecibir.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
-					Evento* evento = new EventoMover(28);
+					evento = new EventoMover(28);
 					//Mock
 					evento->atributos["x"] = 0;
 					evento->atributos["y"] = -10;
@@ -121,29 +124,29 @@ void Escena::manejarEventos() {
 					break;
 				}
 				case SDLK_q: {
-					Evento* evento = new EventoEliminarItem(idPortalAzul);
+					evento = new EventoEliminarItem(idPortalAzul);
 					colaRecibir.put(evento);
 					evento = new EventoEliminarItem(idPortalNaranja);
 					colaRecibir.put(evento);
 					break;
 				}
 				case SDLK_f: {
-					Evento* evento = new EventoCambioEstado(ABIERTA, 29);
+					evento = new EventoCambioEstado(ABIERTA, 29);
 					colaRecibir.put(evento);
 					break;
 				}
 				case SDLK_r: {
-					Evento* evento = new EventoRotacion(90, 30);
+					evento = new EventoRotacion(90, 30);
 					colaRecibir.put(evento);
 					break;
 				}
 				case SDLK_g: {
-					Evento* evento = new EventoCambioEstado(CERRADA, 29);
+					evento = new EventoCambioEstado(CERRADA, 29);
 					colaRecibir.put(evento);
 					break;
 				}
 				case SDLK_k: {
-					Evento* evento = new EventoCambioEstado(ESTADO_MUERTO, 28);
+					evento = new EventoCambioEstado(ESTADO_MUERTO, 28);
 					colaRecibir.put(evento);
 					break;
 				}
@@ -164,7 +167,7 @@ void Escena::manejarEventos() {
 			if (keyEvent.keysym.sym == SDLK_LCTRL) {
 				ctrl = false; 
 			} else {
-				Evento* evento = new EventoCambioEstado(ESTADO_IDLE, 28);
+				evento = new EventoCambioEstado(ESTADO_IDLE, 28);
 				colaRecibir.put(evento);
 			}
 		}
@@ -178,6 +181,8 @@ void Escena::actualizarCon(EventoPortalAzul& evento) {
 				evento.atributos["angulo"]);
 	idPortalAzul = vo->getId();
 	objetosDelJuego.insert(std::make_pair(vo->getId(), vo));
+	audio.reproducirEfecto(EFECTO_DISPARO);
+
 }
 
 void Escena::actualizarCon(EventoPortalNaranja& evento) {
@@ -187,6 +192,7 @@ void Escena::actualizarCon(EventoPortalNaranja& evento) {
 				evento.atributos["angulo"]);
 	idPortalNaranja = vo->getId();
 	objetosDelJuego.insert(std::make_pair(vo->getId(), vo));
+	audio.reproducirEfecto(EFECTO_DISPARO);
 }
 
 void Escena::actualizarCon(EventoPinTool& evento) {
