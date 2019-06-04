@@ -51,6 +51,9 @@ void Menu::handleEvents(SDL_Event& e) {
 			iniciarJuego();
 			terminado = true;
 		}
+	} else if (e.type == SDL_KEYDOWN) {
+		SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) e;
+		if (keyEvent.keysym.sym == SDLK_F11) window.setFullscreen(false);
 	}
 }
 
@@ -79,13 +82,13 @@ void Menu::asignarPosicionBotones() {
 	//Poner los botones en posiciones relativas al tamaño total de la pantalla
 	int xJugar = 0.75*(xScreen/2); 
 	int yJugar = 0.6*(yScreen); 
-	int wJugar = 390;
-	int hJugar = 110;
+	int wJugar = 0.5*(xScreen/2);
+	int hJugar = 0.12*(yScreen);
 	botonJugar.set(xJugar, yJugar, wJugar, hJugar);
 
 	int xSalir = 0.79*(xScreen/2);
 	int ySalir = 0.74*(yScreen);
-	int wSalir = 330;
-	int hSalir = 90;
+	int wSalir = 0.2*(xScreen);
+	int hSalir = 0.1*(yScreen);
 	botonSalir.set(xSalir, ySalir, wSalir, hSalir);
 }
