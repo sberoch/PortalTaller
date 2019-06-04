@@ -5,8 +5,8 @@ VistaBloqueMetalDiagonal::VistaBloqueMetalDiagonal(SdlTexture& tex, int angulo) 
 	this->angulo = angulo;
 	Area srcArea(2, 405, 185, 185);
 	clips.push_back(srcArea);
-	tamanioHorizontal = 85;
-	tamanioVertical = 85;
+	tamanioHorizontal = 100;
+	tamanioVertical = 100;
 }
 
 void VistaBloqueMetalDiagonal::dibujarEn(int x, int y) {

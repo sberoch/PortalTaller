@@ -35,8 +35,8 @@ VistaPuerta::VistaPuerta(SdlTexture& tex) {
 	//Cerrada
 	Area areaCerrada(1553, 2437, 192, 384);
 	clips.push_back(areaCerrada);
-	tamanioHorizontal = 85;
-	tamanioVertical = 170;
+	tamanioHorizontal = 100;
+	tamanioVertical = 200;
 
 }
 

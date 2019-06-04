@@ -1,4 +1,5 @@
 #include "Area.h"
+#include <iostream>
 
 Area::Area() {}
 
@@ -25,5 +26,7 @@ int Area::getHeight() const {
 }
 
 bool Area::estaAdentro(int x, int y) {
+	if (this->x > x || x > (this->x + this->width)) return false;
+    if (this->y > y || y > (this->y + this->height)) return false;
 	return true;
 }

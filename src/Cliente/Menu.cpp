@@ -1,5 +1,9 @@
 #include "Menu.h"
-
+#include "Escena.h"
+#include "EnviadorEventos.h"
+#include "RecibidorEventos.h"
+#include "SdlWindow.h"
+#include "../Common/Evento.h"
 #include <thread>
 #include <chrono>
 
@@ -10,17 +14,18 @@ Menu::Menu(int xScreen, int yScreen) :
 	fondo(imagenMenuTex) {
 		window.setFullscreen(true);
 		terminado = false;
+		audio.reproducirMusica();
 	}
 
 void Menu::ejecutar() {
 	while(!terminado) {
+		asignarPosicionBotones();
 		SDL_Event e;
 		while(SDL_PollEvent(&e)) {
 		    handleEvents(e);
 			dibujar();
 		}
 	}
-	//En el handle de la escena va todo lo que ahora esta en main
 }
 
 void Menu::dibujar() {
@@ -38,14 +43,49 @@ void Menu::handleEvents(SDL_Event& e) {
 	} else if (e.type == SDL_MOUSEBUTTONDOWN) {
 		int x, y;
 		SDL_GetMouseState(&x, &y);
+		if (botonSalir.estaAdentro(x, y)) {
+			terminado = true;
+		}
 		if (botonJugar.estaAdentro(x, y)) {
-			//Jugar
-		} else if (botonSalir.estaAdentro(x, y)) {
+			audio.pararMusica();
+			iniciarJuego();
 			terminado = true;
 		}
 	}
 }
 
+void Menu::iniciarJuego() {
+	ColaBloqueante<Evento*> colaEnviar;
+	Cola<Evento*> colaRecibir;
+
+	Escena escena(window, colaEnviar, colaRecibir);
+	//Anda bien, pero no usar hasta no tener los socket, come 100% cpu sino (while true)
+	RecibidorEventos recibidorEventos(colaRecibir); 
+	EnviadorEventos enviadorEventos(colaEnviar);
+	recibidorEventos.iniciar();
+	enviadorEventos.iniciar();
+ 
+	while(!escena.termino()) {
+		escena.recibirCambios();
+		escena.actualizar();
+		escena.manejarEventos();
+	}
+
+	recibidorEventos.detener();
+	enviadorEventos.detener();
+}
+
 void Menu::asignarPosicionBotones() {
 	//Poner los botones en posiciones relativas al tamaño total de la pantalla
+	int xJugar = 0.75*(xScreen/2); 
+	int yJugar = 0.6*(yScreen); 
+	int wJugar = 390;
+	int hJugar = 110;
+	botonJugar.set(xJugar, yJugar, wJugar, hJugar);
+
+	int xSalir = 0.79*(xScreen/2);
+	int ySalir = 0.74*(yScreen);
+	int wSalir = 330;
+	int hSalir = 90;
+	botonSalir.set(xSalir, ySalir, wSalir, hSalir);
 }

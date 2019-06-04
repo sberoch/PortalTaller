@@ -12,8 +12,8 @@ VistaBolaEnergia::VistaBolaEnergia(SdlTexture& tex, int angulo) {
 		Area area(i*115, 1922, 115, 60);
 		clips.push_back(area);
 	}
-	tamanioHorizontal = 85;
-	tamanioVertical = 40;
+	tamanioHorizontal = 100;
+	tamanioVertical = 45;
 }
 
 void VistaBolaEnergia::dibujarEn(int x, int y) {

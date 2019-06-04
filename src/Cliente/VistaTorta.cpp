@@ -4,8 +4,8 @@ VistaTorta::VistaTorta(SdlTexture& tex) {
 	this->textura = tex;
 	Area srcArea(200, 85, 160, 135);
 	clips.push_back(srcArea);
-	tamanioHorizontal = 85;
-	tamanioVertical = 65;
+	tamanioHorizontal = 100;
+	tamanioVertical = 75;
 }
 
 void VistaTorta::dibujarEn(int x, int y) {

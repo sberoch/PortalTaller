@@ -29,6 +29,10 @@ void Audio::reproducirMusica() {
 	}
 }
 
+void Audio::pararMusica() {
+	Mix_FadeOutMusic(1000);
+}
+
 void Audio::reproducirEfecto(int idEfecto) {
 	Mix_Chunk* efecto = efectos.at(idEfecto);
 	Mix_PlayChannel(-1, efecto, 0);

@@ -9,8 +9,8 @@ VistaAcido::VistaAcido(SdlTexture& tex) {
 		Area area(i*301, 1545, 301, 60);
 		clips.push_back(area);
 	}
-	tamanioHorizontal = 85;
-	tamanioVertical = 18;
+	tamanioHorizontal = 100;
+	tamanioVertical = 20;
 }
 
 void VistaAcido::dibujarEn(int x, int y) {

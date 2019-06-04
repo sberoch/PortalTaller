@@ -11,8 +11,8 @@ VistaPiedraMovil::VistaPiedraMovil(SdlTexture& tex) {
 	int nroPiedra = rand() % 8;
 	Area srcArea(1 + nroPiedra*86, 4513, 85, 83);
 	clips.push_back(srcArea);
-	tamanioHorizontal = 85;
-	tamanioVertical = 85;
+	tamanioHorizontal = 100;
+	tamanioVertical = 100;
 }
 
 void VistaPiedraMovil::dibujarEn(int x, int y) {

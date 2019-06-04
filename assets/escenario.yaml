@@ -1,124 +1,118 @@
 ---
 objetos:
   - tipo: 101
-    posX: 85
+    posX: 100
     posY: 500
     angulo: 0
   - tipo: 101
-    posX: 170
+    posX: 200
     posY: 500
     angulo: 0
   - tipo: 101
-    posX: 255
+    posX: 300
     posY: 500
     angulo: 0
   - tipo: 101
-    posX: 340
+    posX: 400
     posY: 500
     angulo: 0
   - tipo: 101
-    posX: 425
+    posX: 500
     posY: 500
     angulo: 0
   - tipo: 101
-    posX: 510
+    posX: 600
     posY: 500
     angulo: 0
   - tipo: 101
-    posX: 595
+    posX: 700
     posY: 500
     angulo: 0
   - tipo: 101
-    posX: 680
+    posX: 800
     posY: 500
     angulo: 0
   - tipo: 101
-    posX: 765
+    posX: 900
     posY: 500
     angulo: 0
   - tipo: 101
-    posX: 850
+    posX: 1000
     posY: 500
     angulo: 0
   - tipo: 101
-    posX: 935
+    posX: 1100
     posY: 500
     angulo: 0
   - tipo: 101
-    posX: 85
-    posY: 415
+    posX: 100
+    posY: 400
     angulo: 0
   - tipo: 101
-    posX: 170
-    posY: 415
+    posX: 200
+    posY: 400
     angulo: 0
   - tipo: 101
-    posX: 255
-    posY: 415
+    posX: 300
+    posY: 400
     angulo: 0
   - tipo: 101
-    posX: 340
-    posY: 415
+    posX: 400
+    posY: 400
     angulo: 0
   - tipo: 101
-    posX: 425
-    posY: 415
+    posX: 500
+    posY: 400
     angulo: 0
   - tipo: 101
-    posX: 510
-    posY: 415
+    posX: 600
+    posY: 400
     angulo: 0
   - tipo: 101
-    posX: 595
-    posY: 415
+    posX: 700
+    posY: 400
     angulo: 0
   - tipo: 101
-    posX: 680
-    posY: 415
+    posX: 800
+    posY: 400
     angulo: 0
   - tipo: 101
-    posX: 765
-    posY: 415
+    posX: 900
+    posY: 400
     angulo: 0
   - tipo: 101
-    posX: 850
-    posY: 415
+    posX: 1000
+    posY: 400
     angulo: 0
   - tipo: 101
-    posX: 935
-    posY: 415
+    posX: 1100
+    posY: 400
     angulo: 0
 
   - tipo: 105
-    posX: 595
+    posX: 600
     posY: 400
     angulo: 0
   - tipo: 107
-    posX: 85
-    posY: 330
+    posX: 100
+    posY: 300
     angulo: 0
   - tipo: 108
-    posX: 85
-    posY: 245
+    posX: 100
+    posY: 200
     angulo: 0
   - tipo: 110
-    posX: 935
-    posY: 330
+    posX: 1100
+    posY: 300
     angulo: 90
   - tipo: 112
-    posX: 170
-    posY: 350
+    posX: 300
+    posY: 300
     angulo: 0
+
   - tipo: 111
     posX: 500
     posY: 300
     angulo: 0
-  - tipo: 109
-    posX: 500
-    posY: 200
-    angulo: 0 
-  - tipo: 113
-    posX: 700
-    posY: 100
-    angulo: 0
+ 
 ...

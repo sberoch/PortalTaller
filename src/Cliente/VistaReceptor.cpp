@@ -5,8 +5,8 @@ VistaReceptor::VistaReceptor(SdlTexture& tex, int angulo) {
 	this->angulo = angulo;
 	Area srcArea(199, 0, 191, 191);
 	clips.push_back(srcArea);
-	tamanioHorizontal = 85;
-	tamanioVertical = 85;
+	tamanioHorizontal = 100;
+	tamanioVertical = 100;
 }
 
 void VistaReceptor::dibujarEn(int x, int y) {

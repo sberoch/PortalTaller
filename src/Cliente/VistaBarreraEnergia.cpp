@@ -5,7 +5,7 @@ VistaBarreraEnergia::VistaBarreraEnergia(SdlTexture& tex, int angulo) {
 	this->angulo = angulo;
 	Area srcArea(1, 1722, 225, 50);
 	clips.push_back(srcArea);
-	tamanioHorizontal = 225;
+	tamanioHorizontal = 100;
 	tamanioVertical = 50;
 }
 

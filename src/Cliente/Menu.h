@@ -4,6 +4,7 @@
 #include "SdlWindow.h"
 #include "SdlTexture.h"
 #include "VistaImagenMenu.h"
+#include "Audio.h"
 
 class Menu {
 private:
@@ -12,6 +13,7 @@ private:
 	SdlWindow window;
 	SdlTexture imagenMenuTex;
 	VistaImagenMenu fondo;
+	Audio audio;
 	bool terminado;
 
 	Area botonJugar;
@@ -23,6 +25,7 @@ private:
 	void dibujar();
 	void handleEvents(SDL_Event& e);
 	void asignarPosicionBotones();
+	void iniciarJuego();
 };
 
 #endif // MENU_H

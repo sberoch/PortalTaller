@@ -17,6 +17,7 @@ public:
 	Audio();
 	~Audio();
 	void reproducirMusica();
+	void pararMusica();
 	void reproducirEfecto(int idEfecto);
 };
 

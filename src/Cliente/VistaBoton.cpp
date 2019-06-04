@@ -10,8 +10,8 @@ VistaBoton::VistaBoton(SdlTexture& tex) {
 		Area area(1, 116 + i*76, 175, 55);
 		clips.push_back(area);
 	}
-	tamanioHorizontal = 80;
-	tamanioVertical = 25;
+	tamanioHorizontal = 100;
+	tamanioVertical = 30;
 
 }
 
