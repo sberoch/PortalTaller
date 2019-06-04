@@ -5,6 +5,7 @@ project(qt-sdl)
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread")
 
 add_library(sdldemo
+  src/Cliente/Menu.cpp
   src/Cliente/Audio.cpp
   src/Cliente/VistaObjeto.cpp
   src/Cliente/VistaObjetoMovil.cpp
@@ -24,6 +25,7 @@ add_library(sdldemo
   src/Cliente/VistaPortalAzul.cpp
   src/Cliente/VistaPortalNaranja.cpp
   src/Cliente/VistaPersonaje.cpp
+  src/Cliente/VistaImagenMenu.cpp
   src/Cliente/AnimacionPersonaje.cpp
   src/Cliente/Area.cpp
   src/Cliente/SdlTexture.cpp
@@ -60,6 +62,7 @@ install(FILES assets/efectos.png DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/pin.png DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/cake.png DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/portales.png DESTINATION ${CMAKE_BINARY_DIR})
+install(FILES assets/menu.png DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/escenario.yaml DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/musica_fondo.mp3 DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/disparo_portal.wav DESTINATION ${CMAKE_BINARY_DIR})

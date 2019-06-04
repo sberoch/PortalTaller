@@ -10,8 +10,8 @@
 
 #define MI_CHELL_HARDCODEADO 28
 
-Escena::Escena(int width, int heigth, ColaBloqueante<Evento*>& colaEnviar, Cola<Evento*>& colaRecibir) : 
-	window(width, heigth),
+Escena::Escena(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, Cola<Evento*>& colaRecibir) : 
+	window(window),
 	creadorTexturas(window),
 	colaEnviar(colaEnviar),
 	colaRecibir(colaRecibir) {
@@ -55,7 +55,6 @@ void Escena::manejarEventos() {
 	while (SDL_PollEvent(&event)) {
 		if (event.type == SDL_QUIT) {
 			terminado = true;
-
 		} else if (event.type == SDL_MOUSEBUTTONDOWN) {
 			int x, y;
 			SDL_GetMouseState(&x, &y);

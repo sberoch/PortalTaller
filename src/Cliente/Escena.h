@@ -41,8 +41,7 @@ private:
 	//Mock, lo provee el server
 	int idPortalAzul, idPortalNaranja;
 public:
-	Escena(int width, int heigth, 
-		ColaBloqueante<Evento*>& colaEnviar, 
+	Escena(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, 
 		Cola<Evento*>& colaRecibir);
 	bool termino();
 	void recibirCambios();

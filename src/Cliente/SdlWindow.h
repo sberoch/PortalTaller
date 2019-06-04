@@ -17,6 +17,7 @@ public:
     void fill(int r, int g, int b, int alpha);
     void render();
     void setFullscreen(bool fullscreen);
+    void getWindowSize(int* x, int* y);
     SDL_Renderer* getRenderer() const;
 private:
     int width;

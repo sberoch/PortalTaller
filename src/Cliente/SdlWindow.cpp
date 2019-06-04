@@ -59,3 +59,7 @@ void SdlWindow::setFullscreen(bool fullscreen) {
     if (fullscreen) SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
     else SDL_SetWindowFullscreen(window, 0);
 }
+
+void SdlWindow::getWindowSize(int* x, int* y) {
+    SDL_GetWindowSize(window, x, y);
+}

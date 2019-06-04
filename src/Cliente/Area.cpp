@@ -23,3 +23,7 @@ int Area::getWidth() const {
 int Area::getHeight() const {
 	return this->height;
 }
+
+bool Area::estaAdentro(int x, int y) {
+	return true;
+}

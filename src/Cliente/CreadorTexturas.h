@@ -17,7 +17,6 @@ private:
 	SdlTexture pinToolTex;
 	SdlTexture tortaTex;
 	SdlTexture portalesTex;
-
 public:
 	CreadorTexturas(const SdlWindow& window);
 	VistaObjeto* crear(int tipo, int x, int y, int angulo);
