@@ -3,7 +3,6 @@
 
 #include <map>
 #include <queue>
-#include <cstdint>
 #include <memory>
 
 #include "Box2D/Box2D.h"
@@ -28,7 +27,7 @@ class Fisicas {
     b2Vec2 gravedad_;
     b2World* mundoBox2D_;
     ContactListener contactListener_;
-    std::map<uint32_t, b2Body*> colisionables_;
+    std::map<int, b2Body*> colisionables_;
     std::queue<std::shared_ptr<Transformacion>> transformaciones_;
 
     public:

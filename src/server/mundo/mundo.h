@@ -2,19 +2,21 @@
 #define __MUNDO_H__
 
 #include <map>
-#include <cstdint>
+#include <queue>
 
 #include "fisicas/fisicas.h"
 
 // Forward declaration
 class Colisionable;
 class Posicion;
+class Evento;
 
 class Mundo {
     private:
     Fisicas fisicas_;
-    std::map<uint32_t, std::shared_ptr<Colisionable>> bloques_;
-    std::map<uint32_t, std::shared_ptr<Colisionable>> entidades_;
+    std::map<int, std::shared_ptr<Colisionable>> bloques_;
+    std::map<int, std::shared_ptr<Colisionable>> entidades_;
+    std::queue<std::shared_ptr<Evento>> eventos_;
 
     public:
     void agregarBloqueMetalCuadrado(Posicion& posicion);
