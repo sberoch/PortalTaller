@@ -60,19 +60,19 @@ void Escena::manejarEventos() {
 			SDL_GetMouseState(&x, &y);
 			if (ctrl) {
 				evento = new EventoPinTool(x, y);
-				colaRecibir.put(evento);
+				colaEnviar.put(evento);
 			}
 			else if (event.button.button == SDL_BUTTON_LEFT) {
 				evento = new EventoCambioEstado(ESTADO_DISPARANDO, 28);
 				colaRecibir.put(evento);
 				evento = new EventoPortalAzul(x, y);
-				colaRecibir.put(evento); //test, meterlo en la cola enviar
+				colaEnviar.put(evento); //test, meterlo en la cola enviar
 			}
 			else if (event.button.button == SDL_BUTTON_RIGHT) {
 				evento = new EventoCambioEstado(ESTADO_DISPARANDO, 28);
 				colaRecibir.put(evento);
 				evento = new EventoPortalNaranja(x, y);
-				colaRecibir.put(evento); //test, meterlo en la cola enviar
+				colaEnviar.put(evento); //test, meterlo en la cola enviar
 			}
 
 		} else if (event.type == SDL_KEYDOWN) {

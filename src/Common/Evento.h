@@ -2,25 +2,31 @@
 #define EVENTO 
 
 #include "../Cliente/Escena.h"
+#include "Socket.h"
 #include <map>
 
 class Escena;
 
 class Evento {
+protected:
+	int tipo;
 public:
 	std::map<std::string, int> atributos;
 	virtual void actualizarEscena(Escena& escena) = 0;
+	virtual void enviarPorSocket(Socket& s);
 };
 
 class EventoPortalAzul : public Evento {
 public:
 	EventoPortalAzul(int x, int y);
+	EventoPortalAzul(Socket& s);
 	virtual void actualizarEscena(Escena& escena);
 };
 
 class EventoPortalNaranja : public Evento {
 public:
 	EventoPortalNaranja(int x, int y);
+	EventoPortalNaranja(Socket& s);
 	virtual void actualizarEscena(Escena& escena);
 };
 
@@ -48,6 +54,7 @@ public:
 class EventoPinTool : public Evento {
 public:
 	EventoPinTool(int x, int y);
+	EventoPinTool(Socket& s);
 	virtual void actualizarEscena(Escena& escena);
 };
 

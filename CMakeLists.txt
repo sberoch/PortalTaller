@@ -40,6 +40,7 @@ add_library(sdldemo
   src/Common/Thread.cpp
   src/Common/Socket.cpp
   src/Common/Evento.cpp
+  src/Common/Serializador.cpp
   src/Common/Cola.cpp
   src/Common/cola_bloqueante.cpp
   src/Common/value_protected.cpp
@@ -50,8 +51,9 @@ message("Agregando '${PROJECT_BINARY_DIR}' como directorio de includes")
 include_directories(${PROJECT_BINARY_DIR})
 
 add_executable (cliente src/Cliente/mainCliente.cpp)
+add_executable (server src/Common/serverMock.cpp)
 target_link_libraries(cliente sdldemo SDL2 SDL2_image SDL2_mixer yaml-cpp)
-
+target_link_libraries(server sdldemo SDL2 SDL2_image SDL2_mixer yaml-cpp)
 
 install(FILES assets/emisor_receptor.png DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/bloque_metal_diag.png DESTINATION ${CMAKE_BINARY_DIR})

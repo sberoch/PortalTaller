@@ -4,17 +4,19 @@
 #include "../Common/Thread.h"
 #include "../Common/Cola.h"
 #include "../Common/Evento.h"
+#include "../Common/Serializador.h"
+#include "../Common/Socket.h"
 
 class RecibidorEventos : public Thread {
 private:
 	bool termino;
-	Cola<Evento*> cola;
-	//Socket socket
+	Cola<Evento*>& cola;
+	Serializador serializador;
+	Socket socket;
 public:
-	RecibidorEventos(Cola<Evento*> cola);
+	RecibidorEventos(Cola<Evento*>& cola);
 	virtual void ejecutar();
 	void detener();
-	~RecibidorEventos();	
 };
 
 #endif

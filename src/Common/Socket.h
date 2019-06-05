@@ -46,8 +46,8 @@ public:
     void shutdown();
 
     //Sobrecarga de operadores para recibir o enviar enteros.
-	void operator<<(uint32_t num);
-	void operator>>(uint32_t& num);
+	void enviarInt(int num);
+    int recibirInt();
 
 	//Destruye el socket
     ~Socket(); 

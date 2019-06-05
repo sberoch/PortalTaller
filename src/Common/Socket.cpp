@@ -13,7 +13,6 @@
 
 #define CUATRO_BYTES 4
 
-
 Socket::Socket() {
 	int familia = AF_INET;      /* IPv4 (or AF_INET6 for IPv6)     */
 	int tipo = SOCK_STREAM;     /* TCP  (or SOCK_DGRAM for UDP)    */
@@ -160,10 +159,12 @@ void Socket::shutdown(){
 	::shutdown(this->fd, SHUT_RDWR);
 }
 
-void Socket::operator<<(uint32_t num) {
+void Socket::enviarInt(int num) {
 	this->enviar((char*) &num, CUATRO_BYTES);
 }
 
-void Socket::operator>>(uint32_t& num) {
+int Socket::recibirInt() {
+	int num;
 	this->recibir((char*) &num, CUATRO_BYTES);
+	return num;
 }
