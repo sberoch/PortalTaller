@@ -12,10 +12,8 @@
 
 //FD
 class Evento;
-class EventoPortalAzul;
-class EventoPortalNaranja;
+class EventoCrearItem;
 class EventoMover;
-class EventoPinTool;
 class EventoFlip;
 class EventoCambioEstado;
 class EventoEliminarItem;
@@ -37,9 +35,7 @@ private:
 	bool terminado;
 	bool ctrl;
 	int deltaCamaraX, deltaCamaraY;
-
-	//Mock, lo provee el server
-	int idPortalAzul, idPortalNaranja;
+	
 public:
 	Escena(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, 
 		Cola<Evento*>& colaRecibir);
@@ -48,10 +44,8 @@ public:
 	void actualizar();
 	void manejarEventos();
 
-	void actualizarCon(EventoPortalAzul& evento);
-	void actualizarCon(EventoPortalNaranja& evento);
+	void actualizarCon(EventoCrearItem& evento);
 	void actualizarCon(EventoMover& evento);
-	void actualizarCon(EventoPinTool& evento);
 	void actualizarCon(EventoFlip& evento);
 	void actualizarCon(EventoCambioEstado& evento);
 	void actualizarCon(EventoEliminarItem& evento);

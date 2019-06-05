@@ -8,8 +8,6 @@
 #include "yaml-cpp/yaml.h"
 #include "../Common/Constantes.h"
 
-#define MI_CHELL_HARDCODEADO 28
-
 Escena::Escena(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, Cola<Evento*>& colaRecibir) : 
 	window(window),
 	creadorTexturas(window),
@@ -22,8 +20,6 @@ Escena::Escena(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, Cola<Even
 	ctrl = false;
 	deltaCamaraX = 0;
 	deltaCamaraY = 0;
-	idPortalAzul = 0;
-	idPortalNaranja = 0;
 	window.fill();
 	crearTerreno();
 }
@@ -59,20 +55,32 @@ void Escena::manejarEventos() {
 			int x, y;
 			SDL_GetMouseState(&x, &y);
 			if (ctrl) {
-				evento = new EventoPinTool(x, y);
+				//evento = new EventoPinTool(x, y);
+				//colaEnviar.put(evento);
+				evento = new EventoCrearItem(ID_PIN_TOOL, x, y, 0);
 				colaEnviar.put(evento);
 			}
 			else if (event.button.button == SDL_BUTTON_LEFT) {
+				std::cout << "(" << x << ", " << y << ")\n";
+				std::cout << "(" << deltaCamaraX << ", " << deltaCamaraY << ")\n";
+				//evento = new EventoPortalAzul(dirX, dirY);
+				//colaEnviar.put(evento);
 				evento = new EventoCambioEstado(ESTADO_DISPARANDO, 28);
-				colaRecibir.put(evento);
-				evento = new EventoPortalAzul(x, y);
-				colaEnviar.put(evento); //test, meterlo en la cola enviar
+				colaEnviar.put(evento);
+				evento = new EventoCrearItem(ID_PORTAL_AZUL, x, y, 45);
+				colaEnviar.put(evento);
+				audio.reproducirEfecto(EFECTO_DISPARO);
 			}
 			else if (event.button.button == SDL_BUTTON_RIGHT) {
+				std::cout << "(" << x << ", " << y << ")\n";
+				std::cout << "(" << deltaCamaraX << ", " << deltaCamaraY << ")\n";
+				//evento = new EventoPortalNaranja(dirX, dirY);
+				//colaEnviar.put(evento);
 				evento = new EventoCambioEstado(ESTADO_DISPARANDO, 28);
-				colaRecibir.put(evento);
-				evento = new EventoPortalNaranja(x, y);
-				colaEnviar.put(evento); //test, meterlo en la cola enviar
+				colaEnviar.put(evento);
+				evento = new EventoCrearItem(ID_PORTAL_NARANJA, x, y, 135);
+				colaEnviar.put(evento);
+				audio.reproducirEfecto(EFECTO_DISPARO);
 			}
 
 		} else if (event.type == SDL_KEYDOWN) {
@@ -80,73 +88,54 @@ void Escena::manejarEventos() {
 			switch (keyEvent.keysym.sym) {
 				case SDLK_a: {
 					//evento = new EventoCorrer();
-					//colaRecibir.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
-					evento = new EventoMover(28);
-					//Mock
-					evento->atributos["x"] = -15;
-					evento->atributos["y"] = 0;
-					//---
-					colaRecibir.put(evento);
+					//colaEnviar.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
+					evento = new EventoMover(-15, 0, 28);
+					colaEnviar.put(evento);
 					evento = new EventoCambioEstado(ESTADO_CORRIENDO, 28);
-					colaRecibir.put(evento);
+					colaEnviar.put(evento);
 					evento = new EventoFlip(IZQUIERDA, 28);
-					colaRecibir.put(evento);
+					colaEnviar.put(evento);
 					break;
 				}
 				case SDLK_d: {
 					// evento = new EventoCorrer();
-					//colaRecibir.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
-					evento = new EventoMover(28);
-					//Mock
-					evento->atributos["x"] = 15;
-					evento->atributos["y"] = 0;
-					//---
-					colaRecibir.put(evento);
+					//colaEnviar.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
+					evento = new EventoMover(15, 0, 28);
+					colaEnviar.put(evento);
 					evento = new EventoCambioEstado(ESTADO_CORRIENDO, 28);
-					colaRecibir.put(evento);
+					colaEnviar.put(evento);
 					evento = new EventoFlip(DERECHA, 28);
-					colaRecibir.put(evento);
+					colaEnviar.put(evento);
 					break;
 				}
 				case SDLK_w: {
 					// evento = new EventoSalto();
-					//colaRecibir.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
-					evento = new EventoMover(28);
-					//Mock
-					evento->atributos["x"] = 0;
-					evento->atributos["y"] = -10;
-					//---
-					colaRecibir.put(evento);
+					//colaEnviar.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
+					evento = new EventoMover(0, -10, 28);
+					colaEnviar.put(evento);
 					evento = new EventoCambioEstado(ESTADO_SALTANDO, 28);
-					colaRecibir.put(evento);
+					colaEnviar.put(evento);
 					audio.reproducirEfecto(EFECTO_SALTO);
-					break;
-				}
-				case SDLK_q: {
-					evento = new EventoEliminarItem(idPortalAzul);
-					colaRecibir.put(evento);
-					evento = new EventoEliminarItem(idPortalNaranja);
-					colaRecibir.put(evento);
 					break;
 				}
 				case SDLK_f: {
 					evento = new EventoCambioEstado(ABIERTA, 29);
-					colaRecibir.put(evento);
+					colaEnviar.put(evento);
 					break;
 				}
 				case SDLK_r: {
 					evento = new EventoRotacion(90, 30);
-					colaRecibir.put(evento);
+					colaEnviar.put(evento);
 					break;
 				}
 				case SDLK_g: {
 					evento = new EventoCambioEstado(CERRADA, 29);
-					colaRecibir.put(evento);
+					colaEnviar.put(evento);
 					break;
 				}
 				case SDLK_k: {
 					evento = new EventoCambioEstado(ESTADO_MUERTO, 28);
-					colaRecibir.put(evento);
+					colaEnviar.put(evento);
 					break;
 				}
 				case SDLK_F11:
@@ -167,36 +156,17 @@ void Escena::manejarEventos() {
 				ctrl = false; 
 			} else {
 				evento = new EventoCambioEstado(ESTADO_IDLE, 28);
-				colaRecibir.put(evento);
+				colaEnviar.put(evento);
 			}
 		}
 	}
 }
 
-void Escena::actualizarCon(EventoPortalAzul& evento) {
-	evento.atributos["angulo"] = 45;
-	VistaObjeto* vo = creadorTexturas.crear(ID_PORTAL_AZUL, 
-				evento.atributos["x"] - deltaCamaraX, evento.atributos["y"] - deltaCamaraY, 
-				evento.atributos["angulo"]);
-	idPortalAzul = vo->getId();
-	objetosDelJuego.insert(std::make_pair(vo->getId(), vo));
-	audio.reproducirEfecto(EFECTO_DISPARO);
-
-}
-
-void Escena::actualizarCon(EventoPortalNaranja& evento) {
-	evento.atributos["angulo"] = 135;
-	VistaObjeto* vo = creadorTexturas.crear(ID_PORTAL_NARANJA, 
-				evento.atributos["x"] - deltaCamaraX, evento.atributos["y"]- deltaCamaraY, 
-				evento.atributos["angulo"]);
-	idPortalNaranja = vo->getId();
-	objetosDelJuego.insert(std::make_pair(vo->getId(), vo));
-	audio.reproducirEfecto(EFECTO_DISPARO);
-}
-
-void Escena::actualizarCon(EventoPinTool& evento) {
-	VistaObjeto* vo = creadorTexturas.crear(ID_PIN_TOOL, 
-				evento.atributos["x"] - deltaCamaraX, evento.atributos["y"] - deltaCamaraY, 0);
+void Escena::actualizarCon(EventoCrearItem& evento) {
+	VistaObjeto* vo = creadorTexturas.crear(evento.atributos["idItem"], 
+							evento.atributos["x"] - deltaCamaraX, 
+							evento.atributos["y"] - deltaCamaraY, 
+							evento.atributos["angulo"]);
 	objetosDelJuego.insert(std::make_pair(vo->getId(), vo));
 }
 
@@ -210,11 +180,11 @@ void Escena::actualizarCon(EventoMover& evento) {
 }
 
 void Escena::actualizarCon(EventoFlip& evento) {
-	objetosDelJuego.at(evento.atributos["idLanzador"])->flip(evento.atributos["flip"]);
+	objetosDelJuego.at(evento.atributos["idItem"])->flip(evento.atributos["flip"]);
 }
 
 void Escena::actualizarCon(EventoCambioEstado& evento) {
-	objetosDelJuego.at(evento.atributos["idLanzador"])->asignarEstado(evento.atributos["estado"]);
+	objetosDelJuego.at(evento.atributos["idItem"])->asignarEstado(evento.atributos["estado"]);
 }
 
 void Escena::actualizarCon(EventoEliminarItem& evento) {
