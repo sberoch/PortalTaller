@@ -23,7 +23,8 @@
 CreadorTexturas::CreadorTexturas(const SdlWindow& window) :
 	bloqueTex("bloque_metal_diag.png", window), 
 	emisRecpTex("emisor_receptor.png", window),
-	personajeTex("chell.png", window),
+	p1Tex("chell1.png", window), p2Tex("chell2.png", window),
+	p3Tex("chell3.png", window), p4Tex("chell4.png", window),
 	miscTex("miscelanea.png", window),
 	puertaTex("puertas.png", window),
 	efectosTex("efectos.png", window),
@@ -46,7 +47,10 @@ VistaObjeto* CreadorTexturas::crear(int tipo, int x, int y, int angulo) {
 		case ID_PIEDRA_MOVIL: vo = new VistaPiedraMovil(efectosTex); break;
 		case ID_BARRERA_ENERGIA: vo = new VistaBarreraEnergia(miscTex, angulo); break;
 		case ID_BOLA_ENERGIA: vo = new VistaBolaEnergia(efectosTex, angulo); break;
-		case ID_PERSONAJE: vo = new VistaPersonaje(personajeTex); break;
+		case ID_PERSONAJE_1: vo = new VistaPersonaje(p1Tex); break;
+		case ID_PERSONAJE_2: vo = new VistaPersonaje(p2Tex); break;
+		case ID_PERSONAJE_3: vo = new VistaPersonaje(p3Tex); break;
+		case ID_PERSONAJE_4: vo = new VistaPersonaje(p4Tex); break;
 		case ID_BLOQUE_DIAGONAL_METAL: vo = new VistaBloqueMetalDiagonal(bloqueTex, angulo); break;
 		case ID_PIN_TOOL: vo = new VistaPinTool(pinToolTex); break;
 		case ID_TORTA: vo = new VistaTorta(tortaTex); break;

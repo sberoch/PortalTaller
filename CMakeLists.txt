@@ -33,6 +33,7 @@ add_library(sdldemo
   src/Cliente/SdlWindow.cpp
   src/Cliente/Escena.cpp
   src/Cliente/InputHandler.cpp
+  src/Cliente/Conversor.cpp
   src/Cliente/CreadorTexturas.cpp
   src/Cliente/EnviadorEventos.cpp
   src/Cliente/RecibidorEventos.cpp
@@ -57,7 +58,10 @@ target_link_libraries(server sdldemo SDL2 SDL2_image SDL2_mixer yaml-cpp)
 
 install(FILES assets/emisor_receptor.png DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/bloque_metal_diag.png DESTINATION ${CMAKE_BINARY_DIR})
-install(FILES assets/chell.png DESTINATION ${CMAKE_BINARY_DIR})
+install(FILES assets/chell1.png DESTINATION ${CMAKE_BINARY_DIR})
+install(FILES assets/chell2.png DESTINATION ${CMAKE_BINARY_DIR})
+install(FILES assets/chell3.png DESTINATION ${CMAKE_BINARY_DIR})
+install(FILES assets/chell4.png DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/miscelanea.png DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/puertas.png DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/efectos.png DESTINATION ${CMAKE_BINARY_DIR})

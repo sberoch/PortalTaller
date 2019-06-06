@@ -9,6 +9,7 @@
 #include "../Common/cola_bloqueante.h"
 #include "../Common/Evento.h"
 #include "Audio.h"
+#include "Conversor.h"
 
 //FD
 class Evento;
@@ -18,6 +19,7 @@ class EventoFlip;
 class EventoCambioEstado;
 class EventoEliminarItem;
 class EventoRotacion;
+class EventoCreacionPersonaje;
 
 class Escena {
 private:
@@ -25,6 +27,7 @@ private:
 	SdlWindow window;
 	bool fullscreen;
 
+	Conversor conv;
 	CreadorTexturas creadorTexturas;
 	std::map<int, VistaObjeto*> objetosDelJuego;
 
@@ -34,7 +37,11 @@ private:
 	SDL_Event event;
 	bool terminado;
 	bool ctrl;
+
+	int miId;
 	int deltaCamaraX, deltaCamaraY;
+
+
 	
 public:
 	Escena(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, 
@@ -50,10 +57,12 @@ public:
 	void actualizarCon(EventoCambioEstado& evento);
 	void actualizarCon(EventoEliminarItem& evento);
 	void actualizarCon(EventoRotacion& evento);
+	void actualizarCon(EventoCreacionPersonaje& evento);
 	~Escena();
 
 private:
 	void crearTerreno();
+	void recibirMiIdentificador();
 };
 
 #endif

@@ -10,7 +10,7 @@ private:
 	int contadorID;
 	SdlTexture bloqueTex;
 	SdlTexture emisRecpTex;
-	SdlTexture personajeTex;
+	SdlTexture p1Tex, p2Tex, p3Tex, p4Tex;
 	SdlTexture miscTex;
 	SdlTexture puertaTex;
 	SdlTexture efectosTex;
