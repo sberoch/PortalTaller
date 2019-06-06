@@ -10,23 +10,22 @@
 #include "fisicas/formas/forma.h"
 #include "fisicas/movimiento/direccion.h"
 #include "fisicas/movimiento/posicion.h"
+#include "fisicas/movimiento/rotacion.h"
 
 #define NO_ROTADO 0.0f
 
 void Mundo::agregarBloqueMetalCuadrado(Posicion& posicion) {
     // Se agrega un bloque de colision
     std::shared_ptr<Bloque> bloque(new Bloque(fisicas_));
-    Forma forma(CONFIG.SIZE_BLOQUE_X, CONFIG.SIZE_BLOQUE_Y, NO_ROTADO);
+    Forma forma(CONFIG.SIZE_BLOQUE_X, CONFIG.SIZE_BLOQUE_Y);
     bloques_[bloque->uuid()] = bloque;
     fisicas_.agregarBloqueRectangular(*bloque, posicion, forma);
-    // Se agregan sensores de metal, que responden a colisiones
     
+    // Se agregan sensores de metal, que responden a colisiones
     Forma formaHorizontal(CONFIG.SIZE_SENSOR_METAL_CUADRADO_X,
-        CONFIG.SIZE_SENSOR_METAL_CUADRADO_Y,
-        NO_ROTADO);
+        CONFIG.SIZE_SENSOR_METAL_CUADRADO_Y);
     Forma formaVertical(CONFIG.SIZE_SENSOR_METAL_CUADRADO_Y,
-        CONFIG.SIZE_SENSOR_METAL_CUADRADO_X,
-        NO_ROTADO);
+        CONFIG.SIZE_SENSOR_METAL_CUADRADO_X);
 
     Posicion posicionArriba = posicion + Posicion(0.0f, CONFIG.SIZE_BLOQUE_Y);
     Direccion direccionArriba(0.0f, 1.0f);
@@ -53,11 +52,40 @@ void Mundo::agregarBloqueMetalCuadrado(Posicion& posicion) {
     fisicas_.agregarSuperficie(*metalDerecha, posicionDerecha, formaVertical);
 }
 
+void Mundo::agregarBloqueMetalTriangular(Posicion& posicion, Rotacion& r) {
+    // Se agrega un bloque de colision
+    std::shared_ptr<Bloque> bloque(new Bloque(fisicas_));
+    Forma forma(CONFIG.SIZE_BLOQUE_X, CONFIG.SIZE_BLOQUE_Y);
+    bloques_[bloque->uuid()] = bloque;
+    fisicas_.agregarBloqueTriangular(*bloque, posicion, forma, r);
+    
+    // Se agregan sensores de metal, que responden a colisiones
+    /*Forma formaHorizontal(CONFIG.SIZE_SENSOR_METAL_CUADRADO_X,
+        CONFIG.SIZE_SENSOR_METAL_CUADRADO_Y,
+        NO_ROTADO);
+    Forma formaVertical(CONFIG.SIZE_SENSOR_METAL_CUADRADO_Y,
+        CONFIG.SIZE_SENSOR_METAL_CUADRADO_X,
+        NO_ROTADO);
+    Forma formaDiagonal(CONFIG.SIZE_SENSOR_METAL_DIAGONAL_X,
+        CONFIG.SIZE_SENSOR_METAL_DIAGONAL_Y,
+        r.anguloRadianes());
+
+    Posicion posicionArriba = posicion + Posicion(0.0f, CONFIG.SIZE_BLOQUE_Y);
+    Direccion direccionArriba(0.0f, 1.0f);
+    std::shared_ptr<SuperficieMetal> metalArriba(new SuperficieMetal(fisicas_, direccionArriba));
+    bloques_[metalArriba->uuid()] = metalArriba;
+    fisicas_.agregarSuperficie(*metalArriba, posicionArriba, formaHorizontal);*/
+}
+
 void Mundo::agregarJugador(Posicion& posicion) {
     std::shared_ptr<Jugador> jugador(new Jugador(fisicas_));
-    Forma formaJugador(CONFIG.SIZE_JUGADOR_X, CONFIG.SIZE_JUGADOR_Y, NO_ROTADO);
+    Forma formaJugador(CONFIG.SIZE_JUGADOR_X, CONFIG.SIZE_JUGADOR_Y);
     entidades_[jugador->uuid()] = jugador;
     fisicas_.agregarEntidad(*jugador, posicion, formaJugador);
+}
+
+void Mundo::moverJugador(int uuidJugador, Velocidad& v) {
+    fisicas_.cambiarVelocidad(*entidades_[uuidJugador], v);
 }
 
 void Mundo::step() {

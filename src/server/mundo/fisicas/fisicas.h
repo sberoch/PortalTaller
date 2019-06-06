@@ -20,6 +20,8 @@ class Entidad;
 //class Jugador;
 //class DisparoPortal;
 class Posicion;
+class Velocidad;
+class Rotacion;
 class Transformacion;
 
 class Fisicas {
@@ -34,9 +36,14 @@ class Fisicas {
     Fisicas();
     ~Fisicas();
     void agregarBloqueRectangular(Bloque& unBloque, Posicion& unaPosicion, Forma& forma);
+    void agregarBloqueTriangular(Bloque& unBloque, Posicion& unaPosicion, Forma& forma, Rotacion& r);
     void agregarSuperficie(Superficie& superficie, Posicion& posicion, Forma& forma);
+    
     void agregarEntidad(Entidad& entidad, Posicion& posicion, Forma& forma);
     void ejecutarAgregar(Entidad& entidad, Posicion& posicion, Forma& forma);
+    
+    void cambiarVelocidad(Entidad& entidad, Velocidad& velocidad);
+    void ejecutarCambiarVelocidad(Entidad& entidad, Velocidad& velocidad);
     //void agregarBloqueMetalCuadrado(BloqueMetalCuadrado& bloque, Posicion& posicion);
     //void agregarBloquePiedra(BloquePiedra& bloque, Posicion& posicion);
     //void agregarJugador(Jugador& jugador, Posicion& posicion);

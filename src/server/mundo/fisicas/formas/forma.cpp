@@ -1,10 +1,8 @@
 #include "forma.h"
 
-Forma::Forma(float unAncho, float unAlto, float unaRotacion) :
+Forma::Forma(float unAncho, float unAlto) :
     ancho_(unAncho),
-    alto_(unAlto),
-    rotacion_(unaRotacion) {
-
+    alto_(unAlto) {
 }
 
 float Forma::ancho() {
@@ -15,6 +13,3 @@ float Forma::alto() {
     return alto_;
 }
 
-float Forma::rotacion() {
-    return rotacion_;
-}

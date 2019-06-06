@@ -5,13 +5,11 @@ class Forma {
     private:
     float ancho_;
     float alto_;
-    float rotacion_;
 
     public:
-    Forma(float unAncho, float unAlto, float unaRotacion);
+    Forma(float unAncho, float unAlto);
     float ancho();
     float alto();
-    float rotacion();
 };
 
 #endif

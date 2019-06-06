@@ -1,5 +1,7 @@
 #include "fisicas.h"
 
+#include <vector>
+
 #include "../../server_config.h"
 
 #include "../superficies/superficie.h"
@@ -9,12 +11,13 @@
 #include "../entidades/entidad.h"
 
 #include "movimiento/posicion.h"
+#include "movimiento/velocidad.h"
+#include "movimiento/rotacion.h"
 #include "formas/forma.h"
 
 #include "transformaciones/transformacion.h"
 #include "transformaciones/agregar_entidad.h"
-
-#include "transformaciones/agregar_entidad.h"
+#include "transformaciones/cambiar_velocidad.h"
 
 //#define PI 3.14159265358979323846f
 
@@ -25,7 +28,7 @@ Fisicas::Fisicas() :
 }
 
 Fisicas::~Fisicas() {
-    delete mundoBox2D_;
+    //delete mundoBox2D_;
 }
 
 void Fisicas::step() {
@@ -46,6 +49,43 @@ void Fisicas::agregarBloqueRectangular(Bloque& unBloque, Posicion& unaPosicion, 
 	b2FixtureDef b2Caracteristicas;
 	b2Caracteristicas.shape = &b2FormaCaja;
 	b2Cuerpo->CreateFixture(&b2Caracteristicas);
+
+    colisionables_[unBloque.uuid()] = b2Cuerpo;
+}
+
+void Fisicas::agregarBloqueTriangular(Bloque& unBloque, Posicion& unaPosicion, Forma& unaForma, Rotacion& r) {
+    
+    b2BodyDef b2CuerpoDef;
+    b2CuerpoDef.type = b2_staticBody;
+    b2CuerpoDef.position.Set(unaPosicion.x(), unaPosicion.y());
+	b2CuerpoDef.userData = &unBloque;
+    b2Body* b2Cuerpo = mundoBox2D_->CreateBody(&b2CuerpoDef);
+    
+    std::vector<b2Vec2> rotaciones;
+    rotaciones.push_back(b2Vec2(0.0f, 0.0f));
+    rotaciones.push_back(b2Vec2(2 * unaForma.ancho(), 0.0f));
+    rotaciones.push_back(b2Vec2(0.0f, 2 * unaForma.alto()));
+    
+    for (size_t i = 0; i < r.anguloGrados() / 90; i++) {
+        b2Vec2 tmp = rotaciones.back();
+        rotaciones.pop_back();
+        rotaciones.insert(rotaciones.begin(), tmp);
+    }
+
+    b2Vec2 vertices[3];
+    for (size_t i = 0; i < 3; i++) {
+        vertices[i] = rotaciones[i];
+    }
+    int32 count = 3;
+    b2PolygonShape b2Triangulo;
+    b2Triangulo.Set(vertices, count);
+
+	b2FixtureDef b2Caracteristicas;
+	b2Caracteristicas.shape = &b2Triangulo;
+	b2Cuerpo->CreateFixture(&b2Caracteristicas);
+
+    //b2Vec2 toTarget(1.0, 1.0);
+    //b2Cuerpo->SetTransform(b2Cuerpo->GetWorldCenter(), r.anguloRadianes());
 
     colisionables_[unBloque.uuid()] = b2Cuerpo;
 }
@@ -89,6 +129,16 @@ void Fisicas::ejecutarAgregar(Entidad& unaEntidad, Posicion& unaPosicion, Forma&
 	b2Cuerpo->CreateFixture(&b2Caracteristicas);
 	
 	colisionables_[unaEntidad.uuid()] = b2Cuerpo;
+}
+
+void Fisicas::cambiarVelocidad(Entidad& unaEntidad, Velocidad& unaVelocidad) {
+    transformaciones_.push(std::shared_ptr<Transformacion>(new CambiarVelocidad(*this, unaEntidad, unaVelocidad)));
+}
+
+void Fisicas::ejecutarCambiarVelocidad(Entidad& unaEntidad, Velocidad& unaVelocidad) {
+    b2Body* b2Entidad = colisionables_[unaEntidad.uuid()];
+    b2Vec2 nuevaVelocidad = b2Vec2(unaVelocidad.x(), unaVelocidad.y());
+    b2Entidad->SetLinearVelocity(nuevaVelocidad);
 }
 
 void Fisicas::aplicarTransformaciones() {
