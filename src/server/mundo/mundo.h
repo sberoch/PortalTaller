@@ -22,6 +22,8 @@ class Mundo {
     void agregarBloqueMetalCuadrado(Posicion& posicion);
     void agregarJugador(Posicion& posicion);
     void step();
+    // Testing
+    Fisicas* getFisicas() {return &fisicas_;}
 };
 
 #endif

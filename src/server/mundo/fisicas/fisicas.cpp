@@ -27,13 +27,9 @@ Fisicas::Fisicas() :
 Fisicas::~Fisicas() {
     delete mundoBox2D_;
 }
-#include <iostream>
+
 void Fisicas::step() {
     mundoBox2D_->Step(CONFIG.TIME_STEP, CONFIG.VELOCITY_ITERATIONS, CONFIG.POSITION_ITERATIONS);
-    for (b2Body* b = mundoBox2D_->GetBodyList(); b; b = b->GetNext()) {
-        b2Vec2 position = b->GetPosition();
-        std::cout << position.x << ", " << position.y << std::endl;
-    }
     aplicarTransformaciones();    
 }
 

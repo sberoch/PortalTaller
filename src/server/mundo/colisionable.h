@@ -5,7 +5,7 @@
 
 // Forward declaration
 class Jugador;
-//class DisparoPortal;
+class DisparoPortal;
 //class Roca;
 //class DisparoPin;
 //class BolaEnergia;
@@ -27,7 +27,7 @@ class Colisionable : public Identificable {
     virtual void colisionarContra(Colisionable& otro) = 0;
     
     virtual void colisionarContra(Jugador& j);
-    //virtual void colisionarContra(DisparoPortal& d);
+    virtual void colisionarContra(DisparoPortal& d);
     //virtual void colisionarContra(Roca& r);
     //virtual void colisionarContra(DisparoPin& d);
     //virtual void colisionarContra(BolaEnergia& b);

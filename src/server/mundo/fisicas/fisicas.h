@@ -44,6 +44,9 @@ class Fisicas {
     
     void aplicarTransformaciones();
     void step();
+
+    // Testing
+    void setMundo(b2World* mundoCreado) {mundoBox2D_ = mundoCreado; mundoBox2D_->SetContactListener(&contactListener_);}
 };
 
 #endif

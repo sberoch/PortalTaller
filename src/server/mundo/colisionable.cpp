@@ -10,3 +10,7 @@ Colisionable::~Colisionable() {
 void Colisionable::colisionarContra(Jugador& j) {
 
 }
+
+void Colisionable::colisionarContra(DisparoPortal& d) {
+    
+}
