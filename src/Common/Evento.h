@@ -16,6 +16,14 @@ public:
 	virtual void enviarPorSocket(Socket& s) = 0;
 };
 
+class EventoCreacionPersonaje : public Evento {
+public:
+	EventoCreacionPersonaje(int idPersonaje);
+	EventoCreacionPersonaje(Socket& s);
+	virtual void enviarPorSocket(Socket& s);
+	virtual void actualizarEscena(Escena& escena);
+};
+
 //TODO: cambiar a direccion
 class EventoPortalAzul : public Evento {
 public:

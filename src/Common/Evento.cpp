@@ -3,6 +3,20 @@
 
 #include <iostream>
 
+EventoCreacionPersonaje::EventoCreacionPersonaje(int idPersonaje) {
+	tipo = EVENTO_CREACION_PERSONAJE;
+	atributos["idPersonaje"] = idPersonaje;
+}
+EventoCreacionPersonaje::EventoCreacionPersonaje(Socket& s) {
+	tipo = EVENTO_CREACION_PERSONAJE;
+	atributos["idPersonaje"] = s.recibirInt();
+}
+void EventoCreacionPersonaje::enviarPorSocket(Socket& s) {
+	s.enviarInt(tipo);
+	s.enviarInt(atributos["idPersonaje"]);
+}
+
+
 EventoPortalAzul::EventoPortalAzul(int x, int y) {
 	tipo = EVENTO_PORTAL_AZUL;
 	atributos["x"] = x;
@@ -226,3 +240,4 @@ void EventoCambioEstado::actualizarEscena(Escena& escena) {escena.actualizarCon(
 void EventoEliminarItem::actualizarEscena(Escena& escena) {escena.actualizarCon(*this);}
 void EventoRotacion::actualizarEscena(Escena& escena) {escena.actualizarCon(*this);} 
 void EventoCrearItem::actualizarEscena(Escena& escena) {escena.actualizarCon(*this);}
+void EventoCreacionPersonaje::actualizarEscena(Escena& escena) {escena.actualizarCon(*this);}

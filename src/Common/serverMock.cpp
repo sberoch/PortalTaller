@@ -18,6 +18,9 @@ int main(int argc, char const *argv[]) {
 	Socket socketRecibir = socket.aceptar();
 	std::cout << "Socket de recepcion aceptado\n";
 
+	Evento* evento = new EventoCreacionPersonaje(29);
+	evento->enviarPorSocket(socketEnviar);
+
 	while (true) {
 		Evento* evento = serializador.recibirEvento(socketRecibir);
 		std::cout << "Evento recibido\n";

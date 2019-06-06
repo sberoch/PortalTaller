@@ -61,12 +61,12 @@ void Menu::iniciarJuego() {
 	ColaBloqueante<Evento*> colaEnviar;
 	Cola<Evento*> colaRecibir;
 
-	Escena escena(window, colaEnviar, colaRecibir);
-	//Anda bien, pero no usar hasta no tener los socket, come 100% cpu sino (while true)
 	RecibidorEventos recibidorEventos(colaRecibir); 
 	EnviadorEventos enviadorEventos(colaEnviar);
 	recibidorEventos.iniciar();
 	enviadorEventos.iniciar();
+
+	Escena escena(window, colaEnviar, colaRecibir);
  
 	while(!escena.termino()) {
 		escena.recibirCambios();
