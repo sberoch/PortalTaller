@@ -48,6 +48,6 @@ int SdlTexture::render(const Area& src, const Area& dest, double grados, SDL_Ren
     return SDL_RenderCopyEx(this->renderer, this->texture, &sdlSrc, &sdlDest, grados, NULL, flip);
 }
 
-int SdlTexture::setOpacity(const float opacity) {
+void SdlTexture::setOpacity(const float opacity) {
     SDL_SetTextureAlphaMod(this->texture, opacity);
 }

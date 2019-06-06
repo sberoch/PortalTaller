@@ -105,7 +105,7 @@ objetos:
     posX: 11
     posY: 3
     angulo: 90
-  - tipo: 112
+  - tipo: 115
     posX: 3
     posY: 3
     angulo: 0
@@ -114,7 +114,7 @@ objetos:
     posX: 8
     posY: 3
     angulo: 0
-  - tipo: 111
+  - tipo: 112
     posX: 5
     posY: 3
     angulo: 0

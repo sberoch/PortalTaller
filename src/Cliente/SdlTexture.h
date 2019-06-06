@@ -1,6 +1,7 @@
 #ifndef __SDL_TEXTURE_H__
 #define __SDL_TEXTURE_H__
 #include <string>
+#include <cstdint>
 #include <SDL2/SDL.h>
 
 
@@ -28,7 +29,7 @@ public:
     /**
      * Asigna una opacidad a la textura
      **/
-    int setOpacity(const float opacity);
+    void setOpacity(const float opacity);
 private:
     SDL_Texture* loadTexture(const std::string &filename);
     SDL_Renderer* renderer;
