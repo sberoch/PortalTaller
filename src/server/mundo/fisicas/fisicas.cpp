@@ -61,21 +61,23 @@ void Fisicas::agregarBloqueTriangular(Bloque& unBloque, Posicion& unaPosicion, F
 	b2CuerpoDef.userData = &unBloque;
     b2Body* b2Cuerpo = mundoBox2D_->CreateBody(&b2CuerpoDef);
     
-    std::vector<b2Vec2> rotaciones;
-    rotaciones.push_back(b2Vec2(0.0f, 0.0f));
-    rotaciones.push_back(b2Vec2(2 * unaForma.ancho(), 0.0f));
-    rotaciones.push_back(b2Vec2(0.0f, 2 * unaForma.alto()));
-    
-    for (size_t i = 0; i < r.anguloGrados() / 90; i++) {
-        b2Vec2 tmp = rotaciones.back();
-        rotaciones.pop_back();
-        rotaciones.insert(rotaciones.begin(), tmp);
-    }
-
     b2Vec2 vertices[3];
-    for (size_t i = 0; i < 3; i++) {
-        vertices[i] = rotaciones[i];
-    }
+    vertices[0].Set(0.0f, 0.0f);
+    vertices[1].Set(2 * unaForma.ancho(), 0.0f);
+    vertices[2].Set(0.0f, 2 * unaForma.alto());
+
+    std::vector<b2Vec2> deltas;
+    deltas.push_back(b2Vec2(-1.0f, -1.0f));
+    deltas.push_back(b2Vec2(1.0f, -1.0f));
+    deltas.push_back(b2Vec2(1.0f, 1.0f));
+    deltas.push_back(b2Vec2(-1.0f, 1.0f));
+
+    int indice_delta = 0;
+
+    for (size_t i = 0; i < r.anguloGrados() / 90; i++) {
+        indice_delta++;
+    }    
+    
     int32 count = 3;
     b2PolygonShape b2Triangulo;
     b2Triangulo.Set(vertices, count);
@@ -83,9 +85,7 @@ void Fisicas::agregarBloqueTriangular(Bloque& unBloque, Posicion& unaPosicion, F
 	b2FixtureDef b2Caracteristicas;
 	b2Caracteristicas.shape = &b2Triangulo;
 	b2Cuerpo->CreateFixture(&b2Caracteristicas);
-
-    //b2Vec2 toTarget(1.0, 1.0);
-    //b2Cuerpo->SetTransform(b2Cuerpo->GetWorldCenter(), r.anguloRadianes());
+    b2Cuerpo->SetTransform(b2Cuerpo->GetWorldCenter() + deltas[indice_delta], r.anguloRadianes());
 
     colisionables_[unBloque.uuid()] = b2Cuerpo;
 }
