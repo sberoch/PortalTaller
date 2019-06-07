@@ -17,10 +17,10 @@ struct Config {
     /* para mejorar la experiencia de juego
     */
     float SIZE_SENSOR_METAL_CUADRADO_X = 0.3f;
-    float SIZE_SENSOR_METAL_CUADRADO_Y = 0.1f;
+    float SIZE_SENSOR_METAL_CUADRADO_Y = 0.2f;
 
     float SIZE_SENSOR_METAL_DIAGONAL_X = SIZE_SENSOR_METAL_CUADRADO_X * 1.4142f;
-    float SIZE_SENSOR_METAL_DIAGONAL_Y = SIZE_SENSOR_METAL_CUADRADO_Y * 1.4142f;
+    float SIZE_SENSOR_METAL_DIAGONAL_Y = SIZE_SENSOR_METAL_CUADRADO_Y;
     
     float SIZE_PORTAL_X = 0.05f;
     float SIZE_PORTAL_Y = 0.25f;

@@ -97,8 +97,6 @@ void Fisicas::agregarSuperficie(Superficie& unaSuperficie, Posicion& unaPosicion
 	b2CuerpoDef.userData = &unaSuperficie;
     b2Body* b2Cuerpo = mundoBox2D_->CreateBody(&b2CuerpoDef);
     
-    b2Cuerpo->SetFixedRotation(true);
-
     b2PolygonShape b2FormaCaja;
 	b2FormaCaja.SetAsBox(unaForma.ancho(), unaForma.alto());
 	b2FixtureDef b2Caracteristicas;

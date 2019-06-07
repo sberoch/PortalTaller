@@ -66,23 +66,73 @@ void Mundo::agregarBloqueMetalTriangular(Posicion& posicion, Rotacion& r) {
     Forma formaDiagonal(CONFIG.SIZE_SENSOR_METAL_DIAGONAL_X,
         CONFIG.SIZE_SENSOR_METAL_DIAGONAL_Y);
 
+    Posicion posicionArriba = posicion + Posicion(0.0f, 0.0f + CONFIG.SIZE_BLOQUE_Y);
+    Posicion posicionAbajo = posicion + Posicion(0.0f, -1*CONFIG.SIZE_BLOQUE_Y);
+    Posicion posicionIzquierda = posicion + Posicion(-1*CONFIG.SIZE_BLOQUE_Y, 0.0f);
+    Posicion posicionDerecha = posicion + Posicion(CONFIG.SIZE_BLOQUE_Y, 0.0f);
+
+    Direccion direccionArriba(0.0f, 1.0f);
+    Direccion direccionAbajo(0.0f, -1.0f);
+    Direccion direccionIzquierda(-1.0f, 0.0f);
+    Direccion direccionDerecha(-1.0f, 0.0f);
+
+    Rotacion no(0);
     
-    
-    if (r.anguloGrados() == 0) {
-        
-        Posicion posicionAbajo = posicion + Posicion(0.0f, -1*CONFIG.SIZE_BLOQUE_Y);
-        Direccion direccionAbajo(0.0f, -1.0f);
+    if (r.anguloGrados() == 0) { 
         std::shared_ptr<SuperficieMetal> metalAbajo(new SuperficieMetal(fisicas_, direccionAbajo));
         bloques_[metalAbajo->uuid()] = metalAbajo;
-        fisicas_.agregarSuperficie(*metalAbajo, posicionAbajo, formaHorizontal, r);
+        fisicas_.agregarSuperficie(*metalAbajo, posicionAbajo, formaHorizontal, no);
 
+        std::shared_ptr<SuperficieMetal> metalIzquierda(new SuperficieMetal(fisicas_, direccionIzquierda));
+        bloques_[metalIzquierda->uuid()] = metalIzquierda;
+        fisicas_.agregarSuperficie(*metalIzquierda, posicionIzquierda, formaVertical, no);
+
+        std::shared_ptr<SuperficieMetal> metalDiagonal(new SuperficieMetal(fisicas_, direccionArriba));
+        bloques_[metalDiagonal->uuid()] = metalDiagonal;
+        Rotacion delta(r.anguloGrados() + 135);
+        fisicas_.agregarSuperficie(*metalDiagonal, posicion, formaDiagonal, delta);
 
     } else if (r.anguloGrados() == 90) {
-        
-    } else if (r.anguloGrados() == 180) {
-    
-    } else if (r.anguloGrados() == 270) {
+        std::shared_ptr<SuperficieMetal> metalAbajo(new SuperficieMetal(fisicas_, direccionAbajo));
+        bloques_[metalAbajo->uuid()] = metalAbajo;
+        fisicas_.agregarSuperficie(*metalAbajo, posicionAbajo, formaHorizontal, no);
 
+        std::shared_ptr<SuperficieMetal> metalDerecha(new SuperficieMetal(fisicas_, direccionDerecha));
+        bloques_[metalDerecha->uuid()] = metalDerecha;
+        fisicas_.agregarSuperficie(*metalDerecha, posicionDerecha, formaVertical, no);
+
+        std::shared_ptr<SuperficieMetal> metalDiagonal(new SuperficieMetal(fisicas_, direccionArriba));
+        bloques_[metalDiagonal->uuid()] = metalDiagonal;
+        Rotacion delta(r.anguloGrados() + 135);
+        fisicas_.agregarSuperficie(*metalDiagonal, posicion, formaDiagonal, delta);
+
+    } else if (r.anguloGrados() == 180) {
+        std::shared_ptr<SuperficieMetal> metalArriba(new SuperficieMetal(fisicas_, direccionArriba));
+        bloques_[metalArriba->uuid()] = metalArriba;
+        fisicas_.agregarSuperficie(*metalArriba, posicionArriba, formaHorizontal, no);
+
+        std::shared_ptr<SuperficieMetal> metalDerecha(new SuperficieMetal(fisicas_, direccionDerecha));
+        bloques_[metalDerecha->uuid()] = metalDerecha;
+        fisicas_.agregarSuperficie(*metalDerecha, posicionDerecha, formaVertical, no);
+
+        std::shared_ptr<SuperficieMetal> metalDiagonal(new SuperficieMetal(fisicas_, direccionAbajo));
+        bloques_[metalDiagonal->uuid()] = metalDiagonal;
+        Rotacion delta(r.anguloGrados() + 135);
+        fisicas_.agregarSuperficie(*metalDiagonal, posicion, formaDiagonal, delta);
+
+    } else if (r.anguloGrados() == 270) {
+        std::shared_ptr<SuperficieMetal> metalArriba(new SuperficieMetal(fisicas_, direccionArriba));
+        bloques_[metalArriba->uuid()] = metalArriba;
+        fisicas_.agregarSuperficie(*metalArriba, posicionArriba, formaHorizontal, no);
+
+        std::shared_ptr<SuperficieMetal> metalIzquierda(new SuperficieMetal(fisicas_, direccionIzquierda));
+        bloques_[metalIzquierda->uuid()] = metalIzquierda;
+        fisicas_.agregarSuperficie(*metalIzquierda, posicionIzquierda, formaVertical, no);
+
+        std::shared_ptr<SuperficieMetal> metalDiagonal(new SuperficieMetal(fisicas_, direccionAbajo));
+        bloques_[metalDiagonal->uuid()] = metalDiagonal;
+        Rotacion delta(r.anguloGrados() + 135);
+        fisicas_.agregarSuperficie(*metalDiagonal, posicion, formaDiagonal, delta);
     }
     
     
