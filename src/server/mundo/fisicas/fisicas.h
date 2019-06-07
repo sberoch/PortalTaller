@@ -37,7 +37,7 @@ class Fisicas {
     ~Fisicas();
     void agregarBloqueRectangular(Bloque& unBloque, Posicion& unaPosicion, Forma& forma);
     void agregarBloqueTriangular(Bloque& unBloque, Posicion& unaPosicion, Forma& forma, Rotacion& r);
-    void agregarSuperficie(Superficie& superficie, Posicion& posicion, Forma& forma);
+    void agregarSuperficie(Superficie& superficie, Posicion& posicion, Forma& forma, Rotacion& r);
     
     void agregarEntidad(Entidad& entidad, Posicion& posicion, Forma& forma);
     void ejecutarAgregar(Entidad& entidad, Posicion& posicion, Forma& forma);

@@ -21,7 +21,7 @@ class Mundo {
     std::queue<std::shared_ptr<Evento>> eventos_;
 
     public:
-    void agregarBloqueMetalCuadrado(Posicion& posicion);
+    void agregarBloqueMetalCuadrado(Posicion& posicion, Rotacion& r);
     void agregarBloqueMetalTriangular(Posicion& posicion, Rotacion& r);
     void agregarJugador(Posicion& posicion);
     void moverJugador(int uuidDelJugador, Velocidad& v);

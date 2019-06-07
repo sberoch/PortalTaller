@@ -90,7 +90,7 @@ void Fisicas::agregarBloqueTriangular(Bloque& unBloque, Posicion& unaPosicion, F
     colisionables_[unBloque.uuid()] = b2Cuerpo;
 }
 
-void Fisicas::agregarSuperficie(Superficie& unaSuperficie, Posicion& unaPosicion, Forma& unaForma) {
+void Fisicas::agregarSuperficie(Superficie& unaSuperficie, Posicion& unaPosicion, Forma& unaForma, Rotacion& r) {
     b2BodyDef b2CuerpoDef;
     b2CuerpoDef.type = b2_staticBody;
     b2CuerpoDef.position.Set(unaPosicion.x(), unaPosicion.y());
@@ -105,6 +105,8 @@ void Fisicas::agregarSuperficie(Superficie& unaSuperficie, Posicion& unaPosicion
 	b2Caracteristicas.shape = &b2FormaCaja;
     b2Caracteristicas.isSensor = true;
 	b2Cuerpo->CreateFixture(&b2Caracteristicas);
+
+    b2Cuerpo->SetTransform(b2Cuerpo->GetPosition(), r.anguloRadianes());
 
     colisionables_[unaSuperficie.uuid()] = b2Cuerpo;
 }

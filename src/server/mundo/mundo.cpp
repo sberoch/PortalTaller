@@ -14,7 +14,7 @@
 
 #define NO_ROTADO 0.0f
 
-void Mundo::agregarBloqueMetalCuadrado(Posicion& posicion) {
+void Mundo::agregarBloqueMetalCuadrado(Posicion& posicion, Rotacion& r) {
     // Se agrega un bloque de colision
     std::shared_ptr<Bloque> bloque(new Bloque(fisicas_));
     Forma forma(CONFIG.SIZE_BLOQUE_X, CONFIG.SIZE_BLOQUE_Y);
@@ -31,25 +31,25 @@ void Mundo::agregarBloqueMetalCuadrado(Posicion& posicion) {
     Direccion direccionArriba(0.0f, 1.0f);
     std::shared_ptr<SuperficieMetal> metalArriba(new SuperficieMetal(fisicas_, direccionArriba));
     bloques_[metalArriba->uuid()] = metalArriba;
-    fisicas_.agregarSuperficie(*metalArriba, posicionArriba, formaHorizontal);
+    fisicas_.agregarSuperficie(*metalArriba, posicionArriba, formaHorizontal, r);
 
     Posicion posicionAbajo = posicion + Posicion(0.0f, (-1) * CONFIG.SIZE_BLOQUE_Y);
     Direccion direccionAbajo(0.0f, -1.0f);
     std::shared_ptr<SuperficieMetal> metalAbajo(new SuperficieMetal(fisicas_, direccionAbajo));
     bloques_[metalAbajo->uuid()] = metalAbajo;
-    fisicas_.agregarSuperficie(*metalAbajo, posicionAbajo, formaHorizontal);
+    fisicas_.agregarSuperficie(*metalAbajo, posicionAbajo, formaHorizontal, r);
 
     Posicion posicionIzquierda = posicion + Posicion((-1) * CONFIG.SIZE_BLOQUE_X, 0.0f);
     Direccion direccionIzquierda(-1.0f, 0.0f);
     std::shared_ptr<SuperficieMetal> metalIzquierda(new SuperficieMetal(fisicas_, direccionIzquierda));
     bloques_[metalIzquierda->uuid()] = metalIzquierda;
-    fisicas_.agregarSuperficie(*metalIzquierda, posicionIzquierda, formaVertical);
+    fisicas_.agregarSuperficie(*metalIzquierda, posicionIzquierda, formaVertical, r);
 
     Posicion posicionDerecha = posicion + Posicion(CONFIG.SIZE_BLOQUE_X, 0.0f);
     Direccion direccionDerecha(1.0f, 0.0f);
     std::shared_ptr<SuperficieMetal> metalDerecha(new SuperficieMetal(fisicas_, direccionDerecha));
     bloques_[metalDerecha->uuid()] = metalDerecha;
-    fisicas_.agregarSuperficie(*metalDerecha, posicionDerecha, formaVertical);
+    fisicas_.agregarSuperficie(*metalDerecha, posicionDerecha, formaVertical, r);
 }
 
 void Mundo::agregarBloqueMetalTriangular(Posicion& posicion, Rotacion& r) {
@@ -59,22 +59,42 @@ void Mundo::agregarBloqueMetalTriangular(Posicion& posicion, Rotacion& r) {
     bloques_[bloque->uuid()] = bloque;
     fisicas_.agregarBloqueTriangular(*bloque, posicion, forma, r);
     
-    // Se agregan sensores de metal, que responden a colisiones
-    /*Forma formaHorizontal(CONFIG.SIZE_SENSOR_METAL_CUADRADO_X,
-        CONFIG.SIZE_SENSOR_METAL_CUADRADO_Y,
-        NO_ROTADO);
+    Forma formaHorizontal(CONFIG.SIZE_SENSOR_METAL_CUADRADO_X,
+        CONFIG.SIZE_SENSOR_METAL_CUADRADO_Y);
     Forma formaVertical(CONFIG.SIZE_SENSOR_METAL_CUADRADO_Y,
-        CONFIG.SIZE_SENSOR_METAL_CUADRADO_X,
-        NO_ROTADO);
+        CONFIG.SIZE_SENSOR_METAL_CUADRADO_X);
     Forma formaDiagonal(CONFIG.SIZE_SENSOR_METAL_DIAGONAL_X,
-        CONFIG.SIZE_SENSOR_METAL_DIAGONAL_Y,
-        r.anguloRadianes());
+        CONFIG.SIZE_SENSOR_METAL_DIAGONAL_Y);
 
-    Posicion posicionArriba = posicion + Posicion(0.0f, CONFIG.SIZE_BLOQUE_Y);
-    Direccion direccionArriba(0.0f, 1.0f);
-    std::shared_ptr<SuperficieMetal> metalArriba(new SuperficieMetal(fisicas_, direccionArriba));
-    bloques_[metalArriba->uuid()] = metalArriba;
-    fisicas_.agregarSuperficie(*metalArriba, posicionArriba, formaHorizontal);*/
+    
+    
+    if (r.anguloGrados() == 0) {
+        
+        Posicion posicionAbajo = posicion + Posicion(0.0f, -1*CONFIG.SIZE_BLOQUE_Y);
+        Direccion direccionAbajo(0.0f, -1.0f);
+        std::shared_ptr<SuperficieMetal> metalAbajo(new SuperficieMetal(fisicas_, direccionAbajo));
+        bloques_[metalAbajo->uuid()] = metalAbajo;
+        fisicas_.agregarSuperficie(*metalAbajo, posicionAbajo, formaHorizontal, r);
+
+
+    } else if (r.anguloGrados() == 90) {
+        
+    } else if (r.anguloGrados() == 180) {
+    
+    } else if (r.anguloGrados() == 270) {
+
+    }
+    
+    
+    
+    
+    
+    
+    // Se agregan sensores de metal, que responden a colisiones    
+    
+    //std::shared_ptr<SuperficieMetal> metalArriba(new SuperficieMetal(fisicas_, direccionArriba));
+    //bloques_[metalArriba->uuid()] = metalArriba;
+    //fisicas_.agregarSuperficie(*metalArriba, posicionArriba, formaHorizontal);
 }
 
 void Mundo::agregarJugador(Posicion& posicion) {
