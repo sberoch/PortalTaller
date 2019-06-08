@@ -21,6 +21,10 @@ void VistaObjeto::asignarRotacion(int angulo) {
 	std::cout << "Intentando rotar objeto incorrecto\n";
 }
 
+void VistaObjeto::asignarColorSegunPlayer(int playerId) {
+	std::cout << "Intentando asignar color a objeto incorrecto\n";
+}
+
 void VistaObjeto::setId(int id) {
 	this->id = id;
 }

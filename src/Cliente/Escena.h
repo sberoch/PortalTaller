@@ -10,6 +10,7 @@
 #include "../Common/Evento.h"
 #include "Audio.h"
 #include "Conversor.h"
+#include "InputHandler.h"
 
 //FD
 class Evento;
@@ -34,6 +35,7 @@ private:
 	ColaBloqueante<Evento*>& colaEnviar;
 	Cola<Evento*>& colaRecibir;  
 
+	InputHandler handler;
 	SDL_Event event;
 	bool terminado;
 	bool ctrl;

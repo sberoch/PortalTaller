@@ -18,9 +18,9 @@ Menu::Menu(int xScreen, int yScreen) :
 	}
 
 void Menu::ejecutar() {
+	SDL_Event e;
 	while(!terminado) {
 		asignarPosicionBotones();
-		SDL_Event e;
 		while(SDL_PollEvent(&e)) {
 		    handleEvents(e);
 			dibujar();
@@ -69,9 +69,9 @@ void Menu::iniciarJuego() {
 	Escena escena(window, colaEnviar, colaRecibir);
  
 	while(!escena.termino()) {
+		escena.manejarEventos();
 		escena.recibirCambios();
 		escena.actualizar();
-		escena.manejarEventos();
 	}
 
 	recibidorEventos.detener();

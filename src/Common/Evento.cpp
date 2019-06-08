@@ -102,20 +102,20 @@ void EventoDejarDeMoverse::enviarPorSocket(Socket& s) {
 }
 
 
-EventoCorrer::EventoCorrer(int x, int y) {
+EventoCorrer::EventoCorrer(int direccion, int idLanzador) {
 	tipo = EVENTO_CORRER;
-	atributos["x"] = x;
-	atributos["y"] = y;
+	atributos["direccion"] = direccion;
+	atributos["idLanzador"] = idLanzador;
 }
 EventoCorrer::EventoCorrer(Socket& s) {
 	tipo = EVENTO_CORRER;
-	atributos["x"] = s.recibirInt();
-	atributos["y"] = s.recibirInt();
+	atributos["direccion"] = s.recibirInt();
+	atributos["idLanzador"] = s.recibirInt();
 }
 void EventoCorrer::enviarPorSocket(Socket& s) {
 	s.enviarInt(tipo);
-	s.enviarInt(atributos["x"]);
-	s.enviarInt(atributos["y"]);
+	s.enviarInt(atributos["direccion"]);
+	s.enviarInt(atributos["idLanzador"]);
 }
 
 

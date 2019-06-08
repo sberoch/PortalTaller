@@ -75,7 +75,7 @@ public:
 
 class EventoCorrer : public Evento {
 public:
-	EventoCorrer(int x, int y);
+	EventoCorrer(int direccion, int idLanzador);
 	EventoCorrer(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
 	virtual void actualizarEscena(Escena& escena) {}

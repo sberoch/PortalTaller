@@ -1,5 +1,4 @@
 #include "Escena.h"
-#include "../Common/Evento.h"
 #include <iostream>
 
 #include <thread>
@@ -13,7 +12,8 @@ Escena::Escena(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, Cola<Even
 	creadorTexturas(window),
 	colaEnviar(colaEnviar),
 	colaRecibir(colaRecibir),
-	conv(100) {
+	conv(100),
+	handler(colaEnviar) {
 
 	audio.reproducirMusica();
 	fullscreen = true;
@@ -50,7 +50,11 @@ void Escena::actualizar() {
 }
 
 void Escena::manejarEventos() {
-	Evento* evento;
+	handler.handle();
+	if (handler.termino()) {
+		terminado = true;
+	}
+	/*Evento* evento;
 	while (SDL_PollEvent(&event)) {
 		if (event.type == SDL_QUIT) {
 			terminado = true;
@@ -143,7 +147,7 @@ void Escena::manejarEventos() {
 				colaEnviar.put(evento);
 			}
 		}
-	}
+	}*/
 }
 
 void Escena::actualizarCon(EventoCrearItem& evento) {
@@ -181,6 +185,7 @@ void Escena::actualizarCon(EventoRotacion& evento) {
 
 void Escena::actualizarCon(EventoCreacionPersonaje& evento) {
 	this->miId = evento.atributos["idPersonaje"];
+	handler.setPlayerId(miId);
 }
 
 Escena::~Escena() {
@@ -191,9 +196,9 @@ Escena::~Escena() {
 
 void Escena::recibirMiIdentificador() {
 	Evento* eventoCreacionPersonaje;
-	bool mandoId = false;
-	while(!mandoId) {
-		mandoId = colaRecibir.get(eventoCreacionPersonaje);
+	bool recibiId = false;
+	while(!recibiId) {
+		recibiId = colaRecibir.get(eventoCreacionPersonaje);
 	}
 	eventoCreacionPersonaje->actualizarEscena(*this);
 	delete eventoCreacionPersonaje;
