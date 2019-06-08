@@ -134,17 +134,6 @@ void Mundo::agregarBloqueMetalTriangular(Posicion& posicion, Rotacion& r) {
         Rotacion delta(r.anguloGrados() + 135);
         fisicas_.agregarSuperficie(*metalDiagonal, posicion, formaDiagonal, delta);
     }
-    
-    
-    
-    
-    
-    
-    // Se agregan sensores de metal, que responden a colisiones    
-    
-    //std::shared_ptr<SuperficieMetal> metalArriba(new SuperficieMetal(fisicas_, direccionArriba));
-    //bloques_[metalArriba->uuid()] = metalArriba;
-    //fisicas_.agregarSuperficie(*metalArriba, posicionArriba, formaHorizontal);
 }
 
 void Mundo::agregarJugador(Posicion& posicion) {
