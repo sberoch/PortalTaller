@@ -13,7 +13,7 @@ Escena::Escena(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, Cola<Even
 	colaEnviar(colaEnviar),
 	colaRecibir(colaRecibir),
 	conv(100),
-	handler(colaEnviar) {
+	handler(window, colaEnviar, audio) {
 
 	audio.reproducirMusica();
 	fullscreen = true;
@@ -54,100 +54,6 @@ void Escena::manejarEventos() {
 	if (handler.termino()) {
 		terminado = true;
 	}
-	/*Evento* evento;
-	while (SDL_PollEvent(&event)) {
-		if (event.type == SDL_QUIT) {
-			terminado = true;
-		} else if (event.type == SDL_MOUSEBUTTONDOWN) {
-			int x, y;
-			SDL_GetMouseState(&x, &y);
-			if (ctrl) {
-				//evento = new EventoPinTool(x, y);
-				//colaEnviar.put(evento);
-				evento = new EventoCrearItem(ID_PIN_TOOL, x, y, 0);
-				colaEnviar.put(evento);
-			}
-			else if (event.button.button == SDL_BUTTON_LEFT) {
-				//evento = new EventoPortalAzul(dirX, dirY);
-				//colaEnviar.put(evento);
-				evento = new EventoCambioEstado(ESTADO_DISPARANDO, miId);
-				colaEnviar.put(evento);
-				evento = new EventoCrearItem(ID_PORTAL_AZUL, x, y, 45);
-				colaEnviar.put(evento);
-				audio.reproducirEfecto(EFECTO_DISPARO);
-			}
-			else if (event.button.button == SDL_BUTTON_RIGHT) {
-				//evento = new EventoPortalNaranja(dirX, dirY);
-				//colaEnviar.put(evento);
-				evento = new EventoCambioEstado(ESTADO_DISPARANDO, miId);
-				colaEnviar.put(evento);
-				evento = new EventoCrearItem(ID_PORTAL_NARANJA, x, y, 135);
-				colaEnviar.put(evento);
-				audio.reproducirEfecto(EFECTO_DISPARO);
-			}
-
-		} else if (event.type == SDL_KEYDOWN) {
-			SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
-			switch (keyEvent.keysym.sym) {
-				case SDLK_a: {
-					//evento = new EventoCorrer();
-					//colaEnviar.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
-					evento = new EventoMover(-15, 0, miId);
-					colaEnviar.put(evento);
-					evento = new EventoCambioEstado(ESTADO_CORRIENDO, miId);
-					colaEnviar.put(evento);
-					evento = new EventoFlip(IZQUIERDA, miId);
-					colaEnviar.put(evento);
-					break;
-				}
-				case SDLK_d: {
-					// evento = new EventoCorrer();
-					//colaEnviar.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
-					evento = new EventoMover(15, 0, miId);
-					colaEnviar.put(evento);
-					evento = new EventoCambioEstado(ESTADO_CORRIENDO, miId);
-					colaEnviar.put(evento);
-					evento = new EventoFlip(DERECHA, miId);
-					colaEnviar.put(evento);
-					break;
-				}
-				case SDLK_w: {
-					// evento = new EventoSalto();
-					//colaEnviar.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
-					evento = new EventoMover(0, -10, miId);
-					colaEnviar.put(evento);
-					evento = new EventoCambioEstado(ESTADO_SALTANDO, miId);
-					colaEnviar.put(evento);
-					audio.reproducirEfecto(EFECTO_SALTO);
-					break;
-				}
-				case SDLK_k: {
-					evento = new EventoCambioEstado(ESTADO_MUERTO, miId);
-					colaEnviar.put(evento);
-					break;
-				}
-				case SDLK_F11:
-					if (fullscreen) {
-						window.setFullscreen(false);
-						fullscreen = false;
-					} else {
-						window.setFullscreen(true);
-						fullscreen = true;
-					}
-					break;
-				case SDLK_LCTRL: ctrl = true; break;
-			}
-
-		} else if (event.type == SDL_KEYUP) {
-			SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
-			if (keyEvent.keysym.sym == SDLK_LCTRL) {
-				ctrl = false; 
-			} else {
-				evento = new EventoCambioEstado(ESTADO_IDLE, miId);
-				colaEnviar.put(evento);
-			}
-		}
-	}*/
 }
 
 void Escena::actualizarCon(EventoCrearItem& evento) {

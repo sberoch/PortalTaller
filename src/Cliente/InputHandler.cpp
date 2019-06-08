@@ -2,21 +2,15 @@
 #include <iostream>
 #include "../Common/Evento.h"
 
-InputHandler::InputHandler(ColaBloqueante<Evento*>& colaEnviar) :
-	colaEnviar(colaEnviar) {
+InputHandler::InputHandler(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, Audio& audio) :
+	window(window),
+	colaEnviar(colaEnviar),
+	audio(audio) {
 	terminado = false;
 }
 
 void InputHandler::setPlayerId(int playerId) {
 	this->playerId = playerId;
-	//Test, poner los metodos que voy a mandar efectivamente
-	eventosTeclado.insert(std::make_pair(SDLK_a, 
-						new EventoCambioEstado(ESTADO_CORRIENDO, playerId)));
-	eventosTeclado.insert(std::make_pair(SDLK_d, 
-						new EventoCambioEstado(ESTADO_MUERTO, playerId)));
-	eventosTeclado.insert(std::make_pair(SDLK_w, 
-						new EventoCambioEstado(ESTADO_SALTANDO, playerId)));
-
 }
 
 bool InputHandler::termino() {
@@ -24,42 +18,98 @@ bool InputHandler::termino() {
 }
 
 void InputHandler::handle() {
-	while(SDL_PollEvent(&event)) {
-	    if (event.type == SDL_QUIT) {
+	Evento* evento;
+	while (SDL_PollEvent(&event)) {
+		if (event.type == SDL_QUIT) {
 			terminado = true;
+		} else if (event.type == SDL_MOUSEBUTTONDOWN) {
+			int x, y;
+			SDL_GetMouseState(&x, &y);
+			if (ctrl) {
+				//evento = new EventoPinTool(x, y);
+				//colaEnviar.put(evento);
+				evento = new EventoCrearItem(ID_PIN_TOOL, x, y, 0);
+				colaEnviar.put(evento);
+			}
+			else if (event.button.button == SDL_BUTTON_LEFT) {
+				//evento = new EventoPortalAzul(dirX, dirY);
+				//colaEnviar.put(evento);
+				evento = new EventoCambioEstado(ESTADO_DISPARANDO, playerId);
+				colaEnviar.put(evento);
+				evento = new EventoCrearItem(ID_PORTAL_AZUL, x, y, 45);
+				colaEnviar.put(evento);
+				audio.reproducirEfecto(EFECTO_DISPARO);
+			}
+			else if (event.button.button == SDL_BUTTON_RIGHT) {
+				//evento = new EventoPortalNaranja(dirX, dirY);
+				//colaEnviar.put(evento);
+				evento = new EventoCambioEstado(ESTADO_DISPARANDO, playerId);
+				colaEnviar.put(evento);
+				evento = new EventoCrearItem(ID_PORTAL_NARANJA, x, y, 135);
+				colaEnviar.put(evento);
+				audio.reproducirEfecto(EFECTO_DISPARO);
+			}
 
-		} else if (esKeyDown(event)) {
+		} else if (event.type == SDL_KEYDOWN) {
 			SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
-			handleTeclado(keyEvent.keysym.sym);
+			switch (keyEvent.keysym.sym) {
+				case SDLK_a: {
+					//evento = new EventoCorrer();
+					//colaEnviar.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
+					evento = new EventoMover(-15, 0, playerId);
+					colaEnviar.put(evento);
+					evento = new EventoCambioEstado(ESTADO_CORRIENDO, playerId);
+					colaEnviar.put(evento);
+					evento = new EventoFlip(IZQUIERDA, playerId);
+					colaEnviar.put(evento);
+					break;
+				}
+				case SDLK_d: {
+					// evento = new EventoCorrer();
+					//colaEnviar.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
+					evento = new EventoMover(15, 0, playerId);
+					colaEnviar.put(evento);
+					evento = new EventoCambioEstado(ESTADO_CORRIENDO, playerId);
+					colaEnviar.put(evento);
+					evento = new EventoFlip(DERECHA, playerId);
+					colaEnviar.put(evento);
+					break;
+				}
+				case SDLK_w: {
+					// evento = new EventoSalto();
+					//colaEnviar.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
+					evento = new EventoMover(0, -10, playerId);
+					colaEnviar.put(evento);
+					evento = new EventoCambioEstado(ESTADO_SALTANDO, playerId);
+					colaEnviar.put(evento);
+					audio.reproducirEfecto(EFECTO_SALTO);
+					break;
+				}
+				case SDLK_k: {
+					evento = new EventoCambioEstado(ESTADO_MUERTO, playerId);
+					colaEnviar.put(evento);
+					break;
+				}
+				case SDLK_F11:
+					if (fullscreen) {
+						window.setFullscreen(false);
+						fullscreen = false;
+					} else {
+						window.setFullscreen(true);
+						fullscreen = true;
+					}
+					break;
+				case SDLK_LCTRL: ctrl = true; break;
+			}
 
-		} else if (esMouse(event)) {
-			handleMouse(event.button.button);
-
-		} else if (esKeyUp(event)) {
-			Evento* evento = new EventoCambioEstado(ESTADO_IDLE, playerId);
-			colaEnviar.put(evento);
+		} else if (event.type == SDL_KEYUP) {
+			SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
+			if (keyEvent.keysym.sym == SDLK_LCTRL) {
+				ctrl = false; 
+			} else {
+				evento = new EventoCambioEstado(ESTADO_IDLE, playerId);
+				colaEnviar.put(evento);
+			}
 		}
 	}
-}
-
-bool InputHandler::esKeyDown(SDL_Event event) const {
-	return (event.type == SDL_KEYDOWN);
-}
-
-bool InputHandler::esKeyUp(SDL_Event event) const {
-	return (event.type == SDL_KEYUP);
-}
-
-bool InputHandler::esMouse(SDL_Event event) const {
-	return (event.type == SDL_MOUSEBUTTONDOWN);
-}
-
-void InputHandler::handleTeclado(uint16_t button) {
-	if (eventosTeclado.find(button) != eventosTeclado.end()) {
-		Evento* evento = eventosTeclado[button];
-		colaEnviar.put(evento);
-	}
-}
-
-void InputHandler::handleMouse(uint8_t button) {
 }

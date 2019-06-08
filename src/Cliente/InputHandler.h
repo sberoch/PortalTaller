@@ -2,33 +2,28 @@
 #define INPUT_HANDLER_H
 
 #include <SDL2/SDL.h>
-#include <map>
-#include <cstdint>
+#include "SdlWindow.h"
 #include "../Common/Constantes.h"
 #include "../Common/cola_bloqueante.h"
+#include "Audio.h"
 
 class Evento;
 
 class InputHandler {
 private:
+	SdlWindow& window;
 	ColaBloqueante<Evento*>& colaEnviar;
+	Audio& audio;
+	SDL_Event event;
 	int playerId;
 	bool terminado;
-	SDL_Event event;
-
-	std::map<uint16_t, Evento*> eventosTeclado;
-	std::map<uint8_t, Evento*> eventosMouse;
+	bool ctrl;
+	bool fullscreen;
 public:
-	InputHandler(ColaBloqueante<Evento*>& colaEnviar);
+	InputHandler(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, Audio& audio);
 	void setPlayerId(int playerId);
 	bool termino();
 	void handle();
-private:
-	bool esKeyDown(SDL_Event event) const;
-	bool esKeyUp(SDL_Event event) const;
-	bool esMouse(SDL_Event event) const;
-	void handleTeclado(uint16_t button);
-	void handleMouse(uint8_t button);
 };
 
 #endif // INPUT_HANDLER_H
