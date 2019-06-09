@@ -9,12 +9,12 @@
 
 Escena::Escena(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, Cola<Evento*>& colaRecibir) : 
 	window(window),
+	conv(100),
 	creadorTexturas(window),
 	fondoTex("fondo.png", window),
 	fondo(fondoTex),
 	colaEnviar(colaEnviar),
 	colaRecibir(colaRecibir),
-	conv(100),
 	handler(window, colaEnviar, audio) {
 
 	audio.reproducirMusica();

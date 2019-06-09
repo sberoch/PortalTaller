@@ -10,6 +10,7 @@ public:
 	VistaPinTool(SdlTexture& tex);
 	virtual void dibujarEn(int x, int y);
 	virtual void asignarColorSegunPlayer(int playerId) override;
+	virtual ~VistaPinTool() {}
 };
 
 #endif

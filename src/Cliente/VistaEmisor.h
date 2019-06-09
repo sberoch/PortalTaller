@@ -9,6 +9,7 @@ private:
 public:
 	VistaEmisor(SdlTexture& tex, int angulo);
 	virtual void dibujarEn(int x, int y);
+	virtual ~VistaEmisor() {}
 };
 
 #endif

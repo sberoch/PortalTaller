@@ -15,6 +15,7 @@ public:
 	virtual void mover(int x, int y) override;
 	virtual void asignarEstado(int estado) override;
 	virtual void flip(int flip) override;
+	virtual ~VistaPersonaje() {}
 };
 
 #endif

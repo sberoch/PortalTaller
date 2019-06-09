@@ -24,6 +24,7 @@ public:
 	void setPosInicial(int x, int y);
 	void setId(int id);
 	int getId();
+	virtual ~VistaObjeto() {}
 };
 
 #endif

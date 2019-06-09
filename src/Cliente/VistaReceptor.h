@@ -9,6 +9,7 @@ private:
 public:
 	VistaReceptor(SdlTexture& tex, int angulo);
 	virtual void dibujarEn(int x, int y);
+	virtual ~VistaReceptor() {}
 };
 
 #endif

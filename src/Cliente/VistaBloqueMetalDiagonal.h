@@ -9,6 +9,7 @@ private:
 public:
 	VistaBloqueMetalDiagonal(SdlTexture& tex, int angulo);
 	virtual void dibujarEn(int x, int y);
+	virtual ~VistaBloqueMetalDiagonal() {}
 };
 
 #endif

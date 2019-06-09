@@ -10,6 +10,7 @@ public:
 	VistaBoton(SdlTexture& tex);
 	virtual void asignarEstado(int estado) override;
 	virtual void dibujarEn(int x, int y);
+	virtual ~VistaBoton() {}
 };
 
 #endif

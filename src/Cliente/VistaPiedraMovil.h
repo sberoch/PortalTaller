@@ -8,6 +8,7 @@ public:
 	VistaPiedraMovil(SdlTexture& tex);
 	void dibujarEn(int x, int y);
 	void mover(int x, int y);
+	virtual ~VistaPiedraMovil() {}
 };
 
 #endif

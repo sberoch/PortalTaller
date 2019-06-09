@@ -9,6 +9,7 @@ protected:
 public:
 	virtual void dibujarEn(int x, int y) = 0;
 	virtual void mover(int x, int y) = 0;
+	virtual ~VistaObjetoMovil() {}
 };
 
 #endif

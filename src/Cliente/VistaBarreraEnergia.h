@@ -9,6 +9,7 @@ private:
 public:
 	VistaBarreraEnergia(SdlTexture& tex, int angulo);
 	virtual void dibujarEn(int x, int y);
+	virtual ~VistaBarreraEnergia() {}
 };
 
 #endif

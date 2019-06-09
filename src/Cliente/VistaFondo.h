@@ -8,6 +8,7 @@ public:
 	VistaFondo(const SdlTexture& tex);
 	void setDimensiones(int x, int y);
  	virtual void dibujarEn(int x, int y) override;
+ 	virtual ~VistaFondo() {}
 };
 
 #endif // VISTA_FONDO_H

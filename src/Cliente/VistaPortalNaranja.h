@@ -9,6 +9,7 @@ private:
 public:
 	VistaPortalNaranja(SdlTexture& tex, int angulo);
 	virtual void dibujarEn(int x, int y);
+	virtual ~VistaPortalNaranja() {}
 };
 
 #endif

@@ -7,6 +7,7 @@ class VistaTorta : public VistaObjeto {
 public:
 	VistaTorta(SdlTexture& tex);
 	virtual void dibujarEn(int x, int y);
+	virtual ~VistaTorta() {}
 };
 
 #endif

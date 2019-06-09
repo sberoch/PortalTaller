@@ -29,8 +29,8 @@ void InputHandler::handle() {
 			int x, y, xScreen, yScreen;
 			SDL_GetMouseState(&x, &y);
 			window.getWindowSize(&xScreen, &yScreen);
-			int dirX = x - (xScreen/2); 
-			int dirY = y - (yScreen/2 + 50);
+			//int dirX = x - (xScreen/2); 
+			//int dirY = y - (yScreen/2 + 50);
 			if (ctrl) {
 				//evento = new EventoPinTool(conv.pixelABloque(x), conv.pixelABloque(y));
 				//colaEnviar.put(evento);
