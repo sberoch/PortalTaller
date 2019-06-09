@@ -3,6 +3,18 @@
 
 #include <iostream>
 
+
+EventoIniciarPartida::EventoIniciarPartida() {
+	tipo = EVENTO_INICIAR_PARTIDA;
+}
+EventoIniciarPartida::EventoIniciarPartida(Socket& s) {
+	tipo = EVENTO_INICIAR_PARTIDA;
+}
+void EventoIniciarPartida::enviarPorSocket(Socket& s) {
+	s.enviarInt(tipo);
+}
+
+
 EventoCreacionPersonaje::EventoCreacionPersonaje(int idPersonaje) {
 	tipo = EVENTO_CREACION_PERSONAJE;
 	atributos["idPersonaje"] = idPersonaje;
