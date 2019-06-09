@@ -2,10 +2,10 @@
 #define EVENTO 
 
 #include "../Cliente/Escena.h"
-#include "Socket.h"
 #include <map>
 
 class Escena;
+class Socket;
 
 class Evento {
 protected:
