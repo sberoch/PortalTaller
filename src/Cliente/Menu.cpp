@@ -6,6 +6,7 @@
 #include "../Common/Evento.h"
 #include <thread>
 #include <chrono>
+#include <iostream>
 
 Menu::Menu(int xScreen, int yScreen) : 
 	xScreen(xScreen), yScreen(yScreen), 
@@ -21,11 +22,11 @@ void Menu::ejecutar() {
 	SDL_Event e;
 	while(!terminado) {
 		asignarPosicionBotones();
-		while(SDL_PollEvent(&e)) {
-		    handleEvents(e);
-			dibujar();
-		}
+		dibujar();
+		handleEvents(e);
 	}
+	std::cout << "llega aca\n";
+
 }
 
 void Menu::dibujar() {
@@ -38,28 +39,33 @@ void Menu::dibujar() {
 }
 
 void Menu::handleEvents(SDL_Event& e) {
-	if (e.type == SDL_QUIT) {
-		terminado = true;
-	} else if (e.type == SDL_MOUSEBUTTONDOWN) {
-		int x, y;
-		SDL_GetMouseState(&x, &y);
-		if (botonSalir.estaAdentro(x, y)) {
+	while (SDL_PollEvent(&e) && !terminado) {
+		if (e.type == SDL_QUIT) {
 			terminado = true;
+		} else if (e.type == SDL_MOUSEBUTTONDOWN) {
+			int x, y;
+			SDL_GetMouseState(&x, &y);
+			if (botonSalir.estaAdentro(x, y)) {
+				terminado = true;
+			}
+			if (botonJugar.estaAdentro(x, y)) {
+				audio.pararMusica();
+				iniciarJuego();
+				terminado = true;
+			}
+		} else if (e.type == SDL_KEYDOWN) {
+			SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) e;
+			if (keyEvent.keysym.sym == SDLK_F11) window.setFullscreen(false);
 		}
-		if (botonJugar.estaAdentro(x, y)) {
-			audio.pararMusica();
-			iniciarJuego();
-			terminado = true;
-		}
-	} else if (e.type == SDL_KEYDOWN) {
-		SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) e;
-		if (keyEvent.keysym.sym == SDLK_F11) window.setFullscreen(false);
 	}
 }
 
 void Menu::iniciarJuego() {
 	ColaBloqueante<Evento*> colaEnviar;
 	Cola<Evento*> colaRecibir;
+
+	Evento* eventoIniciar = new EventoIniciarPartida();
+	colaEnviar.put(eventoIniciar);
 
 	RecibidorEventos recibidorEventos(colaRecibir); 
 	EnviadorEventos enviadorEventos(colaEnviar);
@@ -69,9 +75,9 @@ void Menu::iniciarJuego() {
 	Escena escena(window, colaEnviar, colaRecibir);
  
 	while(!escena.termino()) {
-		escena.manejarEventos();
 		escena.recibirCambios();
 		escena.actualizar();
+		escena.manejarEventos();
 	}
 
 	recibidorEventos.detener();

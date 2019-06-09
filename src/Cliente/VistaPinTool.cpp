@@ -5,6 +5,7 @@
 VistaPinTool::VistaPinTool(SdlTexture& tex) {
 	this->textura = tex;
 	this->frame = 0;
+	color = 0;
 	for (int i = 0; i < CANT_CLIPS; ++i) {
 		Area area(i*300, 50 + color*300, 300, 450);
 		clips.push_back(area);

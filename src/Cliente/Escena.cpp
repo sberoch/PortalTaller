@@ -16,9 +16,7 @@ Escena::Escena(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, Cola<Even
 	handler(window, colaEnviar, audio) {
 
 	audio.reproducirMusica();
-	fullscreen = true;
 	terminado = false;
-	ctrl = false;
 	miId = 0;
 	deltaCamaraX = 0;
 	deltaCamaraY = 0;

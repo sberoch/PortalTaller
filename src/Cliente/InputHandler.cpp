@@ -7,6 +7,8 @@ InputHandler::InputHandler(SdlWindow& window, ColaBloqueante<Evento*>& colaEnvia
 	colaEnviar(colaEnviar),
 	audio(audio) {
 	terminado = false;
+	fullscreen = true;
+	ctrl = false;
 }
 
 void InputHandler::setPlayerId(int playerId) {
@@ -23,8 +25,11 @@ void InputHandler::handle() {
 		if (event.type == SDL_QUIT) {
 			terminado = true;
 		} else if (event.type == SDL_MOUSEBUTTONDOWN) {
-			int x, y;
+			int x, y, xScreen, yScreen;
 			SDL_GetMouseState(&x, &y);
+			window.getWindowSize(&xScreen, &yScreen);
+			int dirX = x - (xScreen/2); 
+			int dirY = y - (yScreen/2 + 50);
 			if (ctrl) {
 				//evento = new EventoPinTool(x, y);
 				//colaEnviar.put(evento);

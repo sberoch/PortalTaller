@@ -26,7 +26,6 @@ class Escena {
 private:
 	Audio audio;
 	SdlWindow window;
-	bool fullscreen;
 
 	Conversor conv;
 	CreadorTexturas creadorTexturas;
@@ -36,14 +35,10 @@ private:
 	Cola<Evento*>& colaRecibir;  
 
 	InputHandler handler;
-	SDL_Event event;
 	bool terminado;
-	bool ctrl;
 
 	int miId;
 	int deltaCamaraX, deltaCamaraY;
-
-
 	
 public:
 	Escena(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, 
