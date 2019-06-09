@@ -16,3 +16,8 @@ void EscuchadorCliente::cambiarDestinatario(Handler* nuevoDestinatario) {
 bool EscuchadorCliente::finalizado() {
     return finalizado_;
 }
+
+void EscuchadorCliente::run() {
+    // Recibir y manejar eventos
+    // Cambiar destinatario segun corresponda.
+}

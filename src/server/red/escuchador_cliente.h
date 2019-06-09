@@ -16,7 +16,6 @@ class EscuchadorCliente : public Thread {
     public:
     EscuchadorCliente(Socket&& skt, Handler* unDestinatario);
     virtual void run() override;
-    virtual void join() override;
     void cambiarDestinatario(Handler* nuevoDestinatario);
     bool finalizado();
 };
