@@ -20,8 +20,8 @@ private:
 public:
 	CreadorTexturas(const SdlWindow& window);
 	VistaObjeto* crear(int tipo, int x, int y, int angulo);
-	~CreadorTexturas();
-	
+private:
+	void iniciarColores();	
 };
 
 #endif

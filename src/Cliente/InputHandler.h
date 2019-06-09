@@ -6,6 +6,7 @@
 #include "../Common/Constantes.h"
 #include "../Common/cola_bloqueante.h"
 #include "Audio.h"
+#include "../Common/Conversor.h"
 
 class Evento;
 
@@ -14,6 +15,8 @@ private:
 	SdlWindow& window;
 	ColaBloqueante<Evento*>& colaEnviar;
 	Audio& audio;
+	Conversor conv;
+
 	SDL_Event event;
 	int playerId;
 	bool terminado;

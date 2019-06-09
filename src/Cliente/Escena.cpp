@@ -10,6 +10,8 @@
 Escena::Escena(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, Cola<Evento*>& colaRecibir) : 
 	window(window),
 	creadorTexturas(window),
+	fondoTex("fondo.png", window),
+	fondo(fondoTex),
 	colaEnviar(colaEnviar),
 	colaRecibir(colaRecibir),
 	conv(100),
@@ -21,6 +23,7 @@ Escena::Escena(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, Cola<Even
 	deltaCamaraX = 0;
 	deltaCamaraY = 0;
 	window.fill();
+	fondoTex.setColor(64, 64, 64);
 	recibirMiIdentificador();
 	crearTerreno();
 }
@@ -41,6 +44,7 @@ void Escena::recibirCambios() {
 void Escena::actualizar() {
 	window.fill();
 	std::this_thread::sleep_for(std::chrono::milliseconds(20));
+	actualizarFondo();
 	for (auto& it : objetosDelJuego) {
 		it.second->dibujarEn(deltaCamaraX, deltaCamaraY);
 	}
@@ -128,5 +132,17 @@ void Escena::crearTerreno() {
 			deltaCamaraY = screenY/2 - y;
 		}
 		objetosDelJuego.insert(std::make_pair(vo->getId(), vo));
+	}
+}
+
+void Escena::actualizarFondo() {
+	int xScreen, yScreen;
+	window.getWindowSize(&xScreen, &yScreen);
+	fondo.setDimensiones(xScreen, yScreen);
+	for(unsigned i = 0; i < 5; ++i) {
+		for(unsigned j = 0; j < 2; ++j) {
+			fondo.dibujarEn(-xScreen*2 + xScreen*i + deltaCamaraX/2,
+							-yScreen/2 + yScreen*j + deltaCamaraY/2);
+		}
 	}
 }

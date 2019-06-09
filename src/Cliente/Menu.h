@@ -3,7 +3,7 @@
 
 #include "SdlWindow.h"
 #include "SdlTexture.h"
-#include "VistaImagenMenu.h"
+#include "VistaFondo.h"
 #include "Audio.h"
 
 class Menu {
@@ -12,7 +12,7 @@ private:
 	int yScreen;
 	SdlWindow window;
 	SdlTexture imagenMenuTex;
-	VistaImagenMenu fondo;
+	VistaFondo fondo;
 	Audio audio;
 	bool terminado;
 

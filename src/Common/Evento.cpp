@@ -183,6 +183,20 @@ void EventoSalto::enviarPorSocket(Socket& s) {
 }
 
 
+EventoSuicidio::EventoSuicidio(int idLanzador) {
+	tipo = EVENTO_SUICIDIO;
+	atributos["idLanzador"] = idLanzador;
+}
+EventoSuicidio::EventoSuicidio(Socket& s) {
+	tipo = EVENTO_SUICIDIO;
+	atributos["idLanzador"] = s.recibirInt();
+}
+void EventoSuicidio::enviarPorSocket(Socket& s) {
+	s.enviarInt(tipo);
+	s.enviarInt(atributos["idLanzador"]);
+}
+
+
 EventoFlip::EventoFlip(int flip, int idItem) {
 	tipo = EVENTO_FLIP;
 	atributos["flip"] = flip;

@@ -97,6 +97,14 @@ public:
 	virtual void actualizarEscena(Escena& escena) {}
 };
 
+class EventoSuicidio : public Evento {
+public:
+	EventoSuicidio(int idLanzador);
+	EventoSuicidio(Socket& s);
+	virtual void enviarPorSocket(Socket& s);
+	virtual void actualizarEscena(Escena& escena) {}
+};
+
 class EventoSalto : public Evento {
 public:
 	EventoSalto(int idLanzador);

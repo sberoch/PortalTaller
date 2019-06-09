@@ -25,8 +25,6 @@ void Menu::ejecutar() {
 		dibujar();
 		handleEvents(e);
 	}
-	std::cout << "llega aca\n";
-
 }
 
 void Menu::dibujar() {

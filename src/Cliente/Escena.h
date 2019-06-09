@@ -4,12 +4,14 @@
 #include <SDL2/SDL.h>
 #include <vector>
 #include "SdlWindow.h"
+#include "SdlTexture.h"
+#include "VistaFondo.h"
 #include "CreadorTexturas.h"
 #include "../Common/Cola.h"
 #include "../Common/cola_bloqueante.h"
 #include "../Common/Evento.h"
 #include "Audio.h"
-#include "Conversor.h"
+#include "../Common/Conversor.h"
 #include "InputHandler.h"
 
 //FD
@@ -30,6 +32,8 @@ private:
 	Conversor conv;
 	CreadorTexturas creadorTexturas;
 	std::map<int, VistaObjeto*> objetosDelJuego;
+	SdlTexture fondoTex;
+	VistaFondo fondo;
 
 	ColaBloqueante<Evento*>& colaEnviar;
 	Cola<Evento*>& colaRecibir;  
@@ -60,6 +64,7 @@ public:
 private:
 	void crearTerreno();
 	void recibirMiIdentificador();
+	void actualizarFondo();
 };
 
 #endif

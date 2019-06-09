@@ -19,5 +19,6 @@ Evento* Serializador::recibirEvento(Socket& socket) {
 		case(EVENTO_CREAR_ITEM): return new EventoCrearItem(socket);
 		case(EVENTO_CREACION_PERSONAJE): return new EventoCreacionPersonaje(socket);
 		case(EVENTO_INICIAR_PARTIDA): return new EventoIniciarPartida(socket);
+		case(EVENTO_SUICIDIO): return new EventoSuicidio(socket);
 	}
 }

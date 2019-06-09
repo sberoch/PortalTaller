@@ -5,7 +5,8 @@
 InputHandler::InputHandler(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, Audio& audio) :
 	window(window),
 	colaEnviar(colaEnviar),
-	audio(audio) {
+	audio(audio),
+	conv(100) {
 	terminado = false;
 	fullscreen = true;
 	ctrl = false;
@@ -31,7 +32,7 @@ void InputHandler::handle() {
 			int dirX = x - (xScreen/2); 
 			int dirY = y - (yScreen/2 + 50);
 			if (ctrl) {
-				//evento = new EventoPinTool(x, y);
+				//evento = new EventoPinTool(conv.pixelABloque(x), conv.pixelABloque(y));
 				//colaEnviar.put(evento);
 				evento = new EventoCrearItem(ID_PIN_TOOL, x, y, 0);
 				colaEnviar.put(evento);
@@ -59,7 +60,7 @@ void InputHandler::handle() {
 			SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
 			switch (keyEvent.keysym.sym) {
 				case SDLK_a: {
-					//evento = new EventoCorrer();
+					//evento = new EventoCorrer(IZQUIERDA, playerId);
 					//colaEnviar.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
 					evento = new EventoMover(-15, 0, playerId);
 					colaEnviar.put(evento);
@@ -70,7 +71,7 @@ void InputHandler::handle() {
 					break;
 				}
 				case SDLK_d: {
-					// evento = new EventoCorrer();
+					// evento = new EventoCorrer(DERECHA, playerId);
 					//colaEnviar.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
 					evento = new EventoMover(15, 0, playerId);
 					colaEnviar.put(evento);
@@ -81,7 +82,7 @@ void InputHandler::handle() {
 					break;
 				}
 				case SDLK_w: {
-					// evento = new EventoSalto();
+					// evento = new EventoSalto(playerId);
 					//colaEnviar.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
 					evento = new EventoMover(0, -10, playerId);
 					colaEnviar.put(evento);
@@ -91,6 +92,8 @@ void InputHandler::handle() {
 					break;
 				}
 				case SDLK_k: {
+					//evento = new EventoSuicidio(playerId);
+					//colaEnviar.put(evento);
 					evento = new EventoCambioEstado(ESTADO_MUERTO, playerId);
 					colaEnviar.put(evento);
 					break;
@@ -112,6 +115,8 @@ void InputHandler::handle() {
 			if (keyEvent.keysym.sym == SDLK_LCTRL) {
 				ctrl = false; 
 			} else {
+				//evento = new EventoDejarDeMoverse(playerId);
+				//colaEnviar.put(evento);
 				evento = new EventoCambioEstado(ESTADO_IDLE, playerId);
 				colaEnviar.put(evento);
 			}

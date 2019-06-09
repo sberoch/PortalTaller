@@ -23,15 +23,16 @@
 CreadorTexturas::CreadorTexturas(const SdlWindow& window) :
 	bloqueTex("bloque_metal_diag.png", window), 
 	emisRecpTex("emisor_receptor.png", window),
-	p1Tex("chell1.png", window), p2Tex("chell2.png", window),
-	p3Tex("chell3.png", window), p4Tex("chell4.png", window),
+	p1Tex("chell.png", window), p2Tex("chell.png", window),
+	p3Tex("chell.png", window), p4Tex("chell.png", window),
 	miscTex("miscelanea.png", window),
 	puertaTex("puertas.png", window),
 	efectosTex("efectos.png", window),
-	pinToolTex("pin.png", window), 
+	pinToolTex("pin.png", window),
 	tortaTex("cake.png", window),
 	portalesTex("portales.png", window) {
 		contadorID = 0;
+		iniciarColores();
 }
 
 VistaObjeto* CreadorTexturas::crear(int tipo, int x, int y, int angulo) {
@@ -64,5 +65,9 @@ VistaObjeto* CreadorTexturas::crear(int tipo, int x, int y, int angulo) {
 	return vo;
 }
 
-CreadorTexturas::~CreadorTexturas() {
+void CreadorTexturas::iniciarColores() {
+	p1Tex.setColor(64,255,255);
+	p2Tex.setColor(255,255,64);
+	p3Tex.setColor(255,64,255);
+	p4Tex.setColor(64,64,255);
 }

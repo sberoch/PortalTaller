@@ -30,6 +30,9 @@ public:
      * Asigna una opacidad a la textura
      **/
     void setOpacity(const float opacity);
+
+    //Asigna un color para agregar a la textura
+    void setColor(int r, int g, int b);
 private:
     SDL_Texture* loadTexture(const std::string &filename);
     SDL_Renderer* renderer;
