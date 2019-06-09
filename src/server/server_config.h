@@ -2,6 +2,10 @@
 #define __SERVER_CONFIG_H__
 
 struct Config {
+    /* CONSTANTES RELACIONADAS A LA RED */
+    int MAX_EN_ESPERA = 20;
+    /* FIN CONSTANTES RELACIONADAS A LA RED */
+    
     /* CONSTANTES DE SIMULACION*/    
     float GRAVEDAD_X = 0.0f;
     float GRAVEDAD_Y = -10.0f;

@@ -1,5 +1,6 @@
 #include "Evento.h"
 #include "Constantes.h"
+#include "Socket.h"
 
 #include <iostream>
 
