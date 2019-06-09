@@ -2,6 +2,7 @@
 #define CREADOR_TEXTURAS 
 
 #include "SdlWindow.h"
+#include <memory>
 #include "SdlTexture.h"
 #include "VistaObjeto.h"
 
@@ -19,7 +20,7 @@ private:
 	SdlTexture portalesTex;
 public:
 	CreadorTexturas(const SdlWindow& window);
-	VistaObjeto* crear(int tipo, int x, int y, int angulo);
+	std::shared_ptr<VistaObjeto> crear(int tipo, int x, int y, int angulo);
 private:
 	void iniciarColores();	
 };

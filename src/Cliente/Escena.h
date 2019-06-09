@@ -3,6 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include <vector>
+#include <memory>
 #include "SdlWindow.h"
 #include "SdlTexture.h"
 #include "VistaFondo.h"
@@ -13,6 +14,8 @@
 #include "Audio.h"
 #include "../Common/Conversor.h"
 #include "InputHandler.h"
+
+typedef std::shared_ptr<VistaObjeto> VistaObjetoPtr;
 
 //FD
 class Evento;
@@ -31,7 +34,7 @@ private:
 
 	Conversor conv;
 	CreadorTexturas creadorTexturas;
-	std::map<int, VistaObjeto*> objetosDelJuego;
+	std::map<int, VistaObjetoPtr> objetosDelJuego;
 	SdlTexture fondoTex;
 	VistaFondo fondo;
 
@@ -59,8 +62,6 @@ public:
 	void actualizarCon(EventoEliminarItem& evento);
 	void actualizarCon(EventoRotacion& evento);
 	void actualizarCon(EventoCreacionPersonaje& evento);
-	~Escena();
-
 private:
 	void crearTerreno();
 	void recibirMiIdentificador();

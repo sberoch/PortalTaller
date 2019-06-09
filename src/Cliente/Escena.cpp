@@ -37,8 +37,7 @@ void Escena::recibirCambios() {
 	while (colaRecibir.get(evento)) {
 		evento->actualizarEscena(*this);
 		delete evento;
-	}
-	
+	}	
 }
 
 void Escena::actualizar() {
@@ -59,7 +58,8 @@ void Escena::manejarEventos() {
 }
 
 void Escena::actualizarCon(EventoCrearItem& evento) {
-	VistaObjeto* vo = creadorTexturas.crear(evento.atributos["idItem"], 
+	VistaObjetoPtr vo = creadorTexturas.crear(
+							evento.atributos["idItem"], 
 							evento.atributos["x"] - deltaCamaraX, 
 							evento.atributos["y"] - deltaCamaraY, 
 							evento.atributos["angulo"]);
@@ -96,12 +96,6 @@ void Escena::actualizarCon(EventoCreacionPersonaje& evento) {
 	handler.setPlayerId(miId);
 }
 
-Escena::~Escena() {
-	for (auto& it : objetosDelJuego) {
-		delete it.second;
-	}
-}
-
 void Escena::recibirMiIdentificador() {
 	Evento* eventoCreacionPersonaje;
 	bool recibiId = false;
@@ -122,7 +116,7 @@ void Escena::crearTerreno() {
 		x = conv.bloqueAPixel(objetos[i]["posX"].as<int>());
 		y = conv.bloqueAPixel(objetos[i]["posY"].as<int>());
 		angulo = objetos[i]["angulo"].as<int>();
-		VistaObjeto* vo = creadorTexturas.crear(id, x, y, angulo);
+		VistaObjetoPtr vo = creadorTexturas.crear(id, x, y, angulo);
 
 		if (vo->getId() == miId) {
 			//Centrar camara en mi jugador
@@ -139,8 +133,8 @@ void Escena::actualizarFondo() {
 	int xScreen, yScreen;
 	window.getWindowSize(&xScreen, &yScreen);
 	fondo.setDimensiones(xScreen, yScreen);
-	for(unsigned i = 0; i < 5; ++i) {
-		for(unsigned j = 0; j < 2; ++j) {
+	for(int i = 0; i < 5; ++i) {
+		for(int j = 0; j < 2; ++j) {
 			fondo.dibujarEn(-xScreen*2 + xScreen*i + deltaCamaraX/2,
 							-yScreen/2 + yScreen*j + deltaCamaraY/2);
 		}

@@ -6,23 +6,23 @@ void VistaObjeto::setPosInicial(int x, int y) {
 }
 
 void VistaObjeto::asignarEstado(int estado) {
-	std::cout << "Asignando estado a objeto incorrecto\n";
+	throw std::runtime_error("Asignando estado a objeto incorrecto");
 }
 
 void VistaObjeto::mover(int x, int y) {
-	std::cout << "Intentando mover objeto incorrecto\n";
+	throw std::runtime_error("Intentando mover objeto incorrecto");
 }
 
 void VistaObjeto::flip(int flip) {
-	std::cout << "Intentando flipear objeto incorrecto\n";
+	throw std::runtime_error("Intentando flipear objeto incorrecto");
 }
 
 void VistaObjeto::asignarRotacion(int angulo) {
-	std::cout << "Intentando rotar objeto incorrecto\n";
+	throw std::runtime_error("Intentando rotar objeto incorrecto");
 }
 
 void VistaObjeto::asignarColorSegunPlayer(int playerId) {
-	std::cout << "Intentando asignar color a objeto incorrecto\n";
+	throw std::runtime_error("Intentando asignar color a objeto incorrecto");
 }
 
 void VistaObjeto::setId(int id) {
