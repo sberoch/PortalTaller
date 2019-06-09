@@ -21,6 +21,7 @@ void Aceptador::run() {
         try {
             Socket aceptado = skt_.aceptar();
             clientes_.push_back(new EscuchadorCliente(std::move(aceptado), &servidor_));
+            clientes_.back()->start();
             auto it = std::begin(clientes_);
             while (it != std::end(clientes_)) {
                 if ((*it)->finalizado()) {
