@@ -42,7 +42,7 @@ void InputHandler::handle() {
 				//colaEnviar.put(evento);
 				evento = new EventoCambioEstado(ESTADO_DISPARANDO, playerId);
 				colaEnviar.put(evento);
-				evento = new EventoCrearItem(ID_PORTAL_AZUL, x, y, 45);
+				evento = new EventoCrearItem(ID_PORTAL_AZUL, x, y, 90);
 				colaEnviar.put(evento);
 				audio.reproducirEfecto(EFECTO_DISPARO);
 			}
@@ -51,7 +51,7 @@ void InputHandler::handle() {
 				//colaEnviar.put(evento);
 				evento = new EventoCambioEstado(ESTADO_DISPARANDO, playerId);
 				colaEnviar.put(evento);
-				evento = new EventoCrearItem(ID_PORTAL_NARANJA, x, y, 135);
+				evento = new EventoCrearItem(ID_PORTAL_NARANJA, x, y, 0);
 				colaEnviar.put(evento);
 				audio.reproducirEfecto(EFECTO_DISPARO);
 			}

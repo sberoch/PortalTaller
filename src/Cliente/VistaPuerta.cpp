@@ -42,7 +42,9 @@ VistaPuerta::VistaPuerta(SdlTexture& tex) {
 
 void VistaPuerta::dibujarEn(int x, int y) {
 	Area srcArea = clips.at(estado);
-	Area destArea(xInicial + x, yInicial + y, tamanioHorizontal, tamanioVertical);
+	Area destArea(xInicial + x - tamanioHorizontal/2,
+				  yInicial + y - tamanioVertical/2, 
+				  tamanioHorizontal, tamanioVertical);
 	textura.render(srcArea, destArea);
 }
 

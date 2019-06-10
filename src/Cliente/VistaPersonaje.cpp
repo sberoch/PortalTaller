@@ -15,7 +15,9 @@ VistaPersonaje::VistaPersonaje(SdlTexture& tex) {
 void VistaPersonaje::dibujarEn(int x, int y) {
 	Area srcArea = animaciones.obtenerConEstado(estado, floor(frame/4));
 	tamanioHorizontal = int(srcArea.getWidth()/2);
-	Area destArea(xInicial + posX + x, yInicial + posY + y, tamanioHorizontal, tamanioVertical);
+	Area destArea(xInicial + x + posX - tamanioHorizontal/2,
+				  yInicial + y + posY - tamanioVertical/2, 
+				  tamanioHorizontal, tamanioVertical);
 	textura.render(srcArea, destArea, 0.0, rendererFlip);
 
 	++frame;

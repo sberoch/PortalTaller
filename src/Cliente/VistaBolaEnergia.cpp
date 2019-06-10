@@ -18,7 +18,9 @@ VistaBolaEnergia::VistaBolaEnergia(SdlTexture& tex, int angulo) {
 
 void VistaBolaEnergia::dibujarEn(int x, int y) {
 	Area srcArea = clips.at(floor(frame/4));
-	Area destArea(xInicial + posX + x, yInicial + posY + y, tamanioHorizontal, tamanioVertical);
+	Area destArea(xInicial + x + posX - tamanioHorizontal/2,
+				  yInicial + y + posY - tamanioVertical/2, 
+				  tamanioHorizontal, tamanioVertical);
 	textura.render(srcArea, destArea, (double) angulo, SDL_FLIP_NONE);
 	++frame;
 	if ((frame/4) >= CANT_CLIPS) {
