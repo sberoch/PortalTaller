@@ -13,6 +13,7 @@ Menu::Menu(int xScreen, int yScreen) :
 	window(xScreen, yScreen),
 	imagenMenuTex("menu.png", window),
 	fondo(imagenMenuTex) {
+		socket.conectar("localhost", "8888");
 		window.setFullscreen(true);
 		terminado = false;
 		audio.reproducirMusica();
@@ -65,8 +66,8 @@ void Menu::iniciarJuego() {
 	Evento* eventoIniciar = new EventoIniciarPartida();
 	colaEnviar.put(eventoIniciar);
 
-	RecibidorEventos recibidorEventos(colaRecibir); 
-	EnviadorEventos enviadorEventos(colaEnviar);
+	RecibidorEventos recibidorEventos(colaRecibir, socket); 
+	EnviadorEventos enviadorEventos(colaEnviar, socket);
 	recibidorEventos.iniciar();
 	enviadorEventos.iniciar();
 

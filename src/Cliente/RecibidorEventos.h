@@ -12,9 +12,9 @@ private:
 	bool termino;
 	Cola<Evento*>& cola;
 	Serializador serializador;
-	Socket socket;
+	Socket& socket;
 public:
-	RecibidorEventos(Cola<Evento*>& cola);
+	RecibidorEventos(Cola<Evento*>& cola, Socket& socket);
 	virtual void ejecutar();
 	void detener();
 };

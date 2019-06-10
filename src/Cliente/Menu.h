@@ -5,6 +5,7 @@
 #include "SdlTexture.h"
 #include "VistaFondo.h"
 #include "Audio.h"
+#include "../Common/Socket.h"
 
 class Menu {
 private:
@@ -18,6 +19,8 @@ private:
 
 	Area botonJugar;
 	Area botonSalir;
+
+	Socket socket;
 public:
 	Menu(int xScreen, int yScreen);
 	void ejecutar();

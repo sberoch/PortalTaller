@@ -2,10 +2,9 @@
 
 #include <iostream>
 
-RecibidorEventos::RecibidorEventos(Cola<Evento*>& cola) :
-	cola(cola) {
+RecibidorEventos::RecibidorEventos(Cola<Evento*>& cola, Socket& socket) :
+	cola(cola), socket(socket) {
 	termino = false;
-	socket.conectar("localhost", "8888");
 	}
 
 void RecibidorEventos::ejecutar() {

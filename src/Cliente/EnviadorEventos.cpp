@@ -1,9 +1,8 @@
 #include "EnviadorEventos.h"
 
-EnviadorEventos::EnviadorEventos(ColaBloqueante<Evento*>& cola) :
-	cola(cola) {
+EnviadorEventos::EnviadorEventos(ColaBloqueante<Evento*>& cola, Socket& socket) :
+	cola(cola), socket(socket) {
 	termino = false;
-	socket.conectar("localhost", "8888");
 }
 
 void EnviadorEventos::ejecutar() {

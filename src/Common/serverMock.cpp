@@ -12,19 +12,16 @@ int main(int argc, char const *argv[]) {
 	socket.vincularYEscuchar("8888", 50);
 	std::cout << "Socket vinculado y escuchando\n";
 
-	Socket socketEnviar = socket.aceptar();
-	std::cout << "Socket de envio aceptado\n";
-
-	Socket socketRecibir = socket.aceptar();
-	std::cout << "Socket de recepcion aceptado\n";
+	Socket peerSocket = socket.aceptar();
+	std::cout << "Socket aceptado\n";
 
 	Evento* evento = new EventoCreacionPersonaje(29);
-	evento->enviarPorSocket(socketEnviar);
+	evento->enviarPorSocket(peerSocket);
 
 	while (true) {
-		Evento* evento = serializador.recibirEvento(socketRecibir);
+		Evento* evento = serializador.recibirEvento(peerSocket);
 		std::cout << "Evento recibido\n";
-		evento->enviarPorSocket(socketEnviar);
+		evento->enviarPorSocket(peerSocket);
 		std::cout << "Evento enviado\n";
 	}
 
