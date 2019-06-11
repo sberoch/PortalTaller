@@ -22,7 +22,7 @@ public:
 	void iniciar();
 
 	//Hace un join del thread
-	void cerrar();
+	virtual void cerrar();
 
 	//Ejecucion del thread a ser implementada por quien herede esta clase
 	virtual void ejecutar() = 0;
