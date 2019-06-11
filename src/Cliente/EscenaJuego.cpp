@@ -1,4 +1,4 @@
-#include "Escena.h"
+#include "EscenaJuego.h"
 #include <iostream>
 
 #include <thread>
@@ -7,7 +7,7 @@
 #include "yaml-cpp/yaml.h"
 #include "../Common/Constantes.h"
 
-Escena::Escena(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, Cola<Evento*>& colaRecibir) : 
+EscenaJuego::EscenaJuego(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, Cola<Evento*>& colaRecibir) : 
 	window(window),
 	conv(100),
 	creadorTexturas(window),
@@ -28,11 +28,11 @@ Escena::Escena(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, Cola<Even
 	crearTerreno();
 }
 
-bool Escena::termino() {
+bool EscenaJuego::termino() {
 	return terminado;
 }
 
-void Escena::recibirCambios() {
+void EscenaJuego::actualizar() {
 	Evento* evento;
 	while (colaRecibir.get(evento)) {
 		evento->actualizarEscena(*this);
@@ -40,7 +40,7 @@ void Escena::recibirCambios() {
 	}	
 }
 
-void Escena::actualizar() {
+void EscenaJuego::dibujar() {
 	window.fill();
 	std::this_thread::sleep_for(std::chrono::milliseconds(20));
 	actualizarFondo();
@@ -50,14 +50,17 @@ void Escena::actualizar() {
 	window.render();
 }
 
-void Escena::manejarEventos() {
+int EscenaJuego::manejarEventos() {
 	handler.handle();
 	if (handler.termino()) {
 		terminado = true;
 	}
+	//Se retorna la escena siguiente, en el caso del juego
+	// es la escena final, por lo que se devuelve esta constante.
+	return ESCENA_JUEGO;
 }
 
-void Escena::actualizarCon(EventoCrearItem& evento) {
+void EscenaJuego::actualizarCon(EventoCrearItem& evento) {
 	VistaObjetoPtr vo = creadorTexturas.crear(
 							evento.atributos["idItem"], 
 							evento.atributos["x"] - deltaCamaraX, 
@@ -66,7 +69,7 @@ void Escena::actualizarCon(EventoCrearItem& evento) {
 	objetosDelJuego.insert(std::make_pair(vo->getId(), vo));
 }
 
-void Escena::actualizarCon(EventoMover& evento) {
+void EscenaJuego::actualizarCon(EventoMover& evento) {
 	objetosDelJuego.at(evento.atributos["idLanzador"])
 			->mover(evento.atributos["x"], evento.atributos["y"]);
 	if (evento.atributos["idLanzador"] == miId) {
@@ -75,28 +78,28 @@ void Escena::actualizarCon(EventoMover& evento) {
 	}
 }
 
-void Escena::actualizarCon(EventoFlip& evento) {
+void EscenaJuego::actualizarCon(EventoFlip& evento) {
 	objetosDelJuego.at(evento.atributos["idItem"])->flip(evento.atributos["flip"]);
 }
 
-void Escena::actualizarCon(EventoCambioEstado& evento) {
+void EscenaJuego::actualizarCon(EventoCambioEstado& evento) {
 	objetosDelJuego.at(evento.atributos["idItem"])->asignarEstado(evento.atributos["estado"]);
 }
 
-void Escena::actualizarCon(EventoEliminarItem& evento) {
+void EscenaJuego::actualizarCon(EventoEliminarItem& evento) {
 	objetosDelJuego.erase(evento.atributos["idItem"]);
 }
 
-void Escena::actualizarCon(EventoRotacion& evento) {
+void EscenaJuego::actualizarCon(EventoRotacion& evento) {
 	objetosDelJuego.at(evento.atributos["idItem"])->asignarRotacion(evento.atributos["angulo"]);
 }
 
-void Escena::actualizarCon(EventoCreacionPersonaje& evento) {
+void EscenaJuego::actualizarCon(EventoCreacionPersonaje& evento) {
 	this->miId = evento.atributos["idPersonaje"];
 	handler.setPlayerId(miId);
 }
 
-void Escena::recibirMiIdentificador() {
+void EscenaJuego::recibirMiIdentificador() {
 	Evento* eventoCreacionPersonaje;
 	bool recibiId = false;
 	while(!recibiId) {
@@ -106,7 +109,7 @@ void Escena::recibirMiIdentificador() {
 	delete eventoCreacionPersonaje;
 }
 
-void Escena::crearTerreno() {
+void EscenaJuego::crearTerreno() {
 	int id, x, y, angulo;
 	YAML::Node escenaYaml = YAML::LoadFile("escenario.yaml");
 	YAML::Node objetos = escenaYaml["objetos"];
@@ -129,7 +132,7 @@ void Escena::crearTerreno() {
 	}
 }
 
-void Escena::actualizarFondo() {
+void EscenaJuego::actualizarFondo() {
 	int xScreen, yScreen;
 	window.getWindowSize(&xScreen, &yScreen);
 	fondo.setDimensiones(xScreen, yScreen);
@@ -140,3 +143,5 @@ void Escena::actualizarFondo() {
 		}
 	}
 }
+
+EscenaJuego::~EscenaJuego() {}

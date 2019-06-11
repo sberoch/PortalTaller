@@ -5,6 +5,9 @@ project(qt-sdl)
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -pedantic -pedantic-errors -ggdb -DDEBUG -fno-inline -std=c++11 -pthread")
 
 add_library(sdldemo
+  src/Cliente/SeleccionadorEscena.cpp
+  src/Cliente/EscenaBase.cpp
+  src/Cliente/EscenaJuego.cpp
   src/Cliente/Menu.cpp
   src/Cliente/Audio.cpp
   src/Cliente/VistaObjeto.cpp
@@ -31,7 +34,6 @@ add_library(sdldemo
   src/Cliente/SdlTexture.cpp
   src/Cliente/SdlException.cpp
   src/Cliente/SdlWindow.cpp
-  src/Cliente/Escena.cpp
   src/Cliente/InputHandler.cpp
   src/Cliente/CreadorTexturas.cpp
   src/Cliente/EnviadorEventos.cpp

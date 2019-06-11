@@ -111,11 +111,11 @@ objetos:
     angulo: 0
 
   - tipo: 111
-    posX: 8
+    posX: 5
     posY: 3
     angulo: 0
   - tipo: 112
-    posX: 5
+    posX: 8
     posY: 3
     angulo: 0
  

@@ -1,5 +1,4 @@
 #include "Menu.h"
-#include "Escena.h"
 #include "EnviadorEventos.h"
 #include "RecibidorEventos.h"
 #include "SdlWindow.h"
@@ -8,82 +7,20 @@
 #include <chrono>
 #include <iostream>
 
-Menu::Menu(int xScreen, int yScreen) : 
-	xScreen(xScreen), yScreen(yScreen), 
-	window(xScreen, yScreen),
+Menu::Menu(SdlWindow& window) : 
+	window(window),
 	imagenMenuTex("menu.png", window),
 	fondo(imagenMenuTex) {
-		socket.conectar("localhost", "8888");
 		window.setFullscreen(true);
 		terminado = false;
 		audio.reproducirMusica();
 	}
 
-void Menu::ejecutar() {
-	SDL_Event e;
-	while(!terminado) {
-		asignarPosicionBotones();
-		dibujar();
-		handleEvents(e);
-	}
+bool Menu::termino() {
+	return terminado;
 }
 
-void Menu::dibujar() {
-	window.fill();
-	window.getWindowSize(&xScreen, &yScreen);
-	fondo.setDimensiones(xScreen, yScreen);
-	fondo.dibujarEn(0, 0);
-	std::this_thread::sleep_for(std::chrono::milliseconds(1));
-	window.render();
-}
-
-void Menu::handleEvents(SDL_Event& e) {
-	while (SDL_PollEvent(&e) && !terminado) {
-		if (e.type == SDL_QUIT) {
-			terminado = true;
-		} else if (e.type == SDL_MOUSEBUTTONDOWN) {
-			int x, y;
-			SDL_GetMouseState(&x, &y);
-			if (botonSalir.estaAdentro(x, y)) {
-				terminado = true;
-			}
-			if (botonJugar.estaAdentro(x, y)) {
-				audio.pararMusica();
-				iniciarJuego();
-				terminado = true;
-			}
-		} else if (e.type == SDL_KEYDOWN) {
-			SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) e;
-			if (keyEvent.keysym.sym == SDLK_F11) window.setFullscreen(false);
-		}
-	}
-}
-
-void Menu::iniciarJuego() {
-	ColaBloqueante<Evento*> colaEnviar;
-	Cola<Evento*> colaRecibir;
-
-	Evento* eventoIniciar = new EventoIniciarPartida();
-	colaEnviar.put(eventoIniciar);
-
-	RecibidorEventos recibidorEventos(colaRecibir, socket); 
-	EnviadorEventos enviadorEventos(colaEnviar, socket);
-	recibidorEventos.iniciar();
-	enviadorEventos.iniciar();
-
-	Escena escena(window, colaEnviar, colaRecibir);
- 
-	while(!escena.termino()) {
-		escena.recibirCambios();
-		escena.actualizar();
-		escena.manejarEventos();
-	}
-
-	recibidorEventos.detener();
-	enviadorEventos.detener();
-}
-
-void Menu::asignarPosicionBotones() {
+void Menu::actualizar() {
 	//Poner los botones en posiciones relativas al tamaño total de la pantalla
 	int xJugar = 0.75*(xScreen/2); 
 	int yJugar = 0.6*(yScreen); 
@@ -97,3 +34,37 @@ void Menu::asignarPosicionBotones() {
 	int hSalir = 0.1*(yScreen);
 	botonSalir.set(xSalir, ySalir, wSalir, hSalir);
 }
+
+void Menu::dibujar() {
+	window.fill();
+	window.getWindowSize(&xScreen, &yScreen);
+	fondo.setDimensiones(xScreen, yScreen);
+	fondo.dibujarEn(0, 0);
+	std::this_thread::sleep_for(std::chrono::milliseconds(1));
+	window.render();
+}
+
+int Menu::manejarEventos() {
+	siguienteEscena = ESCENA_MENU;
+	while (SDL_PollEvent(&e) && !terminado) {
+		if (e.type == SDL_QUIT) {
+			terminado = true;
+		} else if (e.type == SDL_MOUSEBUTTONDOWN) {
+			int x, y;
+			SDL_GetMouseState(&x, &y);
+			if (botonSalir.estaAdentro(x, y)) {
+				terminado = true;
+			}
+			if (botonJugar.estaAdentro(x, y)) {
+				audio.pararMusica();
+				siguienteEscena = ESCENA_JUEGO;
+			}
+		} else if (e.type == SDL_KEYDOWN) {
+			SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) e;
+			if (keyEvent.keysym.sym == SDLK_F11) window.setFullscreen(false);
+		}
+	}
+	return siguienteEscena;
+}
+
+

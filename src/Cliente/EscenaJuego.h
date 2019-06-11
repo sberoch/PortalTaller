@@ -1,6 +1,7 @@
-#ifndef ESCENA
-#define ESCENA
+#ifndef ESCENA_JUEGO_H
+#define ESCENA_JUEGO_H
 
+#include "EscenaBase.h"
 #include <SDL2/SDL.h>
 #include <vector>
 #include <memory>
@@ -27,7 +28,7 @@ class EventoEliminarItem;
 class EventoRotacion;
 class EventoCreacionPersonaje;
 
-class Escena {
+class EscenaJuego : public EscenaBase {
 private:
 	Audio audio;
 	SdlWindow window;
@@ -48,12 +49,13 @@ private:
 	int deltaCamaraX, deltaCamaraY;
 	
 public:
-	Escena(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, 
+	EscenaJuego(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, 
 		Cola<Evento*>& colaRecibir);
-	bool termino();
-	void recibirCambios();
-	void actualizar();
-	void manejarEventos();
+	virtual bool termino() override;
+	virtual void actualizar() override;
+	virtual void dibujar() override;
+	virtual int manejarEventos() override;
+	virtual ~EscenaJuego();
 
 	void actualizarCon(EventoCrearItem& evento);
 	void actualizarCon(EventoMover& evento);

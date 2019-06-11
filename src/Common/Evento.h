@@ -1,10 +1,10 @@
 #ifndef EVENTO
 #define EVENTO 
 
-#include "../Cliente/Escena.h"
+#include "../Cliente/EscenaJuego.h"
 #include <map>
 
-class Escena;
+class EscenaJuego;
 class Socket;
 
 class Evento {
@@ -13,7 +13,7 @@ protected:
 public:
 	std::map<std::string, int> atributos;
 	virtual void enviarPorSocket(Socket& s) = 0;
-	virtual void actualizarEscena(Escena& escena) = 0;
+	virtual void actualizarEscena(EscenaJuego& juego) = 0;
 	virtual ~Evento() {}
 };
 
@@ -22,7 +22,7 @@ public:
 	EventoIniciarPartida();
 	EventoIniciarPartida(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizarEscena(Escena& escena) {}
+	virtual void actualizarEscena(EscenaJuego& juego) {}
 	virtual ~EventoIniciarPartida() {}	
 };
 
@@ -31,7 +31,7 @@ public:
 	EventoCreacionPersonaje(int idPersonaje);
 	EventoCreacionPersonaje(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizarEscena(Escena& escena);
+	virtual void actualizarEscena(EscenaJuego& juego);
 	virtual ~EventoCreacionPersonaje() {}
 };
 
@@ -41,7 +41,7 @@ public:
 	EventoPortalAzul(int x, int y);
 	EventoPortalAzul(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizarEscena(Escena& escena) {}
+	virtual void actualizarEscena(EscenaJuego& juego) {}
 	virtual ~EventoPortalAzul() {}
 };
 //TODO: cambiar a direccion
@@ -50,7 +50,7 @@ public:
 	EventoPortalNaranja(int x, int y);
 	EventoPortalNaranja(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizarEscena(Escena& escena) {}
+	virtual void actualizarEscena(EscenaJuego& juego) {}
 	virtual ~EventoPortalNaranja() {}
 };
 
@@ -59,7 +59,7 @@ public:
 	EventoCrearItem(int idItem, int x, int y, int angulo);
 	EventoCrearItem(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizarEscena(Escena& escena);
+	virtual void actualizarEscena(EscenaJuego& juego);
 	virtual ~EventoCrearItem() {}
 };
 
@@ -68,7 +68,7 @@ public:
 	EventoResetPortales(int idLanzador);
 	EventoResetPortales(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizarEscena(Escena& escena) {}
+	virtual void actualizarEscena(EscenaJuego& juego) {}
 	virtual ~EventoResetPortales() {}
 };
 
@@ -77,7 +77,7 @@ public:
 	EventoDejarDeMoverse(int idLanzador);
 	EventoDejarDeMoverse(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizarEscena(Escena& escena) {}
+	virtual void actualizarEscena(EscenaJuego& juego) {}
 	virtual ~EventoDejarDeMoverse() {}
 };
 
@@ -86,7 +86,7 @@ public:
 	EventoMover(int x, int y, int idLanzador);
 	EventoMover(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizarEscena(Escena& escena);
+	virtual void actualizarEscena(EscenaJuego& juego);
 	virtual ~EventoMover() {}
 };
 
@@ -95,7 +95,7 @@ public:
 	EventoCorrer(int direccion, int idLanzador);
 	EventoCorrer(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizarEscena(Escena& escena) {}
+	virtual void actualizarEscena(EscenaJuego& juego) {}
 	virtual ~EventoCorrer() {}
 };
 
@@ -104,7 +104,7 @@ public:
 	EventoPinTool(int x, int y);
 	EventoPinTool(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizarEscena(Escena& escena) {}
+	virtual void actualizarEscena(EscenaJuego& juego) {}
 	virtual ~EventoPinTool() {}
 };
 
@@ -113,7 +113,7 @@ public:
 	EventoSuicidio(int idLanzador);
 	EventoSuicidio(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizarEscena(Escena& escena) {}
+	virtual void actualizarEscena(EscenaJuego& juego) {}
 	virtual ~EventoSuicidio() {}
 };
 
@@ -122,7 +122,7 @@ public:
 	EventoSalto(int idLanzador);
 	EventoSalto(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizarEscena(Escena& escena) {}
+	virtual void actualizarEscena(EscenaJuego& juego) {}
 	virtual ~EventoSalto() {}
 };
 
@@ -131,7 +131,7 @@ public:
 	EventoFlip(int flip, int idItem);
 	EventoFlip(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizarEscena(Escena& escena);
+	virtual void actualizarEscena(EscenaJuego& juego);
 	virtual ~EventoFlip() {}
 };
 
@@ -140,7 +140,7 @@ public:
 	EventoCambioEstado(int estado, int idItem);
 	EventoCambioEstado(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizarEscena(Escena& escena);
+	virtual void actualizarEscena(EscenaJuego& juego);
 	virtual ~EventoCambioEstado() {}
 };
 
@@ -149,7 +149,7 @@ public:
 	EventoEliminarItem(int idItem);
 	EventoEliminarItem(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizarEscena(Escena& escena);	
+	virtual void actualizarEscena(EscenaJuego& juego);	
 	virtual ~EventoEliminarItem() {}
 };
 
@@ -158,7 +158,7 @@ public:
 	EventoRotacion(int angulo, int idItem);
 	EventoRotacion(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizarEscena(Escena& escena);	
+	virtual void actualizarEscena(EscenaJuego& juego);	
 	virtual ~EventoRotacion() {}
 };
 

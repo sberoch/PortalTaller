@@ -6,29 +6,30 @@
 #include "VistaFondo.h"
 #include "Audio.h"
 #include "../Common/Socket.h"
+#include "EscenaBase.h"
 
-class Menu {
+class Menu : public EscenaBase {
 private:
 	int xScreen;
 	int yScreen;
-	SdlWindow window;
+	SdlWindow& window;
 	SdlTexture imagenMenuTex;
 	VistaFondo fondo;
 	Audio audio;
+
+	SDL_Event e;
 	bool terminado;
+	int siguienteEscena;
 
 	Area botonJugar;
 	Area botonSalir;
-
-	Socket socket;
 public:
-	Menu(int xScreen, int yScreen);
-	void ejecutar();
-private:
-	void dibujar();
-	void handleEvents(SDL_Event& e);
-	void asignarPosicionBotones();
-	void iniciarJuego();
+	Menu(SdlWindow& window);
+	virtual bool termino() override;
+	virtual void actualizar() override;
+	virtual void dibujar() override;
+	virtual int manejarEventos() override;
+	virtual ~Menu() {}
 };
 
 #endif // MENU_H
