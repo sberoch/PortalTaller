@@ -13,7 +13,7 @@ file(GLOB_RECURSE BOX2D_SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "src/3rd-party/Box2
 add_library(Box2D STATIC ${BOX2D_SOURCES})
 
 message("[INFO] Agregando yaml-cpp como libreria")
-file(GLOB_RECURSE YAMLCPP_SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "src/3rd-party/yamlcpp/*.cpp" "src/3rd-party/yamlcpp/*.h")
+file(GLOB_RECURSE YAMLCPP_SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "src/3rd-party/yaml-cpp/*.cpp" "src/3rd-party/yaml-cpp/*.h")
 add_library(yamlcpp STATIC ${YAMLCPP_SOURCES})
 
 message("[INFO] Cargando fuentes del servidor")
