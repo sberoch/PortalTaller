@@ -13,14 +13,14 @@ class EventoCreacionPersonaje;
 
 class Handler {
     public:
-    virtual void manejar(Evento& evento) = 0;
-    virtual void manejar(EventoCrearItem& evento) {}
-	virtual void manejar(EventoMover& evento) {}
-	virtual void manejar(EventoFlip& evento) {}
-	virtual void manejar(EventoCambioEstado& evento) {}
-	virtual void manejar(EventoEliminarItem& evento) {}
-	virtual void manejar(EventoRotacion& evento) {}
-	virtual void manejar(EventoCreacionPersonaje& evento) {}
+    virtual void actualizarCon(Evento& evento) = 0;
+    virtual void actualizarCon(EventoCrearItem& evento) {}
+	virtual void actualizarCon(EventoMover& evento) {}
+	virtual void actualizarCon(EventoFlip& evento) {}
+	virtual void actualizarCon(EventoCambioEstado& evento) {}
+	virtual void actualizarCon(EventoEliminarItem& evento) {}
+	virtual void actualizarCon(EventoRotacion& evento) {}
+	virtual void actualizarCon(EventoCreacionPersonaje& evento) {}
 };
 
 #endif
