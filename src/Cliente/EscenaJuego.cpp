@@ -35,7 +35,7 @@ bool EscenaJuego::termino() {
 void EscenaJuego::actualizar() {
 	Evento* evento;
 	while (colaRecibir.get(evento)) {
-		evento->actualizarEscena(*this);
+		evento->actualizar(*this);
 		delete evento;
 	}	
 }
@@ -60,7 +60,11 @@ int EscenaJuego::manejarEventos() {
 	return ESCENA_JUEGO;
 }
 
-void EscenaJuego::actualizarCon(EventoCrearItem& evento) {
+void EscenaJuego::manejar(Evento& evento) {
+	evento.actualizar(*this);
+}
+
+void EscenaJuego::manejar(EventoCrearItem& evento) {
 	VistaObjetoPtr vo = creadorTexturas.crear(
 							evento.atributos["idItem"], 
 							evento.atributos["x"] - deltaCamaraX, 
@@ -69,7 +73,7 @@ void EscenaJuego::actualizarCon(EventoCrearItem& evento) {
 	objetosDelJuego.insert(std::make_pair(vo->getId(), vo));
 }
 
-void EscenaJuego::actualizarCon(EventoMover& evento) {
+void EscenaJuego::manejar(EventoMover& evento) {
 	objetosDelJuego.at(evento.atributos["idLanzador"])
 			->mover(evento.atributos["x"], evento.atributos["y"]);
 	if (evento.atributos["idLanzador"] == miId) {
@@ -78,23 +82,23 @@ void EscenaJuego::actualizarCon(EventoMover& evento) {
 	}
 }
 
-void EscenaJuego::actualizarCon(EventoFlip& evento) {
+void EscenaJuego::manejar(EventoFlip& evento) {
 	objetosDelJuego.at(evento.atributos["idItem"])->flip(evento.atributos["flip"]);
 }
 
-void EscenaJuego::actualizarCon(EventoCambioEstado& evento) {
+void EscenaJuego::manejar(EventoCambioEstado& evento) {
 	objetosDelJuego.at(evento.atributos["idItem"])->asignarEstado(evento.atributos["estado"]);
 }
 
-void EscenaJuego::actualizarCon(EventoEliminarItem& evento) {
+void EscenaJuego::manejar(EventoEliminarItem& evento) {
 	objetosDelJuego.erase(evento.atributos["idItem"]);
 }
 
-void EscenaJuego::actualizarCon(EventoRotacion& evento) {
+void EscenaJuego::manejar(EventoRotacion& evento) {
 	objetosDelJuego.at(evento.atributos["idItem"])->asignarRotacion(evento.atributos["angulo"]);
 }
 
-void EscenaJuego::actualizarCon(EventoCreacionPersonaje& evento) {
+void EscenaJuego::manejar(EventoCreacionPersonaje& evento) {
 	this->miId = evento.atributos["idPersonaje"];
 	handler.setPlayerId(miId);
 }
@@ -105,7 +109,7 @@ void EscenaJuego::recibirMiIdentificador() {
 	while(!recibiId) {
 		recibiId = colaRecibir.get(eventoCreacionPersonaje);
 	}
-	eventoCreacionPersonaje->actualizarEscena(*this);
+	eventoCreacionPersonaje->actualizar(*this);
 	delete eventoCreacionPersonaje;
 }
 

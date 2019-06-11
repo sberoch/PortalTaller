@@ -57,13 +57,14 @@ public:
 	virtual int manejarEventos() override;
 	virtual ~EscenaJuego();
 
-	void actualizarCon(EventoCrearItem& evento);
-	void actualizarCon(EventoMover& evento);
-	void actualizarCon(EventoFlip& evento);
-	void actualizarCon(EventoCambioEstado& evento);
-	void actualizarCon(EventoEliminarItem& evento);
-	void actualizarCon(EventoRotacion& evento);
-	void actualizarCon(EventoCreacionPersonaje& evento);
+	virtual void manejar(Evento& evento) override;
+	virtual void manejar(EventoCrearItem& evento) override;
+	virtual void manejar(EventoMover& evento) override;
+	virtual void manejar(EventoFlip& evento) override;
+	virtual void manejar(EventoCambioEstado& evento) override;
+	virtual void manejar(EventoEliminarItem& evento) override;
+	virtual void manejar(EventoRotacion& evento) override;
+	virtual void manejar(EventoCreacionPersonaje& evento) override;
 private:
 	void crearTerreno();
 	void recibirMiIdentificador();

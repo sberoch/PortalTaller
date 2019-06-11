@@ -1,7 +1,9 @@
 #ifndef ESCENA_BASE_H
 #define ESCENA_BASE_H
 
-class EscenaBase {
+#include "../Common/handler.h"
+
+class EscenaBase : public Handler {
 public:
 	virtual bool termino() = 0;
 	virtual void actualizar() = 0;
