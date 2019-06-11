@@ -157,7 +157,7 @@ public:
 	EventoRotacion(int angulo, int idItem);
 	EventoRotacion(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizar(Handler& handler);	
+	virtual void actualizar(Handler& handler) = 0;	
 	virtual ~EventoRotacion() {}
 };
 
