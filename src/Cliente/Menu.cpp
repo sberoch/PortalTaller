@@ -3,6 +3,7 @@
 #include "RecibidorEventos.h"
 #include "SdlWindow.h"
 #include "../Common/Evento.h"
+#include "../Common/Constantes.h"
 #include <thread>
 #include <chrono>
 #include <iostream>

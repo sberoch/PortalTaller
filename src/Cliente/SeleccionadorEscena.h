@@ -9,6 +9,9 @@
 #include "../Common/Evento.h"
 #include <map>
 
+// Forward Declaration
+class EscenaBase;
+
 class SeleccionadorEscena {
 private:
 	SdlWindow window;

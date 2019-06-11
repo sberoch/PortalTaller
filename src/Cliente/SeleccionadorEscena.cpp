@@ -1,4 +1,6 @@
 #include "SeleccionadorEscena.h"
+#include "EscenaJuego.h"
+#include "Menu.h"
 #include "../Common/Constantes.h"
 #include "Menu.h"
 

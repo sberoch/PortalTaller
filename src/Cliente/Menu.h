@@ -29,6 +29,7 @@ public:
 	virtual void actualizar() override;
 	virtual void dibujar() override;
 	virtual int manejarEventos() override;
+	virtual void manejar(Evento& evento) {};
 	virtual ~Menu() {}
 };
 
