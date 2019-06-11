@@ -261,10 +261,10 @@ void EventoRotacion::enviarPorSocket(Socket& s) {
 	s.enviarInt(atributos["idItem"]);
 }
 
-void EventoMover::actualizarEscena(EscenaJuego& juego) {juego.actualizarCon(*this);}
-void EventoFlip::actualizarEscena(EscenaJuego& juego) {juego.actualizarCon(*this);}
-void EventoCambioEstado::actualizarEscena(EscenaJuego& juego) {juego.actualizarCon(*this);}
-void EventoEliminarItem::actualizarEscena(EscenaJuego& juego) {juego.actualizarCon(*this);}
-void EventoRotacion::actualizarEscena(EscenaJuego& juego) {juego.actualizarCon(*this);} 
-void EventoCrearItem::actualizarEscena(EscenaJuego& juego) {juego.actualizarCon(*this);}
-void EventoCreacionPersonaje::actualizarEscena(EscenaJuego& juego) {juego.actualizarCon(*this);}
+void EventoMover::actualizar(Handler& handler) {juego.manejar(*this);}
+void EventoFlip::actualizar(Handler& handler) {juego.manejar(*this);}
+void EventoCambioEstado::actualizar(Handler& handler) {juego.manejar(*this);}
+void EventoEliminarItem::actualizar(Handler& handler) {juego.manejar(*this);}
+void EventoRotacion::actualizar(Handler& handler) {juego.manejar(*this);} 
+void EventoCrearItem::actualizar(Handler& handler) {juego.manejar(*this);}
+void EventoCreacionPersonaje::actualizar(Handler& handler) {juego.manejar(*this);}
