@@ -8,8 +8,8 @@
 #include "regeximpl.h"
 #include "stringsource.h"
 #include "yaml-cpp/binary.h"  // IWYU pragma: keep
-#include "yaml-cpp/null.h"
 #include "yaml-cpp/ostream_wrapper.h"
+#include "yaml-cpp/null.h"
 
 namespace YAML {
 namespace Utils {
@@ -134,12 +134,12 @@ void WriteCodePoint(ostream_wrapper& out, int codePoint) {
   if (codePoint < 0 || codePoint > 0x10FFFF) {
     codePoint = REPLACEMENT_CHARACTER;
   }
-  if (codePoint <= 0x7F) {
+  if (codePoint < 0x7F) {
     out << static_cast<char>(codePoint);
-  } else if (codePoint <= 0x7FF) {
+  } else if (codePoint < 0x7FF) {
     out << static_cast<char>(0xC0 | (codePoint >> 6))
         << static_cast<char>(0x80 | (codePoint & 0x3F));
-  } else if (codePoint <= 0xFFFF) {
+  } else if (codePoint < 0xFFFF) {
     out << static_cast<char>(0xE0 | (codePoint >> 12))
         << static_cast<char>(0x80 | ((codePoint >> 6) & 0x3F))
         << static_cast<char>(0x80 | (codePoint & 0x3F));
@@ -158,7 +158,7 @@ bool IsValidPlainScalar(const std::string& str, FlowType::value flowType,
     return false;
   }
 
-  // check the run
+  // check the start
   const RegEx& start = (flowType == FlowType::Flow ? Exp::PlainScalarInFlow()
                                                    : Exp::PlainScalar());
   if (!start.Matches(str)) {
@@ -401,8 +401,8 @@ bool WriteComment(ostream_wrapper& out, const std::string& str,
   for (std::string::const_iterator i = str.begin();
        GetNextCodePointAndAdvance(codePoint, i, str.end());) {
     if (codePoint == '\n') {
-      out << "\n"
-          << IndentTo(curIndent) << "#" << Indentation(postCommentIndent);
+      out << "\n" << IndentTo(curIndent) << "#"
+          << Indentation(postCommentIndent);
       out.set_comment();
     } else {
       WriteCodePoint(out, codePoint);

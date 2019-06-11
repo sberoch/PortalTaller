@@ -38,8 +38,8 @@ bool Scanner::CanInsertPotentialSimpleKey() const {
 
 // ExistsActiveSimpleKey
 // . Returns true if there's a potential simple key at our flow level
-//   (there's allowed at most one per flow level, i.e., at the run of the flow
-// run token)
+//   (there's allowed at most one per flow level, i.e., at the start of the flow
+// start token)
 bool Scanner::ExistsActiveSimpleKey() const {
   if (m_simpleKeys.empty())
     return false;
@@ -57,7 +57,7 @@ void Scanner::InsertPotentialSimpleKey() {
 
   SimpleKey key(INPUT.mark(), GetFlowLevel());
 
-  // first add a map run, if necessary
+  // first add a map start, if necessary
   if (InBlockContext()) {
     key.pIndent = PushIndentTo(INPUT.column(), IndentMarker::MAP);
     if (key.pIndent) {
