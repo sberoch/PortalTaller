@@ -1,6 +1,7 @@
 #include "Evento.h"
 #include "Constantes.h"
 #include "Socket.h"
+#include "handler.h"
 
 #include <iostream>
 
@@ -261,10 +262,10 @@ void EventoRotacion::enviarPorSocket(Socket& s) {
 	s.enviarInt(atributos["idItem"]);
 }
 
-void EventoMover::actualizar(Handler& handler) {juego.manejar(*this);}
-void EventoFlip::actualizar(Handler& handler) {juego.manejar(*this);}
-void EventoCambioEstado::actualizar(Handler& handler) {juego.manejar(*this);}
-void EventoEliminarItem::actualizar(Handler& handler) {juego.manejar(*this);}
-void EventoRotacion::actualizar(Handler& handler) {juego.manejar(*this);} 
-void EventoCrearItem::actualizar(Handler& handler) {juego.manejar(*this);}
-void EventoCreacionPersonaje::actualizar(Handler& handler) {juego.manejar(*this);}
+void EventoMover::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoFlip::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoCambioEstado::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoEliminarItem::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoRotacion::actualizar(Handler& handler) {handler.manejar(*this);} 
+void EventoCrearItem::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoCreacionPersonaje::actualizar(Handler& handler) {handler.manejar(*this);}

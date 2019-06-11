@@ -1,7 +1,6 @@
 #ifndef EVENTO
 #define EVENTO 
 
-#include "../Cliente/EscenaJuego.h"
 #include <map>
 
 class Handler;
