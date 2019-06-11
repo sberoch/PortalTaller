@@ -1,62 +1,34 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.1.0)
+project(Portal)
 
-project(qt-sdl)
+#set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -std=c++11 -Wall -Werror -pedantic -pthread")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -std=c++11 -pthread")
 
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -pedantic -pedantic-errors -ggdb -DDEBUG -fno-inline -std=c++11 -pthread")
+message("[INFO] Agregando '${CMAKE_SOURCE_DIR}/src/3rd-party' como directorio de includes")
+include_directories(${CMAKE_SOURCE_DIR}/src/3rd-party)
 
-add_library(sdldemo
-  src/Cliente/SeleccionadorEscena.cpp
-  src/Cliente/EscenaBase.cpp
-  src/Cliente/EscenaJuego.cpp
-  src/Cliente/Menu.cpp
-  src/Cliente/Audio.cpp
-  src/Cliente/VistaObjeto.cpp
-  src/Cliente/VistaObjetoMovil.cpp
-  src/Cliente/VistaAcido.cpp
-  src/Cliente/VistaEmisor.cpp
-  src/Cliente/VistaReceptor.cpp
-  src/Cliente/VistaBoton.cpp
-  src/Cliente/VistaPuerta.cpp
-  src/Cliente/VistaBloqueMetal.cpp
-  src/Cliente/VistaBloqueMetalDiagonal.cpp
-  src/Cliente/VistaBloquePiedra.cpp
-  src/Cliente/VistaPiedraMovil.cpp
-  src/Cliente/VistaBarreraEnergia.cpp
-  src/Cliente/VistaBolaEnergia.cpp
-  src/Cliente/VistaPinTool.cpp
-  src/Cliente/VistaTorta.cpp
-  src/Cliente/VistaPortalAzul.cpp
-  src/Cliente/VistaPortalNaranja.cpp
-  src/Cliente/VistaPersonaje.cpp
-  src/Cliente/VistaFondo.cpp
-  src/Cliente/AnimacionPersonaje.cpp
-  src/Cliente/Area.cpp
-  src/Cliente/SdlTexture.cpp
-  src/Cliente/SdlException.cpp
-  src/Cliente/SdlWindow.cpp
-  src/Cliente/InputHandler.cpp
-  src/Cliente/CreadorTexturas.cpp
-  src/Cliente/EnviadorEventos.cpp
-  src/Cliente/RecibidorEventos.cpp
-  src/Common/Lock.cpp
-  src/Common/Thread.cpp
-  src/Common/Socket.cpp
-  src/Common/Evento.cpp
-  src/Common/Serializador.cpp
-  src/Common/Conversor.cpp
-  src/Common/Cola.cpp
-  src/Common/cola_bloqueante.cpp
-  src/Common/value_protected.cpp
-)
+message("[INFO] Agregando Box2D como libreria")
+file(GLOB_RECURSE BOX2D_SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "src/3rd-party/Box2D/*.cpp" "src/3rd-party/Box2D/*.h")
+add_library(Box2D STATIC ${BOX2D_SOURCES})
 
-# Agrego la carpeta con los headers autogenerados a los includes
-message("Agregando '${PROJECT_BINARY_DIR}' como directorio de includes") 
-include_directories(${PROJECT_BINARY_DIR})
+message("[INFO] Agregando yaml-cpp como libreria")
+file(GLOB_RECURSE YAMLCPP_SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "src/3rd-party/yamlcpp/*.cpp" "src/3rd-party/yamlcpp/*.h")
+add_library(yamlcpp STATIC ${YAMLCPP_SOURCES})
 
-add_executable (cliente src/Cliente/mainCliente.cpp)
-add_executable (server src/Common/serverMock.cpp)
-target_link_libraries(cliente sdldemo SDL2 SDL2_image SDL2_mixer yaml-cpp)
-target_link_libraries(server sdldemo SDL2 SDL2_image SDL2_mixer yaml-cpp)
+message("[INFO] Cargando fuentes del servidor")
+file(GLOB_RECURSE SERVER_SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "src/server/*.cpp" "src/server/*.h")
+
+message("[INFO] Cargando fuentes compartidos")
+file(GLOB_RECURSE LIBS_SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "src/Common/*.cpp" "src/Common/*.h")
+
+message("[INFO] Cargando fuentes del cliente")
+file(GLOB_RECURSE CLIENT_SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "src/Cliente/*.cpp" "src/Cliente/*.h")
+
+add_executable(portal_client ${CLIENT_SOURCES}  ${LIBS_SOURCES})
+target_link_libraries(portal_client SDL2 SDL2_image SDL2_mixer yamlcpp)
+
+add_executable(portal_server ${SERVER_SOURCES} ${LIBS_SOURCES})
+target_link_libraries(portal_server Box2D yamlcpp)
 
 install(FILES assets/emisor_receptor.png DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/bloque_metal_diag.png DESTINATION ${CMAKE_BINARY_DIR})
