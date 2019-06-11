@@ -34,11 +34,18 @@ void Aceptador::run() {
             }
         }
         catch(const std::exception& e) {
-            break;
+            continue;
         }
     }
 }
 
 void Aceptador::join() {
-    // Join de todos los threads que están en ejecución.
+    auto it = std::begin(clientes_);
+    while (it != std::end(clientes_)) {
+        (*it)->stop();
+        (*it)->join();
+        delete (*it);
+        ++it;                    
+    }
+    Thread::join();
 }

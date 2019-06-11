@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "thread.h"
-#include "value_protected.h"
+#include "../../Common/value_protected.h"
 
 // Forward declaration
 class Socket;

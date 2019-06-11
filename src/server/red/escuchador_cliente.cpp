@@ -1,11 +1,11 @@
 #include "escuchador_cliente.h"
-
-#include "socket.h"
 #include "handler.h"
 
+#include "../Common/Evento.h"
+
 EscuchadorCliente::EscuchadorCliente(Socket&& skt, Handler* unDestinatario) :
-    sktCliente_(skt),
     destinatario_(unDestinatario) {
+    sktCliente_ = std::move(skt);
     finalizado_ = false;
 }
 
@@ -18,6 +18,12 @@ bool EscuchadorCliente::finalizado() {
 }
 
 void EscuchadorCliente::run() {
-    // Recibir y manejar eventos
-    // Cambiar destinatario segun corresponda.
+    int idCrearJugador = 214;
+    int idJugador = 29;
+    p.enviar(idCrearJugador, sktCliente_);
+    p.enviar(idCrearJugador, sktCliente_);
+}
+
+void EscuchadorCliente::stop() {
+    sktCliente_.cerrar();
 }

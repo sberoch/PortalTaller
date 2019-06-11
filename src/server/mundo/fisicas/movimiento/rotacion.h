@@ -1,6 +1,8 @@
 #ifndef __ROTACION_H__
 #define __ROTACION_H__
 
+#include <cstddef>
+
 class Rotacion {
     private:
     size_t angulo_;
