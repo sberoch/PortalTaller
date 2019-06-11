@@ -20,7 +20,6 @@ void Servidor::correr() {
     while ((c = std::cin.get()) != CONDICION_SALIR) {
         // pass
     }
-    std::cout << "CApretado\n";
     seguirCorriendo.set(false);
     sktAceptador_.shutdown();
     aceptador.cerrar();
