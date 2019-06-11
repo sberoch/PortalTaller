@@ -4,7 +4,7 @@
 #include "../Cliente/EscenaJuego.h"
 #include <map>
 
-class EscenaJuego;
+class Handler;
 class Socket;
 
 class Evento {
