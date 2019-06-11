@@ -2,7 +2,7 @@
 
 #include "../server_config.h"
 
-#include "socket.h"
+#include "../../Common/Socket.h"
 #include "escuchador_cliente.h"
 #include "../server.h"
 
@@ -13,19 +13,17 @@ Aceptador::Aceptador(Socket& skt, ValueProtected<bool>& seguirCorriendo, Servido
     servidor_(servidor) {
 }
 
-void Aceptador::run() {
-    skt_.enlazar();
-    skt_.escuchar(CONFIG.MAX_EN_ESPERA);
+void Aceptador::ejecutar() {
 
     while (seguirCorriendo_()) {
         try {
             Socket aceptado = skt_.aceptar();
             clientes_.push_back(new EscuchadorCliente(std::move(aceptado), &servidor_));
-            clientes_.back()->start();
+            clientes_.back()->iniciar();
             auto it = std::begin(clientes_);
             while (it != std::end(clientes_)) {
                 if ((*it)->finalizado()) {
-                    (*it)->join();
+                    (*it)->cerrar();
                     delete (*it);
                     it = clientes_.erase(it);
                 } else {
@@ -39,13 +37,13 @@ void Aceptador::run() {
     }
 }
 
-void Aceptador::join() {
+void Aceptador::cerrar() {
     auto it = std::begin(clientes_);
     while (it != std::end(clientes_)) {
         (*it)->stop();
-        (*it)->join();
+        (*it)->cerrar();
         delete (*it);
         ++it;                    
     }
-    Thread::join();
+    Thread::cerrar();
 }

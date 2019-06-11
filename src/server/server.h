@@ -3,8 +3,8 @@
 
 #include <string>
 
-#include "red/socket.h"
-#include "red/handler.h"
+#include "../Common/Socket.h"
+#include "../Common/handler.h"
 
 #define HOST "localhost"
 #define CONDICION_SALIR 'q'

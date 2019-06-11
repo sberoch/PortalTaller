@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "thread.h"
+#include "../../Common/Thread.h"
 #include "../../Common/value_protected.h"
 
 // Forward declaration
@@ -20,8 +20,8 @@ class Aceptador : public Thread {
 
     public:
     Aceptador(Socket& skt, ValueProtected<bool>& seguirCorriendo, Servidor& servidor);
-    virtual void run() override;
-    virtual void join() override;
+    virtual void ejecutar() override;
+    virtual void cerrar() override;
 };
 
 #endif
