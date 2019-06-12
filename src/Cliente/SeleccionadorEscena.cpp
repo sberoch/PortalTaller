@@ -24,12 +24,14 @@ SeleccionadorEscena::SeleccionadorEscena(int xScreen, int yScreen) :
 
 void SeleccionadorEscena::ejecutar() {
 	EscenaBase* escena;
-	while(true) {
+	bool terminado = false;
+	while(!terminado) {
 	    escena = escenas.at(escenaActual);
 		escena->actualizar();
 		escena->dibujar();
 		escenaActual = escena->manejarEventos();
-		if (escena->termino()) break;
+		if (escena->termino()) 
+			terminado = true;
 	}
 }
 

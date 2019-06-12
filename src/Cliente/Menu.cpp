@@ -40,7 +40,7 @@ void Menu::dibujar() {
 	window.fill();
 	window.getWindowSize(&xScreen, &yScreen);
 	fondo.setDimensiones(xScreen, yScreen);
-	fondo.dibujarEn(0, 0);
+	fondo.dibujarEn(xScreen/2, yScreen/2);
 	std::this_thread::sleep_for(std::chrono::milliseconds(1));
 	window.render();
 }
