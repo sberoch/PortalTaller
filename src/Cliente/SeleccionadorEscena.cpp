@@ -1,8 +1,10 @@
 #include "SeleccionadorEscena.h"
 #include "EscenaJuego.h"
+#include "EscenaSala.h"
 #include "Menu.h"
 #include "../Common/Constantes.h"
 #include "Menu.h"
+#include <iostream>
 
 SeleccionadorEscena::SeleccionadorEscena(int xScreen, int yScreen) :
 	window(xScreen, yScreen),
@@ -18,8 +20,9 @@ SeleccionadorEscena::SeleccionadorEscena(int xScreen, int yScreen) :
 	recibidorEventos.iniciar();
 	enviadorEventos.iniciar();
 
-	escenas[ESCENA_JUEGO] = new EscenaJuego(window, colaEnviar, colaRecibir);
-	escenas[ESCENA_MENU] = new Menu(window);
+	escenas.insert(std::make_pair(ESCENA_JUEGO, new EscenaJuego(window, colaEnviar, colaRecibir)));
+	escenas.insert(std::make_pair(ESCENA_SALA, new EscenaSala(window, colaEnviar, colaRecibir)));
+	escenas.insert(std::make_pair(ESCENA_MENU, new Menu(window)));
 }
 
 void SeleccionadorEscena::ejecutar() {
@@ -30,16 +33,23 @@ void SeleccionadorEscena::ejecutar() {
 		escena->actualizar();
 		escena->dibujar();
 		escenaActual = escena->manejarEventos();
-		if (escena->termino()) 
+		if (escena->termino()) {
 			terminado = true;
+			terminar();
+		}	
 	}
 }
 
-SeleccionadorEscena::~SeleccionadorEscena() {
+void SeleccionadorEscena::terminar() {
+	//Esto cierra pero por un fallo, creo que por doble join.
+	//Si lo saco no cierra
 	recibidorEventos.detener();
+	recibidorEventos.cerrar();
 	enviadorEventos.detener();
+	enviadorEventos.cerrar();
 	for (auto& it : escenas) {
 		delete it.second;
 	}
+	escenas.clear();
 }
 

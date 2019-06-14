@@ -5,7 +5,7 @@
 RecibidorEventos::RecibidorEventos(Cola<Evento*>& cola, Socket& socket) :
 	cola(cola), socket(socket) {
 	termino = false;
-	}
+}
 
 void RecibidorEventos::ejecutar() {
 	while(!termino) {

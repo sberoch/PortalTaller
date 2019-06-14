@@ -17,7 +17,6 @@ EscenaJuego::EscenaJuego(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar,
 	colaRecibir(colaRecibir),
 	handler(window, colaEnviar, audio) {
 
-	audio.reproducirMusica();
 	terminado = false;
 	miId = 0;
 	deltaCamaraX = 0;
@@ -42,7 +41,8 @@ void EscenaJuego::actualizar() {
 
 void EscenaJuego::dibujar() {
 	window.fill();
-	std::this_thread::sleep_for(std::chrono::milliseconds(20));
+	this->sleep(20);
+	audio.reproducirMusica();
 	actualizarFondo();
 	for (auto& it : objetosDelJuego) {
 		it.second->dibujarEn(deltaCamaraX, deltaCamaraY);
@@ -146,6 +146,10 @@ void EscenaJuego::actualizarFondo() {
 							-yScreen/2 + yScreen*j + deltaCamaraY/2);
 		}
 	}
+}
+
+void EscenaJuego::sleep(int tiempo) {
+	std::this_thread::sleep_for(std::chrono::milliseconds(20));
 }
 
 EscenaJuego::~EscenaJuego() {}

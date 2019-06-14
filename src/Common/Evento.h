@@ -161,4 +161,32 @@ public:
 	virtual ~EventoRotacion() {}
 };
 
+class EventoCrearPartida : public Evento {
+public:
+	EventoCrearPartida();
+	EventoCrearPartida(Socket& s);
+	virtual void enviarPorSocket(Socket& s);
+	virtual void actualizar(Handler& handler) override;	
+	virtual ~EventoCrearPartida() {}
+};
+
+class EventoUnirseAPartida : public Evento {
+public:
+	EventoUnirseAPartida(int partidaSeleccionada);
+	EventoUnirseAPartida(Socket& s);
+	virtual void enviarPorSocket(Socket& s);
+	virtual void actualizar(Handler& handler) override;	
+	virtual ~EventoUnirseAPartida() {}
+};
+
+class EventoActualizacionSala : public Evento {
+public:
+	EventoActualizacionSala(int cantidadPartidas, 
+					int partidaSeleccionada, int jugadoresEnPartida);
+	EventoActualizacionSala(Socket& s);
+	virtual void enviarPorSocket(Socket& s);
+	virtual void actualizar(Handler& handler) override;	
+	virtual ~EventoActualizacionSala() {}
+};
+
 #endif

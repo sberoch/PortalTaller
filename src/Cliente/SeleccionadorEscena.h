@@ -28,7 +28,7 @@ private:
 public:
 	SeleccionadorEscena(int xScreen, int yScreen);
 	void ejecutar();
-	~SeleccionadorEscena();
+	void terminar();
 };
 
 #endif // SELECCIONADOR_ESCENA_H

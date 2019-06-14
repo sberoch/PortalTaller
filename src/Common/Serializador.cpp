@@ -1,5 +1,6 @@
 #include "Serializador.h"
 #include "Constantes.h"
+#include <iostream>
 
 Evento* Serializador::recibirEvento(Socket& socket) {
 	int tipoEvento = socket.recibirInt();
@@ -20,6 +21,9 @@ Evento* Serializador::recibirEvento(Socket& socket) {
 		case(EVENTO_CREACION_PERSONAJE): return new EventoCreacionPersonaje(socket);
 		case(EVENTO_INICIAR_PARTIDA): return new EventoIniciarPartida(socket);
 		case(EVENTO_SUICIDIO): return new EventoSuicidio(socket);
+		case(EVENTO_CREAR_PARTIDA): return new EventoCrearPartida(socket);
+		case(EVENTO_UNIRSE_A_PARTIDA): return new EventoUnirseAPartida(socket);
+		case(EVENTO_ACTUALIZACION_SALA): return new EventoActualizacionSala(socket);
 		default: throw std::runtime_error("Error: se intento recuperar evento con tipo no definido.");
 	}
 }

@@ -1,4 +1,4 @@
-#include "server.h"
+/*#include "server.h"
 #include "iostream"
 
 int main(int argc, char const *argv[]) {
@@ -9,4 +9,4 @@ int main(int argc, char const *argv[]) {
         std::cout << e.what() << '\n';
     }
     return 0;
-}
+}*/

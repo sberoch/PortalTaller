@@ -1,4 +1,5 @@
 #include "EnviadorEventos.h"
+#include <iostream>
 
 EnviadorEventos::EnviadorEventos(ColaBloqueante<Evento*>& cola, Socket& socket) :
 	cola(cola), socket(socket) {
@@ -17,5 +18,4 @@ void EnviadorEventos::ejecutar() {
 void EnviadorEventos::detener() {
 	socket.shutdown();
 	termino = true;
-	Thread::cerrar();
 }

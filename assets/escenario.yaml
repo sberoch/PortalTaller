@@ -91,7 +91,7 @@ objetos:
 
   - tipo: 105
     posX: 6
-    posY: 4
+    posY: 3
     angulo: 0
   - tipo: 107
     posX: 1
@@ -118,5 +118,25 @@ objetos:
     posX: 8
     posY: 3
     angulo: 0
- 
+
+  - tipo: 106
+    posX: 3
+    posY: 3
+    angulo: 0  
+  - tipo: 116
+    posX: 2
+    posY: 3
+    angulo: 180 
+  - tipo: 104
+    posX: 6
+    posY: 3
+    angulo: 0
+  - tipo: 109
+    posX: 7
+    posY: 3
+    angulo: 0 
+  - tipo: 102
+    posX: 9
+    posY: 3
+    angulo: 270    
 ...

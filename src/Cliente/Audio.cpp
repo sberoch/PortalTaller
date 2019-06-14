@@ -11,6 +11,7 @@ Audio::Audio() {
 
 	musicaFondo = Mix_LoadMUS("musica_fondo.mp3");
 	if(musicaFondo == NULL) printf("%s\n", Mix_GetError());
+	Mix_VolumeMusic(MIX_MAX_VOLUME/10);
 
 	disparo = Mix_LoadWAV("disparo_portal.wav");
 	if (disparo == NULL) printf("%s\n", Mix_GetError());
@@ -20,17 +21,20 @@ Audio::Audio() {
 	if (salto == NULL) printf("%s\n", Mix_GetError());
 	efectos.insert(std::make_pair(EFECTO_SALTO, salto));
 
+	botonMenu = Mix_LoadWAV("boton_menu.wav");
+	if (botonMenu == NULL) printf("%s\n", Mix_GetError());
+	efectos.insert(std::make_pair(EFECTO_BOTON_CLICK, botonMenu));
+
 }
 
 void Audio::reproducirMusica() {
-	Mix_VolumeMusic(MIX_MAX_VOLUME/10);
 	if(Mix_PlayingMusic() == 0) {
 		Mix_FadeInMusic(musicaFondo, -1, 3000);
 	}
 }
 
 void Audio::pararMusica() {
-	Mix_FadeOutMusic(1000);
+	Mix_HaltMusic();
 }
 
 void Audio::reproducirEfecto(int idEfecto) {

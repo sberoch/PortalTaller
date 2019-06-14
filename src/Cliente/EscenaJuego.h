@@ -69,6 +69,7 @@ private:
 	void crearTerreno();
 	void recibirMiIdentificador();
 	void actualizarFondo();
+	void sleep(int tiempo);
 };
 
 #endif

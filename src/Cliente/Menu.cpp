@@ -11,7 +11,9 @@
 Menu::Menu(SdlWindow& window) : 
 	window(window),
 	imagenMenuTex("menu.png", window),
-	fondo(imagenMenuTex) {
+	fondo(imagenMenuTex),
+	botonJugar("Jugar", 70, window),
+	botonSalir("Salir", 60, window) {
 		window.setFullscreen(true);
 		terminado = false;
 		audio.reproducirMusica();
@@ -21,26 +23,15 @@ bool Menu::termino() {
 	return terminado;
 }
 
-void Menu::actualizar() {
-	//Poner los botones en posiciones relativas al tamaño total de la pantalla
-	int xJugar = 0.75*(xScreen/2); 
-	int yJugar = 0.6*(yScreen); 
-	int wJugar = 0.5*(xScreen/2);
-	int hJugar = 0.12*(yScreen);
-	botonJugar.set(xJugar, yJugar, wJugar, hJugar);
-
-	int xSalir = 0.79*(xScreen/2);
-	int ySalir = 0.74*(yScreen);
-	int wSalir = 0.2*(xScreen);
-	int hSalir = 0.1*(yScreen);
-	botonSalir.set(xSalir, ySalir, wSalir, hSalir);
-}
-
 void Menu::dibujar() {
 	window.fill();
+
 	window.getWindowSize(&xScreen, &yScreen);
 	fondo.setDimensiones(xScreen, yScreen);
 	fondo.dibujarEn(xScreen/2, yScreen/2);
+
+	dibujarBotones();
+
 	std::this_thread::sleep_for(std::chrono::milliseconds(1));
 	window.render();
 }
@@ -53,12 +44,14 @@ int Menu::manejarEventos() {
 		} else if (e.type == SDL_MOUSEBUTTONDOWN) {
 			int x, y;
 			SDL_GetMouseState(&x, &y);
-			if (botonSalir.estaAdentro(x, y)) {
+			if (botonSalir.estaCursorAdentro(x, y)) {
+				audio.reproducirEfecto(EFECTO_BOTON_CLICK);
 				terminado = true;
 			}
-			if (botonJugar.estaAdentro(x, y)) {
+			if (botonJugar.estaCursorAdentro(x, y)) {
+				audio.reproducirEfecto(EFECTO_BOTON_CLICK);
 				audio.pararMusica();
-				siguienteEscena = ESCENA_JUEGO;
+				siguienteEscena = ESCENA_SALA;
 			}
 		} else if (e.type == SDL_KEYDOWN) {
 			SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) e;
@@ -68,4 +61,17 @@ int Menu::manejarEventos() {
 	return siguienteEscena;
 }
 
+void Menu::dibujarBotones() {
+	//Poner los botones en posiciones relativas al tamaño total de la pantalla
+	int xJugar = xScreen/2; 
+	int yJugar = 0.6*(yScreen); 
+	botonJugar.dibujarEn(xJugar, yJugar);
 
+	int xSalir = xScreen/2;
+	int ySalir = 0.74*(yScreen);
+	botonSalir.dibujarEn(xSalir, ySalir);
+}
+
+void Menu::actualizar() {
+	//No se reciben eventos del servidor en el menu
+}

@@ -9,11 +9,11 @@ VistaBolaEnergia::VistaBolaEnergia(SdlTexture& tex, int angulo) {
 	posX = 0;
 	posY = 0;
 	for (int i = 0; i < CANT_CLIPS; ++i) {
-		Area area(i*115, 1922, 115, 60);
+		Area area(i*110, 1896, 110, 110);
 		clips.push_back(area);
 	}
 	tamanioHorizontal = 100;
-	tamanioVertical = 45;
+	tamanioVertical = 100;
 }
 
 void VistaBolaEnergia::dibujarEn(int x, int y) {

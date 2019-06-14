@@ -5,6 +5,7 @@
 #include "SdlTexture.h"
 #include "VistaFondo.h"
 #include "Audio.h"
+#include "Texto.h"
 #include "../Common/Socket.h"
 #include "EscenaBase.h"
 
@@ -12,6 +13,7 @@ class Menu : public EscenaBase {
 private:
 	int xScreen;
 	int yScreen;
+
 	SdlWindow& window;
 	SdlTexture imagenMenuTex;
 	VistaFondo fondo;
@@ -21,8 +23,8 @@ private:
 	bool terminado;
 	int siguienteEscena;
 
-	Area botonJugar;
-	Area botonSalir;
+	Texto botonJugar;
+	Texto botonSalir;
 public:
 	Menu(SdlWindow& window);
 	virtual bool termino() override;
@@ -31,6 +33,8 @@ public:
 	virtual int manejarEventos() override;
 	virtual void manejar(Evento& evento) {};
 	virtual ~Menu() {}
+private:
+	void dibujarBotones();
 };
 
 #endif // MENU_H

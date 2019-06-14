@@ -262,6 +262,54 @@ void EventoRotacion::enviarPorSocket(Socket& s) {
 	s.enviarInt(atributos["idItem"]);
 }
 
+
+EventoCrearPartida::EventoCrearPartida() {
+	tipo = EVENTO_CREAR_PARTIDA;;
+}
+EventoCrearPartida::EventoCrearPartida(Socket& s) {
+	tipo = EVENTO_CREAR_PARTIDA;
+}
+void EventoCrearPartida::enviarPorSocket(Socket& s) {
+	s.enviarInt(tipo);
+}
+
+
+EventoUnirseAPartida::EventoUnirseAPartida(int partidaSeleccionada) {
+	tipo = EVENTO_UNIRSE_A_PARTIDA;
+	atributos["partidaSeleccionada"] = partidaSeleccionada;
+}
+EventoUnirseAPartida::EventoUnirseAPartida(Socket& s) {
+	tipo = EVENTO_UNIRSE_A_PARTIDA;
+	atributos["partidaSeleccionada"] = s.recibirInt();
+}
+void EventoUnirseAPartida::enviarPorSocket(Socket& s) {
+	s.enviarInt(tipo);
+	s.enviarInt(atributos["partidaSeleccionada"]);
+}
+
+
+EventoActualizacionSala::EventoActualizacionSala(int cantidadPartidas, 
+					int partidaSeleccionada, int jugadoresEnPartida) {
+	tipo = EVENTO_ACTUALIZACION_SALA;
+	atributos["cantidadPartidas"] = cantidadPartidas;
+	atributos["partidaSeleccionada"] = partidaSeleccionada;
+	atributos["jugadoresEnPartida"] = jugadoresEnPartida;
+
+}
+EventoActualizacionSala::EventoActualizacionSala(Socket& s) {
+	tipo = EVENTO_ACTUALIZACION_SALA;
+	atributos["cantidadPartidas"] = s.recibirInt();
+	atributos["partidaSeleccionada"] = s.recibirInt();
+	atributos["jugadoresEnPartida"] = s.recibirInt();
+}
+void EventoActualizacionSala::enviarPorSocket(Socket& s) {
+	s.enviarInt(tipo);
+	s.enviarInt(atributos["cantidadPartidas"]);
+	s.enviarInt(atributos["partidaSeleccionada"]);
+	s.enviarInt(atributos["jugadoresEnPartida"]);
+}
+
+
 void EventoMover::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoFlip::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoCambioEstado::actualizar(Handler& handler) {handler.manejar(*this);}
@@ -269,3 +317,6 @@ void EventoEliminarItem::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoRotacion::actualizar(Handler& handler) {handler.manejar(*this);} 
 void EventoCrearItem::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoCreacionPersonaje::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoCrearPartida::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoUnirseAPartida::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoActualizacionSala::actualizar(Handler& handler) {handler.manejar(*this);}

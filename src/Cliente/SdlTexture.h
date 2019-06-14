@@ -12,7 +12,8 @@ class Area;
 
 class SdlTexture {
 public:
-    SdlTexture();
+    SdlTexture() {}
+    SdlTexture(const SdlWindow& window);
     /**
      * Crea un SDL_Texture, lanza una excepción si el filename es inválido
      **/
@@ -35,6 +36,7 @@ public:
     void setColor(int r, int g, int b);
 private:
     SDL_Texture* loadTexture(const std::string &filename);
+protected:
     SDL_Renderer* renderer;
     SDL_Texture* texture;
 };

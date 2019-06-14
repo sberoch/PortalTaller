@@ -3,12 +3,15 @@
 #include <string>
 #include "SdlWindow.h"
 #include "SdlException.h"
-
-SdlTexture::SdlTexture() {}
+#include <iostream>
 
 SdlTexture::SdlTexture(const std::string &filename, const SdlWindow& window)
     : renderer(window.getRenderer()) {
     this->texture = loadTexture(filename);
+}
+
+SdlTexture::SdlTexture(const SdlWindow& window)
+    : renderer(window.getRenderer()) {
 }
 
 SdlTexture::~SdlTexture() {
@@ -16,8 +19,7 @@ SdlTexture::~SdlTexture() {
 }
 
 SDL_Texture* SdlTexture::loadTexture(const std::string &filename) {
-    SDL_Texture* texture = IMG_LoadTexture(this->renderer,
-                                           filename.c_str());
+    SDL_Texture* texture = IMG_LoadTexture(this->renderer, filename.c_str());
     if (!texture) {
         throw SdlException("Error al cargar la textura", SDL_GetError());
     }
