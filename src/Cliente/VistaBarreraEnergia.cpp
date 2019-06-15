@@ -3,10 +3,10 @@
 VistaBarreraEnergia::VistaBarreraEnergia(SdlTexture& tex, int angulo) {
 	this->textura = tex;
 	this->angulo = angulo;
-	Area srcArea(1, 1722, 225, 50);
+	Area srcArea(25, 1692, 100, 100);
 	clips.push_back(srcArea);
 	tamanioHorizontal = 100;
-	tamanioVertical = 50;
+	tamanioVertical = 100;
 }
 
 void VistaBarreraEnergia::dibujarEn(int x, int y) {

@@ -22,7 +22,7 @@ EscenaJuego::EscenaJuego(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar,
 	deltaCamaraX = 0;
 	deltaCamaraY = 0;
 	window.fill();
-	fondoTex.setColor(64, 64, 64);
+	fondoTex.setColor(80, 80, 80);
 	recibirMiIdentificador();
 	crearTerreno();
 }

@@ -16,7 +16,7 @@ EscenaSala::EscenaSala(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar,
 	botonCrear("Crear", 60, window),
 	botonJugar("Jugar", 60, window) {
 		terminado = false;
-		cantidadPartidas = 4;
+		cantidadPartidas = 0;
 		jugadores = {0,0,0,0};
 		partidaSeleccionada = 1;
 		cargarTextosPartidasYJugadores();
