@@ -10,16 +10,17 @@
 class Socket;
 class Servidor;
 class EscuchadorCliente;
+class SalaDeEspera;
 
 class Aceptador : public Thread {
     private:
     Socket& skt_;
     ValueProtected<bool>& seguirCorriendo_;
     Servidor& servidor_;
-    std::vector<EscuchadorCliente*> clientes_;
+    SalaDeEspera& salaDeEspera_;
 
     public:
-    Aceptador(Socket& skt, ValueProtected<bool>& seguirCorriendo, Servidor& servidor);
+    Aceptador(Socket& skt, ValueProtected<bool>& seguirCorriendo, SalaDeEspera& salaDeEspera, Servidor& servidor);
     virtual void ejecutar() override;
     virtual void cerrar() override;
 };

@@ -5,11 +5,12 @@
 #include "../../Common/Socket.h"
 #include "escuchador_cliente.h"
 #include "../server.h"
+#include "sala_de_espera.h"
 
-
-Aceptador::Aceptador(Socket& skt, ValueProtected<bool>& seguirCorriendo, Servidor& servidor) :
+Aceptador::Aceptador(Socket& skt, ValueProtected<bool>& seguirCorriendo, SalaDeEspera& salaDeEspera, Servidor& servidor) :
     skt_(skt),
     seguirCorriendo_(seguirCorriendo),
+    salaDeEspera_(salaDeEspera),
     servidor_(servidor) {
 }
 
@@ -18,9 +19,13 @@ void Aceptador::ejecutar() {
     while (seguirCorriendo_()) {
         try {
             Socket aceptado = skt_.aceptar();
-            clientes_.push_back(new EscuchadorCliente(std::move(aceptado), &servidor_));
-            clientes_.back()->iniciar();
-            auto it = std::begin(clientes_);
+            std::shared_ptr<EscuchadorCliente> cliente(new EscuchadorCliente(std::move(aceptado), &servidor_));
+            salaDeEspera_.agregar(cliente);
+            cliente->iniciar();
+            
+            //Limpiar clientes desconectados, acá o en la sala.
+            
+            /*auto it = std::begin(clientes_);
             while (it != std::end(clientes_)) {
                 if ((*it)->finalizado()) {
                     (*it)->cerrar();
@@ -29,7 +34,7 @@ void Aceptador::ejecutar() {
                 } else {
                     ++it;
                 }                    
-            }
+            }*/
         }
         catch(const std::exception& e) {
             continue;
@@ -38,12 +43,12 @@ void Aceptador::ejecutar() {
 }
 
 void Aceptador::cerrar() {
-    auto it = std::begin(clientes_);
+    /*auto it = std::begin(clientes_);
     while (it != std::end(clientes_)) {
         (*it)->stop();
         (*it)->cerrar();
         delete (*it);
         ++it;                    
-    }
+    }*/
     Thread::cerrar();
 }

@@ -2,13 +2,13 @@
 #define __ESCUCHADOR_CLIENTE_H__
 
 #include "../../Common/Thread.h"
+#include "../../Common/handler.h"
 #include "../../Common/Socket.h"
 
 // Forward declaration
-class Handler;
-class Socket;
+class Evento;
 
-class EscuchadorCliente : public Thread {
+class EscuchadorCliente : public Thread, public Handler {
     private:
     Socket sktCliente_;
     Handler* destinatario_;
@@ -17,6 +17,7 @@ class EscuchadorCliente : public Thread {
     public:
     EscuchadorCliente(Socket&& skt, Handler* unDestinatario);
     virtual void ejecutar() override;
+    virtual void manejar(Evento& unEvento) override;
     void stop();
     void cambiarDestinatario(Handler* nuevoDestinatario);
     bool finalizado();

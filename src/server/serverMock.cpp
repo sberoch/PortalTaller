@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include "../Common/Socket.h"
 #include "../Common/Serializador.h"
 #include "../Common/Evento.h"
@@ -26,4 +26,4 @@ int main(int argc, char const *argv[]) {
 	}
 
 	return 0;
-} 
+}*/
