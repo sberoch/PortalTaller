@@ -20,12 +20,12 @@ bool EscuchadorCliente::finalizado() {
 
 void EscuchadorCliente::ejecutar() {
     Serializador serializador;
-    Evento* evento = new EventoCreacionPersonaje(10);
+    Evento* evento = new EventoCreacionPersonaje(uuid());
 	evento->enviarPorSocket(sktCliente_);
     while (true) {
 		Evento* evento = serializador.recibirEvento(sktCliente_);
 		destinatario_->manejar(*evento);
-	}
+	}    
 }
 
 void EscuchadorCliente::stop() {

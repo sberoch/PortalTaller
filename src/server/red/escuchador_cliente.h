@@ -4,11 +4,12 @@
 #include "../../Common/Thread.h"
 #include "../../Common/handler.h"
 #include "../../Common/Socket.h"
+#include "../mundo/identificable.h"
 
 // Forward declaration
 class Evento;
 
-class EscuchadorCliente : public Thread, public Handler {
+class EscuchadorCliente : public Thread, public Handler, public Identificable {
     private:
     Socket sktCliente_;
     Handler* destinatario_;
