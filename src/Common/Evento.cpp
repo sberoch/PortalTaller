@@ -288,6 +288,20 @@ void EventoUnirseAPartida::enviarPorSocket(Socket& s) {
 }
 
 
+EventoSeleccionarPartida::EventoSeleccionarPartida(int partidaSeleccionada) {
+	tipo = EVENTO_UNIRSE_A_PARTIDA;
+	atributos["partidaSeleccionada"] = partidaSeleccionada;
+}
+EventoSeleccionarPartida::EventoSeleccionarPartida(Socket& s) {
+	tipo = EVENTO_UNIRSE_A_PARTIDA;
+	atributos["partidaSeleccionada"] = s.recibirInt();
+}
+void EventoSeleccionarPartida::enviarPorSocket(Socket& s) {
+	s.enviarInt(tipo);
+	s.enviarInt(atributos["partidaSeleccionada"]);
+}
+
+
 EventoActualizacionSala::EventoActualizacionSala(int cantidadPartidas, 
 					int partidaSeleccionada, int jugadoresEnPartida) {
 	tipo = EVENTO_ACTUALIZACION_SALA;
@@ -320,3 +334,5 @@ void EventoCreacionPersonaje::actualizar(Handler& handler) {handler.manejar(*thi
 void EventoCrearPartida::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoUnirseAPartida::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoActualizacionSala::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoIniciarPartida::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoSeleccionarPartida::actualizar(Handler& handler) {handler.manejar(*this);}

@@ -15,6 +15,7 @@
 
 class Evento;
 class EventoActualizacionSala;
+class EventoIniciarPartida;
 
 class EscenaSala : public EscenaBase {
 private:
@@ -52,6 +53,7 @@ public:
 
 	virtual void manejar(Evento& evento) override;
 	virtual void manejar(EventoActualizacionSala& evento) override;
+	virtual void manejar(EventoIniciarPartida& evento) override;
 private:
 	void dibujarBotones();
 	void cargarTextosPartidasYJugadores();

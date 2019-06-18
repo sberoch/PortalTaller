@@ -21,7 +21,7 @@ public:
 	EventoIniciarPartida();
 	EventoIniciarPartida(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizar(Handler& handler) override {}
+	virtual void actualizar(Handler& handler) override;
 	virtual ~EventoIniciarPartida() {}	
 };
 
@@ -177,6 +177,15 @@ public:
 	virtual void enviarPorSocket(Socket& s);
 	virtual void actualizar(Handler& handler) override;	
 	virtual ~EventoUnirseAPartida() {}
+};
+
+class EventoSeleccionarPartida : public Evento {
+public:
+	EventoSeleccionarPartida(int partidaSeleccionada);
+	EventoSeleccionarPartida(Socket& s);
+	virtual void enviarPorSocket(Socket& s);
+	virtual void actualizar(Handler& handler) override;	
+	virtual ~EventoSeleccionarPartida() {}
 };
 
 class EventoActualizacionSala : public Evento {

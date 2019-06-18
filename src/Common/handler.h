@@ -10,9 +10,12 @@ class EventoCambioEstado;
 class EventoEliminarItem;
 class EventoRotacion;
 class EventoCreacionPersonaje;
+class EventoIniciarPartida;
 class EventoCrearPartida;
 class EventoUnirseAPartida;
+class EventoSeleccionarSala;
 class EventoActualizacionSala;
+
 
 class Handler {
     public:
@@ -25,8 +28,10 @@ class Handler {
 	virtual void manejar(EventoRotacion& evento) {}
 	virtual void manejar(EventoCreacionPersonaje& evento) {}
 
+	virtual void manejar(EventoIniciarPartida& evento) {}
 	virtual void manejar(EventoCrearPartida& evento) {}
 	virtual void manejar(EventoUnirseAPartida& evento) {}
+	virtual void manejar(EventoSeleccionarSala& evento) {}
 	virtual void manejar(EventoActualizacionSala& evento) {}
 };
 

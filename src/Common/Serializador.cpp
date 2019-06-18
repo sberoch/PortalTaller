@@ -24,6 +24,7 @@ Evento* Serializador::recibirEvento(Socket& socket) {
 		case(EVENTO_CREAR_PARTIDA): return new EventoCrearPartida(socket);
 		case(EVENTO_UNIRSE_A_PARTIDA): return new EventoUnirseAPartida(socket);
 		case(EVENTO_ACTUALIZACION_SALA): return new EventoActualizacionSala(socket);
+		case(EVENTO_SELECCIONAR_PARTIDA): return new EventoSeleccionarPartida(socket);
 		default: throw std::runtime_error("Error: se intento recuperar evento con tipo no definido.");
 	}
 }

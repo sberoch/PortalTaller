@@ -16,10 +16,11 @@ EscenaSala::EscenaSala(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar,
 	botonCrear("Crear", 60, window),
 	botonJugar("Jugar", 60, window) {
 		terminado = false;
-		cantidadPartidas = 0;
+		cantidadPartidas = 1;
 		jugadores = {0,0,0,0};
 		partidaSeleccionada = 1;
 		cargarTextosPartidasYJugadores();
+		siguienteEscena = ESCENA_SALA;
 	}
 
 bool EscenaSala::termino() {
@@ -50,7 +51,6 @@ void EscenaSala::dibujar() {
 }
 
 int EscenaSala::manejarEventos() {
-	siguienteEscena = ESCENA_SALA;
 	Evento* evento;
 	while (SDL_PollEvent(&e)) {
 		if (e.type == SDL_QUIT) {
@@ -60,8 +60,8 @@ int EscenaSala::manejarEventos() {
 			SDL_GetMouseState(&x, &y);
 			if (botonJugar.estaCursorAdentro(x, y)) {
 				audio.reproducirEfecto(EFECTO_BOTON_CLICK);
-				//En realidad, mandar evento iniciar partida y cuando lo recibis te cambia la escena
-				siguienteEscena = ESCENA_JUEGO;
+				evento = new EventoIniciarPartida(/*miid o mi sala*/);
+				colaEnviar.put(evento);
 
 			} else if (botonUnirse.estaCursorAdentro(x, y)) {
 				audio.reproducirEfecto(EFECTO_BOTON_CLICK);
@@ -73,8 +73,10 @@ int EscenaSala::manejarEventos() {
 				evento = new EventoCrearPartida();
 				colaEnviar.put(evento);
 
-			} else if (clickEnAlgunaPartida(x, y)) {
+			} else if (clickEnAlgunaPartida(x, y)) { //Internamente, se cambia la partida seleccionada
 				audio.reproducirEfecto(EFECTO_BOTON_CLICK);
+				evento = new EventoSeleccionarPartida(partidaSeleccionada);
+				colaEnviar.put(evento);
 			}
 		}
 	}
@@ -144,6 +146,10 @@ void EscenaSala::manejar(EventoActualizacionSala& evento) {
 	cantidadPartidas = evento.atributos["cantidadPartidas"];
 	jugadores.at(evento.atributos["partidaSeleccionada"]) = 
 						evento.atributos["jugadoresEnPartida"];
+}
+
+void EscenaSala::manejar(EventoIniciarPartida& evento) {
+	siguienteEscena = ESCENA_JUEGO;
 }
 
 EscenaSala::~EscenaSala() {

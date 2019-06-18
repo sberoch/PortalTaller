@@ -14,9 +14,6 @@ SeleccionadorEscena::SeleccionadorEscena(int xScreen, int yScreen) :
 
 	socket.conectar("localhost", "8888");
 
-	Evento* eventoIniciar = new EventoIniciarPartida();
-	colaEnviar.put(eventoIniciar);
-
 	recibidorEventos.iniciar();
 	enviadorEventos.iniciar();
 
