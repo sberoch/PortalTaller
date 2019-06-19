@@ -28,8 +28,8 @@ file(GLOB_RECURSE CLIENT_SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "src/Cliente/*.cpp
 add_executable(portal_client ${CLIENT_SOURCES}  ${LIBS_SOURCES})
 target_link_libraries(portal_client SDL2 SDL2_image SDL2_mixer SDL2_ttf yaml-cpp)
 
-#add_executable(portal_server ${SERVER_SOURCES} ${LIBS_SOURCES})
-#target_link_libraries(portal_server Box2D yaml-cpp)
+add_executable(portal_server ${SERVER_SOURCES} ${LIBS_SOURCES})
+target_link_libraries(portal_server Box2D yaml-cpp)
 
 add_executable(server-mock ${SERVER_SOURCES} ${LIBS_SOURCES})
 target_link_libraries(server-mock Box2D yaml-cpp)

@@ -1,5 +1,6 @@
 #include "Audio.h"
 #include "../Common/Constantes.h"
+#include <iostream>
 
 Audio::Audio() {
 	if(SDL_Init(SDL_INIT_AUDIO) < 0) { 
@@ -29,12 +30,14 @@ Audio::Audio() {
 
 void Audio::reproducirMusica() {
 	if(Mix_PlayingMusic() == 0) {
+		std::cout << "Reprodiciendo musica\n";
 		Mix_FadeInMusic(musicaFondo, -1, 3000);
 	}
 }
 
 void Audio::pararMusica() {
 	Mix_HaltMusic();
+	std::cout << "Deteniendo musica\n";
 }
 
 void Audio::reproducirEfecto(int idEfecto) {

@@ -16,12 +16,11 @@ EscenaSala::EscenaSala(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar,
 	botonCrear("Crear", 60, window),
 	botonJugar("Jugar", 60, window) {
 		terminado = false;
-		cantidadPartidas = 1;
+		cantidadPartidas = 0;
 		jugadores = {0,0,0,0};
 		partidaSeleccionada = 1;
 		cargarTextosPartidasYJugadores();
 		siguienteEscena = ESCENA_SALA;
-		audio.reproducirMusica();
 	}
 
 bool EscenaSala::termino() {
@@ -37,6 +36,7 @@ void EscenaSala::actualizar() {
 }
 
 void EscenaSala::dibujar() {
+	audio.reproducirMusica();
 	window.fill();
 
 	window.getWindowSize(&xScreen, &yScreen);
