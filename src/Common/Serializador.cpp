@@ -4,6 +4,7 @@
 
 Evento* Serializador::recibirEvento(Socket& socket) {
 	int tipoEvento = socket.recibirInt();
+	std::cout << tipoEvento << std::endl;
 	switch(tipoEvento) {
 		case(EVENTO_PORTAL_AZUL): return new EventoPortalAzul(socket); 
 		case(EVENTO_PORTAL_NARANJA): return new EventoPortalNaranja(socket);

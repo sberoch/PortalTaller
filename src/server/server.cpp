@@ -40,12 +40,12 @@ void Servidor::manejar(EventoCrearPartida& evento) {
         ++it;                    
     }
     std::cout << "Sala creada y guardada" << "\n";
-    EventoActualizacionSala e(n_partidas, 0, 0);
+    EventoActualizacionSala e(n_partidas, 1, 0);
     salaDeEspera_.transmitir(e);
 }
 
-void Servidor::manejar(EventoActualizacionSala& evento) {
-    
-    EventoActualizacionSala e(salas_.size(), evento.atributos["partidaSeleccionada"], 2);
+void Servidor::manejar(EventoSeleccionarPartida& evento) {
+    std::cout << "RecibiSelecionar partida\n";
+    EventoActualizacionSala e(salas_.size(), evento.atributos["partidaSeleccionada"] -1, 2);
     salaDeEspera_.transmitir(e);
 }

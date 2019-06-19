@@ -13,7 +13,7 @@ class EventoCreacionPersonaje;
 class EventoIniciarPartida;
 class EventoCrearPartida;
 class EventoUnirseAPartida;
-class EventoSeleccionarSala;
+class EventoSeleccionarPartida;
 class EventoActualizacionSala;
 
 
@@ -31,7 +31,7 @@ class Handler {
 	virtual void manejar(EventoIniciarPartida& evento) {}
 	virtual void manejar(EventoCrearPartida& evento) {}
 	virtual void manejar(EventoUnirseAPartida& evento) {}
-	virtual void manejar(EventoSeleccionarSala& evento) {}
+	virtual void manejar(EventoSeleccionarPartida& evento) {}
 	virtual void manejar(EventoActualizacionSala& evento) {}
 };
 

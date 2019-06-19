@@ -289,7 +289,7 @@ void EventoUnirseAPartida::enviarPorSocket(Socket& s) {
 
 
 EventoSeleccionarPartida::EventoSeleccionarPartida(int partidaSeleccionada) {
-	tipo = EVENTO_UNIRSE_A_PARTIDA;
+	tipo = EVENTO_SELECCIONAR_PARTIDA;
 	atributos["partidaSeleccionada"] = partidaSeleccionada;
 }
 EventoSeleccionarPartida::EventoSeleccionarPartida(Socket& s) {
