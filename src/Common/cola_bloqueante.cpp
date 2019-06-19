@@ -1,6 +1,8 @@
 #include "cola_bloqueante.h"
 #include "Evento.h"
 
+#include <memory>
+
 template <class T>
 ColaBloqueante<T>::ColaBloqueante() :
     detenida_(false) {
@@ -35,4 +37,4 @@ void ColaBloqueante<T>::detener() {
 }
 
 template class ColaBloqueante<Evento*>;
-
+template class ColaBloqueante<std::shared_ptr<Evento>>;
