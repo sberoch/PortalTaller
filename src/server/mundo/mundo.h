@@ -19,7 +19,6 @@ class Mundo : public Handler {
     Fisicas fisicas_;
     std::map<int, std::shared_ptr<Colisionable>> bloques_;
     std::map<int, std::shared_ptr<Entidad>> entidades_;
-    std::queue<std::shared_ptr<Evento>> eventos_;
 
     public:
     void agregarBloqueMetalCuadrado(Posicion& posicion, Rotacion& r);

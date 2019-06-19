@@ -5,10 +5,11 @@ Partida::Partida() {
 }
 
 Partida::Partida(Partida&& otra) {
-
+    // Falta implementar
 }
 
 Partida& Partida::operator=(Partida&& otra) {
+    // Falta implementar    
     if (this == &otra) {
         return *this;
     }
