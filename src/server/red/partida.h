@@ -21,6 +21,7 @@ class Partida : public Handler{
     int cantidadDeJugadores();
     void iniciar();
     virtual void manejar(Evento& evento) override;
+    virtual void manejar(EventoMover& evento) override;
 };
 
 #endif

@@ -36,3 +36,7 @@ void Partida::iniciar() {
         ++it;                    
     }
 }
+
+void Partida::manejar(EventoMover& evento) {
+    std::cout << "Estoy recibiendo mover del jugador: " << evento.atributos["uuid"] << "\n";
+}
