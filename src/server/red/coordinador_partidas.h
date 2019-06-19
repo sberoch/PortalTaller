@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <mutex>
+#include <memory>
+#include "escuchador_cliente.h"
 
 #include "partida.h"
 
@@ -15,6 +17,7 @@ class CoordinadorPartidas {
     void agregarPartida(Partida&& unaPartida);
     int cantidadPartidas();
     int cantidadDeJugadoresEn(int partida);
+    void agregarJugadorAPartida(std::shared_ptr<EscuchadorCliente> cliente, int partida);
 };
 
 #endif

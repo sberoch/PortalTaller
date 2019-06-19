@@ -1,16 +1,25 @@
 #ifndef __PARTIDA_H__
 #define __PARTIDA_H__
 
-class Partida {
+#include <memory>
+#include <vector>
+#include "escuchador_cliente.h"
+#include "../../Common/handler.h"
+#include "../../Common/Evento.h"
+
+class Partida : public Handler{
     private:
     Partida(const Partida& otra) = delete;    
     Partida& operator=(const Partida& otra) = delete;
+    std::vector<std::shared_ptr<EscuchadorCliente>> jugadores_;
 
     public:
     Partida();
     Partida(Partida&& otra);
     Partida& operator=(Partida&& otra);
-    int cantidadDeJugadores() {return 2;}
+    void agregar(std::shared_ptr<EscuchadorCliente> cliente);
+    int cantidadDeJugadores();
+    virtual void manejar(Evento& evento) override;
 };
 
 #endif

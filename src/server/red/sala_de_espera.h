@@ -8,6 +8,7 @@
 // Forward declaration
 class EscuchadorCliente;
 class Evento;
+class CoordinadorPartidas;
 
 class SalaDeEspera {
     private:
@@ -16,6 +17,8 @@ class SalaDeEspera {
 
     public:
     void agregar(std::shared_ptr<EscuchadorCliente> unCliente);
+
+    void moverClienteAPartida(int uuidCliente, int partidaSeleccionada, CoordinadorPartidas& coordinador);
 
     void transmitir(Evento& unEvento);
 
