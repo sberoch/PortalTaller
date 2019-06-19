@@ -3,7 +3,7 @@
 
 int main(int argc, char** argv) {
 	try {
-		SeleccionadorEscena seleccionadorEscena(1000, 800);
+		SeleccionadorEscena seleccionadorEscena(argv[1], argv[2], 1000, 800);
 		seleccionadorEscena.ejecutar();
 	} catch (std::runtime_error& e) {
 		std::cout << e.what() << std::endl;

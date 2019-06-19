@@ -26,7 +26,7 @@ private:
 	std::map<int, EscenaBase*> escenas;
 	int escenaActual;
 public:
-	SeleccionadorEscena(int xScreen, int yScreen);
+	SeleccionadorEscena(char* host, char* port, int xScreen, int yScreen);
 	void ejecutar();
 	void terminar();
 };

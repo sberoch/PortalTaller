@@ -21,6 +21,7 @@ EscenaSala::EscenaSala(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar,
 		partidaSeleccionada = 1;
 		cargarTextosPartidasYJugadores();
 		siguienteEscena = ESCENA_SALA;
+		audio.reproducirMusica();
 	}
 
 bool EscenaSala::termino() {

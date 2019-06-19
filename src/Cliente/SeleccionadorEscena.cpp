@@ -6,13 +6,13 @@
 #include "Menu.h"
 #include <iostream>
 
-SeleccionadorEscena::SeleccionadorEscena(int xScreen, int yScreen) :
+SeleccionadorEscena::SeleccionadorEscena(char* host, char* port, int xScreen, int yScreen) :
 	window(xScreen, yScreen),
 	recibidorEventos(colaRecibir, socket),
 	enviadorEventos(colaEnviar, socket),
 	escenaActual(ESCENA_MENU) {
 
-	socket.conectar("localhost", "8888");
+	socket.conectar(host, port);
 
 	recibidorEventos.iniciar();
 	enviadorEventos.iniciar();
