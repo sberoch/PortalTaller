@@ -43,12 +43,6 @@ void Aceptador::ejecutar() {
 }
 
 void Aceptador::cerrar() {
-    /*auto it = std::begin(clientes_);
-    while (it != std::end(clientes_)) {
-        (*it)->stop();
-        (*it)->cerrar();
-        delete (*it);
-        ++it;                    
-    }*/
+    salaDeEspera_.cerrar();
     Thread::cerrar();
 }

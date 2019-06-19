@@ -14,3 +14,25 @@ void SalaDeEspera::transmitir(Evento& unEvento) {
         ++it;                    
     }
 }
+
+void SalaDeEspera::transmitir(Evento& unEvento, int destinatario) {
+    std::lock_guard<std::mutex> lck(mtx_);
+    auto it = std::begin(clientes_);
+    while (it != std::end(clientes_)) {
+        if ((*it)->uuid() == destinatario) {
+            (*it)->manejar(unEvento);
+            break;
+        }        
+        ++it;                    
+    }
+}
+
+void SalaDeEspera::cerrar() {
+    std::lock_guard<std::mutex> lck(mtx_);
+    auto it = std::begin(clientes_);
+    while (it != std::end(clientes_)) {
+        (*it)->stop();
+        (*it)->cerrar();
+        ++it;                    
+    }
+}

@@ -14,6 +14,7 @@ class EscuchadorCliente : public Thread, public Handler, public Identificable {
     Socket sktCliente_;
     Handler* destinatario_;
     bool finalizado_;
+    int uuid_;
 
     public:
     EscuchadorCliente(Socket&& skt, Handler* unDestinatario);

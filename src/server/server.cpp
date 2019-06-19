@@ -31,21 +31,18 @@ void Servidor::manejar(Evento& unEvento) {
 }
 
 void Servidor::manejar(EventoCrearPartida& evento) {
-    Sala nuevaSala;
-    salas_.push_back(std::move(nuevaSala));
-    auto it = std::begin(salas_);
-    int n_partidas = 0;
-    while (it != std::end(salas_)) {
-        n_partidas++;
-        ++it;                    
-    }
-    std::cout << "Sala creada y guardada" << "\n";
-    EventoActualizacionSala e(n_partidas, 1, 0);
+    Partida nuevaPartida;
+    coordinador_.agregarPartida(std::move(nuevaPartida));
+    EventoActualizacionSala e(coordinador_.cantidadPartidas(), 1, 0);
     salaDeEspera_.transmitir(e);
 }
 
 void Servidor::manejar(EventoSeleccionarPartida& evento) {
-    std::cout << "RecibiSelecionar partida\n";
-    EventoActualizacionSala e(salas_.size(), evento.atributos["partidaSeleccionada"] -1, 2);
-    salaDeEspera_.transmitir(e);
+    int partidaSeleccionada = evento.atributos["partidaSeleccionada"] -1;
+    EventoActualizacionSala e(coordinador_.cantidadPartidas(), partidaSeleccionada, coordinador_.cantidadDeJugadoresEn(partidaSeleccionada));
+    salaDeEspera_.transmitir(e, evento.atributos["uuid"]);
+}
+
+void Servidor::manejar(EventoUnirseAPartida& evento) {
+    
 }

@@ -18,6 +18,10 @@ class SalaDeEspera {
     void agregar(std::shared_ptr<EscuchadorCliente> unCliente);
 
     void transmitir(Evento& unEvento);
+
+    void transmitir(Evento& unEvento, int destinatario);
+
+    void cerrar();
 };
 
 #endif

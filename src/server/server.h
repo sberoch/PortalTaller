@@ -8,7 +8,8 @@
 #include "../Common/handler.h"
 #include "../Common/Evento.h"
 
-#include "red/sala.h"
+#include "red/partida.h"
+#include "red/coordinador_partidas.h"
 #include "red/sala_de_espera.h"
 
 #define HOST "localhost"
@@ -18,7 +19,7 @@ class Servidor : public Handler {
     private:
     Socket sktAceptador_;
     SalaDeEspera salaDeEspera_;
-    std::vector<Sala> salas_;
+    CoordinadorPartidas coordinador_;
     
     public:
     Servidor(const std::string& unPuerto);
@@ -26,6 +27,7 @@ class Servidor : public Handler {
     virtual void manejar(Evento& evento) override;
     virtual void manejar(EventoCrearPartida& evento) override;
     virtual void manejar(EventoSeleccionarPartida& evento) override;
+    virtual void manejar(EventoUnirseAPartida& evento) override;
 };
 
 #endif
