@@ -5,6 +5,7 @@
 #include <queue>
 
 #include "fisicas/fisicas.h"
+#include "../../Common/handler.h"
 
 // Forward declaration
 class Colisionable;
@@ -13,7 +14,7 @@ class Velocidad;
 class Rotacion;
 class Evento;
 
-class Mundo {
+class Mundo : public Handler {
     private:
     Fisicas fisicas_;
     std::map<int, std::shared_ptr<Colisionable>> bloques_;
@@ -26,6 +27,9 @@ class Mundo {
     void agregarJugador(Posicion& posicion);
     void moverJugador(int uuidDelJugador, Velocidad& v);
     void step();
+    
+    virtual void manejar(Evento& evento) override;
+
     // Testing
     Fisicas* getFisicas() {return &fisicas_;}
 };

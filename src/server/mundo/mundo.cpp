@@ -12,6 +12,8 @@
 #include "fisicas/movimiento/posicion.h"
 #include "fisicas/movimiento/rotacion.h"
 
+#include "../../Common/Evento.h"
+
 #define NO_ROTADO 0.0f
 
 void Mundo::agregarBloqueMetalCuadrado(Posicion& posicion, Rotacion& r) {
@@ -149,4 +151,8 @@ void Mundo::moverJugador(int uuidJugador, Velocidad& v) {
 
 void Mundo::step() {
     fisicas_.step();
+}
+#include <iostream>
+void Mundo::manejar(Evento& evento) {
+    evento.actualizar(*this);
 }

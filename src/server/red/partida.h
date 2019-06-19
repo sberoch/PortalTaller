@@ -6,14 +6,14 @@
 #include "escuchador_cliente.h"
 #include "../../Common/handler.h"
 #include "../../Common/Evento.h"
-#include "../../Common/cola_bloqueante.h"
+#include "../mundo/mundo.h"
 
 class Partida : public Handler{
     private:
     Partida(const Partida& otra) = delete;    
     Partida& operator=(const Partida& otra) = delete;
     std::vector<std::shared_ptr<EscuchadorCliente>> jugadores_;
-    ColaBloqueante<std::shared_ptr<Evento>> eventosRecibidos;
+    Mundo mundo_;
 
     public:
     Partida();

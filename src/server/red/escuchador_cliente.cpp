@@ -25,10 +25,10 @@ void EscuchadorCliente::ejecutar() {
     std::shared_ptr<Evento> evento(new EventoCreacionPersonaje(uuid_));
 	evento->enviarPorSocket(sktCliente_);
     while (true) {
-		Evento* evento = serializador.recibirEvento(sktCliente_);
+		std::shared_ptr<Evento> evento(serializador.recibirEvento(sktCliente_));
         evento->atributos["uuid"] = uuid_;
 		destinatario_->manejar(*evento);
-	}    
+	}
 }
 
 void EscuchadorCliente::stop() {

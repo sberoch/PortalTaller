@@ -20,9 +20,8 @@ int Partida::cantidadDeJugadores() {
 }
 
 void Partida::manejar(Evento& unEvento) {
-    //eventosRecibidos.put(unEvento);
-    unEvento.actualizar(*this);
-    std::cout << "Evento recibido deberia encolarse\n";
+    unEvento.actualizar(mundo_);
+    std::cout << "Evento recibido pasado al mundo\n";
 }
 
 void Partida::agregar(std::shared_ptr<EscuchadorCliente> cliente) {
