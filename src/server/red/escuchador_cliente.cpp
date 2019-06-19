@@ -4,6 +4,7 @@
 #include "../../Common/Evento.h"
 #include "../../Common/Serializador.h"
 #include <memory>
+#include <iostream>
 
 EscuchadorCliente::EscuchadorCliente(Socket&& skt, Handler* unDestinatario) :
     destinatario_(unDestinatario) {
@@ -25,9 +26,15 @@ void EscuchadorCliente::ejecutar() {
     std::shared_ptr<Evento> evento(new EventoCreacionPersonaje(uuid_));
 	evento->enviarPorSocket(sktCliente_);
     while (true) {
-		std::shared_ptr<Evento> evento(serializador.recibirEvento(sktCliente_));
-        evento->atributos["uuid"] = uuid_;
-		destinatario_->manejar(*evento);
+		try {            
+            std::shared_ptr<Evento> evento(serializador.recibirEvento(sktCliente_));
+            evento->atributos["uuid"] = uuid_;
+		    destinatario_->manejar(*evento);
+        }
+        catch(const std::exception& e) {
+            std::cerr << e.what() << '\n';
+            break;
+        }       
 	}
 }
 

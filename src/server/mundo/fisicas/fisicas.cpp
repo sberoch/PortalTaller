@@ -28,7 +28,7 @@ Fisicas::Fisicas() :
 }
 
 Fisicas::~Fisicas() {
-    //delete mundoBox2D_;
+    delete mundoBox2D_;
 }
 
 void Fisicas::step() {

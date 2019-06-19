@@ -152,7 +152,7 @@ void Mundo::moverJugador(int uuidJugador, Velocidad& v) {
 void Mundo::step() {
     fisicas_.step();
 }
-#include <iostream>
+
 void Mundo::manejar(Evento& evento) {
     evento.actualizar(*this);
 }

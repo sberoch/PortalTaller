@@ -13,7 +13,7 @@ Aceptador::Aceptador(Socket& skt, ValueProtected<bool>& seguirCorriendo, SalaDeE
     salaDeEspera_(salaDeEspera),
     servidor_(servidor) {
 }
-
+#include <iostream>
 void Aceptador::ejecutar() {
 
     while (seguirCorriendo_()) {
@@ -22,22 +22,9 @@ void Aceptador::ejecutar() {
             std::shared_ptr<EscuchadorCliente> cliente(new EscuchadorCliente(std::move(aceptado), &servidor_));
             salaDeEspera_.agregar(cliente);
             cliente->iniciar();
-            
-            //Limpiar clientes desconectados, acá o en la sala.
-            
-            /*auto it = std::begin(clientes_);
-            while (it != std::end(clientes_)) {
-                if ((*it)->finalizado()) {
-                    (*it)->cerrar();
-                    delete (*it);
-                    it = clientes_.erase(it);
-                } else {
-                    ++it;
-                }                    
-            }*/
         }
         catch(const std::exception& e) {
-            continue;
+            std::cout << "Error en aceptar\n";
         }
     }
 }
