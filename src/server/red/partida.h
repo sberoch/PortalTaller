@@ -19,6 +19,7 @@ class Partida : public Handler{
     Partida& operator=(Partida&& otra);
     void agregar(std::shared_ptr<EscuchadorCliente> cliente);
     int cantidadDeJugadores();
+    void iniciar();
     virtual void manejar(Evento& evento) override;
 };
 

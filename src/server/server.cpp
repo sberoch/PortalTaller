@@ -47,3 +47,8 @@ void Servidor::manejar(EventoUnirseAPartida& evento) {
     int partidaSeleccionada = evento.atributos["partidaSeleccionada"] -1;
     salaDeEspera_.moverClienteAPartida(evento.atributos["uuid"], partidaSeleccionada, coordinador_);
 }
+
+void Servidor::manejar(EventoIniciarPartida& evento) {
+    int partidaSeleccionada = evento.atributos["partidaSeleccionada"] -1;
+    coordinador_.iniciar(partidaSeleccionada);
+}

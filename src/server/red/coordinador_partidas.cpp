@@ -17,3 +17,7 @@ int CoordinadorPartidas::cantidadDeJugadoresEn(int partida) {
 void CoordinadorPartidas::agregarJugadorAPartida(std::shared_ptr<EscuchadorCliente> cliente, int partida) {
     partidas_[partida].agregar(cliente);
 }
+
+void CoordinadorPartidas::iniciar(int partidaSeleccionada) {
+    partidas_[partidaSeleccionada].iniciar();
+}

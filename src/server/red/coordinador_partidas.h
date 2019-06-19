@@ -18,6 +18,7 @@ class CoordinadorPartidas {
     int cantidadPartidas();
     int cantidadDeJugadoresEn(int partida);
     void agregarJugadorAPartida(std::shared_ptr<EscuchadorCliente> cliente, int partida);
+    void iniciar(int partidaSeleccionada);
 };
 
 #endif

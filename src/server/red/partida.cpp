@@ -25,5 +25,14 @@ void Partida::manejar(Evento& unEvento) {
 
 void Partida::agregar(std::shared_ptr<EscuchadorCliente> cliente) {
     jugadores_.push_back(cliente);
-    std::cout << "Agregado\n";
+}
+
+void Partida::iniciar() {
+    auto it = std::begin(jugadores_);
+    while (it != std::end(jugadores_)) {
+        EventoIniciarPartida e(0);
+        (*it)->manejar(e);
+        (*it)->cambiarDestinatario(this);
+        ++it;                    
+    }
 }

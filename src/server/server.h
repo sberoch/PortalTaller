@@ -28,7 +28,7 @@ class Servidor : public Handler {
     virtual void manejar(EventoCrearPartida& evento) override;
     virtual void manejar(EventoSeleccionarPartida& evento) override;
     virtual void manejar(EventoUnirseAPartida& evento) override;
+    virtual void manejar(EventoIniciarPartida& evento) override;
 };
 
 #endif
-
