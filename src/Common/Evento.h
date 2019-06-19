@@ -18,7 +18,7 @@ public:
 
 class EventoIniciarPartida : public Evento {
 public:
-	EventoIniciarPartida();
+	EventoIniciarPartida(int partidaSeleccionada);
 	EventoIniciarPartida(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
 	virtual void actualizar(Handler& handler) override;

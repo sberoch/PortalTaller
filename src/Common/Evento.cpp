@@ -6,14 +6,17 @@
 #include <iostream>
 
 
-EventoIniciarPartida::EventoIniciarPartida() {
+EventoIniciarPartida::EventoIniciarPartida(int partidaSeleccionada) {
 	tipo = EVENTO_INICIAR_PARTIDA;
+	atributos["partidaSeleccionada"] = partidaSeleccionada;
 }
 EventoIniciarPartida::EventoIniciarPartida(Socket& s) {
 	tipo = EVENTO_INICIAR_PARTIDA;
+	atributos["partidaSeleccionada"] = s.recibirInt();
 }
 void EventoIniciarPartida::enviarPorSocket(Socket& s) {
 	s.enviarInt(tipo);
+	s.enviarInt(atributos["partidaSeleccionada"]);
 }
 
 
