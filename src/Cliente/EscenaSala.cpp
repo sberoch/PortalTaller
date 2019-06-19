@@ -60,7 +60,7 @@ int EscenaSala::manejarEventos() {
 			SDL_GetMouseState(&x, &y);
 			if (botonJugar.estaCursorAdentro(x, y)) {
 				audio.reproducirEfecto(EFECTO_BOTON_CLICK);
-				evento = new EventoIniciarPartida(/*miid o mi sala*/);
+				evento = new EventoIniciarPartida(partidaSeleccionada);
 				colaEnviar.put(evento);
 
 			} else if (botonUnirse.estaCursorAdentro(x, y)) {
