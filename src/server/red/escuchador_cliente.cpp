@@ -3,6 +3,7 @@
 #include "../../Common/handler.h"
 #include "../../Common/Evento.h"
 #include "../../Common/Serializador.h"
+#include <memory>
 
 EscuchadorCliente::EscuchadorCliente(Socket&& skt, Handler* unDestinatario) :
     destinatario_(unDestinatario) {
@@ -21,7 +22,7 @@ bool EscuchadorCliente::finalizado() {
 void EscuchadorCliente::ejecutar() {
     Serializador serializador;
     uuid_ = uuid();
-    Evento* evento = new EventoCreacionPersonaje(uuid_);
+    std::shared_ptr<Evento> evento(new EventoCreacionPersonaje(uuid_));
 	evento->enviarPorSocket(sktCliente_);
     while (true) {
 		Evento* evento = serializador.recibirEvento(sktCliente_);

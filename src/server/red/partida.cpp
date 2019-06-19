@@ -20,7 +20,9 @@ int Partida::cantidadDeJugadores() {
 }
 
 void Partida::manejar(Evento& unEvento) {
+    //eventosRecibidos.put(unEvento);
     unEvento.actualizar(*this);
+    std::cout << "Evento recibido deberia encolarse\n";
 }
 
 void Partida::agregar(std::shared_ptr<EscuchadorCliente> cliente) {
@@ -35,8 +37,4 @@ void Partida::iniciar() {
         (*it)->cambiarDestinatario(this);
         ++it;                    
     }
-}
-
-void Partida::manejar(EventoMover& evento) {
-    std::cout << "Estoy recibiendo mover del jugador: " << evento.atributos["uuid"] << "\n";
 }

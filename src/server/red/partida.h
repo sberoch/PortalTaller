@@ -6,12 +6,14 @@
 #include "escuchador_cliente.h"
 #include "../../Common/handler.h"
 #include "../../Common/Evento.h"
+#include "../../Common/cola_bloqueante.h"
 
 class Partida : public Handler{
     private:
     Partida(const Partida& otra) = delete;    
     Partida& operator=(const Partida& otra) = delete;
     std::vector<std::shared_ptr<EscuchadorCliente>> jugadores_;
+    ColaBloqueante<std::shared_ptr<Evento>> eventosRecibidos;
 
     public:
     Partida();
@@ -21,7 +23,6 @@ class Partida : public Handler{
     int cantidadDeJugadores();
     void iniciar();
     virtual void manejar(Evento& evento) override;
-    virtual void manejar(EventoMover& evento) override;
 };
 
 #endif
