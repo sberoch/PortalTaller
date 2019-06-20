@@ -1,142 +1,424 @@
 ---
 objetos:
-  - tipo: 101
-    posX: 1
-    posY: 5
-    angulo: 0
-  - tipo: 101
-    posX: 2
-    posY: 5
-    angulo: 0
-  - tipo: 101
+    #Personajes
+  - tipo: 111
     posX: 3
-    posY: 5
+    posY: 6
     angulo: 0
-  - tipo: 101
+  - tipo: 112
     posX: 4
-    posY: 5
+    posY: 6
     angulo: 0
-  - tipo: 101
+  - tipo: 113
     posX: 5
-    posY: 5
+    posY: 6
     angulo: 0
-  - tipo: 101
+  - tipo: 114
     posX: 6
-    posY: 5
-    angulo: 0
-  - tipo: 101
-    posX: 7
-    posY: 5
-    angulo: 0
-  - tipo: 101
-    posX: 8
-    posY: 5
-    angulo: 0
-  - tipo: 101
-    posX: 9
-    posY: 5
-    angulo: 0
-  - tipo: 101
-    posX: 10
-    posY: 5
-    angulo: 0
-  - tipo: 101
-    posX: 11
-    posY: 5
-    angulo: 0
-  - tipo: 101
-    posX: 1
-    posY: 4
-    angulo: 0
-  - tipo: 101
-    posX: 2
-    posY: 4
-    angulo: 0
-  - tipo: 101
-    posX: 3
-    posY: 4
-    angulo: 0
-  - tipo: 101
-    posX: 4
-    posY: 4
-    angulo: 0
-  - tipo: 101
-    posX: 5
-    posY: 4
-    angulo: 0
-  - tipo: 101
-    posX: 6
-    posY: 4
-    angulo: 0
-  - tipo: 101
-    posX: 7
-    posY: 4
-    angulo: 0
-  - tipo: 101
-    posX: 8
-    posY: 4
-    angulo: 0
-  - tipo: 101
-    posX: 9
-    posY: 4
-    angulo: 0
-  - tipo: 101
-    posX: 10
-    posY: 4
-    angulo: 0
-  - tipo: 101
-    posX: 11
-    posY: 4
+    posY: 6
     angulo: 0
 
-  - tipo: 105
-    posX: 6
+    #Paredes
+  - tipo: 101
+    posX: 24
+    posY: 0
+    angulo: 0
+  - tipo: 101
+    posX: 24
+    posY: 1
+    angulo: 0
+  - tipo: 101
+    posX: 24
+    posY: 2
+    angulo: 0
+  - tipo: 101
+    posX: 24
     posY: 3
     angulo: 0
-  - tipo: 107
+  - tipo: 101
+    posX: 24
+    posY: 4
+    angulo: 0
+  - tipo: 101
+    posX: 24
+    posY: 5
+    angulo: 0
+  - tipo: 101
+    posX: 24
+    posY: 6
+    angulo: 0
+  - tipo: 101
     posX: 1
-    posY: 3
+    posY: 0
     angulo: 0
-  - tipo: 108
+  - tipo: 101
+    posX: 1
+    posY: 1
+    angulo: 0
+  - tipo: 101
     posX: 1
     posY: 2
     angulo: 0
-  - tipo: 110
-    posX: 11
+  - tipo: 101
+    posX: 1
     posY: 3
-    angulo: 90
-  - tipo: 115
+    angulo: 0
+  - tipo: 101
+    posX: 1
+    posY: 4
+    angulo: 0
+  - tipo: 101
+    posX: 1
+    posY: 5
+    angulo: 0
+  - tipo: 101
+    posX: 1
+    posY: 6
+    angulo: 0
+
+    #Piso
+  - tipo: 101
+    posX: 1
+    posY: 7
+    angulo: 0
+  - tipo: 101
+    posX: 2
+    posY: 7
+    angulo: 0
+  - tipo: 101
+    posX: 3
+    posY: 7
+    angulo: 0
+  - tipo: 101
+    posX: 4
+    posY: 7
+    angulo: 0
+  - tipo: 101
+    posX: 5
+    posY: 7
+    angulo: 0
+  - tipo: 101
+    posX: 6
+    posY: 7
+    angulo: 0
+  - tipo: 101
+    posX: 7
+    posY: 7
+    angulo: 0
+  - tipo: 101
+    posX: 8
+    posY: 7
+    angulo: 0
+  - tipo: 100
+    posX: 9
+    posY: 7
+    angulo: 0
+  - tipo: 100
+    posX: 10
+    posY: 7
+    angulo: 0
+  - tipo: 100
+    posX: 11
+    posY: 7
+    angulo: 0
+  - tipo: 101
+    posX: 12
+    posY: 7
+    angulo: 0
+  - tipo: 101
+    posX: 13
+    posY: 7
+    angulo: 0
+  - tipo: 101
+    posX: 14
+    posY: 7
+    angulo: 0
+  - tipo: 101
+    posX: 15
+    posY: 7
+    angulo: 0
+  - tipo: 101
+    posX: 16
+    posY: 7
+    angulo: 0
+  - tipo: 101
+    posX: 17
+    posY: 7
+    angulo: 0
+  - tipo: 101
+    posX: 18
+    posY: 7
+    angulo: 0
+  - tipo: 101
+    posX: 19
+    posY: 7
+    angulo: 0
+  - tipo: 101
+    posX: 20
+    posY: 7
+    angulo: 0
+  - tipo: 101
+    posX: 21
+    posY: 7
+    angulo: 0
+  - tipo: 101
+    posX: 22
+    posY: 7
+    angulo: 0
+  - tipo: 101
+    posX: 23
+    posY: 7
+    angulo: 0
+  - tipo: 101
+    posX: 24
+    posY: 7
+    angulo: 0
+
+
+    #1er Habitacion
+  - tipo: 101
+    posX: 2
+    posY: 3
+    angulo: 0
+  - tipo: 101
     posX: 3
     posY: 3
     angulo: 0
-
-  - tipo: 111
+  - tipo: 101
+    posX: 4
+    posY: 3
+    angulo: 0
+  - tipo: 101
     posX: 5
     posY: 3
     angulo: 0
-  - tipo: 112
-    posX: 8
-    posY: 3
-    angulo: 0
-
-  - tipo: 106
-    posX: 3
-    posY: 3
-    angulo: 0  
-  - tipo: 116
-    posX: 2
-    posY: 3
-    angulo: 180 
-  - tipo: 104
+  - tipo: 101
     posX: 6
     posY: 3
     angulo: 0
-  - tipo: 109
+  - tipo: 101
     posX: 7
     posY: 3
-    angulo: 0 
+    angulo: 0
+  - tipo: 101
+    posX: 8
+    posY: 3
+    angulo: 0
+  - tipo: 107
+    posX: 2
+    posY: 7
+    angulo: 270
+  - tipo: 108
+    posX: 7
+    posY: 3
+    angulo: 90
+  - tipo: 101
+    posX: 8
+    posY: 4
+    angulo: 0
   - tipo: 102
+    posX: 2
+    posY: 4
+    angulo: 90    
+  - tipo: 109
+    posX: 8
+    posY: 6
+    angulo: 0
+
+    #2da Habitacion
+  - tipo: 100
+    posX: 10
+    posY: 6
+    angulo: 0
+  - tipo: 100
+    posX: 11
+    posY: 6
+    angulo: 0
+  - tipo: 100
+    posX: 11
+    posY: 5
+    angulo: 0
+  - tipo: 101
     posX: 9
     posY: 3
-    angulo: 270    
+    angulo: 0
+  - tipo: 101
+    posX: 9
+    posY: 2
+    angulo: 0
+  - tipo: 100
+    posX: 9
+    posY: 1
+    angulo: 0
+  - tipo: 100
+    posX: 10
+    posY: 1
+    angulo: 0
+  - tipo: 100
+    posX: 11
+    posY: 1
+    angulo: 0
+  - tipo: 100
+    posX: 12
+    posY: 1
+    angulo: 0
+  - tipo: 100
+    posX: 13
+    posY: 1
+    angulo: 0
+  - tipo: 100
+    posX: 14
+    posY: 1
+    angulo: 0
+  - tipo: 100
+    posX: 15
+    posY: 1
+    angulo: 0
+  - tipo: 100
+    posX: 15
+    posY: 2
+    angulo: 0
+  - tipo: 100
+    posX: 15
+    posY: 3
+    angulo: 0
+  - tipo: 110
+    posX: 15
+    posY: 4
+    angulo: 90
+  - tipo: 110
+    posX: 15
+    posY: 5
+    angulo: 90
+  - tipo: 100
+    posX: 15
+    posY: 6
+    angulo: 0
+  - tipo: 105
+    posX: 13
+    posY: 6
+    angulo: 0
+  - tipo: 105
+    posX: 14
+    posY: 6
+    angulo: 0
+
+    #3er Habitacion
+  - tipo: 101
+    posX: 15
+    posY: 0
+    angulo: 0
+  - tipo: 101
+    posX: 16
+    posY: 0
+    angulo: 0
+  - tipo: 101
+    posX: 17
+    posY: 0
+    angulo: 0
+  - tipo: 101
+    posX: 18
+    posY: 0
+    angulo: 0
+  - tipo: 101
+    posX: 19
+    posY: 0
+    angulo: 0
+  - tipo: 101
+    posX: 20
+    posY: 0
+    angulo: 0
+  - tipo: 101
+    posX: 21
+    posY: 0
+    angulo: 0
+  - tipo: 101
+    posX: 22
+    posY: 0
+    angulo: 0
+  - tipo: 101
+    posX: 23
+    posY: 0
+    angulo: 0
+  - tipo: 101
+    posX: 21
+    posY: 1
+    angulo: 0
+  - tipo: 101
+    posX: 22
+    posY: 1
+    angulo: 0
+  - tipo: 101
+    posX: 23
+    posY: 1
+    angulo: 0
+  - tipo: 101
+    posX: 21
+    posY: 2
+    angulo: 0
+  - tipo: 109
+    posX: 21
+    posY: 4
+    angulo: 0
+  - tipo: 101
+    posX: 20
+    posY: 5
+    angulo: 0
+  - tipo: 101
+    posX: 21
+    posY: 5
+    angulo: 0
+  - tipo: 101
+    posX: 22
+    posY: 5
+    angulo: 0
+  - tipo: 101
+    posX: 23
+    posY: 5
+    angulo: 0
+  - tipo: 101
+    posX: 19
+    posY: 6
+    angulo: 0
+  - tipo: 101
+    posX: 20
+    posY: 6
+    angulo: 0
+  - tipo: 101
+    posX: 21
+    posY: 6
+    angulo: 0
+  - tipo: 101
+    posX: 22
+    posY: 6
+    angulo: 0
+  - tipo: 101
+    posX: 23
+    posY: 6
+    angulo: 0
+  - tipo: 104
+    posX: 17
+    posY: 6
+    angulo: 0
+  - tipo: 100
+    posX: 17
+    posY: 3
+    angulo: 0
+  - tipo: 100
+    posX: 16
+    posY: 3
+    angulo: 0
+  - tipo: 106
+    posX: 16
+    posY: 2
+    angulo: 0
+  - tipo: 101
+    posX: 20
+    posY: 5
+    angulo: 0
+  - tipo: 115
+    posX: 23
+    posY: 4
+    angulo: 0
+
 ...

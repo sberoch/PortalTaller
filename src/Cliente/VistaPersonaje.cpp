@@ -34,6 +34,8 @@ void VistaPersonaje::mover(int x, int y) {
 void VistaPersonaje::asignarEstado(int estado) {
 	if (estado != this->estado) {
 		frame = 0;
+		if (estado == ESTADO_MUERTO) audio.reproducirEfecto(EFECTO_MUERTE);
+		else if (estado == ESTADO_SALTANDO) audio.reproducirEfecto(EFECTO_SALTO);
 	}
 	this->estado = estado;
 }

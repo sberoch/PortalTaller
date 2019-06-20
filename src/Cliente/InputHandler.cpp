@@ -88,7 +88,6 @@ void InputHandler::handle() {
 					colaEnviar.put(evento);
 					evento = new EventoCambioEstado(ESTADO_SALTANDO, playerId);
 					colaEnviar.put(evento);
-					audio.reproducirEfecto(EFECTO_SALTO);
 					break;
 				}
 				case SDLK_k: {
@@ -98,6 +97,7 @@ void InputHandler::handle() {
 					colaEnviar.put(evento);
 					break;
 				}
+
 				case SDLK_F11:
 					if (fullscreen) {
 						window.setFullscreen(false);

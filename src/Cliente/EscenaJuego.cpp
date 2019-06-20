@@ -141,7 +141,7 @@ void EscenaJuego::actualizarFondo() {
 	window.getWindowSize(&xScreen, &yScreen);
 	fondo.setDimensiones(xScreen, yScreen);
 	for(int i = 0; i < 5; ++i) {
-		for(int j = 0; j < 2; ++j) {
+		for(int j = 0; j < 3; ++j) {
 			fondo.dibujarEn(-xScreen*2 + xScreen*i + deltaCamaraX/2,
 							-yScreen/2 + yScreen*j + deltaCamaraY/2);
 		}

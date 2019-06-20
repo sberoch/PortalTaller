@@ -31,9 +31,6 @@ target_link_libraries(portal_client SDL2 SDL2_image SDL2_mixer SDL2_ttf yaml-cpp
 add_executable(portal_server ${SERVER_SOURCES} ${LIBS_SOURCES})
 target_link_libraries(portal_server Box2D yaml-cpp)
 
-#add_executable(server-mock ${SERVER_SOURCES} ${LIBS_SOURCES})
-#target_link_libraries(server-mock Box2D yaml-cpp)
-
 install(FILES assets/emisor_receptor.png DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/bloque_metal_diag.png DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/boton_menu.wav DESTINATION ${CMAKE_BINARY_DIR})
@@ -51,5 +48,8 @@ install(FILES assets/escenario.yaml DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/musica_fondo.mp3 DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/disparo_portal.wav DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/salto.wav DESTINATION ${CMAKE_BINARY_DIR})
+install(FILES assets/muerte.wav DESTINATION ${CMAKE_BINARY_DIR})
+install(FILES assets/boton.wav DESTINATION ${CMAKE_BINARY_DIR})
+install(FILES assets/puerta.wav DESTINATION ${CMAKE_BINARY_DIR})
 install(FILES assets/portal.ttf DESTINATION ${CMAKE_BINARY_DIR})
 

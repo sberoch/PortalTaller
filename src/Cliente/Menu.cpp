@@ -50,7 +50,6 @@ int Menu::manejarEventos() {
 			}
 			if (botonJugar.estaCursorAdentro(x, y)) {
 				audio.reproducirEfecto(EFECTO_BOTON_CLICK);
-				audio.pararMusica();
 				siguienteEscena = ESCENA_SALA;
 			}
 		} else if (e.type == SDL_KEYDOWN) {

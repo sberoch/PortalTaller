@@ -26,6 +26,20 @@ Audio::Audio() {
 	if (botonMenu == NULL) printf("%s\n", Mix_GetError());
 	efectos.insert(std::make_pair(EFECTO_BOTON_CLICK, botonMenu));
 
+	muerte = Mix_LoadWAV("muerte.wav");
+	if (muerte == NULL) printf("%s\n", Mix_GetError());
+	efectos.insert(std::make_pair(EFECTO_MUERTE, muerte));
+	Mix_VolumeChunk(muerte, MIX_MAX_VOLUME/10);
+
+	puerta = Mix_LoadWAV("puerta.wav");
+	if (puerta == NULL) printf("%s\n", Mix_GetError());
+	efectos.insert(std::make_pair(EFECTO_PUERTA, puerta));
+	Mix_VolumeChunk(puerta, MIX_MAX_VOLUME/4);
+
+	boton = Mix_LoadWAV("boton.wav");
+	if (boton == NULL) printf("%s\n", Mix_GetError());
+	efectos.insert(std::make_pair(EFECTO_BOTON, boton));
+
 }
 
 void Audio::reproducirMusica() {
