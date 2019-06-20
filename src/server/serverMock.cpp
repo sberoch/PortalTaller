@@ -15,7 +15,7 @@ int main(int argc, char const *argv[]) {
 	Socket peerSocket = socket.aceptar();
 	std::cout << "Socket aceptado\n";
 
-	Evento* evento = new EventoCreacionPersonaje(29);
+	Evento* evento = new EventoCreacionPersonaje(1);
 	evento->enviarPorSocket(peerSocket);
 
 	while (true) {

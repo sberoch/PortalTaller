@@ -3,9 +3,11 @@
 
 #include "VistaObjetoMovil.h"
 #include "AnimacionPersonaje.h"
+#include "Audio.h"
 
 class VistaPersonaje : public VistaObjetoMovil {
 private:
+	Audio audio;
 	AnimacionPersonaje animaciones;
 	int estado;
 	SDL_RendererFlip rendererFlip;

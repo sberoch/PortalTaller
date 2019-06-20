@@ -50,6 +50,10 @@ void VistaPuerta::dibujarEn(int x, int y) {
 
 
 void VistaPuerta::asignarEstado(int estado) {
-	if (estado == ABIERTA) this->estado = 1;
-	else if (estado == CERRADA) this->estado = 0;
+	if (estado == ABIERTA) {
+		this->estado = 1;
+	} else if (estado == CERRADA) {
+		this->estado = 0;
+	}
+	audio.reproducirEfecto(EFECTO_PUERTA);
 }

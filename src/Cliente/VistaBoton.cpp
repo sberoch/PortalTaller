@@ -26,4 +26,5 @@ void VistaBoton::dibujarEn(int x, int y) {
 void VistaBoton::asignarEstado(int estado) {
 	if (estado == PRESIONADO) this->estado = 0;
 	else if (estado == NO_PRESIONADO) this->estado = 1;
+	audio.reproducirEfecto(EFECTO_BOTON);
 }

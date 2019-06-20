@@ -12,6 +12,9 @@ private:
 	Mix_Chunk* disparo = NULL;
 	Mix_Chunk* salto = NULL;
 	Mix_Chunk* botonMenu = NULL;
+	Mix_Chunk* muerte = NULL;
+	Mix_Chunk* boton = NULL;
+	Mix_Chunk* puerta = NULL;
 
 	std::map<int, Mix_Chunk*> efectos;
 public:
