@@ -1,14 +1,12 @@
 #include "sala_de_espera.h"
-#include "escuchador_cliente.h"
+#include "cliente.h"
 #include "coordinador_partidas.h"
 
-void SalaDeEspera::agregar(std::shared_ptr<EscuchadorCliente> unCliente) {
-    std::lock_guard<std::mutex> lck(mtx_);
+void SalaDeEspera::agregar(std::shared_ptr<Cliente> unCliente) {
     clientes_.push_back(unCliente);
 }
 
 void SalaDeEspera::moverClienteAPartida(int uuidCliente, int partidaSeleccionada, CoordinadorPartidas& coordinador) {
-    std::lock_guard<std::mutex> lck(mtx_);
     auto it = std::begin(clientes_);
     while (it != std::end(clientes_)) {
         if ((*it)->uuid() == uuidCliente) {
@@ -21,7 +19,6 @@ void SalaDeEspera::moverClienteAPartida(int uuidCliente, int partidaSeleccionada
 
 
 void SalaDeEspera::transmitir(Evento& unEvento) {
-    std::lock_guard<std::mutex> lck(mtx_);
     auto it = std::begin(clientes_);
     while (it != std::end(clientes_)) {
         (*it)->manejar(unEvento);
@@ -30,7 +27,6 @@ void SalaDeEspera::transmitir(Evento& unEvento) {
 }
 
 void SalaDeEspera::transmitir(Evento& unEvento, int destinatario) {
-    std::lock_guard<std::mutex> lck(mtx_);
     auto it = std::begin(clientes_);
     while (it != std::end(clientes_)) {
         if ((*it)->uuid() == destinatario) {
@@ -42,7 +38,6 @@ void SalaDeEspera::transmitir(Evento& unEvento, int destinatario) {
 }
 
 void SalaDeEspera::cerrar() {
-    std::lock_guard<std::mutex> lck(mtx_);
     auto it = std::begin(clientes_);
     while (it != std::end(clientes_)) {
         (*it)->stop();

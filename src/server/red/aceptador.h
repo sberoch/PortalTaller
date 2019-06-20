@@ -1,28 +1,25 @@
 #ifndef __ACEPTADOR_H__
 #define __ACEPTADOR_H__
 
-#include <vector>
-
 #include "../../Common/Thread.h"
-#include "../../Common/value_protected.h"
 
 // Forward declaration
 class Socket;
 class Servidor;
-class EscuchadorCliente;
+class Cliente;
 class SalaDeEspera;
 
 class Aceptador : public Thread {
     private:
     Socket& skt_;
-    ValueProtected<bool>& seguirCorriendo_;
+    bool seguirCorriendo_;
     Servidor& servidor_;
     SalaDeEspera& salaDeEspera_;
 
     public:
-    Aceptador(Socket& skt, ValueProtected<bool>& seguirCorriendo, SalaDeEspera& salaDeEspera, Servidor& servidor);
+    Aceptador(Socket& skt, bool seguirCorriendo, Servidor& servidor, SalaDeEspera& salaDeEspera);
     virtual void ejecutar() override;
-    virtual void cerrar() override;
+    virtual void detener();
 };
 
 #endif

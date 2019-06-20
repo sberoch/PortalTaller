@@ -4,8 +4,6 @@
 
 #include "red/aceptador.h"
 
-#include "../Common/value_protected.h"
-
 #include "server_config.h"
 
 
@@ -14,14 +12,14 @@ Servidor::Servidor(const std::string& unPuerto) {
 }
 
 void Servidor::correr() {
-    ValueProtected<bool> seguirCorriendo(true);
-    Aceptador aceptador(sktAceptador_, seguirCorriendo, salaDeEspera_, *this);
+    bool seguirCorriendo = true;
+    Aceptador aceptador(sktAceptador_, seguirCorriendo, *this, salaDeEspera_);
     aceptador.iniciar();
     char c;
     while ((c = std::cin.get()) != CONDICION_SALIR) {
         // pass
     }
-    seguirCorriendo.set(false);
+    seguirCorriendo = false;
     sktAceptador_.shutdown();
     aceptador.cerrar();
 }
