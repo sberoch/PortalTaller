@@ -19,9 +19,13 @@ void VistaPersonaje::dibujarEn(int x, int y) {
 				  yInicial + y + posY - tamanioVertical/2, 
 				  tamanioHorizontal, tamanioVertical);
 	textura.render(srcArea, destArea, 0.0, rendererFlip);
+	siguienteFrame(animaciones.size());
+}
 
+void VistaPersonaje::siguienteFrame(int cantClips) {
 	++frame;
-	if ((frame/4) >= animaciones.size()) { 
+	if ((frame/4) >= cantClips) {
+		if (estado == ESTADO_DISPARANDO) estado = ESTADO_IDLE; 
 		frame = 0;
 	}
 }

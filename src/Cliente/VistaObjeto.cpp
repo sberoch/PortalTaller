@@ -21,10 +21,6 @@ void VistaObjeto::asignarRotacion(int angulo) {
 	throw std::runtime_error("Intentando rotar objeto incorrecto");
 }
 
-void VistaObjeto::asignarColorSegunPlayer(int playerId) {
-	throw std::runtime_error("Intentando asignar color a objeto incorrecto");
-}
-
 void VistaObjeto::setId(int id) {
 	this->id = id;
 }

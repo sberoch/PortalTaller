@@ -20,7 +20,6 @@ public:
 	virtual void mover(int x, int y);
 	virtual void asignarRotacion(int angulo);
 	virtual void flip(int flip);
-	virtual void asignarColorSegunPlayer(int playerId);
 	void setPosInicial(int x, int y);
 	void setId(int id);
 	int getId();
