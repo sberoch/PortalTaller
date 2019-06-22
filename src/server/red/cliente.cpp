@@ -35,3 +35,7 @@ void Cliente::cerrar() {
 void Cliente::enviar(std::shared_ptr<Evento> unEvento) {
     eventosAEnviar_.put(unEvento);
 }
+
+ColaBloqueante<std::shared_ptr<Evento>>& Cliente::eventosEntrantes() {
+    return eventosRecibidos_;
+}

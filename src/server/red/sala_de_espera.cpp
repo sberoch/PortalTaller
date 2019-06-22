@@ -11,6 +11,9 @@ void SalaDeEspera::agregar(std::shared_ptr<Cliente> unCliente) {
     // DEBERIA SER PROTEGIDO
     clientes_.push_back(unCliente);
     unCliente->iniciar();
+    std::shared_ptr<Retransmisor> retransmisor(new Retransmisor(seguirCorriendo_, unCliente->eventosEntrantes(), eventosEntrantes_));
+    retransmisores_[unCliente] = retransmisor;
+    retransmisor->iniciar();
 }
 
 void SalaDeEspera::cerrar() {
@@ -20,6 +23,9 @@ void SalaDeEspera::cerrar() {
         ++it;                    
     }
     eventosEntrantes_.detener();
+    for (auto& kv : retransmisores_) {
+        kv.second->cerrar();
+    }
     Thread::cerrar();
 }
 

@@ -3,11 +3,14 @@
 
 #include <vector>
 #include <memory>
+#include <map>
 
 #include "../../Common/cola_bloqueante.h"
 #include "../../Common/Evento.h"
 #include "../../Common/handler.h"
 #include "../../Common/Thread.h"
+
+#include "retransmisor.h"
 
 // Forward declaration
 class Cliente;
@@ -17,6 +20,7 @@ class SalaDeEspera : public Thread, public Handler {
     bool& seguirCorriendo_;
     std::vector<std::shared_ptr<Cliente>> clientes_;
     ColaBloqueante<std::shared_ptr<Evento>> eventosEntrantes_;
+    std::map<std::shared_ptr<Cliente>, std::shared_ptr<Retransmisor>> retransmisores_;
 
     public:
     SalaDeEspera(bool& seguirCorriendo);

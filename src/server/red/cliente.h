@@ -25,6 +25,7 @@ class Cliente : public Thread {
     virtual void cerrar() override;
     bool estaVivo();
     void enviar(std::shared_ptr<Evento> unEvento);
+    ColaBloqueante<std::shared_ptr<Evento>>& eventosEntrantes();
 };
 
 #endif
