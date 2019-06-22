@@ -15,13 +15,13 @@ class RecibidorEventos : public Thread {
     private:
     Socket& origen_;
     ColaBloqueante<std::shared_ptr<Evento>>& destino_;    
-    bool finalizado_;
+    bool& seguirCorriendo_;
     Serializador serializador_;
 
     public:
-    RecibidorEventos(Socket& origen, ColaBloqueante<std::shared_ptr<Evento>>& destino);
+    RecibidorEventos(Socket& origen, ColaBloqueante<std::shared_ptr<Evento>>& destino, bool& seguirCorriendo);
     virtual void ejecutar() override;
-    void detener();
+    void cerrar() override;
 };
 
 #endif

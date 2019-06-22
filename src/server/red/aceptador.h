@@ -12,14 +12,14 @@ class SalaDeEspera;
 class Aceptador : public Thread {
     private:
     Socket& skt_;
-    bool seguirCorriendo_;
+    bool& seguirCorriendo_;
     Servidor& servidor_;
     SalaDeEspera& salaDeEspera_;
 
     public:
-    Aceptador(Socket& skt, bool seguirCorriendo, Servidor& servidor, SalaDeEspera& salaDeEspera);
+    Aceptador(Socket& skt, bool& seguirCorriendo, Servidor& servidor, SalaDeEspera& salaDeEspera);
     virtual void ejecutar() override;
-    virtual void detener();
+    virtual void cerrar() override;
 };
 
 #endif

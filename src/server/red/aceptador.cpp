@@ -5,32 +5,30 @@
 #include "../../Common/Socket.h"
 
 #include "../server.h"
-#include "sala_de_espera.h"
 #include "cliente.h"
 
-Aceptador::Aceptador(Socket& skt, bool seguirCorriendo, Servidor& servidor, SalaDeEspera& salaDeEspera) :
+#include <iostream>
+Aceptador::Aceptador(Socket& skt, bool& seguirCorriendo, Servidor& servidor, SalaDeEspera& salaDeEspera) :
     skt_(skt),
     seguirCorriendo_(seguirCorriendo),
     servidor_(servidor),
     salaDeEspera_(salaDeEspera) {
 }
 
-#include <iostream>
 void Aceptador::ejecutar() {
-
     while (seguirCorriendo_) {
         try {
             Socket aceptado = skt_.aceptar();
-            std::shared_ptr<Cliente> cliente(new Cliente(std::move(aceptado)));
+            std::shared_ptr<Cliente> cliente(new Cliente(std::move(aceptado), seguirCorriendo_));
             salaDeEspera_.agregar(cliente);
         }
         catch(const std::exception& e) {
-            std::cout << "Error en aceptar\n";
+            std::cout << "Error en Aceptador::ejecutar() al intentar aceptar un nuevo socket\n";
         }
     }
 }
 
-void Aceptador::detener() {
+void Aceptador::cerrar() {
     salaDeEspera_.cerrar();
     Thread::cerrar();
 }

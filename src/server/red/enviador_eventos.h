@@ -14,12 +14,12 @@ class EnviadorEventos : public Thread {
     private:
     ColaBloqueante<std::shared_ptr<Evento>>& origen_;
     Socket& destino_;
-    bool finalizado_;
+    bool& seguirCorriendo_;
 
     public:
-    EnviadorEventos(ColaBloqueante<std::shared_ptr<Evento>>& origen, Socket& destino);
+    EnviadorEventos(ColaBloqueante<std::shared_ptr<Evento>>& origen, Socket& destino, bool& seguirCorriendo);
     virtual void ejecutar() override;
-    void detener();
+    void cerrar() override;
 };
 
 #endif

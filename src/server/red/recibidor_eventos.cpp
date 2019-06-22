@@ -2,20 +2,27 @@
 
 #include "../../Common/Evento.h"
 
-RecibidorEventos::RecibidorEventos(Socket& origen, ColaBloqueante<std::shared_ptr<Evento>>& destino) :
+#include <iostream>
+RecibidorEventos::RecibidorEventos(Socket& origen, ColaBloqueante<std::shared_ptr<Evento>>& destino, bool& seguirCorriendo) :
     origen_(origen),
     destino_(destino),
-    finalizado_(false) {
+    seguirCorriendo_(seguirCorriendo) {
 }
 
 void RecibidorEventos::ejecutar() {
-    while(!finalizado_) {
-        std::shared_ptr<Evento> eventoRecibido(serializador_.recibirEvento(origen_));
-        destino_.put(eventoRecibido);
+    while(seguirCorriendo_) {
+        try {
+            std::shared_ptr<Evento> eventoRecibido(serializador_.recibirEvento(origen_));
+            destino_.put(eventoRecibido);
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+        }       
     }
 }
 
-void RecibidorEventos::detener() {
-    finalizado_ = true;
+void RecibidorEventos::cerrar() {
+    seguirCorriendo_ = false;
     Thread::cerrar();
 }

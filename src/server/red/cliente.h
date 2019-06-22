@@ -13,17 +13,17 @@ class Evento;
 class Cliente : public Thread {
     private:
     Socket sktCliente_;
-    bool finalizado_;
+    bool& seguirCorriendo_;
     ColaBloqueante<std::shared_ptr<Evento>> eventosRecibidos_;
     ColaBloqueante<std::shared_ptr<Evento>> eventosAEnviar_;
     EnviadorEventos enviador_;
     RecibidorEventos recibidor_;
 
     public:
-    Cliente(Socket&& skt);
+    Cliente(Socket&& skt, bool& seguirCorriendo);
     virtual void ejecutar() override;
-    void detener();
-    bool finalizado();
+    virtual void cerrar() override;
+    bool estaVivo();
 };
 
 #endif

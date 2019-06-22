@@ -6,28 +6,28 @@
 #include <memory>
 #include <iostream>
 
-Cliente::Cliente(Socket&& skt) :
+Cliente::Cliente(Socket&& skt, bool& seguirCorriendo) :
     sktCliente_(std::move(skt)),
-    finalizado_(false),
-    enviador_(eventosAEnviar_, sktCliente_),
-    recibidor_(sktCliente_, eventosRecibidos_) {
+    seguirCorriendo_(seguirCorriendo),
+    enviador_(eventosAEnviar_, sktCliente_, seguirCorriendo),
+    recibidor_(sktCliente_, eventosRecibidos_, seguirCorriendo) {
 }
 
-bool Cliente::finalizado() {
-    return finalizado_;
+bool Cliente::estaVivo() {
+    return seguirCorriendo_;
 }
 
 void Cliente::ejecutar() {
-    enviador_.ejecutar();
-    recibidor_.ejecutar();
+    enviador_.iniciar();
+    recibidor_.iniciar();
 }
 
-void Cliente::detener() {
-    finalizado_ = true;
+void Cliente::cerrar() {
+    seguirCorriendo_ = false;
     eventosAEnviar_.detener();
     eventosRecibidos_.detener();
-    enviador_.detener();
-    recibidor_.detener();
     sktCliente_.shutdown();
+    enviador_.cerrar();
+    recibidor_.cerrar();    
     Thread::cerrar();
 }
