@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "red/aceptador.h"
+#include "red/sala_de_espera.h"
 
 #include "server_config.h"
 
@@ -13,7 +14,9 @@ Servidor::Servidor(const std::string& unPuerto) {
 
 void Servidor::correr() {
     bool seguirCorriendo = true;
-    Aceptador aceptador(sktAceptador_, seguirCorriendo, *this, salaDeEspera_);
+    SalaDeEspera salaDeEspera(seguirCorriendo);
+    salaDeEspera.iniciar();
+    Aceptador aceptador(sktAceptador_, seguirCorriendo, *this, salaDeEspera);
     aceptador.iniciar();
     char c;
     while ((c = std::cin.get()) != CONDICION_SALIR) {
@@ -22,4 +25,5 @@ void Servidor::correr() {
     seguirCorriendo = false;
     sktAceptador_.shutdown();
     aceptador.cerrar();
+    salaDeEspera.cerrar();
 }

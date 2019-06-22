@@ -6,6 +6,7 @@
 
 #include "../server.h"
 #include "cliente.h"
+#include "sala_de_espera.h"
 
 #include <iostream>
 Aceptador::Aceptador(Socket& skt, bool& seguirCorriendo, Servidor& servidor, SalaDeEspera& salaDeEspera) :

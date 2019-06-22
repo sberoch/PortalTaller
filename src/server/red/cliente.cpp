@@ -31,3 +31,7 @@ void Cliente::cerrar() {
     recibidor_.cerrar();    
     Thread::cerrar();
 }
+
+void Cliente::enviar(std::shared_ptr<Evento> unEvento) {
+    eventosAEnviar_.put(unEvento);
+}

@@ -15,9 +15,9 @@ void RecibidorEventos::ejecutar() {
             std::shared_ptr<Evento> eventoRecibido(serializador_.recibirEvento(origen_));
             destino_.put(eventoRecibido);
         }
-        catch(const std::exception& e)
-        {
+        catch(const std::exception& e) {
             std::cerr << e.what() << '\n';
+            seguirCorriendo_ = false;
         }       
     }
 }
