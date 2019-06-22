@@ -53,7 +53,10 @@ std::shared_ptr<VistaObjeto> CreadorTexturas::crear(int tipo, int x, int y, int 
 		case ID_PERSONAJE_3: vo.reset(new VistaPersonaje(p3Tex)); break;
 		case ID_PERSONAJE_4: vo.reset(new VistaPersonaje(p4Tex)); break;
 		case ID_BLOQUE_DIAGONAL_METAL: vo.reset(new VistaBloqueMetalDiagonal(bloqueTex, angulo)); break;
-		case ID_PIN_TOOL: vo.reset(new VistaPinTool(pinToolTex)); break;
+		case ID_PIN_TOOL_1: vo.reset(new VistaPinTool(pinToolTex, 1)); break;
+		case ID_PIN_TOOL_2: vo.reset(new VistaPinTool(pinToolTex, 2)); break;
+		case ID_PIN_TOOL_3: vo.reset(new VistaPinTool(pinToolTex, 3)); break;
+		case ID_PIN_TOOL_4: vo.reset(new VistaPinTool(pinToolTex, 4)); break;
 		case ID_TORTA: vo.reset(new VistaTorta(tortaTex)); break;
 		case ID_PORTAL_AZUL: vo.reset(new VistaPortalAzul(portalesTex, angulo)); break;
 		case ID_PORTAL_NARANJA: vo.reset(new VistaPortalNaranja(portalesTex, angulo)); break;

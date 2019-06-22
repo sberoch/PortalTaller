@@ -7,9 +7,8 @@ class VistaPinTool : public VistaObjeto {
 private:
 	int color;
 public:
-	VistaPinTool(SdlTexture& tex);
+	VistaPinTool(SdlTexture& tex, int playerId);
 	virtual void dibujarEn(int x, int y);
-	virtual void asignarColorSegunPlayer(int playerId) override;
 	virtual ~VistaPinTool() {}
 };
 

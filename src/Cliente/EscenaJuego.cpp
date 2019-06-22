@@ -67,18 +67,18 @@ void EscenaJuego::manejar(Evento& evento) {
 void EscenaJuego::manejar(EventoCrearItem& evento) {
 	VistaObjetoPtr vo = creadorTexturas.crear(
 							evento.atributos["idItem"], 
-							evento.atributos["x"] - deltaCamaraX, 
-							evento.atributos["y"] - deltaCamaraY, 
+							conv.bloqueAPixel(evento.atributos["x"]) - deltaCamaraX, 
+							conv.bloqueAPixel(evento.atributos["y"]) - deltaCamaraY, 
 							evento.atributos["angulo"]);
 	objetosDelJuego.insert(std::make_pair(vo->getId(), vo));
 }
 
 void EscenaJuego::manejar(EventoMover& evento) {
 	objetosDelJuego.at(evento.atributos["idLanzador"])
-			->mover(evento.atributos["x"], evento.atributos["y"]);
+			->mover(evento.atributos["x"]*5, evento.atributos["y"]*5);
 	if (evento.atributos["idLanzador"] == miId) {
-		deltaCamaraX -= evento.atributos["x"];
-		deltaCamaraY -= evento.atributos["y"];
+		deltaCamaraX -= evento.atributos["x"]*5;
+		deltaCamaraY -= evento.atributos["y"]*5;
 	}
 }
 

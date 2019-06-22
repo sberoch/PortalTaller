@@ -34,7 +34,7 @@ void InputHandler::handle() {
 			if (ctrl) {
 				//evento = new EventoPinTool(conv.pixelABloque(x), conv.pixelABloque(y));
 				//colaEnviar.put(evento);
-				evento = new EventoCrearItem(ID_PIN_TOOL, x, y, 0);
+				evento = new EventoCrearItem(ID_PIN_TOOL_4, x, y, 0);
 				colaEnviar.put(evento);
 			}
 			else if (event.button.button == SDL_BUTTON_LEFT) {
@@ -62,7 +62,7 @@ void InputHandler::handle() {
 				case SDLK_a: {
 					//evento = new EventoCorrer(IZQUIERDA, playerId);
 					//colaEnviar.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
-					evento = new EventoMover(-15, 0, playerId);
+					evento = new EventoMover(-3, 0, playerId);
 					colaEnviar.put(evento);
 					evento = new EventoCambioEstado(ESTADO_CORRIENDO, playerId);
 					colaEnviar.put(evento);
@@ -73,7 +73,7 @@ void InputHandler::handle() {
 				case SDLK_d: {
 					// evento = new EventoCorrer(DERECHA, playerId);
 					//colaEnviar.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
-					evento = new EventoMover(15, 0, playerId);
+					evento = new EventoMover(3, 0, playerId);
 					colaEnviar.put(evento);
 					evento = new EventoCambioEstado(ESTADO_CORRIENDO, playerId);
 					colaEnviar.put(evento);
@@ -84,7 +84,7 @@ void InputHandler::handle() {
 				case SDLK_w: {
 					// evento = new EventoSalto(playerId);
 					//colaEnviar.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
-					evento = new EventoMover(0, -10, playerId);
+					evento = new EventoMover(0, -3, playerId);
 					colaEnviar.put(evento);
 					evento = new EventoCambioEstado(ESTADO_SALTANDO, playerId);
 					colaEnviar.put(evento);
@@ -97,6 +97,25 @@ void InputHandler::handle() {
 					colaEnviar.put(evento);
 					break;
 				}
+
+				case SDLK_q: {
+					evento = new EventoResetPortales(playerId);
+					colaEnviar.put(evento);
+				}
+
+
+				//Test
+				case SDLK_u: {
+					evento = new EventoCambioEstado(ABIERTA, 54);
+					colaEnviar.put(evento);
+					break;
+				}
+				case SDLK_i: {
+					evento = new EventoCambioEstado(CERRADA, 54);					
+					colaEnviar.put(evento);
+					break;
+				}
+
 
 				case SDLK_F11:
 					if (fullscreen) {

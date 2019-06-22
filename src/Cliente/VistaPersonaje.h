@@ -18,6 +18,8 @@ public:
 	virtual void asignarEstado(int estado) override;
 	virtual void flip(int flip) override;
 	virtual ~VistaPersonaje() {}
+private:
+	void siguienteFrame(int cantClips);
 };
 
 #endif
