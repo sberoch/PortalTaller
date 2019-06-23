@@ -16,6 +16,7 @@ class EventoUnirseAPartida;
 class EventoSeleccionarPartida;
 class EventoActualizacionSala;
 class EventoIngresarASala;
+class EventoFinDelJuego;
 
 class Handler {
     public:
@@ -34,6 +35,7 @@ class Handler {
 	virtual void manejar(EventoSeleccionarPartida& evento) {}
 	virtual void manejar(EventoActualizacionSala& evento) {}
 	virtual void manejar(EventoIngresarASala& evento) {}
+	virtual void manejar(EventoFinDelJuego& evento) {}
 };
 
 #endif

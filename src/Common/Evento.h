@@ -207,4 +207,13 @@ public:
 	virtual ~EventoActualizacionSala() {}
 };
 
+class EventoFinDelJuego : public Evento {
+public:
+	EventoFinDelJuego(int idPersonaje);
+	EventoFinDelJuego(Socket& s);
+	virtual void enviarPorSocket(Socket& s);
+	virtual void actualizar(Handler& handler) override;	
+	virtual ~EventoFinDelJuego() {}
+};
+
 #endif
