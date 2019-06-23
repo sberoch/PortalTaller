@@ -8,12 +8,13 @@
 #include <chrono>
 #include <iostream>
 
-Menu::Menu(SdlWindow& window) : 
+Menu::Menu(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar) : 
 	window(window),
 	imagenMenuTex("menu.png", window),
 	fondo(imagenMenuTex),
 	botonJugar("Jugar", 70, window),
-	botonSalir("Salir", 60, window) {
+	botonSalir("Salir", 60, window),
+	colaEnviar(colaEnviar) {
 		window.setFullscreen(true);
 		terminado = false;
 		audio.reproducirMusica();
@@ -41,6 +42,7 @@ int Menu::manejarEventos() {
 	while (SDL_PollEvent(&e) && !terminado) {
 		if (e.type == SDL_QUIT) {
 			terminado = true;
+
 		} else if (e.type == SDL_MOUSEBUTTONDOWN) {
 			int x, y;
 			SDL_GetMouseState(&x, &y);
@@ -49,9 +51,12 @@ int Menu::manejarEventos() {
 				terminado = true;
 			}
 			if (botonJugar.estaCursorAdentro(x, y)) {
+				Evento* eventoIngresarASala = new EventoIngresarASala();
+				colaEnviar.put(eventoIngresarASala);
 				audio.reproducirEfecto(EFECTO_BOTON_CLICK);
 				siguienteEscena = ESCENA_SALA;
 			}
+
 		} else if (e.type == SDL_KEYDOWN) {
 			SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) e;
 			if (keyEvent.keysym.sym == SDLK_F11) window.setFullscreen(false);

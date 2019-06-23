@@ -6,6 +6,18 @@
 #include <iostream>
 
 
+
+EventoIngresarASala::EventoIngresarASala() {
+	tipo = EVENTO_INICIAR_PARTIDA;
+}
+EventoIngresarASala::EventoIngresarASala(Socket& s) {
+	tipo = EVENTO_INICIAR_PARTIDA;
+}
+void EventoIngresarASala::enviarPorSocket(Socket& s) {
+	s.enviarInt(tipo);
+}
+
+
 EventoIniciarPartida::EventoIniciarPartida(int partidaSeleccionada) {
 	tipo = EVENTO_INICIAR_PARTIDA;
 	atributos["partidaSeleccionada"] = partidaSeleccionada;
@@ -339,3 +351,4 @@ void EventoUnirseAPartida::actualizar(Handler& handler) {handler.manejar(*this);
 void EventoActualizacionSala::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoIniciarPartida::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoSeleccionarPartida::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoIngresarASala::actualizar(Handler& handler) {handler.manejar(*this);}
