@@ -16,6 +16,15 @@ public:
 	virtual ~Evento() {}
 };
 
+class EventoIngresarASala : public Evento {
+public:
+	EventoIngresarASala();
+	EventoIngresarASala(Socket& s);
+	virtual void enviarPorSocket(Socket& s);
+	virtual void actualizar(Handler& handler) override;
+	virtual ~EventoIngresarASala() {}	
+};
+
 class EventoIniciarPartida : public Evento {
 public:
 	EventoIniciarPartida(int partidaSeleccionada);
@@ -196,6 +205,15 @@ public:
 	virtual void enviarPorSocket(Socket& s);
 	virtual void actualizar(Handler& handler) override;	
 	virtual ~EventoActualizacionSala() {}
+};
+
+class EventoFinDelJuego : public Evento {
+public:
+	EventoFinDelJuego(int idPersonaje);
+	EventoFinDelJuego(Socket& s);
+	virtual void enviarPorSocket(Socket& s);
+	virtual void actualizar(Handler& handler) override;	
+	virtual ~EventoFinDelJuego() {}
 };
 
 #endif

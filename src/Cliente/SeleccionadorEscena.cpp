@@ -19,7 +19,7 @@ SeleccionadorEscena::SeleccionadorEscena(char* host, char* port, int xScreen, in
 
 	escenas.insert(std::make_pair(ESCENA_JUEGO, new EscenaJuego(window, colaEnviar, colaRecibir)));
 	escenas.insert(std::make_pair(ESCENA_SALA, new EscenaSala(window, colaEnviar, colaRecibir)));
-	escenas.insert(std::make_pair(ESCENA_MENU, new Menu(window)));
+	escenas.insert(std::make_pair(ESCENA_MENU, new Menu(window, colaEnviar)));
 }
 
 void SeleccionadorEscena::ejecutar() {

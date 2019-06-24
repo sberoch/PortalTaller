@@ -6,7 +6,7 @@
 #include "VistaFondo.h"
 #include "Audio.h"
 #include "Texto.h"
-#include "../Common/Socket.h"
+#include "../Common/cola_bloqueante.h"
 #include "EscenaBase.h"
 
 class Menu : public EscenaBase {
@@ -19,6 +19,7 @@ private:
 	VistaFondo fondo;
 	Audio audio;
 
+	ColaBloqueante<Evento*>& colaEnviar;
 	SDL_Event e;
 	bool terminado;
 	int siguienteEscena;
@@ -26,7 +27,7 @@ private:
 	Texto botonJugar;
 	Texto botonSalir;
 public:
-	Menu(SdlWindow& window);
+	Menu(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar);
 	virtual bool termino() override;
 	virtual void actualizar() override;
 	virtual void dibujar() override;

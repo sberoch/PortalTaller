@@ -5,6 +5,16 @@
 
 #include <iostream>
 
+EventoIngresarASala::EventoIngresarASala() {
+	tipo = EVENTO_INICIAR_PARTIDA;
+}
+EventoIngresarASala::EventoIngresarASala(Socket& s) {
+	tipo = EVENTO_INICIAR_PARTIDA;
+}
+void EventoIngresarASala::enviarPorSocket(Socket& s) {
+	s.enviarInt(tipo);
+}
+
 
 EventoIniciarPartida::EventoIniciarPartida(int partidaSeleccionada) {
 	tipo = EVENTO_INICIAR_PARTIDA;
@@ -326,6 +336,19 @@ void EventoActualizacionSala::enviarPorSocket(Socket& s) {
 	s.enviarInt(atributos["jugadoresEnPartida"]);
 }
 
+EventoFinDelJuego::EventoFinDelJuego(int idPersonaje) {
+	tipo = EVENTO_SELECCIONAR_PARTIDA;
+	atributos["idPersonaje"] = idPersonaje;
+}
+EventoFinDelJuego::EventoFinDelJuego(Socket& s) {
+	tipo = EVENTO_UNIRSE_A_PARTIDA;
+	atributos["idPersonaje"] = s.recibirInt();
+}
+void EventoFinDelJuego::enviarPorSocket(Socket& s) {
+	s.enviarInt(tipo);
+	s.enviarInt(atributos["idPersonaje"]);
+}
+
 
 void EventoMover::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoFlip::actualizar(Handler& handler) {handler.manejar(*this);}
@@ -339,3 +362,5 @@ void EventoUnirseAPartida::actualizar(Handler& handler) {handler.manejar(*this);
 void EventoActualizacionSala::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoIniciarPartida::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoSeleccionarPartida::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoIngresarASala::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoFinDelJuego::actualizar(Handler& handler) {handler.manejar(*this);}
