@@ -3,12 +3,13 @@
 
 #include <iostream>
 
-SalaDeEspera::SalaDeEspera(bool& seguirCorriendo) :
-    seguirCorriendo_(seguirCorriendo) {
+SalaDeEspera::SalaDeEspera(bool& seguirCorriendo, CoordinadorPartidas& coordinadorPartidas) :
+    seguirCorriendo_(seguirCorriendo),
+    coordinadorPartidas_(coordinadorPartidas) {
 }
 
 void SalaDeEspera::agregar(std::shared_ptr<Cliente> unCliente) {
-    // DEBERIA SER PROTEGIDO
+    // DEBERIA SER PROTEGIDO, SI INTERVIENE EL ACEPTADOR Y LA PARTIDA (UNA VEZ FINALIZADA)
     clientes_.push_back(unCliente);
     unCliente->iniciar();
     std::shared_ptr<Retransmisor> retransmisor(new Retransmisor(seguirCorriendo_, unCliente->eventosEntrantes(), eventosEntrantes_));
@@ -42,7 +43,7 @@ void SalaDeEspera::manejar(Evento& evento) {
 }
 
 void SalaDeEspera::manejar(EventoCrearPartida& evento) {
-    std::cout << "RecibiCrearPartida En la sala de espera\n";
+    
 }
 void SalaDeEspera::manejar(EventoSeleccionarPartida& evento) {
 

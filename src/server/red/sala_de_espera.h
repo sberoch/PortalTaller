@@ -11,6 +11,7 @@
 #include "../../Common/Thread.h"
 
 #include "retransmisor.h"
+#include "coordinador_partidas.h"
 
 // Forward declaration
 class Cliente;
@@ -18,12 +19,13 @@ class Cliente;
 class SalaDeEspera : public Thread, public Handler {
     private:
     bool& seguirCorriendo_;
+    CoordinadorPartidas& coordinadorPartidas_;
     std::vector<std::shared_ptr<Cliente>> clientes_;
     ColaBloqueante<std::shared_ptr<Evento>> eventosEntrantes_;
     std::map<std::shared_ptr<Cliente>, std::shared_ptr<Retransmisor>> retransmisores_;
 
     public:
-    SalaDeEspera(bool& seguirCorriendo);
+    SalaDeEspera(bool& seguirCorriendo, CoordinadorPartidas& coordinadorPartidas);
     void agregar(std::shared_ptr<Cliente> unCliente);
     virtual void ejecutar() override;
     virtual void cerrar() override;
