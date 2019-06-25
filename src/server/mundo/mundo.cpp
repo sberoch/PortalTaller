@@ -156,3 +156,55 @@ void Mundo::step() {
 void Mundo::manejar(Evento& evento) {
     evento.actualizar(*this);
 }
+
+void Mundo::manejar(EventoPortalAzul& evento) {
+    //Calcular x,y y angulo con la direccion
+    //Chequear si hay uno antes, sacarlo en ese caso
+    //Guardar la posicion en la lista de objetos del juego para poder borrar despues
+    //Enviar la creacion del portal azul
+}
+
+void Mundo::manejar(EventoPortalNaranja& evento) {
+    //Calcular x,y y angulo con la direccion
+    //Chequear si hay uno antes, sacarlo en ese caso
+    //Guardar la posicion en la lista de objetos del juego para poder borrar despues
+    //Enviar la creacion del portal naranja
+}
+
+void Mundo::manejar(EventoResetPortales& evento) {
+    //Sacar los dos portales
+    //Enviar evento eliminar
+}
+
+void Mundo::manejar(EventoSalto& evento) {
+    //Si esta en el piso, mover arriba
+    //Si esta en el aire nada
+    //Enviar mover y cambio estado saltando (si estaba en el piso)
+}
+
+void Mundo::manejar(EventoSuicidio& evento) {
+    //Cambio de estado a muerto
+    //Sacarlo del juego
+}
+
+void Mundo::manejar(EventoCorrer& evento) {
+    //Si esta en el piso
+        //Mover en la direccion correspondiente
+        //Cambio de estado a corriendo
+        //Flipear si corresponde
+    //Si esta en el aire
+        //Mover
+        //Flipear si corresponde
+}
+
+void Mundo::manejar(EventoDejarDeMoverse& evento) {
+    //Si esta en el piso
+        //Evento cambio de estado a idle
+    //Si esta en el aire
+        //Nada
+}
+
+void Mundo::manejar(EventoPinTool& evento) {
+    //Enviar crear item con id del pintool segun el id del player
+    //Guardarse la posicion en lista de objetos del juego para borrar luego de un tiempo
+}

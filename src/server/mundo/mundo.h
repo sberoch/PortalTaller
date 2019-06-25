@@ -12,7 +12,16 @@ class Colisionable;
 class Posicion;
 class Velocidad;
 class Rotacion;
+
 class Evento;
+class EventoPortalAzul;
+class EventoPortalNaranja;
+class EventoDejarDeMoverse;
+class EventoResetPortales;
+class EventoSuicidio;
+class EventoSalto;
+class EventoCorrer;
+class EventoPinTool;
 
 class Mundo : public Handler {
     private:
@@ -28,6 +37,14 @@ class Mundo : public Handler {
     void step();
     
     virtual void manejar(Evento& evento) override;
+    virtual void manejar(EventoPortalAzul& evento) override;
+    virtual void manejar(EventoPortalNaranja& evento) override;
+    virtual void manejar(EventoResetPortales& evento) override;
+    virtual void manejar(EventoSalto& evento) override;
+    virtual void manejar(EventoSuicidio& evento) override;
+    virtual void manejar(EventoCorrer& evento) override;
+    virtual void manejar(EventoDejarDeMoverse& evento) override;
+    virtual void manejar(EventoPinTool& evento) override;
 
     // Testing
     Fisicas* getFisicas() {return &fisicas_;}
