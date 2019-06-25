@@ -358,6 +358,7 @@ void EventoFinDelJuego::enviarPorSocket(Socket& s) {
 	s.enviarInt(atributos["idPersonaje"]);
 }
 
+
 EventoJugadorDesconectado::EventoJugadorDesconectado(int uuidDelDesconectado) {
 	tipo = EVENTO_JUGADOR_DESCONECTADO;
 	atributos["uuidDelDesconectado"] = uuidDelDesconectado;
@@ -371,6 +372,17 @@ EventoJugadorDesconectado::EventoJugadorDesconectado(Socket& s) {
 void EventoJugadorDesconectado::enviarPorSocket(Socket& s) {
 	s.enviarInt(tipo);
 	s.enviarInt(atributos["uuidDelDesconectado"]);
+}
+
+
+EventoSolicitarId::EventoSolicitarId() {
+	tipo = 	EVENTO_SOLICITAR_ID;
+}
+EventoSolicitarId::EventoSolicitarId(Socket& s) {
+	tipo = EVENTO_SOLICITAR_ID;
+}
+void EventoSolicitarId::enviarPorSocket(Socket& s) {
+	s.enviarInt(tipo);
 }
 
 void EventoMover::actualizar(Handler& handler) {handler.manejar(*this);}
@@ -389,6 +401,7 @@ void EventoSeleccionarPartida::actualizar(Handler& handler) {handler.manejar(*th
 void EventoIngresarASala::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoFinDelJuego::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoJugadorDesconectado::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoSolicitarId::actualizar(Handler& handler) {handler.manejar(*this);}
 
 void EventoPortalAzul::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoPortalNaranja::actualizar(Handler& handler) {handler.manejar(*this);}
