@@ -67,7 +67,6 @@ public:
 	virtual void manejar(EventoCreacionPersonaje& evento) override;
 private:
 	void crearTerreno();
-	void recibirMiIdentificador();
 	void actualizarFondo();
 	void sleep(int tiempo);
 };
