@@ -17,6 +17,5 @@ void EnviadorEventos::ejecutar() {
 }
 
 void EnviadorEventos::cerrar() {
-    seguirCorriendo_ = false;
     Thread::cerrar();
 }

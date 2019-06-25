@@ -10,18 +10,18 @@ SalaDeEspera::SalaDeEspera(bool& seguirCorriendo, CoordinadorPartidas& coordinad
 
 void SalaDeEspera::agregar(std::shared_ptr<Cliente> unCliente) {
     // DEBERIA SER PROTEGIDO, SI INTERVIENE EL ACEPTADOR Y LA PARTIDA (UNA VEZ FINALIZADA)
-    clientes_.push_back(unCliente);
+    clientes_[unCliente->uuid()] = unCliente;
     unCliente->iniciar();
     std::shared_ptr<Retransmisor> retransmisor(new Retransmisor(seguirCorriendo_, unCliente->eventosEntrantes(), eventosEntrantes_));
     retransmisores_[unCliente->uuid()] = retransmisor;
     retransmisor->iniciar();
+    std::cout << "Agregue un cliente\n";
+    std::cout << unCliente->uuid() << std::endl;
 }
 
 void SalaDeEspera::cerrar() {
-    auto it = std::begin(clientes_);
-    while (it != std::end(clientes_)) {
-        (*it)->cerrar();
-        ++it;                    
+    for (auto& kv : clientes_) {
+        kv.second->cerrar();
     }
     eventosEntrantes_.detener();
     for (auto& kv : retransmisores_) {
@@ -36,6 +36,7 @@ void SalaDeEspera::ejecutar() {
     while(seguirCorriendo_ && (obtenido = eventosEntrantes_.get(evento))) {
         manejar(*evento);
     }
+    std::cout << "deje de recibir eventos en la sala\n";
 }
 
 void SalaDeEspera::manejar(Evento& evento) {
@@ -43,7 +44,13 @@ void SalaDeEspera::manejar(Evento& evento) {
 }
 
 void SalaDeEspera::manejar(EventoCrearPartida& evento) {
-    
+    coordinadorPartidas_.agregarPartida();
+    int cantidadDePartidas = coordinadorPartidas_.cantidadPartidas();
+    for (auto& kv : clientes_) {
+        std::shared_ptr<Evento> e(std::make_shared<EventoActualizacionSala>(cantidadDePartidas,0,0));
+        kv.second->eventosSalientes().put(e);
+    }
+
 }
 void SalaDeEspera::manejar(EventoSeleccionarPartida& evento) {
 
@@ -56,5 +63,18 @@ void SalaDeEspera::manejar(EventoIniciarPartida& evento) {
 }
 
 void SalaDeEspera::manejar(EventoIngresarASala& evento) {
+    std::shared_ptr<Cliente> solicitante = clientes_[evento.atributos["uuid"]];
+    int cantidadDePartidas = coordinadorPartidas_.cantidadPartidas();
+    std::shared_ptr<Evento> e(new EventoActualizacionSala(cantidadDePartidas,0,0));
+    solicitante->eventosSalientes().put(e);
+}
+
+void SalaDeEspera::manejar(EventoJugadorDesconectado& evento) {
     
+    int uuid = evento.atributos["uuidDelDesconectado"];
+    clientes_[uuid]->cerrar();
+    retransmisores_[uuid]->cerrar();
+    clientes_.erase(uuid);
+    retransmisores_.erase(uuid);
+    std::cout << "Borre al cliente\n";
 }

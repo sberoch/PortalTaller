@@ -20,7 +20,7 @@ class SalaDeEspera : public Thread, public Handler {
     private:
     bool& seguirCorriendo_;
     CoordinadorPartidas& coordinadorPartidas_;
-    std::vector<std::shared_ptr<Cliente>> clientes_;
+    std::map<int, std::shared_ptr<Cliente>> clientes_;
     ColaBloqueante<std::shared_ptr<Evento>> eventosEntrantes_;
     std::map<int, std::shared_ptr<Retransmisor>> retransmisores_;
 
@@ -36,6 +36,7 @@ class SalaDeEspera : public Thread, public Handler {
     virtual void manejar(EventoUnirseAPartida& evento) override;
     virtual void manejar(EventoIniciarPartida& evento) override;
     virtual void manejar(EventoIngresarASala& evento) override;
+    virtual void manejar(EventoJugadorDesconectado& evento) override;
 };
 
 #endif

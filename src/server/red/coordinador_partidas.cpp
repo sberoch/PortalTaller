@@ -11,3 +11,12 @@ void CoordinadorPartidas::cerrar() {
 void CoordinadorPartidas::ejecutar() {
     
 }
+
+int CoordinadorPartidas::cantidadPartidas() {
+    return partidas_.size();
+}
+
+void CoordinadorPartidas::agregarPartida() {
+    Partida p;
+    partidas_.push_back(p);
+}

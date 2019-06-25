@@ -28,6 +28,7 @@ class Cliente : public Thread, public Identificable {
     bool estaVivo();
     void enviar(std::shared_ptr<Evento> unEvento);
     ColaBloqueante<std::shared_ptr<Evento>>& eventosEntrantes();
+    ColaBloqueante<std::shared_ptr<Evento>>& eventosSalientes();
 };
 
 #endif

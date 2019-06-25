@@ -19,12 +19,14 @@ void RecibidorEventos::ejecutar() {
         }
         catch(const std::exception& e) {
             std::cerr << e.what() << '\n';
-            seguirCorriendo_ = false;
+            std::cerr << "La excepción se lanzó al intentar recibir un evento. Cliente desconectado." << '\n';
+            std::shared_ptr<Evento> desconexion(std::make_shared<EventoJugadorDesconectado>(uuid_));
+            destino_.put(desconexion);
+            break;
         }       
     }
 }
 
 void RecibidorEventos::cerrar() {
-    seguirCorriendo_ = false;
     Thread::cerrar();
 }
