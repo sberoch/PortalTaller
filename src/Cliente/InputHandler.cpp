@@ -29,30 +29,30 @@ void InputHandler::handle() {
 			int x, y, xScreen, yScreen;
 			SDL_GetMouseState(&x, &y);
 			window.getWindowSize(&xScreen, &yScreen);
-			//int dirX = x - (xScreen/2); 
-			//int dirY = y - (yScreen/2 + 50);
+			int dirX = x - (xScreen/2); 
+			int dirY = y - (yScreen/2 + 50);
 			if (ctrl) {
-				//evento = new EventoPinTool(conv.pixelABloque(x), conv.pixelABloque(y));
-				//colaEnviar.put(evento);
-				evento = new EventoCrearItem(ID_PIN_TOOL_4, x, y, 0);
+				evento = new EventoPinTool(conv.pixelABloque(x), conv.pixelABloque(y));
 				colaEnviar.put(evento);
+				//evento = new EventoCrearItem(ID_PIN_TOOL_4, x, y, 0);
+				//colaEnviar.put(evento);
 			}
 			else if (event.button.button == SDL_BUTTON_LEFT) {
-				//evento = new EventoPortalAzul(dirX, dirY);
+				evento = new EventoPortalAzul(dirX, dirY);
+				colaEnviar.put(evento);
+				//evento = new EventoCambioEstado(ESTADO_DISPARANDO, playerId);
 				//colaEnviar.put(evento);
-				evento = new EventoCambioEstado(ESTADO_DISPARANDO, playerId);
-				colaEnviar.put(evento);
-				evento = new EventoCrearItem(ID_PORTAL_AZUL, x, y, 45);
-				colaEnviar.put(evento);
+				//evento = new EventoCrearItem(ID_PORTAL_AZUL, x, y, 45);
+				//colaEnviar.put(evento);
 				audio.reproducirEfecto(EFECTO_DISPARO);
 			}
 			else if (event.button.button == SDL_BUTTON_RIGHT) {
-				//evento = new EventoPortalNaranja(dirX, dirY);
+				evento = new EventoPortalNaranja(dirX, dirY);
+				colaEnviar.put(evento);
+				//evento = new EventoCambioEstado(ESTADO_DISPARANDO, playerId);
 				//colaEnviar.put(evento);
-				evento = new EventoCambioEstado(ESTADO_DISPARANDO, playerId);
-				colaEnviar.put(evento);
-				evento = new EventoCrearItem(ID_PORTAL_NARANJA, x, y, 135);
-				colaEnviar.put(evento);
+				//evento = new EventoCrearItem(ID_PORTAL_NARANJA, x, y, 135);
+				//colaEnviar.put(evento);
 				audio.reproducirEfecto(EFECTO_DISPARO);
 			}
 
@@ -60,41 +60,41 @@ void InputHandler::handle() {
 			SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
 			switch (keyEvent.keysym.sym) {
 				case SDLK_a: {
-					//evento = new EventoCorrer(IZQUIERDA, playerId);
-					//colaEnviar.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
-					evento = new EventoMover(-3, 0, playerId);
+					evento = new EventoCorrer(IZQUIERDA, playerId);
 					colaEnviar.put(evento);
-					evento = new EventoCambioEstado(ESTADO_CORRIENDO, playerId);
-					colaEnviar.put(evento);
-					evento = new EventoFlip(IZQUIERDA, playerId);
-					colaEnviar.put(evento);
+					//evento = new EventoMover(-3, 0, playerId);
+					//colaEnviar.put(evento);
+					//evento = new EventoCambioEstado(ESTADO_CORRIENDO, playerId);
+					//colaEnviar.put(evento);
+					//evento = new EventoFlip(IZQUIERDA, playerId);
+					//colaEnviar.put(evento);
 					break;
 				}
 				case SDLK_d: {
-					// evento = new EventoCorrer(DERECHA, playerId);
-					//colaEnviar.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
-					evento = new EventoMover(3, 0, playerId);
-					colaEnviar.put(evento);
-					evento = new EventoCambioEstado(ESTADO_CORRIENDO, playerId);
-					colaEnviar.put(evento);
-					evento = new EventoFlip(DERECHA, playerId);
-					colaEnviar.put(evento);
+					evento = new EventoCorrer(DERECHA, playerId);
+					colaEnviar.put(evento); 
+					//evento = new EventoMover(3, 0, playerId);
+					//colaEnviar.put(evento);
+					//evento = new EventoCambioEstado(ESTADO_CORRIENDO, playerId);
+					//colaEnviar.put(evento);
+					//evento = new EventoFlip(DERECHA, playerId);
+					//colaEnviar.put(evento);
 					break;
 				}
 				case SDLK_w: {
-					// evento = new EventoSalto(playerId);
-					//colaEnviar.put(evento); mando esto en realidad, pero simulo lo que me manda el server con lo de abajo
-					evento = new EventoMover(0, -3, playerId);
-					colaEnviar.put(evento);
-					evento = new EventoCambioEstado(ESTADO_SALTANDO, playerId);
-					colaEnviar.put(evento);
+					evento = new EventoSalto(playerId);
+					colaEnviar.put(evento); 
+					//evento = new EventoMover(0, -3, playerId);
+					//colaEnviar.put(evento);
+					//evento = new EventoCambioEstado(ESTADO_SALTANDO, playerId);
+					//colaEnviar.put(evento);
 					break;
 				}
 				case SDLK_k: {
-					//evento = new EventoSuicidio(playerId);
-					//colaEnviar.put(evento);
-					evento = new EventoCambioEstado(ESTADO_MUERTO, playerId);
+					evento = new EventoSuicidio(playerId);
 					colaEnviar.put(evento);
+					//evento = new EventoCambioEstado(ESTADO_MUERTO, playerId);
+					//colaEnviar.put(evento);
 					break;
 				}
 
@@ -102,20 +102,6 @@ void InputHandler::handle() {
 					evento = new EventoResetPortales(playerId);
 					colaEnviar.put(evento);
 				}
-
-
-				//Test
-				case SDLK_u: {
-					evento = new EventoCambioEstado(ABIERTA, 54);
-					colaEnviar.put(evento);
-					break;
-				}
-				case SDLK_i: {
-					evento = new EventoCambioEstado(CERRADA, 54);					
-					colaEnviar.put(evento);
-					break;
-				}
-
 
 				case SDLK_F11:
 					if (fullscreen) {
@@ -134,10 +120,10 @@ void InputHandler::handle() {
 			if (keyEvent.keysym.sym == SDLK_LCTRL) {
 				ctrl = false; 
 			} else {
-				//evento = new EventoDejarDeMoverse(playerId);
-				//colaEnviar.put(evento);
-				evento = new EventoCambioEstado(ESTADO_IDLE, playerId);
+				evento = new EventoDejarDeMoverse(playerId);
 				colaEnviar.put(evento);
+				//evento = new EventoCambioEstado(ESTADO_IDLE, playerId);
+				//colaEnviar.put(evento);
 			}
 		}
 	}
