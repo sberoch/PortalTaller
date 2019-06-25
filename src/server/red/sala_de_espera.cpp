@@ -4,7 +4,8 @@
 #include <iostream>
 
 SalaDeEspera::SalaDeEspera(bool& seguirCorriendo) :
-    seguirCorriendo_(seguirCorriendo) {
+    seguirCorriendo_(seguirCorriendo),
+    coordinadorPartidas_(seguirCorriendo) {
 }
 
 void SalaDeEspera::agregar(std::shared_ptr<Cliente> unCliente) {
@@ -74,7 +75,12 @@ void SalaDeEspera::manejar(EventoUnirseAPartida& evento) {
 }
 
 void SalaDeEspera::manejar(EventoIniciarPartida& evento) {
-    
+    coordinadorPartidas_.iniciarPartida(evento.atributos["partidaSeleccionada"] - 1);
+    std::vector<int> jugadores = coordinadorPartidas_.jugadoresEnLaPartida(evento.atributos["partidaSeleccionada"] - 1);
+    for (auto& jugador : jugadores) {
+        retransmisores_[jugador]->cerrar();
+        retransmisores_.erase(jugador);
+    }
 }
 
 void SalaDeEspera::manejar(EventoIngresarASala& evento) {
