@@ -4,7 +4,6 @@
 
 #include "red/aceptador.h"
 #include "red/sala_de_espera.h"
-#include "red/coordinador_partidas.h"
 
 #include "server_config.h"
 
@@ -15,9 +14,7 @@ Servidor::Servidor(const std::string& unPuerto) {
 
 void Servidor::correr() {
     bool seguirCorriendo = true;
-    CoordinadorPartidas coordinadorPartidas(seguirCorriendo);
-    coordinadorPartidas.iniciar();    
-    SalaDeEspera salaDeEspera(seguirCorriendo, coordinadorPartidas);
+    SalaDeEspera salaDeEspera(seguirCorriendo);
     salaDeEspera.iniciar();
     Aceptador aceptador(sktAceptador_, seguirCorriendo, *this, salaDeEspera);
     aceptador.iniciar();
@@ -28,6 +25,5 @@ void Servidor::correr() {
     seguirCorriendo = false;
     sktAceptador_.shutdown();
     aceptador.cerrar();
-    coordinadorPartidas.cerrar();
     salaDeEspera.cerrar();
 }
