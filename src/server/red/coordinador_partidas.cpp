@@ -33,3 +33,9 @@ std::vector<int> CoordinadorPartidas::jugadoresEnLaPartida(int partida) {
 void CoordinadorPartidas::iniciarPartida(int partida) {
     partidas_[partida]->iniciar();
 }
+
+CoordinadorPartidas::~CoordinadorPartidas() {
+    for (auto& partida : partidas_) {
+        partida->cerrar();
+    }
+}

@@ -17,6 +17,7 @@ class CoordinadorPartidas {
     void moverClienteAPartida(std::shared_ptr<Cliente> cliente, int partida);
     std::vector<int> jugadoresEnLaPartida(int partida);
     void iniciarPartida(int partida);
+    ~CoordinadorPartidas();
 };
 
 #endif

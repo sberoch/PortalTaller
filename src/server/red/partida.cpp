@@ -54,9 +54,6 @@ std::vector<int> Partida::jugadores() {
 }
 
 void Partida::cerrar() {
-    for (auto& kv : jugadores_) {
-        kv.second->cerrar();
-    }
     eventosEntrantes_.detener();
     for (auto& kv : retransmisores_) {
         kv.second->cerrar();
