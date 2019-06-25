@@ -76,5 +76,5 @@ void Partida::cerrar() {
 }
 
 void Partida::manejar(EventoCreacionPersonaje& evento) {
-    
+    std::cout << "pidio\n";
 }

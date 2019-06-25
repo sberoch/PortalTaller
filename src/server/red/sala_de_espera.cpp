@@ -79,6 +79,7 @@ void SalaDeEspera::manejar(EventoIniciarPartida& evento) {
     coordinadorPartidas_.iniciarPartida(partida);
     std::vector<int> jugadores = coordinadorPartidas_.jugadoresEnLaPartida(partida);
     for (auto& jugador : jugadores) {
+        clientes_[jugador]->eventosEntrantes().detener();
         retransmisores_[jugador]->cerrar();
         retransmisores_.erase(jugador);
         clientes_.erase(jugador);

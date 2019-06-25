@@ -1,5 +1,6 @@
 #include "retransmisor.h"
 #include <iostream>
+
 Retransmisor::Retransmisor(bool& seguirCorriendo,
     ColaBloqueante<std::shared_ptr<Evento>>& origen,
     ColaBloqueante<std::shared_ptr<Evento>>& destino) :
