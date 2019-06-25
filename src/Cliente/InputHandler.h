@@ -26,7 +26,7 @@ public:
 	InputHandler(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar, Audio& audio);
 	void setPlayerId(int playerId);
 	bool termino();
-	void handle();
+	void handle(int cantObjetosEnJuego);
 };
 
 #endif // INPUT_HANDLER_H

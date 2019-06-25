@@ -46,7 +46,7 @@ public:
 //TODO: cambiar a direccion
 class EventoPortalAzul : public Evento {
 public:
-	EventoPortalAzul(int x, int y);
+	EventoPortalAzul(int x, int y, int posObjetoEnLista);
 	EventoPortalAzul(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
 	virtual void actualizar(Handler& handler) override;
@@ -55,7 +55,7 @@ public:
 //TODO: cambiar a direccion
 class EventoPortalNaranja : public Evento {
 public:
-	EventoPortalNaranja(int x, int y);
+	EventoPortalNaranja(int x, int y, int posObjetoEnLista);
 	EventoPortalNaranja(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
 	virtual void actualizar(Handler& handler) override;
@@ -109,7 +109,7 @@ public:
 
 class EventoPinTool : public Evento {
 public:
-	EventoPinTool(int x, int y);
+	EventoPinTool(int x, int y, int posObjetoEnLista);
 	EventoPinTool(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
 	virtual void actualizar(Handler& handler) override;

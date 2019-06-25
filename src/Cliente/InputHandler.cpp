@@ -20,7 +20,7 @@ bool InputHandler::termino() {
 	return terminado;
 }
 
-void InputHandler::handle() {
+void InputHandler::handle(int cantObjetosEnJuego) {
 	Evento* evento;
 	while (SDL_PollEvent(&event)) {
 		if (event.type == SDL_QUIT) {
@@ -32,13 +32,15 @@ void InputHandler::handle() {
 			int dirX = x - (xScreen/2); 
 			int dirY = y - (yScreen/2 + 50);
 			if (ctrl) {
-				evento = new EventoPinTool(conv.pixelABloque(x), conv.pixelABloque(y));
+				//cantObjetosEnJuego coincide con el proximo id de creacion de objeto
+				evento = new EventoPinTool(conv.pixelABloque(x), conv.pixelABloque(y), cantObjetosEnJuego);
 				colaEnviar.put(evento);
 				//evento = new EventoCrearItem(ID_PIN_TOOL_4, x, y, 0);
 				//colaEnviar.put(evento);
 			}
 			else if (event.button.button == SDL_BUTTON_LEFT) {
-				evento = new EventoPortalAzul(dirX, dirY);
+				//cantObjetosEnJuego coincide con el proximo id de creacion de objeto
+				evento = new EventoPortalAzul(dirX, dirY, cantObjetosEnJuego);
 				colaEnviar.put(evento);
 				//evento = new EventoCambioEstado(ESTADO_DISPARANDO, playerId);
 				//colaEnviar.put(evento);
@@ -47,7 +49,8 @@ void InputHandler::handle() {
 				audio.reproducirEfecto(EFECTO_DISPARO);
 			}
 			else if (event.button.button == SDL_BUTTON_RIGHT) {
-				evento = new EventoPortalNaranja(dirX, dirY);
+				//cantObjetosEnJuego coincide con el proximo id de creacion de objeto
+				evento = new EventoPortalNaranja(dirX, dirY, cantObjetosEnJuego);
 				colaEnviar.put(evento);
 				//evento = new EventoCambioEstado(ESTADO_DISPARANDO, playerId);
 				//colaEnviar.put(evento);
