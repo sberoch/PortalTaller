@@ -225,4 +225,13 @@ public:
 	virtual ~EventoJugadorDesconectado() {}
 };
 
+class EventoSolicitarId : public Evento {
+public:
+	EventoSolicitarId();
+	EventoSolicitarId(Socket& s);
+	virtual void enviarPorSocket(Socket& s);
+	virtual void actualizar(Handler& handler) override;	
+	virtual ~EventoSolicitarId() {}
+};
+
 #endif

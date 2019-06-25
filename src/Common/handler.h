@@ -19,6 +19,7 @@ class EventoActualizacionSala;
 class EventoIngresarASala;
 class EventoFinDelJuego;
 class EventoJugadorDesconectado;
+class EventoSolicitarId;
 
 class EventoPortalAzul;
 class EventoPortalNaranja;
@@ -48,6 +49,7 @@ class Handler {
 	virtual void manejar(EventoIngresarASala& evento) {}
 	virtual void manejar(EventoFinDelJuego& evento) {}
 	virtual void manejar(EventoJugadorDesconectado& evento) {}
+	virtual void manejar(EventoSolicitarId& evento) {} 
 
 	virtual void manejar(EventoPortalAzul& evento) {}
 	virtual void manejar(EventoPortalNaranja& evento) {}
