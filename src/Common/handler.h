@@ -9,6 +9,7 @@ class EventoFlip;
 class EventoCambioEstado;
 class EventoEliminarItem;
 class EventoRotacion;
+
 class EventoCreacionPersonaje;
 class EventoIniciarPartida;
 class EventoCrearPartida;
@@ -18,6 +19,15 @@ class EventoActualizacionSala;
 class EventoIngresarASala;
 class EventoFinDelJuego;
 class EventoJugadorDesconectado;
+
+class EventoPortalAzul;
+class EventoPortalNaranja;
+class EventoDejarDeMoverse;
+class EventoResetPortales;
+class EventoSuicidio;
+class EventoSalto;
+class EventoCorrer;
+class EventoPinTool;
 
 class Handler {
     public:
@@ -38,6 +48,15 @@ class Handler {
 	virtual void manejar(EventoIngresarASala& evento) {}
 	virtual void manejar(EventoFinDelJuego& evento) {}
 	virtual void manejar(EventoJugadorDesconectado& evento) {}
+
+	virtual void manejar(EventoPortalAzul& evento) {}
+	virtual void manejar(EventoPortalNaranja& evento) {}
+	virtual void manejar(EventoResetPortales& evento) {}
+	virtual void manejar(EventoDejarDeMoverse& evento) {}
+	virtual void manejar(EventoSalto& evento) {}
+	virtual void manejar(EventoSuicidio& evento) {}
+	virtual void manejar(EventoCorrer& evento) {}
+	virtual void manejar(EventoPinTool& evento) {}
 };
 
 #endif

@@ -49,7 +49,7 @@ public:
 	EventoPortalAzul(int x, int y);
 	EventoPortalAzul(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizar(Handler& handler) override {}
+	virtual void actualizar(Handler& handler) override;
 	virtual ~EventoPortalAzul() {}
 };
 //TODO: cambiar a direccion
@@ -58,7 +58,7 @@ public:
 	EventoPortalNaranja(int x, int y);
 	EventoPortalNaranja(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizar(Handler& handler) override {}
+	virtual void actualizar(Handler& handler) override;
 	virtual ~EventoPortalNaranja() {}
 };
 
@@ -76,7 +76,7 @@ public:
 	EventoResetPortales(int idLanzador);
 	EventoResetPortales(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizar(Handler& handler) override {}
+	virtual void actualizar(Handler& handler) override; 
 	virtual ~EventoResetPortales() {}
 };
 
@@ -85,7 +85,7 @@ public:
 	EventoDejarDeMoverse(int idLanzador);
 	EventoDejarDeMoverse(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizar(Handler& handler) override {}
+	virtual void actualizar(Handler& handler) override;
 	virtual ~EventoDejarDeMoverse() {}
 };
 
@@ -103,7 +103,7 @@ public:
 	EventoCorrer(int direccion, int idLanzador);
 	EventoCorrer(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizar(Handler& handler) override {}
+	virtual void actualizar(Handler& handler) override; 
 	virtual ~EventoCorrer() {}
 };
 
@@ -112,7 +112,7 @@ public:
 	EventoPinTool(int x, int y);
 	EventoPinTool(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizar(Handler& handler) override {}
+	virtual void actualizar(Handler& handler) override;
 	virtual ~EventoPinTool() {}
 };
 
@@ -121,7 +121,7 @@ public:
 	EventoSuicidio(int idLanzador);
 	EventoSuicidio(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizar(Handler& handler) override {}
+	virtual void actualizar(Handler& handler) override;
 	virtual ~EventoSuicidio() {}
 };
 
@@ -130,7 +130,7 @@ public:
 	EventoSalto(int idLanzador);
 	EventoSalto(Socket& s);
 	virtual void enviarPorSocket(Socket& s);
-	virtual void actualizar(Handler& handler) override {}
+	virtual void actualizar(Handler& handler) override;
 	virtual ~EventoSalto() {}
 };
 

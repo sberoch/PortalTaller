@@ -370,6 +370,7 @@ void EventoCambioEstado::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoEliminarItem::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoRotacion::actualizar(Handler& handler) {handler.manejar(*this);} 
 void EventoCrearItem::actualizar(Handler& handler) {handler.manejar(*this);}
+
 void EventoCreacionPersonaje::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoCrearPartida::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoUnirseAPartida::actualizar(Handler& handler) {handler.manejar(*this);}
@@ -379,3 +380,12 @@ void EventoSeleccionarPartida::actualizar(Handler& handler) {handler.manejar(*th
 void EventoIngresarASala::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoFinDelJuego::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoJugadorDesconectado::actualizar(Handler& handler) {handler.manejar(*this);}
+
+void EventoPortalAzul::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoPortalNaranja::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoResetPortales::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoSalto::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoSuicidio::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoCorrer::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoDejarDeMoverse::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoPinTool::actualizar(Handler& handler) {handler.manejar(*this);}
