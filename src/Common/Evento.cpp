@@ -6,10 +6,10 @@
 #include <iostream>
 
 EventoIngresarASala::EventoIngresarASala() {
-	tipo = EVENTO_INICIAR_PARTIDA;
+	tipo = EVENTO_INGRESAR_A_SALA;
 }
 EventoIngresarASala::EventoIngresarASala(Socket& s) {
-	tipo = EVENTO_INICIAR_PARTIDA;
+	tipo = EVENTO_INGRESAR_A_SALA;
 }
 void EventoIngresarASala::enviarPorSocket(Socket& s) {
 	s.enviarInt(tipo);
