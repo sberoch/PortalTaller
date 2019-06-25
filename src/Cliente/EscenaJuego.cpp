@@ -23,8 +23,6 @@ EscenaJuego::EscenaJuego(SdlWindow& window, ColaBloqueante<Evento*>& colaEnviar,
 	deltaCamaraY = 0;
 	window.fill();
 	fondoTex.setColor(80, 80, 80);
-	recibirMiIdentificador();
-	crearTerreno();
 }
 
 bool EscenaJuego::termino() {
@@ -101,16 +99,7 @@ void EscenaJuego::manejar(EventoRotacion& evento) {
 void EscenaJuego::manejar(EventoCreacionPersonaje& evento) {
 	this->miId = evento.atributos["idPersonaje"];
 	handler.setPlayerId(miId);
-}
-
-void EscenaJuego::recibirMiIdentificador() {
-	Evento* eventoCreacionPersonaje;
-	bool recibiId = false;
-	while(!recibiId) {
-		recibiId = colaRecibir.get(eventoCreacionPersonaje);
-	}
-	eventoCreacionPersonaje->actualizar(*this);
-	delete eventoCreacionPersonaje;
+	crearTerreno();
 }
 
 void EscenaJuego::crearTerreno() {
