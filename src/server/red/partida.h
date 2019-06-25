@@ -32,9 +32,11 @@ class Partida : public Handler, public Thread {
 
     virtual void ejecutar() override;
     virtual void cerrar() override;
-    
+
     virtual void manejar(Evento& evento) override;
     void manejar(EventoJugadorDesconectado& evento) override;
+
+    void manejar(EventoCreacionPersonaje& evento) override;
 };
 
 #endif

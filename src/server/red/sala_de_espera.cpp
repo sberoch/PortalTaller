@@ -72,7 +72,6 @@ void SalaDeEspera::manejar(EventoUnirseAPartida& evento) {
         std::shared_ptr<Evento> e(std::make_shared<EventoActualizacionSala>(cantidadDePartidas,partidaSeleccionada,cantidadJugadores));
         kv.second->eventosSalientes().put(e);
     }
-
 }
 
 void SalaDeEspera::manejar(EventoIniciarPartida& evento) {
@@ -84,7 +83,6 @@ void SalaDeEspera::manejar(EventoIniciarPartida& evento) {
         retransmisores_.erase(jugador);
         clientes_.erase(jugador);
     }
-    
 }
 
 void SalaDeEspera::manejar(EventoIngresarASala& evento) {

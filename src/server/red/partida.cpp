@@ -24,7 +24,7 @@ int Partida::cantidadDeJugadores() {
 }
 
 void Partida::manejar(Evento& unEvento) {
-    std::cout << "Manejaondoan\n";
+  
     unEvento.actualizar(*this);
 }
 
@@ -56,6 +56,7 @@ std::vector<int> Partida::jugadores() {
 }
 
 void Partida::manejar(EventoJugadorDesconectado& evento) {
+    std::cout << "El cliente abandono la parida\n";
     int uuid = evento.atributos["uuidDelDesconectado"];
     retransmisores_[uuid]->cerrar();
     jugadores_[uuid]->cerrar();    
@@ -72,4 +73,8 @@ void Partida::cerrar() {
         kv.second->cerrar();
     }
     Thread::cerrar();
+}
+
+void Partida::manejar(EventoCreacionPersonaje& evento) {
+    
 }
