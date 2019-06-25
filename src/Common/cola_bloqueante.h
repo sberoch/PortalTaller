@@ -36,6 +36,8 @@ class ColaBloqueante {
     bool get(T& unElemento);
 
     void detener();
+
+    void reiniciar();
 };
 
 #endif

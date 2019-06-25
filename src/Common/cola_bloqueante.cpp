@@ -36,5 +36,11 @@ void ColaBloqueante<T>::detener() {
     cond_.notify_all();
 }
 
+template <class T>
+void ColaBloqueante<T>::reiniciar() {
+    detenida_.set(false);
+    cond_.notify_all();
+}
+
 template class ColaBloqueante<Evento*>;
 template class ColaBloqueante<std::shared_ptr<Evento>>;
