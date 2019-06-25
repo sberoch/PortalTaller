@@ -13,7 +13,7 @@ void SalaDeEspera::agregar(std::shared_ptr<Cliente> unCliente) {
     clientes_.push_back(unCliente);
     unCliente->iniciar();
     std::shared_ptr<Retransmisor> retransmisor(new Retransmisor(seguirCorriendo_, unCliente->eventosEntrantes(), eventosEntrantes_));
-    retransmisores_[unCliente] = retransmisor;
+    retransmisores_[unCliente->uuid()] = retransmisor;
     retransmisor->iniciar();
 }
 
@@ -56,5 +56,5 @@ void SalaDeEspera::manejar(EventoIniciarPartida& evento) {
 }
 
 void SalaDeEspera::manejar(EventoIngresarASala& evento) {
-
+    
 }

@@ -22,7 +22,7 @@ class SalaDeEspera : public Thread, public Handler {
     CoordinadorPartidas& coordinadorPartidas_;
     std::vector<std::shared_ptr<Cliente>> clientes_;
     ColaBloqueante<std::shared_ptr<Evento>> eventosEntrantes_;
-    std::map<std::shared_ptr<Cliente>, std::shared_ptr<Retransmisor>> retransmisores_;
+    std::map<int, std::shared_ptr<Retransmisor>> retransmisores_;
 
     public:
     SalaDeEspera(bool& seguirCorriendo, CoordinadorPartidas& coordinadorPartidas);
