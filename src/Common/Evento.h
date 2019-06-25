@@ -216,4 +216,13 @@ public:
 	virtual ~EventoFinDelJuego() {}
 };
 
+class EventoJugadorDesconectado : public Evento {
+public:
+	EventoJugadorDesconectado(int uuid);
+	EventoJugadorDesconectado(Socket& s);
+	virtual void enviarPorSocket(Socket& s);
+	virtual void actualizar(Handler& handler) override;	
+	virtual ~EventoJugadorDesconectado() {}
+};
+
 #endif

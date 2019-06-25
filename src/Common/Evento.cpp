@@ -349,6 +349,20 @@ void EventoFinDelJuego::enviarPorSocket(Socket& s) {
 	s.enviarInt(atributos["idPersonaje"]);
 }
 
+EventoJugadorDesconectado::EventoJugadorDesconectado(int uuidDelDesconectado) {
+	tipo = EVENTO_JUGADOR_DESCONECTADO;
+	atributos["uuidDelDesconectado"] = uuidDelDesconectado;
+}
+
+EventoJugadorDesconectado::EventoJugadorDesconectado(Socket& s) {
+	tipo = EVENTO_JUGADOR_DESCONECTADO;
+	atributos["uuidDelDesconectado"] = s.recibirInt();
+}
+
+void EventoJugadorDesconectado::enviarPorSocket(Socket& s) {
+	s.enviarInt(tipo);
+	s.enviarInt(atributos["uuidDelDesconectado"]);
+}
 
 void EventoMover::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoFlip::actualizar(Handler& handler) {handler.manejar(*this);}
@@ -364,3 +378,4 @@ void EventoIniciarPartida::actualizar(Handler& handler) {handler.manejar(*this);
 void EventoSeleccionarPartida::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoIngresarASala::actualizar(Handler& handler) {handler.manejar(*this);}
 void EventoFinDelJuego::actualizar(Handler& handler) {handler.manejar(*this);}
+void EventoJugadorDesconectado::actualizar(Handler& handler) {handler.manejar(*this);}
