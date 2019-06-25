@@ -1,5 +1,7 @@
 #include "coordinador_partidas.h"
 
+#include "../server_config.h"
+
 CoordinadorPartidas::CoordinadorPartidas(bool& seguirCorriendo) :
     seguirCorriendo_(seguirCorriendo) {
 }
@@ -17,6 +19,9 @@ int CoordinadorPartidas::cantidadPartidas() {
 }
 
 void CoordinadorPartidas::agregarPartida() {
+    if (partidas_.size() == CONFIG.MAX_CANTIDAD_PARTIDAS) {
+        return;
+    }
     Partida p;
     partidas_.push_back(p);
 }

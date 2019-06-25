@@ -9,7 +9,7 @@ SalaDeEspera::SalaDeEspera(bool& seguirCorriendo, CoordinadorPartidas& coordinad
 }
 
 void SalaDeEspera::agregar(std::shared_ptr<Cliente> unCliente) {
-    // DEBERIA SER PROTEGIDO, SI INTERVIENE EL ACEPTADOR Y LA PARTIDA (UNA VEZ FINALIZADA)
+    std::lock_guard<std::mutex> lck(mtx_);
     clientes_[unCliente->uuid()] = unCliente;
     unCliente->iniciar();
     std::shared_ptr<Retransmisor> retransmisor(new Retransmisor(seguirCorriendo_, unCliente->eventosEntrantes(), eventosEntrantes_));

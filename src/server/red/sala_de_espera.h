@@ -13,6 +13,8 @@
 #include "retransmisor.h"
 #include "coordinador_partidas.h"
 
+#include <mutex>
+
 // Forward declaration
 class Cliente;
 
@@ -23,6 +25,7 @@ class SalaDeEspera : public Thread, public Handler {
     std::map<int, std::shared_ptr<Cliente>> clientes_;
     ColaBloqueante<std::shared_ptr<Evento>> eventosEntrantes_;
     std::map<int, std::shared_ptr<Retransmisor>> retransmisores_;
+    std::mutex mtx_;
 
     public:
     SalaDeEspera(bool& seguirCorriendo, CoordinadorPartidas& coordinadorPartidas);

@@ -16,7 +16,7 @@ Servidor::Servidor(const std::string& unPuerto) {
 void Servidor::correr() {
     bool seguirCorriendo = true;
     CoordinadorPartidas coordinadorPartidas(seguirCorriendo);
-    //coordinadorPartidas.iniciar();    
+    coordinadorPartidas.iniciar();    
     SalaDeEspera salaDeEspera(seguirCorriendo, coordinadorPartidas);
     salaDeEspera.iniciar();
     Aceptador aceptador(sktAceptador_, seguirCorriendo, *this, salaDeEspera);
