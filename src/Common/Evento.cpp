@@ -44,37 +44,43 @@ void EventoCreacionPersonaje::enviarPorSocket(Socket& s) {
 }
 
 
-EventoPortalAzul::EventoPortalAzul(int x, int y) {
+EventoPortalAzul::EventoPortalAzul(int x, int y, int posObjetoEnLista) {
 	tipo = EVENTO_PORTAL_AZUL;
 	atributos["x"] = x;
 	atributos["y"] = y;
+	atributos["posObjetoEnLista"] = posObjetoEnLista;
 }
 EventoPortalAzul::EventoPortalAzul(Socket& s) {
 	tipo = EVENTO_PORTAL_AZUL;
 	atributos["x"] = s.recibirInt();
 	atributos["y"] = s.recibirInt();
+	atributos["posObjetoEnLista"] = s.recibirInt();
 }
 void EventoPortalAzul::enviarPorSocket(Socket& s) {
 	s.enviarInt(tipo);
 	s.enviarInt(atributos["x"]);
 	s.enviarInt(atributos["y"]);
+	s.enviarInt(atributos["posObjetoEnLista"]);
 }
 
 
-EventoPortalNaranja::EventoPortalNaranja(int x, int y) {
+EventoPortalNaranja::EventoPortalNaranja(int x, int y, int posObjetoEnLista) {
 	tipo = EVENTO_PORTAL_NARANJA;
 	atributos["x"] = x;
 	atributos["y"] = y;
+	atributos["posObjetoEnLista"] = posObjetoEnLista;
 }
 EventoPortalNaranja::EventoPortalNaranja(Socket& s) {
 	tipo = EVENTO_PORTAL_NARANJA;
 	atributos["x"] = s.recibirInt();
 	atributos["y"] = s.recibirInt();
+	atributos["posObjetoEnLista"] = s.recibirInt();
 }
 void EventoPortalNaranja::enviarPorSocket(Socket& s) {
 	s.enviarInt(tipo);
 	s.enviarInt(atributos["x"]);
 	s.enviarInt(atributos["y"]);
+	s.enviarInt(atributos["posObjetoEnLista"]);
 }
 
 
@@ -166,20 +172,23 @@ void EventoMover::enviarPorSocket(Socket& s) {
 }
 
 
-EventoPinTool::EventoPinTool(int x, int y) {
+EventoPinTool::EventoPinTool(int x, int y, int posObjetoEnLista) {
 	tipo = EVENTO_PIN_TOOL;
 	atributos["x"] = x;
 	atributos["y"] = y;
+	atributos["posObjetoEnLista"] = posObjetoEnLista;
 }
 EventoPinTool::EventoPinTool(Socket& s) {
 	tipo = EVENTO_PIN_TOOL;
 	atributos["x"] = s.recibirInt();
 	atributos["y"] = s.recibirInt();
+	atributos["posObjetoEnLista"] = s.recibirInt();
 }
 void EventoPinTool::enviarPorSocket(Socket& s) {
 	s.enviarInt(tipo);
 	s.enviarInt(atributos["x"]);
 	s.enviarInt(atributos["y"]);
+	s.enviarInt(atributos["posObjetoEnLista"]);
 }
 
 

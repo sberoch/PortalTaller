@@ -49,7 +49,9 @@ void EscenaJuego::dibujar() {
 }
 
 int EscenaJuego::manejarEventos() {
-	handler.handle();
+	//Le paso idProximoItem por si necesita crear un objeto nuevo
+	int idProximoItem = objetosDelJuego.rbegin()->first;
+	handler.handle(idProximoItem);
 	if (handler.termino()) {
 		terminado = true;
 	}
@@ -121,6 +123,7 @@ void EscenaJuego::crearTerreno() {
 			deltaCamaraX = screenX/2 - x;
 			deltaCamaraY = screenY/2 - y;
 		}
+
 		objetosDelJuego.insert(std::make_pair(vo->getId(), vo));
 	}
 }
