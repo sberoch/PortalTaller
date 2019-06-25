@@ -27,11 +27,14 @@ class Partida : public Handler, public Thread {
     Partida& operator=(Partida&& otra);
     void agregar(std::shared_ptr<Cliente> cliente);
     int cantidadDeJugadores();
-    virtual void manejar(Evento& evento) override;
+    
     std::vector<int> jugadores();
 
     virtual void ejecutar() override;
     virtual void cerrar() override;
+    
+    virtual void manejar(Evento& evento) override;
+    void manejar(EventoJugadorDesconectado& evento) override;
 };
 
 #endif

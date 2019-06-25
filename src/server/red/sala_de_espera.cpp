@@ -47,7 +47,6 @@ void SalaDeEspera::manejar(EventoCrearPartida& evento) {
         std::shared_ptr<Evento> e(std::make_shared<EventoActualizacionSala>(cantidadDePartidas,0,0));
         kv.second->eventosSalientes().put(e);
     }
-
 }
 
 void SalaDeEspera::manejar(EventoSeleccionarPartida& evento) {
@@ -60,6 +59,7 @@ void SalaDeEspera::manejar(EventoSeleccionarPartida& evento) {
     }
     
 }
+
 void SalaDeEspera::manejar(EventoUnirseAPartida& evento) {
     int partidaSeleccionada = evento.atributos["partidaSeleccionada"] -1;
     int uuid = evento.atributos["uuid"];
@@ -72,15 +72,19 @@ void SalaDeEspera::manejar(EventoUnirseAPartida& evento) {
         std::shared_ptr<Evento> e(std::make_shared<EventoActualizacionSala>(cantidadDePartidas,partidaSeleccionada,cantidadJugadores));
         kv.second->eventosSalientes().put(e);
     }
+
 }
 
 void SalaDeEspera::manejar(EventoIniciarPartida& evento) {
-    coordinadorPartidas_.iniciarPartida(evento.atributos["partidaSeleccionada"] - 1);
-    std::vector<int> jugadores = coordinadorPartidas_.jugadoresEnLaPartida(evento.atributos["partidaSeleccionada"] - 1);
+    int partida = evento.atributos["partidaSeleccionada"] - 1;
+    coordinadorPartidas_.iniciarPartida(partida);
+    std::vector<int> jugadores = coordinadorPartidas_.jugadoresEnLaPartida(partida);
     for (auto& jugador : jugadores) {
         retransmisores_[jugador]->cerrar();
         retransmisores_.erase(jugador);
+        clientes_.erase(jugador);
     }
+    
 }
 
 void SalaDeEspera::manejar(EventoIngresarASala& evento) {
@@ -92,7 +96,6 @@ void SalaDeEspera::manejar(EventoIngresarASala& evento) {
 }
 
 void SalaDeEspera::manejar(EventoJugadorDesconectado& evento) {
-    
     int uuid = evento.atributos["uuidDelDesconectado"];
     clientes_[uuid]->cerrar();
     retransmisores_[uuid]->cerrar();
