@@ -3,13 +3,15 @@
 
 #include "../../Common/Thread.h"
 #include "../../Common/cola_bloqueante.h"
+#include "../../Common/Evento.h"
+#include "../../Common/handler.h"
 
 #include "partida.h"
 
 //Forward declaration
 class Evento;
 
-class CoordinadorPartidas : public Thread {
+class CoordinadorPartidas : public Thread, public Handler {
     private:
     bool& seguirCorriendo_;
     ColaBloqueante<std::shared_ptr<Evento>> eventosEntrantes_;
@@ -20,6 +22,8 @@ class CoordinadorPartidas : public Thread {
     virtual void ejecutar() override;
     virtual void cerrar() override;
 
+    virtual void manejar(Evento& evento) override;
+    
     int cantidadPartidas();
     void agregarPartida();
 };

@@ -36,7 +36,6 @@ void SalaDeEspera::ejecutar() {
     while(seguirCorriendo_ && (obtenido = eventosEntrantes_.get(evento))) {
         manejar(*evento);
     }
-    std::cout << "deje de recibir eventos en la sala\n";
 }
 
 void SalaDeEspera::manejar(Evento& evento) {

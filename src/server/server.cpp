@@ -28,6 +28,6 @@ void Servidor::correr() {
     seguirCorriendo = false;
     sktAceptador_.shutdown();
     aceptador.cerrar();
+    coordinadorPartidas.cerrar();
     salaDeEspera.cerrar();
-    //coordinadorPartidas.cerrar();
 }
