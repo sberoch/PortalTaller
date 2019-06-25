@@ -35,6 +35,7 @@ class SalaDeEspera : public Thread, public Handler {
     virtual void manejar(EventoSeleccionarPartida& evento) override;
     virtual void manejar(EventoUnirseAPartida& evento) override;
     virtual void manejar(EventoIniciarPartida& evento) override;
+    virtual void manejar(EventoIngresarASala& evento) override;
 };
 
 #endif

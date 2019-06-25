@@ -5,12 +5,14 @@
 #include "../../Common/Socket.h"
 #include "../../Common/cola_bloqueante.h"
 
+#include "../mundo/identificable.h"
+
 #include "enviador_eventos.h"
 #include "recibidor_eventos.h"
 // Forward declaration
 class Evento;
 
-class Cliente : public Thread {
+class Cliente : public Thread, public Identificable {
     private:
     Socket sktCliente_;
     bool& seguirCorriendo_;

@@ -54,3 +54,7 @@ void SalaDeEspera::manejar(EventoUnirseAPartida& evento) {
 void SalaDeEspera::manejar(EventoIniciarPartida& evento) {
 
 }
+
+void SalaDeEspera::manejar(EventoIngresarASala& evento) {
+
+}

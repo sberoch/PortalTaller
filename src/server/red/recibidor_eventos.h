@@ -17,9 +17,10 @@ class RecibidorEventos : public Thread {
     ColaBloqueante<std::shared_ptr<Evento>>& destino_;    
     bool& seguirCorriendo_;
     Serializador serializador_;
+    int uuid_;
 
     public:
-    RecibidorEventos(Socket& origen, ColaBloqueante<std::shared_ptr<Evento>>& destino, bool& seguirCorriendo);
+    RecibidorEventos(Socket& origen, ColaBloqueante<std::shared_ptr<Evento>>& destino, bool& seguirCorriendo, int uuid);
     virtual void ejecutar() override;
     void cerrar() override;
 };

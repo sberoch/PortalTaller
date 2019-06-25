@@ -17,7 +17,7 @@ void Servidor::correr() {
     bool seguirCorriendo = true;
     CoordinadorPartidas coordinadorPartidas(seguirCorriendo);
     //coordinadorPartidas.iniciar();    
-    SalaDeEspera salaDeEspera(seguirCorriendo);
+    SalaDeEspera salaDeEspera(seguirCorriendo, coordinadorPartidas);
     salaDeEspera.iniciar();
     Aceptador aceptador(sktAceptador_, seguirCorriendo, *this, salaDeEspera);
     aceptador.iniciar();

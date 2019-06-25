@@ -10,7 +10,7 @@ Cliente::Cliente(Socket&& skt, bool& seguirCorriendo) :
     sktCliente_(std::move(skt)),
     seguirCorriendo_(seguirCorriendo),
     enviador_(eventosAEnviar_, sktCliente_, seguirCorriendo),
-    recibidor_(sktCliente_, eventosRecibidos_, seguirCorriendo) {
+    recibidor_(sktCliente_, eventosRecibidos_, seguirCorriendo, uuid()) {
 }
 
 bool Cliente::estaVivo() {
