@@ -21,14 +21,14 @@ class Cliente;
 class SalaDeEspera : public Thread, public Handler {
     private:
     bool& seguirCorriendo_;
-    CoordinadorPartidas& coordinadorPartidas_;
+    CoordinadorPartidas coordinadorPartidas_;
     std::map<int, std::shared_ptr<Cliente>> clientes_;
     ColaBloqueante<std::shared_ptr<Evento>> eventosEntrantes_;
     std::map<int, std::shared_ptr<Retransmisor>> retransmisores_;
     std::mutex mtx_;
 
     public:
-    SalaDeEspera(bool& seguirCorriendo, CoordinadorPartidas& coordinadorPartidas);
+    SalaDeEspera(bool& seguirCorriendo);
     void agregar(std::shared_ptr<Cliente> unCliente);
     virtual void ejecutar() override;
     virtual void cerrar() override;

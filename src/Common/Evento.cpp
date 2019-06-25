@@ -337,11 +337,11 @@ void EventoActualizacionSala::enviarPorSocket(Socket& s) {
 }
 
 EventoFinDelJuego::EventoFinDelJuego(int idPersonaje) {
-	tipo = EVENTO_SELECCIONAR_PARTIDA;
+	tipo = EVENTO_FIN_DEL_JUEGO;
 	atributos["idPersonaje"] = idPersonaje;
 }
 EventoFinDelJuego::EventoFinDelJuego(Socket& s) {
-	tipo = EVENTO_UNIRSE_A_PARTIDA;
+	tipo = EVENTO_FIN_DEL_JUEGO;
 	atributos["idPersonaje"] = s.recibirInt();
 }
 void EventoFinDelJuego::enviarPorSocket(Socket& s) {

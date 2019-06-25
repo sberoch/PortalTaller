@@ -1,31 +1,19 @@
 #ifndef __COORDINADOR_PARTIDAS_H__
 #define __COORDINADOR_PARTIDAS_H__
 
-#include "../../Common/Thread.h"
-#include "../../Common/cola_bloqueante.h"
-#include "../../Common/Evento.h"
-#include "../../Common/handler.h"
-
 #include "partida.h"
+#include <vector>
 
-//Forward declaration
-class Evento;
-
-class CoordinadorPartidas : public Thread, public Handler {
+class CoordinadorPartidas {
     private:
-    bool& seguirCorriendo_;
-    ColaBloqueante<std::shared_ptr<Evento>> eventosEntrantes_;
-    std::vector<Partida> partidas_;
+    std::vector<std::shared_ptr<Partida>> partidas_;
 
     public:
-    CoordinadorPartidas(bool& seguirCorriendo);
-    virtual void ejecutar() override;
-    virtual void cerrar() override;
-
-    virtual void manejar(Evento& evento) override;
-    
     int cantidadPartidas();
+    int cantidadDeJugadoresEnPartida(int partida);
     void agregarPartida();
+    void moverClienteAPartida(std::shared_ptr<Cliente> cliente, int partida);
+    std::vector<int> jugadoresEnLaPartidaDe(int jugador);
 };
 
 #endif
