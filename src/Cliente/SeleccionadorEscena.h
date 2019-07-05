@@ -29,6 +29,8 @@ public:
 	SeleccionadorEscena(char* host, char* port, int xScreen, int yScreen);
 	void ejecutar();
 	void terminar();
+private:
+	void avisarComienzoJuego();
 };
 
 #endif // SELECCIONADOR_ESCENA_H

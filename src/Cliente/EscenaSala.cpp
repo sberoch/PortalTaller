@@ -151,8 +151,8 @@ void EscenaSala::manejar(EventoActualizacionSala& evento) {
 
 void EscenaSala::manejar(EventoIniciarPartida& evento) {
 	siguienteEscena = ESCENA_JUEGO;
-	Evento* eventoSolicitarId = new EventoSolicitarId();
-	colaEnviar.put(eventoSolicitarId);
+	//Evento* eventoSolicitarId = new EventoSolicitarId();
+	//colaEnviar.put(eventoSolicitarId);
 }
 
 EscenaSala::~EscenaSala() {

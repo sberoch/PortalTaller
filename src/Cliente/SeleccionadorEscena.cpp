@@ -24,6 +24,7 @@ SeleccionadorEscena::SeleccionadorEscena(char* host, char* port, int xScreen, in
 
 void SeleccionadorEscena::ejecutar() {
 	EscenaBase* escena;
+	bool avisado = false;
 	bool terminado = false;
 	while(!terminado) {
 	    escena = escenas.at(escenaActual);
@@ -33,8 +34,17 @@ void SeleccionadorEscena::ejecutar() {
 		if (escena->termino()) {
 			terminado = true;
 			terminar();
+		}
+		if ((escenaActual == ESCENA_JUEGO) && !avisado) {
+			avisarComienzoJuego();
+			avisado = true;
 		}	
 	}
+}
+
+void SeleccionadorEscena::avisarComienzoJuego() {
+	Evento* eventoSolicitarId = new EventoSolicitarId();
+	colaEnviar.put(eventoSolicitarId);
 }
 
 void SeleccionadorEscena::terminar() {
