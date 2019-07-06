@@ -30,6 +30,5 @@ void Aceptador::ejecutar() {
 }
 
 void Aceptador::cerrar() {
-    salaDeEspera_.cerrar();
     Thread::cerrar();
 }

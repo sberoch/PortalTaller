@@ -3,20 +3,7 @@
 
 Partida::Partida(bool& seguirCorriendo) :
     seguirCorriendo_(seguirCorriendo) {
-
-}
-
-Partida::Partida(Partida&& otra) : 
-    seguirCorriendo_(otra.seguirCorriendo_) {
-    // Falta implementar
-}
-
-Partida& Partida::operator=(Partida&& otra) {
-    // Falta implementar    
-    if (this == &otra) {
-        return *this;
-    }
-    return *this; 
+    jugando_ = false;
 }
 
 int Partida::cantidadDeJugadores() {
@@ -33,7 +20,9 @@ void Partida::agregar(std::shared_ptr<Cliente> cliente) {
 }
 
 void Partida::ejecutar() {
+    jugando_ = true;
     for (auto& kv : jugadores_) {
+        kv.second->eventosEntrantes().reiniciar();
         std::shared_ptr<Retransmisor> retransmisor(new Retransmisor(seguirCorriendo_, kv.second->eventosEntrantes(), eventosEntrantes_));
         retransmisores_[kv.second->uuid()] = retransmisor;
         retransmisor->iniciar();
@@ -56,22 +45,30 @@ std::vector<int> Partida::jugadores() {
 }
 
 void Partida::manejar(EventoJugadorDesconectado& evento) {
+    if (!seguirCorriendo_) {
+        return;
+    }
     std::cout << "El cliente abandono la parida\n";
     int uuid = evento.atributos["uuidDelDesconectado"];
-    retransmisores_[uuid]->cerrar();
     jugadores_[uuid]->cerrar();    
     jugadores_.erase(uuid);
+    retransmisores_[uuid]->cerrar();
     retransmisores_.erase(uuid);
 }
 
 void Partida::cerrar() {
-    eventosEntrantes_.detener();
-    for (auto& kv : retransmisores_) {
-        kv.second->cerrar();
+    if (!jugando_) {
+        return;
     }
+    eventosEntrantes_.detener();
     for (auto& kv : jugadores_) {
         kv.second->cerrar();
-    }
+        std::cout << "closing\n";
+    }    
+    for (auto& kv : retransmisores_) {
+        kv.second->cerrar();
+        std::cout << "closing\n";
+    }    
     Thread::cerrar();
 }
 

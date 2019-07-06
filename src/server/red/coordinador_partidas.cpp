@@ -34,7 +34,7 @@ void CoordinadorPartidas::iniciarPartida(int partida) {
     partidas_[partida]->iniciar();
 }
 
-CoordinadorPartidas::~CoordinadorPartidas() {
+void CoordinadorPartidas::cerrar() {
     for (auto& partida : partidas_) {
         partida->cerrar();
     }

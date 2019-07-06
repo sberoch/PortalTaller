@@ -20,11 +20,10 @@ class Partida : public Handler, public Thread {
     Mundo mundo_;
     ColaBloqueante<std::shared_ptr<Evento>> eventosEntrantes_;
     std::map<int, std::shared_ptr<Retransmisor>> retransmisores_;
+    bool jugando_;
 
     public:
     Partida(bool& seguirCorriendo);
-    Partida(Partida&& otra);
-    Partida& operator=(Partida&& otra);
     void agregar(std::shared_ptr<Cliente> cliente);
     int cantidadDeJugadores();
     

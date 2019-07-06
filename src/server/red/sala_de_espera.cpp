@@ -25,6 +25,7 @@ void SalaDeEspera::cerrar() {
     for (auto& kv : retransmisores_) {
         kv.second->cerrar();
     }
+    coordinadorPartidas_.cerrar();
     Thread::cerrar();
 }
 
@@ -76,14 +77,14 @@ void SalaDeEspera::manejar(EventoUnirseAPartida& evento) {
 
 void SalaDeEspera::manejar(EventoIniciarPartida& evento) {
     int partida = evento.atributos["partidaSeleccionada"] - 1;
-    coordinadorPartidas_.iniciarPartida(partida);
     std::vector<int> jugadores = coordinadorPartidas_.jugadoresEnLaPartida(partida);
     for (auto& jugador : jugadores) {
         clientes_[jugador]->eventosEntrantes().detener();
         retransmisores_[jugador]->cerrar();
         retransmisores_.erase(jugador);
         clientes_.erase(jugador);
-    }
+    }    
+    coordinadorPartidas_.iniciarPartida(partida);
 }
 
 void SalaDeEspera::manejar(EventoIngresarASala& evento) {
