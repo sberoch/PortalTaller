@@ -7,7 +7,7 @@ class Handler;
 class Socket;
 
 class Evento {
-protected:
+public:
 	int tipo;
 public:
 	std::map<std::string, int> atributos;

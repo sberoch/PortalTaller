@@ -30,8 +30,20 @@ bool EscenaSala::termino() {
 void EscenaSala::actualizar() {
 	Evento* evento;
 	while (colaRecibir.get(evento)) {
+		if (evento->tipo == 214) {
+			std::cout << "No eberia llegar\n";
+			evento->actualizar(*this);
+			delete evento;
+			break;	
+		}
+		if (evento->tipo == 215) {
+			evento->actualizar(*this);
+			delete evento;
+			break;	
+		}
 		evento->actualizar(*this);
 		delete evento;
+
 	}
 }
 
