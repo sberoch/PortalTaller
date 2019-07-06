@@ -34,7 +34,7 @@ void EscenaJuego::actualizar() {
 	while (colaRecibir.get(evento)) {
 		evento->actualizar(*this);
 		delete evento;
-	}	
+	}
 }
 
 void EscenaJuego::dibujar() {
@@ -50,10 +50,12 @@ void EscenaJuego::dibujar() {
 
 int EscenaJuego::manejarEventos() {
 	//Le paso idProximoItem por si necesita crear un objeto nuevo
-	int idProximoItem = objetosDelJuego.rbegin()->first;
-	handler.handle(idProximoItem);
-	if (handler.termino()) {
-		terminado = true;
+	if (objetosDelJuego.size() != 0) {
+		int idProximoItem = objetosDelJuego.rbegin()->first;
+		handler.handle(idProximoItem);
+		if (handler.termino()) {
+			terminado = true;
+		}
 	}
 	//Se retorna la escena siguiente, en el caso del juego
 	// es la escena final, por lo que se devuelve esta constante.

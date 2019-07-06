@@ -104,6 +104,7 @@ void InputHandler::handle(int cantObjetosEnJuego) {
 				case SDLK_q: {
 					evento = new EventoResetPortales(playerId);
 					colaEnviar.put(evento);
+					break;
 				}
 
 				case SDLK_F11:
