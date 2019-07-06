@@ -35,7 +35,7 @@ class Partida : public Handler, public Thread {
     virtual void manejar(Evento& evento) override;
     void manejar(EventoJugadorDesconectado& evento) override;
 
-    void manejar(EventoCreacionPersonaje& evento) override;
+    void manejar(EventoSolicitarId& evento) override;
 };
 
 #endif

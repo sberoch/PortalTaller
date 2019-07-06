@@ -165,6 +165,9 @@ void Socket::enviarInt(int num) {
 
 int Socket::recibirInt() {
 	int num;
-	this->recibir((char*) &num, CUATRO_BYTES);
+	int status = this->recibir((char*) &num, CUATRO_BYTES);
+	if (status < 0) {
+		throw std::runtime_error("Error al recibir en socket");
+	}
 	return num;
 }

@@ -28,6 +28,7 @@ void Partida::ejecutar() {
         retransmisor->iniciar();
         std::shared_ptr<Evento> inicio(std::make_shared<EventoIniciarPartida>(1));
         kv.second->eventosSalientes().put(inicio);
+        
     }
     bool obtenido;
     std::shared_ptr<Evento> evento;    
@@ -72,6 +73,8 @@ void Partida::cerrar() {
     Thread::cerrar();
 }
 
-void Partida::manejar(EventoCreacionPersonaje& evento) {
-    std::cout << "pidio\n";
+void Partida::manejar(EventoSolicitarId& evento) {
+    int id = evento.atributos["uuid"];
+    std::shared_ptr<Evento> eid(std::make_shared<EventoCreacionPersonaje>(id));
+    jugadores_[id]->eventosSalientes().put(eid);
 }

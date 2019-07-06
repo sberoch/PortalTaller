@@ -3,7 +3,15 @@
 #include <iostream>
 
 Evento* Serializador::recibirEvento(Socket& socket) {
-	int tipoEvento = socket.recibirInt();
+	int tipoEvento;
+	try
+	{
+		tipoEvento = socket.recibirInt();
+	}
+	catch(const std::exception& e)
+	{
+		throw std::runtime_error("Error: se intento recuperar evento con tipo no definido.");
+	}	
 	std::cout << tipoEvento << std::endl;
 	switch(tipoEvento) {
 		case(EVENTO_PORTAL_AZUL): return new EventoPortalAzul(socket); 
