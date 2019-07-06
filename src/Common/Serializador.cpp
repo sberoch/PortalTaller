@@ -10,7 +10,7 @@ Evento* Serializador::recibirEvento(Socket& socket) {
 	}
 	catch(const std::exception& e)
 	{
-		throw std::runtime_error("Error: se intento recuperar evento con tipo no definido.");
+		throw std::runtime_error(e.what());
 	}	
 	std::cout << tipoEvento << std::endl;
 	switch(tipoEvento) {
